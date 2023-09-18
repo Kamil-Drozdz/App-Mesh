@@ -1,5 +1,5 @@
 {
-  "name": "vite-react-tailwind-template",
+  "name": "admin-dashboard",
   "version": "0.0.0",
   "scripts": {
     "prepare": "husky install",
@@ -24,7 +24,9 @@
   },
   "dependencies": {
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.11.0",
+    "stylelint": "^15.10.3"
   },
   "devDependencies": {
     "@innei-util/eslint-config-react-ts": "^0.2.1",

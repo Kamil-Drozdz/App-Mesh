@@ -1,6 +1,2 @@
-declare global {
-  export interface Window {
-    foo: number
-  }
-}
-export {}
+declare module 'vite'
+declare module 'vite-tsconfig-paths'
