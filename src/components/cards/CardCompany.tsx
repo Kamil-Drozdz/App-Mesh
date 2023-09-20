@@ -1,7 +1,6 @@
 import CardCompanyItem from '@/common/CardCompanyItem';
 import CardContainer from '@/common/CardContainer';
 import { CompanyData, generateCompanyData, generateData, labels } from '@/data/cards/dataCompany';
-import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
 
 const CardCompany = () => {
 	const data: CompanyData[] = generateData(20, generateCompanyData);

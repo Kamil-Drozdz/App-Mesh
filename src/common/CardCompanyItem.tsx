@@ -1,4 +1,3 @@
-import React from 'react';
 import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
 
 const CardCompanyItem = ({ item }) => {

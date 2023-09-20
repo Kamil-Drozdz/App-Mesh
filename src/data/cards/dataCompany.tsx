@@ -1,14 +1,12 @@
 import { getRandomHexColor } from '@/lib/entities/generateRandomColor';
 import { IconSize } from '@/lib/entities/iconSize';
 import { faker } from '@faker-js/faker';
-import { ReactNode } from 'react';
-import { IconType } from 'react-icons';
 import { AiOutlineDesktop, AiOutlineMobile, AiOutlineLaptop, AiOutlineShoppingCart, AiOutlineCode } from 'react-icons/ai';
 
 export const labels = ['COMPANY', 'CATEGORY', 'VIEWS', 'REVENUE', 'SALES'];
 
 export type CompanyData = {
-	icon: ReactNode;
+	icon: JSX.Element;
 	photo: string;
 	name: string;
 	email: string;
@@ -19,10 +17,12 @@ export type CompanyData = {
 	color: string;
 };
 
-const generateRandomIcon: IconType = () => {
-	const icons = [<AiOutlineDesktop size={IconSize.medium} />, <AiOutlineMobile size={IconSize.medium} />, <AiOutlineLaptop size={IconSize.medium} />, <AiOutlineShoppingCart size={IconSize.medium} />, <AiOutlineCode size={IconSize.medium} />];
-	const randomIndex = Math.floor(Math.random() * icons.length);
-	return icons[randomIndex];
+const iconComponents = [AiOutlineDesktop, AiOutlineMobile, AiOutlineLaptop, AiOutlineShoppingCart, AiOutlineCode];
+
+const generateRandomIcon = () => {
+	const randomIndex = Math.floor(Math.random() * iconComponents.length);
+	const IconComponent = iconComponents[randomIndex];
+	return <IconComponent size={IconSize.medium} />;
 };
 
 export const generateCompanyData = (): CompanyData => {
