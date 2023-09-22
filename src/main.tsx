@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import DashboardContent from './components/DashboardContent';
+import './data/translations/i18n';
 import SideNavbar from './components/SideNavbar';
+import DashboardContent from './components/pages/Dashboard/DashboardContent';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const rootElement = document.getElementById('root');
@@ -11,8 +12,8 @@ if (rootElement) {
 	const Root: FC = () => {
 		return (
 			<Router>
-				<div className='w-screen h-screen'>
-					<SideNavbar />
+				<SideNavbar />
+				<div className='h-screen lg:ml-72'>
 					<Routes>
 						<Route path='/' element={<DashboardContent />} />
 						<Route path='/dashboard/analitics' element={<DashboardContent />} />

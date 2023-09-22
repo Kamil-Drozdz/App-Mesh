@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineRight } from 'react-icons/ai';
 import { LiaDotCircle } from 'react-icons/lia';
 import { Link } from 'react-router-dom';
@@ -30,15 +30,17 @@ const SideNavbarItem = ({ icon, name, href, dropdown, menuCollapsed }) => {
 					</div>
 				</Link>
 			)}
-			{open
-				? dropdown?.map(item => (
-						<Link to={item.href} key={item.href} className={`${isActive && 'bg-darkBlue'} ${menuCollapsed ? 'hidden' : 'flex'}   items-center justify-between m-1 px-4 py-2.5 hover:bg-darkBlue focus:bg-darkBlue mx-5 rounded-lg transition-colors duration-150 ease-in-out`}>
-							<div className='flex items-center space-x-2'>
-								<LiaDotCircle /> <span>{item.name}</span>
-							</div>
-						</Link>
-				  ))
-				: null}
+			<div className={` overflow-hidden transition-all duration-300 ease ${open ? 'max-h-96' : 'max-h-0'}`}>
+				{open
+					? dropdown?.map(item => (
+							<Link to={item.href} key={item.href} className={`${isActive && 'bg-darkBlue'} ${menuCollapsed ? 'hidden' : 'flex'}   items-center justify-between m-1 px-4 py-2.5 hover:bg-darkBlue focus:bg-darkBlue mx-5 rounded-lg transition-colors duration-150 ease-in-out`}>
+								<div className='flex items-center space-x-2'>
+									<LiaDotCircle /> <span>{item.name}</span>
+								</div>
+							</Link>
+					  ))
+					: null}
+			</div>
 		</>
 	);
 };

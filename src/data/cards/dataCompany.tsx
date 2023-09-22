@@ -1,9 +1,14 @@
 import { getRandomHexColor } from '@/lib/entities/generateRandomColor';
 import { IconSize } from '@/lib/entities/iconSize';
 import { faker } from '@faker-js/faker';
+import { useTranslation } from 'react-i18next';
 import { AiOutlineDesktop, AiOutlineMobile, AiOutlineLaptop, AiOutlineShoppingCart, AiOutlineCode } from 'react-icons/ai';
 
-export const labels = ['COMPANY', 'CATEGORY', 'VIEWS', 'REVENUE', 'SALES'];
+export const DataCompany = () => {
+	const { t } = useTranslation();
+	const labels = [t('Company'), t('Category'), t('Views'), t('Revenue'), t('Sales')];
+	return labels;
+};
 
 export type CompanyData = {
 	icon: JSX.Element;
@@ -19,7 +24,7 @@ export type CompanyData = {
 
 const iconComponents = [AiOutlineDesktop, AiOutlineMobile, AiOutlineLaptop, AiOutlineShoppingCart, AiOutlineCode];
 
-const generateRandomIcon = () => {
+export const generateRandomIcon = () => {
 	const randomIndex = Math.floor(Math.random() * iconComponents.length);
 	const IconComponent = iconComponents[randomIndex];
 	return <IconComponent size={IconSize.medium} />;
