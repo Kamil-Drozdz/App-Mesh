@@ -1,10 +1,11 @@
-import { cardsTranslation } from './cardsTranslation';
+import { analyticsTranslation } from './analyticsTranslation';
+import { ecommerceTranslation } from './ecommerceTranslation';
 import { navbarTranslations } from './navbarTranslations';
 import i18n from 'i18next';
 import _ from 'lodash';
 import { initReactI18next } from 'react-i18next';
 
-const resources = _.merge({}, cardsTranslation, navbarTranslations);
+const resources = _.merge({}, ecommerceTranslation, navbarTranslations, analyticsTranslation);
 
 // eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({

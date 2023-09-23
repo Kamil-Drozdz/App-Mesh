@@ -1,4 +1,4 @@
-export const cardsTranslation = {
+export const ecommerceTranslation = {
 	en: {
 		translation: {
 			Company: 'Company',

@@ -28,7 +28,13 @@ const TopNavbar = () => {
 					<>
 						<Select onValueChange={e => i18n.changeLanguage(e)}>
 							<SelectTrigger className='md:w-[140px] border-darkBlue whitespace-nowrap'>
-								<SelectValue placeholder='Language' />
+								<SelectValue
+									placeholder={
+										<div className='flex justify-center items-center space-x-2'>
+											<img className='w-4 h-4' src={EnglandIcon} /> <p>{t('English')}</p>
+										</div>
+									}
+								/>
 							</SelectTrigger>
 							<SelectContent className='border-darkBlue'>
 								<SelectGroup className='bg-mediumBlue text-gray-200'>

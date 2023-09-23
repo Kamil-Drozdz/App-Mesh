@@ -10,7 +10,7 @@ const CardEarnings = () => {
 	const { data, options } = DataEarnings();
 
 	return (
-		<CardContainer className='flex md:flex-row flex-col  w-full justify-between '>
+		<CardContainer className='flex md:flex-row flex-col w-full justify-between '>
 			<div className='space-y-3'>
 				<div className='text-white'>{t('Earnings')}</div>
 				<p className='text-sm text-gray-400'>{t('This month')}</p>

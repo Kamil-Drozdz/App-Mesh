@@ -1,5 +1,5 @@
 import CardContainer from '@/common/CardContainer';
-import { DataStatistic } from '@/data/cards/dataStatistic';
+import { DataStatistic } from '@/data/pages/ecommerce/dataStatistic';
 import { useTranslation } from 'react-i18next';
 
 const CardStatiscits = () => {
@@ -12,11 +12,11 @@ const CardStatiscits = () => {
 				<h3 className='text-white'> {t('Statistic')}</h3>
 				<p className='text-xs'> {t('Updated 1 month ago')}</p>
 			</div>
-			<ul className='flex flex-row md:basis-1 justify-end md:justify-between  flex-wrap'>
+			<ul className='flex flex-row md:basis-1 justify-end md:justify-between flex-wrap'>
 				{statisticItem.map((item, index) => (
 					<li key={index} className='flex justify-between md:justify-center px-2 space-x-2 md:space-x-5 py-2 basis-1/4 grow w-full'>
-						<div className={`${item.color}  h-12 w-12  rounded-full bg-opacity-25 flex justify-center items-center `}> {item.icon}</div>
-						<div className='md:basis-2/3 basis-1  text-end md:text-left'>
+						<div className={`${item.color} h-12 w-12 rounded-full bg-opacity-25 flex justify-center items-center `}> {item.icon}</div>
+						<div className='md:basis-2/3 basis-1 text-end md:text-left'>
 							<p className='text-lg text-white'>{item.amount}</p>
 							<span className='text-base'>{item.resources}</span>
 						</div>

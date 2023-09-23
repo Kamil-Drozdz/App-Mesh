@@ -27,8 +27,8 @@ const SideNavbar = () => {
 
 	return (
 		<>
-			<div className={`bg-darkBlue w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} top-0 z-[11] right-0 fixed  h-screen`}>
-				<button onClick={toggleCollapse} className='p-2 lg:block hidden bg-mediumBlue text-lightGray hover:bg-darkBlueHover focus:bg-darkBlueHover absolute top-0 right-0 rounded-full  z-10'>
+			<div className={`bg-darkBlue w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} top-0 z-[11] right-0 fixed h-screen`}>
+				<button onClick={toggleCollapse} className='p-2 lg:block hidden bg-mediumBlue text-lightGray hover:bg-darkBlueHover focus:bg-darkBlueHover absolute top-0 right-0 rounded-full z-10'>
 					Test
 				</button>
 				<nav
@@ -42,14 +42,14 @@ const SideNavbar = () => {
 							setMenuCollapsed(true);
 						}
 					}}
-					className={`${menuCollapsed ? 'w-20' : 'w-72'} ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'}  bg-mediumBlue transition-all duration-300 ease-out fixed  text-lightGray overflow-y-auto h-full`}>
+					className={`${menuCollapsed ? 'w-20' : 'w-72'} ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} bg-mediumBlue transition-all duration-300 ease-out fixed text-lightGray overflow-y-auto h-full`}>
 					<ul className='my-2'>
 						<li className='flex items-center justify-between space-x-4 px-6'>
 							{!menuCollapsed ? (
 								<>
 									<a href='/dashboard/ecommerce' className='flex items-center '>
 										<img src={logo} alt='Logo' className='w-8 h-8 mr-4' />
-										<span className='text-3xl font-semibold'>Admin</span>
+										<span className='text-2xl font-semibold'>Admin</span>
 									</a>
 									<FaRegDotCircle />
 								</>
@@ -60,7 +60,7 @@ const SideNavbar = () => {
 					</ul>
 					{navItems.map((group, index) => (
 						<div key={index} className='p-2'>
-							<span className='text-[#5a6071] mt-6 mb-4 mx-6 text-xs font-semibold'>{menuCollapsed && group.title ? <div className=' text-center h-4'>...</div> : group.title}</span>
+							<p className='text-[#5a6071] mt-6 mb-4 mx-6 text-xs font-semibold truncate'>{group.title}</p>
 							<ul>
 								{group.items.map((item, indexItem) => (
 									<li key={indexItem}>

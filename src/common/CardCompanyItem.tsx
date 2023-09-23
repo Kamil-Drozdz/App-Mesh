@@ -2,7 +2,7 @@ import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
 
 const CardCompanyItem = ({ item }) => {
 	return (
-		<dl className='flex items-center justify-center w-full md:px-4 border-b-[1px] border-gray-600 my-1 py-1  space-x-2 text-[12px] md:text-base'>
+		<dl className='flex items-center justify-center w-full md:px-4 border-b-[1px] border-gray-600 my-1 py-1 space-x-2 text-[12px] md:text-base'>
 			<div className='basis-1/5 flex space-x-2 md:space-x-4 text-left overflow-hidden'>
 				<dt>
 					<img className='w-8 h-8 rounded-lg' src={item.photo} alt={`${item.category} photo`} />
@@ -13,7 +13,7 @@ const CardCompanyItem = ({ item }) => {
 				</div>
 			</div>
 			<dd className='basis-1/5 flex items-center justify-center'>
-				<div className={` bg-[#28c76f] text-[#28c76f] hidden w-12 h-12 rounded-full bg-opacity-25  md:flex justify-center items-center `}> {item.icon}</div>
+				<div className={` bg-[#28c76f] text-[#28c76f] hidden w-12 h-12 rounded-full bg-opacity-25 md:flex justify-center items-center `}> {item.icon}</div>
 				<p className='basis-1/3'> {item.category}</p>
 			</dd>
 			<dd className='basis-1/5'>{item.views}</dd>

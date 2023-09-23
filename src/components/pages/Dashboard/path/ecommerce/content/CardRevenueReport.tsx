@@ -14,14 +14,14 @@ const CardRevenueReport = () => {
 	ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
 	return (
-		<CardContainer className='md:basis-4/6 flex  md:flex-row flex-col'>
-			<div className='md:border-r-[1px] px-4 md:w-2/3  border-gray-600'>
+		<CardContainer className='md:basis-4/6 flex md:flex-row flex-col'>
+			<div className='md:border-r-[1px] px-4 md:w-2/3 border-gray-600'>
 				<div className='flex justify-between items-center pb-4'>
 					<h3 className='text-white'>{t('Revenue Report')}</h3>
 				</div>
 				<Bar data={data} options={options} />
 			</div>
-			<div className='flex flex-col  justify-start items-center md:w-1/3  space-y-4 '>
+			<div className='flex flex-col justify-start items-center md:w-1/3 space-y-4 '>
 				<Select>
 					<SelectTrigger className='w-[180px] border-darkBlue'>
 						<SelectValue placeholder={t('Choose Year')} />
