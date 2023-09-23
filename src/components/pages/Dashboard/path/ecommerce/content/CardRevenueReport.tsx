@@ -41,7 +41,7 @@ const CardRevenueReport = () => {
 				<h4 className='text-gray-300 text-base'>
 					{t('Budget')} {convert(totalValue(data))}
 				</h4>
-				<Line options={optionsLine} data={data} />
+				<Line className='px-4 w-full' options={optionsLine} data={data} />
 				<Button className='bg-violet-500 hover:bg-violet-400'>{t('Increase Budget')}</Button>
 			</div>
 		</CardContainer>

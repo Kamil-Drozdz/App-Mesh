@@ -1,18 +1,17 @@
-import TopNavbar from '../../TopNavbar';
-import CardCompany from './cards/CardCompany';
-import CardCongratulation from './cards/CardCongratulation';
-import CardEarnings from './cards/CardEarnings';
-import CardOrder from './cards/CardOrder';
-import CardProfit from './cards/CardProfit';
-import CardRevenueReport from './cards/CardRevenueReport';
-import CardStates from './cards/CardStates';
-import CardStatiscits from './cards/CardStatiscits';
-import CardTransaction from './cards/CardTransaction';
+import CardCompany from './content/CardCompany';
+import CardCongratulation from './content/CardCongratulation';
+import CardEarnings from './content/CardEarnings';
+import CardGoalOverview from './content/CardGoalOverview';
+import CardOrder from './content/CardOrder';
+import CardProfit from './content/CardProfit';
+import CardRevenueReport from './content/CardRevenueReport';
+import CardStatiscits from './content/CardStatiscits';
+import CardTransaction from './content/CardTransaction';
+import PageContainer from '@/common/PageContainer';
 
-const DashboardContent = () => {
+const EcommerceContent = () => {
 	return (
-		<main className=' px-6 py-8 bg-darkBlue text-lightGray min-h-screen space-y-6'>
-			<TopNavbar />
+		<PageContainer>
 			<div className=' flex-col flex md:flex-row  md:justify-between items-stretch space-y-6 md:space-y-0 space-x-0 md:space-x-6'>
 				<CardCongratulation />
 				<CardStatiscits />
@@ -29,12 +28,12 @@ const DashboardContent = () => {
 			</div>
 			<CardCompany />
 			<div className=' flex-col flex md:flex-row  md:justify-between items-stretch space-y-6 md:space-y-0 space-x-0 md:space-x-6'>
-				<CardStates />
+				<CardGoalOverview />
 				<CardTransaction />
 				<div className='basis-1/3'> C</div>
 			</div>
-		</main>
+		</PageContainer>
 	);
 };
 
-export default DashboardContent;
+export default EcommerceContent;

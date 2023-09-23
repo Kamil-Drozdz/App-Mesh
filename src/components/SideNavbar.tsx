@@ -7,14 +7,24 @@ import { FaRegDotCircle } from 'react-icons/fa';
 
 const SideNavbar = () => {
 	const { isMenuOpen, toggleMenu } = useMenu();
-
 	const [isCollapsed, setIsCollapsed] = useState(false);
 	const [menuCollapsed, setMenuCollapsed] = useState(false);
+	const [activeDropdown, setActiveDropdown] = useState(null);
 	const navItems = NavItems();
+
 	const toggleCollapse = () => {
 		setIsCollapsed(prev => !prev);
 		setMenuCollapsed(prev => !prev);
 	};
+
+	const handleActiveDropdown = name => {
+		if (activeDropdown === name) {
+			setActiveDropdown(null);
+		} else {
+			setActiveDropdown(name);
+		}
+	};
+
 	return (
 		<>
 			<div className={`bg-darkBlue w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} top-0 z-[11] right-0 fixed  h-screen`}>
@@ -37,7 +47,7 @@ const SideNavbar = () => {
 						<li className='flex items-center justify-between space-x-4 px-6'>
 							{!menuCollapsed ? (
 								<>
-									<a href='/' className='flex items-center '>
+									<a href='/dashboard/ecommerce' className='flex items-center '>
 										<img src={logo} alt='Logo' className='w-8 h-8 mr-4' />
 										<span className='text-3xl font-semibold'>Admin</span>
 									</a>
@@ -52,9 +62,9 @@ const SideNavbar = () => {
 						<div key={index} className='p-2'>
 							<span className='text-[#5a6071] mt-6 mb-4 mx-6 text-xs font-semibold'>{menuCollapsed && group.title ? <div className=' text-center h-4'>...</div> : group.title}</span>
 							<ul>
-								{group.items.map((item, itemIndex) => (
-									<li key={itemIndex}>
-										<SideNavbarItem icon={item.icon} name={item.name} href={item.href} dropdown={item.dropdown} menuCollapsed={menuCollapsed} />
+								{group.items.map((item, indexItem) => (
+									<li key={indexItem}>
+										<SideNavbarItem handleActiveDropdown={handleActiveDropdown} activeDropdown={activeDropdown} icon={item.icon} name={item.name} href={item.href} dropdown={item.dropdown} menuCollapsed={menuCollapsed} />
 									</li>
 								))}
 							</ul>

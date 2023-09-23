@@ -14,7 +14,7 @@ const CardStatiscits = () => {
 			</div>
 			<ul className='flex flex-row md:basis-1 justify-end md:justify-between  flex-wrap'>
 				{statisticItem.map((item, index) => (
-					<li key={index} className='flex px-2 space-x-5 basis-1/4 py-2'>
+					<li key={index} className='flex justify-between md:justify-center px-2 space-x-2 md:space-x-5 py-2 basis-1/4 grow w-full'>
 						<div className={`${item.color}  h-12 w-12  rounded-full bg-opacity-25 flex justify-center items-center `}> {item.icon}</div>
 						<div className='md:basis-2/3 basis-1  text-end md:text-left'>
 							<p className='text-lg text-white'>{item.amount}</p>

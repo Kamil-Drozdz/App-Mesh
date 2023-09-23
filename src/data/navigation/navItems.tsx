@@ -1,4 +1,5 @@
 import { IconSize } from '@/lib/entities/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
 import { useTranslation } from 'react-i18next';
 import { AiFillCheckCircle, AiOutlineCalendar, AiOutlineCreditCard, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineHome, AiOutlineLayout, AiOutlinePieChart, AiOutlinePlusCircle, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
 import { BiBox, BiCopy, BiDroplet } from 'react-icons/bi';
@@ -22,11 +23,11 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Analytics'),
-							href: '/dashboard/analitics',
+							href: `${BasicRoutes.DASHBOARD}${SubRoutes.ANALYTICS}`,
 						},
 						{
 							name: t('eCommerce'),
-							href: '/dashboard/ecommerce',
+							href: `${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`,
 						},
 					],
 				},
@@ -35,13 +36,13 @@ export const NavItems = () => {
 		{
 			title: t('APPS & PAGES'),
 			items: [
-				{ icon: <HiOutlineEnvelope size={IconSize.basic} />, name: t('Email'), href: '/email' },
-				{ icon: <HiOutlineChatBubbleLeft size={IconSize.basic} />, name: t('Chat'), href: '/chat' },
-				{ icon: <BsCheck2Square size={IconSize.basic} />, name: t('Todo'), href: '/todo/all' },
+				{ icon: <HiOutlineEnvelope size={IconSize.basic} />, name: t('Email'), href: BasicRoutes.EMAIL },
+				{ icon: <HiOutlineChatBubbleLeft size={IconSize.basic} />, name: t('Chat'), href: BasicRoutes.CHAT },
+				{ icon: <BsCheck2Square size={IconSize.basic} />, name: t('Todo'), href: `${BasicRoutes.TODO}${SubRoutes.ALL}` },
 				{
 					icon: <AiOutlineCalendar size={IconSize.basic} />,
 					name: t('Calendar'),
-					href: '/calendar',
+					href: BasicRoutes.CALENDAR,
 				},
 				{
 					icon: <IoDocumentTextOutline size={IconSize.basic} />,
@@ -49,39 +50,39 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Authentication'),
-							href: '/pages/authentication',
+							href: `${BasicRoutes.PAGES}${SubRoutes.AUTHENTICATION}`,
 						},
 						{
 							name: t('Account Settings'),
-							href: '/pages/settings',
+							href: `${BasicRoutes.PAGES}${SubRoutes.SETTINGS}`,
 						},
 						{
 							name: t('Profile'),
-							href: '/pages/profile',
+							href: `${BasicRoutes.PAGES}${SubRoutes.PROFILE}`,
 						},
 						{
 							name: t('FAQ'),
-							href: '/pages/faq',
+							href: `${BasicRoutes.PAGES}${SubRoutes.FAQ}`,
 						},
 						{
 							name: t('Knowledge Base'),
-							href: '/pages/knowledge',
+							href: `${BasicRoutes.PAGES}${SubRoutes.KNOWLEDGE}`,
 						},
 						{
 							name: t('Pricing'),
-							href: '/pages/pricing',
+							href: `${BasicRoutes.PAGES}${SubRoutes.PRICING}`,
 						},
 						{
 							name: t('Blog'),
-							href: '/pages/blog',
+							href: `${BasicRoutes.PAGES}${SubRoutes.BLOG}`,
 						},
 						{
 							name: t('Mail Template'),
-							href: '/pages/mail',
+							href: `${BasicRoutes.PAGES}${SubRoutes.MAIL}`,
 						},
 						{
 							name: t('Miscellaneous'),
-							href: '/pages/miscellaneous',
+							href: `${BasicRoutes.PAGES}${SubRoutes.MISCELLANEOUS}`,
 						},
 					],
 				},
@@ -91,19 +92,19 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('list'),
-							href: '/invoice/list',
+							href: `${BasicRoutes.INVOICE}${SubRoutes.LIST}`,
 						},
 						{
 							name: t('Preview'),
-							href: '/invoice/preview',
+							href: `${BasicRoutes.INVOICE}${SubRoutes.PREVIEW}`,
 						},
 						{
 							name: t('Edit'),
-							href: '/invoice/edit',
+							href: `${BasicRoutes.INVOICE}${SubRoutes.EDIT}`,
 						},
 						{
 							name: t('Add'),
-							href: '/invoice/add',
+							href: `${BasicRoutes.INVOICE}${SubRoutes.ADD}`,
 						},
 					],
 				},
@@ -113,19 +114,19 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Shop'),
-							href: '/ecommerce/shop',
+							href: `${BasicRoutes.ECOMMERCE}${SubRoutes.SHOP}`,
 						},
 						{
 							name: t('Details'),
-							href: '/ecommerce/details',
+							href: `${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}`,
 						},
 						{
 							name: t('Wish list'),
-							href: '/ecommerce/wish-list',
+							href: `${BasicRoutes.ECOMMERCE}${SubRoutes.WISH_LIST}`,
 						},
 						{
 							name: t('Checkout'),
-							href: '/ecommerce/Checkout',
+							href: `${BasicRoutes.ECOMMERCE}${SubRoutes.CHECKOUT}`,
 						},
 					],
 				},
@@ -135,15 +136,15 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('List'),
-							href: 'profile/list',
+							href: `${BasicRoutes.PROFILE}${SubRoutes.USER_LIST}`,
 						},
 						{
 							name: t('View'),
-							href: 'profile/view',
+							href: `${BasicRoutes.PROFILE}${SubRoutes.USER_VIEW}`,
 						},
 						{
 							name: t('Edit'),
-							href: 'profile/Edit',
+							href: `${BasicRoutes.PROFILE}${SubRoutes.USER_EDIT}`,
 						},
 					],
 				},
@@ -155,33 +156,33 @@ export const NavItems = () => {
 				{
 					icon: <PiTextTThin size={IconSize.basic} />,
 					name: t('Typography'),
-					href: '/typography',
+					href: BasicRoutes.TYPOGRAPHY,
 				},
-				{ icon: <BiDroplet size={IconSize.basic} />, name: t('Colors'), href: '/colors' },
-				{ icon: <AiOutlineEye size={IconSize.basic} />, name: t('Feather'), href: '/feather' },
+				{ icon: <BiDroplet size={IconSize.basic} />, name: t('Colors'), href: BasicRoutes.COLORS },
+				{ icon: <AiOutlineEye size={IconSize.basic} />, name: t('Feather'), href: BasicRoutes.FEATHER },
 				{
 					icon: <AiOutlineCreditCard size={IconSize.basic} />,
 					name: t('Cards'),
 					dropdown: [
 						{
 							name: t('Basic'),
-							href: 'cards/basic',
+							href: `${BasicRoutes.CARDS}${SubRoutes.BASIC}`,
 						},
 						{
 							name: t('Advance'),
-							href: 'cards/advance',
+							href: `${BasicRoutes.CARDS}${SubRoutes.ADVANCE}`,
 						},
 						{
 							name: t('Statistics'),
-							href: 'cards/statistics',
+							href: `${BasicRoutes.CARDS}${SubRoutes.STATISTICS}`,
 						},
 						{
 							name: t('Analytics'),
-							href: 'cards/analytics',
+							href: `${BasicRoutes.CARDS}${SubRoutes.ANALYTICS}`,
 						},
 						{
 							name: t('Actions'),
-							href: 'cards/actions',
+							href: `${BasicRoutes.CARDS}${SubRoutes.ACTIONS}`,
 						},
 					],
 				},
@@ -191,109 +192,103 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Alerts'),
-							href: 'components/alerts',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.ALERTS}`,
 						},
-
 						{
 							name: t('Avatar'),
-							href: 'components/avatar',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.AVATAR}`,
 						},
-
 						{
 							name: t('Badges'),
-							href: 'components/badges',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.BADGES}`,
 						},
-
-						{
-							name: t('Breadcrumbs'),
-							href: 'components/breadcrumbs',
-						},
-
 						{
 							name: t('Buttons'),
-							href: 'components/buttons',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.BUTTONS}`,
 						},
-
+						{
+							name: t('Cards'),
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.CARDS}`,
+						},
 						{
 							name: t('Carousel'),
-							href: 'components/carousel',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.CAROUSEL}`,
 						},
-
 						{
 							name: t('Collapse'),
-							href: 'components/collapse',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.COLLAPSE}`,
 						},
 
 						{
 							name: t('Divider'),
-							href: 'components/divider',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.DIVIDER}`,
 						},
 						{
 							name: t('Dropdowns'),
-							href: 'components/dropdowns',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.DROPDOWNS}`,
 						},
 
 						{
 							name: t('List Group'),
-							href: 'components/list-group',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.LIST_GROUP}`,
 						},
 
 						{
 							name: t('Media Objects'),
-							href: 'components/media-objects',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.MEDIA_OBJECTS}`,
 						},
 
 						{
 							name: t('Modals'),
-							href: 'components/modals',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.MODALS}`,
 						},
 						{
 							name: t('Navs'),
-							href: 'components/navs',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.NAVS}`,
 						},
 						{
 							name: t('Pagination'),
-							href: 'components/pagination',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.PAGINATION}`,
 						},
 						{
 							name: t('Pill Badges'),
-							href: 'components/pill-badges',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.PILL_BADGES}`,
 						},
 						{
 							name: t('Pills'),
-							href: 'components/pills',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.PILLS}`,
 						},
 						{
 							name: t('Popovers'),
-							href: 'components/popovers',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.POPOVERS}`,
 						},
 						{
 							name: t('Progress'),
-							href: 'components/progress',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.PROGRESS}`,
 						},
 						{
 							name: t('Ratings'),
-							href: 'components/ratings',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.RATINGS}`,
 						},
 						{
 							name: t('Spinner'),
-							href: 'components/spinner',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.SPINNER}`,
 						},
 						{
 							name: t('Tabs'),
-							href: 'components/tabs',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.TABS}`,
 						},
 						{
 							name: t('Timeline'),
-							href: 'components/timeline',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.TIMELINE}`,
 						},
 						{
 							name: t('Toasts'),
-							href: 'components/toasts',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.TOASTS}`,
 						},
 						{
 							name: t('Tooltips'),
-							href: 'components/tooltips',
+							href: `${BasicRoutes.COMPONENTS}${SubRoutes.TOOLTIPS}`,
 						},
 					],
 				},
@@ -303,47 +298,47 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Sweet Alerts'),
-							href: 'extension/sweet-alerts',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.SWEET_ALERTS}`,
 						},
 						{
 							name: t('Block UI'),
-							href: 'extension/ui',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.UI}`,
 						},
 						{
 							name: t('Toastr'),
-							href: 'extension/toastr',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.TOASTR}`,
 						},
 						{
 							name: t('Slider'),
-							href: 'extension/slider',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.SLIDER}`,
 						},
 						{
 							name: t('Drag & Drop'),
-							href: 'extension/drag&drop',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.DRAG_DROP}`,
 						},
 						{
 							name: t('Tour'),
-							href: 'extension/tour',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.TOUR}`,
 						},
 						{
 							name: t('Clipboard'),
-							href: 'extension/cliboard',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.CLIPBOARD}`,
 						},
 						{
 							name: t('Context Menu'),
-							href: 'extension/context-menu',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.CONTEXT_MENU}`,
 						},
 						{
 							name: t('Swiper'),
-							href: 'extension/swiper',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.SWIPER}`,
 						},
 						{
 							name: t('Tree view'),
-							href: 'extension/tree-view',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.TREE_VIEW}`,
 						},
 						{
 							name: t('i18n'),
-							href: 'extension/i18n',
+							href: `${BasicRoutes.EXTENSION}${SubRoutes.I18N}`,
 						},
 					],
 				},
@@ -353,23 +348,23 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Collapsed Menu'),
-							href: 'layouts/collapsed-menu',
+							href: `${BasicRoutes.LAYOUTS}${SubRoutes.COLLAPSED_MENU}`,
 						},
 						{
 							name: t('Boxed Layout'),
-							href: 'layouts/boxed-layout',
+							href: `${BasicRoutes.LAYOUTS}${SubRoutes.BOXED_LAYOUT}`,
 						},
 						{
 							name: t('Without Menu'),
-							href: 'layouts/without-menu',
+							href: `${BasicRoutes.LAYOUTS}${SubRoutes.WITHOUT_MENU}`,
 						},
 						{
 							name: t('Layout Empty'),
-							href: 'layouts/layout-empty',
+							href: `${BasicRoutes.LAYOUTS}${SubRoutes.LAYOUT_EMPTY}`,
 						},
 						{
 							name: t('Layout Blank'),
-							href: 'layouts/layout-blank',
+							href: `${BasicRoutes.LAYOUTS}${SubRoutes.LAYOUT_BLANK}`,
 						},
 					],
 				},
@@ -384,83 +379,83 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Input'),
-							href: '/form/elements/input',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_INPUT}`,
 						},
 						{
 							name: t('Input Groups'),
-							href: '/form/elements/input-groups',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_INPUT_GROUPS}`,
 						},
 						{
 							name: t('Input Mask'),
-							href: '/form/elements/input-mask',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_INPUT_MASK}`,
 						},
 						{
 							name: t('Textarea'),
-							href: '/form/elements/textarea',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_TEXTAREA}`,
 						},
 						{
 							name: t('Checkbox'),
-							href: '/form/elements/checkbox',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_CHECKBOX}`,
 						},
 						{
 							name: t('Radio'),
-							href: '/form/elements/radio',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_RADIO}`,
 						},
 						{
 							name: t('Switch'),
-							href: '/form/elements/switch',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_SWITCH}`,
 						},
 						{
 							name: t('Select'),
-							href: '/form/elements/select',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_SELECT}`,
 						},
 						{
 							name: t('Number Input'),
-							href: '/form/elements/number-input',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_NUMBER_INPUT}`,
 						},
 						{
 							name: t('File Uploader'),
-							href: '/form/elements/file-uploader',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_FILE_UPLOADER}`,
 						},
 						{
 							name: t('Quill Editor'),
-							href: '/form/elements/quill-editor',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_QUILL_EDITOR}`,
 						},
 						{
 							name: t('Flatpicker'),
-							href: '/form/elements/flatpicker',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_FLATPICKER}`,
 						},
 						{
 							name: t('Date & Time picker'),
-							href: '/form/elements/date&Time-picker',
+							href: `${BasicRoutes.FORMS}${SubRoutes.ELEMENTS_DATE_TIME_PICKER}`,
 						},
 					],
 				},
-				{ icon: <BsBox size={IconSize.basic} />, name: t('Form Layout'), href: '/form/layout' },
+				{ icon: <BsBox size={IconSize.basic} />, name: t('Form Layout'), href: `${BasicRoutes.FORMS}${SubRoutes.LAYOUT}` },
 				{
 					icon: <PiCodesandboxLogoLight size={IconSize.basic} />,
 					name: t('Form Wizard'),
-					href: '/form/wizard',
+					href: `${BasicRoutes.FORMS}${SubRoutes.WIZARD}`,
 				},
 				{
 					icon: <AiFillCheckCircle size={IconSize.basic} />,
 					name: t('Form Validations'),
-					href: '/form/validation',
+					href: `${BasicRoutes.FORMS}${SubRoutes.VALIDATION}`,
 				},
 				{
 					icon: <BsArrowRepeat size={IconSize.basic} />,
 					name: t('Form Repeater'),
-					href: '/form/repeater',
+					href: `${BasicRoutes.FORMS}${SubRoutes.REPEATER}`,
 				},
 				{
 					icon: <HiOutlineServerStack size={IconSize.basic} />,
 					name: t('Table'),
-					href: '/form/table',
+					href: `${BasicRoutes.FORMS}${SubRoutes.TABLE}`,
 				},
 				{
 					icon: <PiSquaresFour size={IconSize.basic} />,
 					name: t('DataTables'),
-					href: '/form/data',
+					href: `${BasicRoutes.FORMS}${SubRoutes.DATATABLES}`,
 				},
 			],
 		},
@@ -473,15 +468,15 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Apex'),
-							href: '/charts/apex',
+							href: `${BasicRoutes.CHARTS}${SubRoutes.CHARTS_APEX}`,
 						},
 						{
 							name: t('ChartJS'),
-							href: '/charts/chartjs',
+							href: `${BasicRoutes.CHARTS}${SubRoutes.CHARTS_CHARTJS}`,
 						},
 					],
 				},
-				{ icon: <BsMap size={IconSize.basic} />, name: t('Google Maps'), href: '/maps' },
+				{ icon: <BsMap size={IconSize.basic} />, name: t('Google Maps'), href: `${BasicRoutes.MAPS}` },
 			],
 		},
 		{
@@ -493,7 +488,7 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('Second Level'),
-							href: '/menu/levels/second',
+							href: `${BasicRoutes.MENU}${SubRoutes.SECOND_LEVEL}`,
 						},
 					],
 				},
@@ -505,12 +500,12 @@ export const NavItems = () => {
 				{
 					icon: <IoDocumentTextOutline size={IconSize.basic} />,
 					name: t('Documentation'),
-					href: '/menu/documentation',
+					href: `${BasicRoutes.MENU}${SubRoutes.DOCUMENTATION}`,
 				},
 				{
 					icon: <TbCircleTriangle size={IconSize.basic} />,
 					name: t('Raise Support'),
-					href: '/menu/support',
+					href: `${BasicRoutes.MENU}${SubRoutes.RAISE_SUPPORT}`,
 				},
 			],
 		},
