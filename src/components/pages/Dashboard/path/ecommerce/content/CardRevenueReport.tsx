@@ -1,5 +1,6 @@
 import { Button } from '@/UI/Button';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/UI/Select';
+import { Separator } from '@/UI/Separator';
 import CardContainer from '@/common/CardContainer';
 import { DataRevenueReport } from '@/data/charts/dataRevenueReport';
 import { convert } from '@/lib/convert';
@@ -15,12 +16,13 @@ const CardRevenueReport = () => {
 
 	return (
 		<CardContainer className='md:basis-4/6 flex md:flex-row flex-col'>
-			<div className='md:border-r-[1px] px-4 md:w-2/3 border-gray-600'>
+			<div className=' px-4 md:w-2/3'>
 				<div className='flex justify-between items-center pb-4'>
 					<h3 className='text-white'>{t('Revenue Report')}</h3>
 				</div>
 				<Bar data={data} options={options} />
 			</div>
+			<Separator orientation='vertical' className='bg-gray-600' />
 			<div className='flex flex-col justify-start items-center md:w-1/3 space-y-4 '>
 				<Select>
 					<SelectTrigger className='w-[180px] border-darkBlue'>

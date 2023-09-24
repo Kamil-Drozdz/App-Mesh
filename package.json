@@ -24,6 +24,7 @@
 	},
 	"dependencies": {
 		"@radix-ui/react-select": "^1.2.2",
+		"@radix-ui/react-separator": "^1.0.3",
 		"@radix-ui/react-slot": "^1.0.2",
 		"@radix-ui/react-tooltip": "^1.0.6",
 		"chart.js": "^4.4.0",
@@ -36,6 +37,7 @@
 		"react-dom": "18.2.0",
 		"react-i18next": "^13.2.2",
 		"react-icons": "^4.11.0",
+		"react-transition-group": "^4.4.5",
 		"stylelint": "^15.10.3",
 		"zustand": "^4.4.1"
 	},

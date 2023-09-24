@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-export const DataOrder = () => {
+export const DataSubscribers = () => {
 	const { t } = useTranslation();
 	const data = {
 		labels: [t('January'), t('February'), t('March'), t('April'), t('May')],
-		datasets: [{ fill: true, label: t('Orders'), data: [600, 580, 560, 0, 520, 500], backgroundColor: 'rgb(226,108,27,0.5)', borderColor: 'rgb(226,108,27)' }],
+		datasets: [{ fill: true, label: t('Subscription'), data: [6003, 11580, 13260, 11110, 23520, 11500], backgroundColor: 'rgb(139,92,246,0.5)', borderColor: 'rgb(139,92,246)' }],
 	};
 
 	const options = {
@@ -13,14 +13,12 @@ export const DataOrder = () => {
 			y: {
 				beginAtZero: true,
 				title: {
-					display: true,
-					text: t('Orders'),
+					display: false,
 				},
 			},
 			x: {
 				title: {
-					display: true,
-					text: t('Month'),
+					display: false,
 				},
 			},
 		},

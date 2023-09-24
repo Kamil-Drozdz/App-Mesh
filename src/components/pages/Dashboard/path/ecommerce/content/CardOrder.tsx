@@ -1,7 +1,5 @@
-import CardContainer from '@/common/CardContainer';
+import CardChart from '@/common/CardChart';
 import { DataOrder } from '@/data/charts/dataOrder';
-import { convert } from '@/lib/convert';
-import { totalValue } from '@/lib/entities/totalValue';
 import { Chart as ChartJS, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
@@ -12,11 +10,9 @@ const CardOrder = () => {
 	ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 	return (
-		<CardContainer className='basis-1/6'>
-			<div className='text-white'>{t('Orders')}</div>
-			<h4 className='text-gray-200 text-2xl'>{convert(totalValue(data))}</h4>
+		<CardChart className='basis-1/6' title={t('Orders')} data={data}>
 			<Bar data={data} options={options} />
-		</CardContainer>
+		</CardChart>
 	);
 };
 

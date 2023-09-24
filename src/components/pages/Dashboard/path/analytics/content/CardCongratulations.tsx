@@ -19,7 +19,7 @@ const CardCongratulations = () => {
 						</div>
 					</div>
 					<h1 className='text-2xl font-semibold'>{t('Congratulations')} Kamil,</h1>
-					<p>{t('accessRestrictionMessage')}</p>
+					<p className='md:w-1/2 mx-auto'>{t('accessRestrictionMessage')}</p>
 				</div>
 			</div>
 		</CardContainer>

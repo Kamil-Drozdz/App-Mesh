@@ -5,7 +5,6 @@ export const DataProfit = () => {
 	const data = {
 		labels: [t('January'), t('February'), t('March'), t('April'), t('May')],
 		responsive: true,
-
 		datasets: [
 			{
 				label: t('Orders'),

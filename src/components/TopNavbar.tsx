@@ -15,7 +15,7 @@ const TopNavbar = () => {
 	const { toggleMenu } = useMenu();
 
 	return (
-		<div className='flex justify-between bg-mediumBlue rounded-lg px-4 py-2 shadow-lg shadow-black'>
+		<div className='flex justify-between sticky top-8 z-50 bg-mediumBlue rounded-lg px-4 py-2 shadow-lg shadow-black'>
 			<ul className='flex items-center space-x-2'>
 				{topNavbarIcons.icons.map((icon, index) => (
 					<li className={`${index === 0 ? 'lg:hidden block' : 'md:block hidden'}`} key={index}>
