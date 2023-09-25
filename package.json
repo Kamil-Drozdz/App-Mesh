@@ -23,6 +23,10 @@
 		]
 	},
 	"dependencies": {
+		"@fullcalendar/core": "^6.1.9",
+		"@fullcalendar/daygrid": "^6.1.9",
+		"@fullcalendar/interaction": "^6.1.9",
+		"@fullcalendar/react": "^6.1.9",
 		"@radix-ui/react-select": "^1.2.2",
 		"@radix-ui/react-separator": "^1.0.3",
 		"@radix-ui/react-slot": "^1.0.2",
@@ -30,6 +34,7 @@
 		"chart.js": "^4.4.0",
 		"class-variance-authority": "^0.7.0",
 		"faker": "^5.5.3",
+		"flatpickr": "^4.6.13",
 		"i18next": "^23.5.1",
 		"lodash": "^4.17.21",
 		"react": "18.2.0",

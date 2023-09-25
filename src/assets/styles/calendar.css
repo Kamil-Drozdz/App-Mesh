@@ -1,0 +1,8 @@
+.fc .fc-daygrid-day-top {
+	flex-direction: row;
+}
+
+.fc-daygrid-event-dot,
+.fc-event-time {
+	display: none;
+}

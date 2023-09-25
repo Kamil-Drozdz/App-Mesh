@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
+import '@/assets/styles/calendar.css';
 import './data/translations/i18n';
 import App from './app';
 import { BrowserRouter as Router } from 'react-router-dom';

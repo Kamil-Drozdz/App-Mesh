@@ -1,4 +1,5 @@
 import { BasicRoutes, SubRoutes } from './routes';
+import CalendarContent from '@/components/pages/Calendar/CalendarContent';
 import ChatContent from '@/components/pages/Chat/ChatContent';
 import AnalyticsContent from '@/components/pages/Dashboard/path/analytics/AnalyticsContent';
 import EcommerceContent from '@/components/pages/Dashboard/path/ecommerce/EcommerceContent';
@@ -19,7 +20,7 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 	[BasicRoutes.CHAT]: [{ subPath: '', component: ChatContent }],
 	[BasicRoutes.TODO]: [{ subPath: SubRoutes.ALL, component: TodoContent }],
 	[BasicRoutes.HOME]: [],
-	[BasicRoutes.CALENDAR]: [],
+	[BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent }],
 	[BasicRoutes.PAGES]: [],
 	[BasicRoutes.INVOICE]: [],
 	[BasicRoutes.ECOMMERCE]: [],
@@ -40,7 +41,6 @@ export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, ro
 	return routes.map(({ subPath, component }) => ({ path: `${basicRoute}${subPath}`, component }));
 });
 
-// [BasicRoutes.CALENDAR]: [{subPaths: [], component: CalendarContent }],
 // [BasicRoutes.PAGES]: [{subPaths: [SubRoutes.AUTHENTICATION, SubRoutes.SETTINGS, SubRoutes.PROFILE, SubRoutes.FAQ, SubRoutes.KNOWLEDGE, SubRoutes.PRICING, SubRoutes.BLOG, SubRoutes.MAIL, SubRoutes.MISCELLANEOUS], component: PagesContent }],
 // [BasicRoutes.INVOICE]: [{subPaths: [SubRoutes.LIST, SubRoutes.PREVIEW, SubRoutes.EDIT, SubRoutes.ADD], component: InvoiceContent }],
 // [BasicRoutes.ECOMMERCE]: [{subPaths: [SubRoutes.SHOP, SubRoutes.DETAILS, SubRoutes.WISH_LIST, SubRoutes.CHECKOUT], component: EcommerceContent }],
