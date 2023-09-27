@@ -2,7 +2,7 @@ import clsx from '@/lib/clsx';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import * as React from 'react';
 
-const Separator = React.forwardRef<React.ElementRef<typeof SeparatorPrimitive.Root>, React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>>(({ className, orientation = 'horizontal', decorative = true, ...props }, ref) => <SeparatorPrimitive.Root ref={ref} decorative={decorative} orientation={orientation} className={clsx('shrink-0 bg-border bg-gray-600', orientation === 'horizontal' ? 'h-[1px] w-full' : ' w-[1px]', className)} {...props} />);
+const Separator = React.forwardRef<React.ElementRef<typeof SeparatorPrimitive.Root>, React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>>(({ className, orientation = 'horizontal', decorative = true, ...props }, ref) => <SeparatorPrimitive.Root ref={ref} decorative={decorative} orientation={orientation} className={clsx('shrink-0 bg-border dark:bg-gray-600 bg-gray-300', orientation === 'horizontal' ? 'h-[1px] w-full' : ' w-[1px]', className)} {...props} />);
 Separator.displayName = SeparatorPrimitive.Root.displayName;
 
 export { Separator };

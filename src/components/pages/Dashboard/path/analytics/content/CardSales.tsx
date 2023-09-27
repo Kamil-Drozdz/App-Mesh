@@ -12,7 +12,7 @@ const CardSales = () => {
 		<CardContainer className='basis-1/3 '>
 			<div className='flex justify-between items-start w-full'>
 				<div>
-					<div className='text-white'>Sales</div>
+					<div className='dark:text-white'>Sales</div>
 					<p>Last 6 months</p>
 				</div>
 				<BiDotsVertical size={IconSize.basic} />

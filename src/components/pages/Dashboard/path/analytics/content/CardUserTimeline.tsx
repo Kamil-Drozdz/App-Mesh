@@ -10,7 +10,7 @@ function CardUserTimeline() {
 			<div className='flex items-center justify-between mb-4'>
 				<div className='flex justify-center items-start space-x-2 '>
 					<BiMenu size={IconSize.medium} />
-					<h2 className='text-gray-300 text-2xl'>User Timeline</h2>
+					<h2 className='dark:text-gray-300 text-2xl'>User Timeline</h2>
 				</div>
 				<BiDotsVertical size={IconSize.basic} />
 			</div>

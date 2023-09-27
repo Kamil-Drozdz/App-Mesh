@@ -8,7 +8,7 @@ const CardCompany = () => {
 
 	return (
 		<CardContainer className='max-h-[40vh] overflow-y-auto py-0 '>
-			<ul className='flex md:px-4 sticky top-0 bg-mediumBlue md:p-4 pt-2 md:pt-0 text-[12px] justify-between md:justify-center md:text-base space-x-2 md:space-x-0 shadow-lg shadow-mediumBlue'>
+			<ul className='flex md:px-4 sticky top-0 dark:bg-mediumBlue bg-white md:p-4 pt-2 md:pt-0 text-[12px] justify-between md:justify-center md:text-base space-x-2 md:space-x-0'>
 				{labels.map((label, index) => (
 					<li className='basis-1/5 text-center ' key={index}>
 						{label.toLocaleUpperCase()}

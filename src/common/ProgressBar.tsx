@@ -15,7 +15,7 @@ const ProgressBar = ({ width, className }: ProgressBarProps) => {
 	};
 
 	return (
-		<div className='w-full bg-gray-400 rounded-lg h-1.5'>
+		<div className='w-full dark:bg-gray-400 rounded-lg h-1.5'>
 			<Transition in={true} timeout={300} appear={true}>
 				{state => (
 					<div

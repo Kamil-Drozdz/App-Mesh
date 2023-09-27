@@ -7,7 +7,7 @@ const CardGoalOverview = () => {
 	return (
 		<CardContainer className=' basis-1/3'>
 			<div className='space-y-3 flex justify-between items-center w-full'>
-				<div className='text-white'>{t('Goal Overview')}</div>
+				<div className='dark:text-white'>{t('Goal Overview')}</div>
 				<AiOutlineQuestionCircle />
 			</div>
 			<div className='flex flex-col items-center justify-center max-w-[260px] md:w-full w-1/2 mx-auto'>
@@ -20,10 +20,10 @@ const CardGoalOverview = () => {
 				</svg>
 				<div className='flex space-x-4'>
 					<div className='w-1/2 p-4'>
-						<p className='text-gray-200 md:text-2xl'>{t('Completed')}</p> <div className='text-gray-400 text-center md:text-lg'>786,617</div>
+						<p className='dark:text-gray-200 md:text-2xl'>{t('Completed')}</p> <div className='dark:text-gray-400 dark:text-center md:text-lg'>786,617</div>
 					</div>
 					<div className='w-1/2 p-4'>
-						<p className='text-gray-200 md:text-2xl whitespace-nowrap'>{t('In Progress')}</p> <div className='text-gray-400 text-center md:text-lg'>13,561</div>
+						<p className='dark:text-gray-200 md:text-2xl whitespace-nowrap'>{t('In Progress')}</p> <div className='dark:text-gray-400 dark:text-center md:text-lg'>13,561</div>
 					</div>
 				</div>
 			</div>

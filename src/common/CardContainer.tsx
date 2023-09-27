@@ -6,7 +6,7 @@ interface CardContainerProps {
 	className?: string;
 }
 const CardContainer = ({ children, className }: CardContainerProps) => {
-	return <section className={clsx('relative bg-mediumBlue p-4 rounded-lg space-y-3 shadow-lg shadow-black', className)}>{children}</section>;
+	return <section className={clsx('relative dark:bg-mediumBlue bg-white p-4 rounded-lg space-y-3 shadow-md dark:shadow-black shadow-lightGray', className)}>{children}</section>;
 };
 
 export default CardContainer;

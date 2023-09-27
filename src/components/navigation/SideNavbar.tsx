@@ -1,5 +1,5 @@
-import logo from '../assets/logo.webp';
-import SideNavbarItem from '../common/SideNavbarItem';
+import SideNavbarItem from '../../common/SideNavbarItem';
+import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
 import useMenu from '@/store/useMenu';
 import { useState } from 'react';
@@ -27,9 +27,9 @@ const SideNavbar = () => {
 
 	return (
 		<>
-			<div className={`bg-darkBlue w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} top-0 z-[11] right-0 fixed h-screen`}>
-				<button onClick={toggleCollapse} className='p-2 lg:block hidden bg-mediumBlue text-lightGray hover:bg-darkBlueHover focus:bg-darkBlueHover absolute top-0 right-0 rounded-full z-10'>
-					Test
+			<div className={`dark:bg-darkBlue bg-lightWhite w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} top-0 z-[11] right-0 fixed h-screen`}>
+				<button onClick={toggleCollapse} className='p-2 lg:block hidden dark:bg-mediumBlue bg-white text-gray-800 dark:text-lightGray  dark:hover:bg-darkBlueHover  dark:focus:bg-darkBlueHover absolute top-0 right-0 rounded-full z-10'>
+					Collaps
 				</button>
 				<nav
 					onMouseEnter={() => {
@@ -42,7 +42,7 @@ const SideNavbar = () => {
 							setMenuCollapsed(true);
 						}
 					}}
-					className={`${menuCollapsed ? 'w-20' : 'w-72'} ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} bg-mediumBlue transition-all duration-300 ease-out fixed text-lightGray overflow-y-auto h-full`}>
+					className={`${menuCollapsed ? 'w-20' : 'w-72'} ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} dark:bg-mediumBlue bg-white transition-all duration-300 ease-out fixed  text-gray-500  dark:text-lightGray overflow-y-auto h-full`}>
 					<ul className='my-2'>
 						<li className='flex items-center justify-between space-x-4 px-6'>
 							{!menuCollapsed ? (
