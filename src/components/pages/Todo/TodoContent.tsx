@@ -1,7 +1,7 @@
-import PageContainer from '@/common/PageContainer';
+import CardTodo from './content/CardTodo';
 
 const TodoContent = () => {
-	return <PageContainer>hello :D </PageContainer>;
+	return <CardTodo />;
 };
 
 export default TodoContent;

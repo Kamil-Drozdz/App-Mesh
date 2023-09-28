@@ -23,3 +23,17 @@
 .dark .fc-popover-body {
 	background-color: #283046 !important;
 }
+.fc .fc-daygrid-day-top {
+	flex-direction: row;
+}
+
+.fc-daygrid-event-dot,
+.fc-event-time {
+	display: none;
+}
+.fc-daygrid-event-harness {
+	width: fit-content;
+}
+.fc-daygrid-event-harness:hover {
+	filter: brightness(1.75);
+}

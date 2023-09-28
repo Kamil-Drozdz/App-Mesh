@@ -1,17 +1,17 @@
-import PageContainer from '@/common/PageContainer';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import FullCalendar from '@fullcalendar/react';
-import { useState } from 'react';
-import './calendar.css';
-import LeftEditNavbar from './content/LeftEditNavbar';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import calendarIllustration from '@/assets/calendar-illustration.png';
 import CardContainer from '@/common/CardContainer';
-import { data, labels } from '@/data/pages/calendarData';
+import PageContainer from '@/common/PageContainer';
+import { data, labels } from '@/data/pages/calendar/calendarData';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import FullCalendar from '@fullcalendar/react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import './calendar.css';
 import { v4 as uuidv4 } from 'uuid';
+import LeftEditSidebar from './content/LeftEditSidebar';
 
 interface CalendarEvent {
 	id: any;
@@ -120,7 +120,7 @@ const CalendarContent = () => {
 
 	return (
 		<>
-			<LeftEditNavbar isOpen={isOpen} formData={formData} handleAddEvent={handleAddEvent} setFormData={setFormData} setIsOpen={setIsOpen} />
+			<LeftEditSidebar isOpen={isOpen} formData={formData} handleAddEvent={handleAddEvent} setFormData={setFormData} setIsOpen={setIsOpen} />
 			<PageContainer>
 				<CardContainer className='flex w-full space-x-8'>
 					<div className='md:flex hidden min-w-[12rem]  mt-3  justify-between flex-col'>

@@ -46,7 +46,7 @@ const CardProject = () => {
 					<p className='text-gray-500'>Cost</p> <span className='text-gray-400 font-semibold'>$840.99 </span>
 				</div>
 			</div>
-			<Button className='bg-violet-500 hover:bg-violet-400 w-full text-white'>Join Team</Button>
+			<Button className='!bg-violet-500 hover:!bg-violet-400 w-full !text-white'>Join Team</Button>
 		</CardContainer>
 	);
 };

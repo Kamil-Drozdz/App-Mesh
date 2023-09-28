@@ -19,7 +19,7 @@ const CardSession = () => {
 						<span>Avg Sessions</span>
 						<span className='dark:text-green-500'>+5.2%</span> vs last 7 days
 					</div>
-					<Button className='bg-violet-500 hover:dark:bg-violet-400 w-full  text-white'>View Details</Button>
+					<Button className='!bg-violet-500 hover:dark:!bg-violet-400 w-full  !text-white'>View Details</Button>
 				</div>
 				<div className='flex flex-col justify-center items-center basis-1/2'>
 					<h4 className='dark:text-right w-full'>Last 7 days</h4>
