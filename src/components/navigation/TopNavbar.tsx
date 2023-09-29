@@ -9,7 +9,7 @@ import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
 import { topNavbarIcons } from '@/data/navigation/topNavbarItems';
 import { IconSize } from '@/lib/entities/iconSize';
 import useMenu from '@/store/useMenu';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BsMoon, BsSun } from 'react-icons/bs';
 
@@ -18,14 +18,24 @@ const TopNavbar = () => {
 	const { t, i18n } = useTranslation();
 	const { toggleMenu } = useMenu();
 	const [isDarkMode, setIsDarkMode] = useState(false);
+	const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+	const [visible, setVisible] = useState(true);
 
 	const handleToggleTheme = () => {
 		htmlElement.classList.toggle('dark');
 		setIsDarkMode(prev => !prev);
 	};
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollPos = window.pageYOffset;
+			setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 50);
+			setPrevScrollPos(currentScrollPos);
+		};
+		window.addEventListener('scroll', handleScroll);
+	}, [prevScrollPos]);
 
 	return (
-		<div className='flex justify-between sticky top-8 z-[9] dark:bg-mediumBlue dark:text-gray-300 bg-white transition-colors duration-300 ease text-gray-800 bg rounded-lg px-4 py-2 shadow-md dark:shadow-black shadow-lightGray'>
+		<div className={`flex  ${visible ? 'top-0' : '-top-16'} print:hidden justify-between sticky top-8 z-[9] dark:bg-mediumBlue dark:text-gray-300 bg-white transition-all duration-300 ease text-gray-800 bg rounded-lg px-4 py-2 shadow-md dark:shadow-black shadow-lightGray`}>
 			<ul className='flex items-center space-x-2'>
 				{topNavbarIcons.icons.map((icon, index) => (
 					<li className={`${index === 0 ? 'lg:hidden block' : 'md:block hidden'}`} key={index}>

@@ -1,6 +1,7 @@
 import LeftEditSidebar from './LeftEditSidebar';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
+import CompletedStamp from '@/assets/completed-stamp.png';
 import CardContainer from '@/common/CardContainer';
 import PageContainer from '@/common/PageContainer';
 import { initialTasks, tags } from '@/data/pages/todo/todoData';
@@ -87,13 +88,13 @@ const CardTodo = () => {
 		}
 	};
 
-	const mapedtasks = search ? filterTasks : filteredTasks !== null ? filteredTasks : tasks;
+	const mapedtasks = search ? filterTasks : filteredTasks !== null ? filteredTasks : tasks.sort((a, b) => a.date.getTime() - b.date.getTime());
 
 	return (
 		<>
 			<LeftEditSidebar isOpen={isOpen} setIsOpen={setIsOpen} newTask={newTask} setNewTask={setNewTask} handleAddTodo={handleAddTodo} />
 			<PageContainer>
-				<CardContainer className='flex w-full space-x-8  text-gray-700 dark:text-gray-300'>
+				<CardContainer className='flex w-full md:space-x-4 space-y-0  text-gray-700 dark:text-gray-300'>
 					<div className='h-full min-w-[12rem] md:block hidden'>
 						<Button onClick={handleOpenSideBar} className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white w-full'>
 							Add Event
@@ -116,12 +117,11 @@ const CardTodo = () => {
 							))}
 						</ul>
 					</div>
-					<div className='w-full'>
+					<div className='w-full '>
 						<DragDropContext onDragEnd={onDragEnd}>
 							<div className='relative mb-2'>
 								<BiSearch className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={handleSearchChange} className='pl-6' placeholder='Search todo' />
 							</div>
-
 							<Droppable droppableId='todolist'>
 								{provided => (
 									<ul className='space-y-2' {...provided.droppableProps} ref={provided.innerRef}>
@@ -129,16 +129,16 @@ const CardTodo = () => {
 											mapedtasks.map((task, index) => (
 												<Draggable key={task.id} draggableId={task.id} index={index}>
 													{provided => (
-														<li className='px-2 border-[1px] rounded-lg flex items-center justify-between ' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-															<div className=' flex items-center space-x-4 '>
+														<li className='px-2 py-1 border-[1px] rounded-lg flex items-center justify-between ' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+															<div className=' flex items-center space-x-3 md:space-x-6 '>
 																<Input type='checkbox' className='w-4 h-4  accent-green-500 cursor-pointer' checked={task.completed} onChange={() => handleChecked(task.id)} />
 																<div className={`${task.completed ? 'text-green-500' : ''} space-y-2`}>
 																	<p className='break-all'>{task.title.charAt(0).toLocaleUpperCase() + task.title.slice(1)}</p>
-																	<p className=' break-all text-sm text-gray-400'>{task.description}</p>
 																</div>
+																<img className={`w-12 h-12 	${task.completed ? 'opacity-100 scale-100' : 'opacity-0 scale-0'} md:block hidden transition-all duration-100 ease-in rounded-full object-contain`} src={CompletedStamp} />
 															</div>
-															<div className='space-x-4 flex'>
-																<ul className='flex space-x-2'>
+															<div className='md:space-x-4 flex md:flex-row flex-col items-center justify-center'>
+																<ul className='flex md:space-x-2 w-full md:w-fit items-center justify-center'>
 																	{task.tag &&
 																		tags.map(
 																			(tag, tagIndex) =>
@@ -150,12 +150,14 @@ const CardTodo = () => {
 																		)}
 																</ul>
 																<div className='text-gray-600'>{format(task.date, 'MMMM d ')}</div>
-																<Button className='w-fit h-fit !p-0 rounded-none border-none !bg-transparent' onClick={() => handleEditTask(task.id)}>
-																	<BiEdit size={IconSize.basic} className='text-orange-500 ' />
-																</Button>
-																<Button className='w-fit h-fit !p-0 rounded-none border-none !bg-transparent' onClick={() => handleDeleteTodo(task.id)}>
-																	<AiFillCloseSquare size={IconSize.basic} className='text-red-500 ' />
-																</Button>
+																<div className='space-x-1'>
+																	<Button className='w-fit h-fit !p-0 rounded-none border-none !bg-transparent' onClick={() => handleEditTask(task.id)}>
+																		<BiEdit size={IconSize.basic} className='text-orange-500 ' />
+																	</Button>
+																	<Button className='w-fit h-fit !p-0 rounded-none border-none !bg-transparent' onClick={() => handleDeleteTodo(task.id)}>
+																		<AiFillCloseSquare size={IconSize.basic} className='text-red-500 ' />
+																	</Button>
+																</div>
 															</div>
 														</li>
 													)}

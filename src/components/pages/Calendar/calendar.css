@@ -31,9 +31,9 @@
 .fc-event-time {
 	display: none;
 }
-.fc-daygrid-event-harness {
+/* .fc-daygrid-event-harness {
 	width: fit-content;
-}
+} */
 .fc-daygrid-event-harness:hover {
 	filter: brightness(1.75);
 }

@@ -4,6 +4,7 @@ import ChatContent from '@/components/pages/Chat/ChatContent';
 import AnalyticsContent from '@/components/pages/Dashboard/path/analytics/AnalyticsContent';
 import EcommerceContent from '@/components/pages/Dashboard/path/ecommerce/EcommerceContent';
 import EmailContent from '@/components/pages/Email/EmailContent';
+import InvoicePreviewContent from '@/components/pages/Invoice/path/preview/InvoicePreviewContent';
 import TodoContent from '@/components/pages/Todo/TodoContent';
 
 interface RouteConfig {
@@ -22,7 +23,7 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 	[BasicRoutes.HOME]: [],
 	[BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent }],
 	[BasicRoutes.PAGES]: [],
-	[BasicRoutes.INVOICE]: [],
+	[BasicRoutes.INVOICE]: [{ subPath: SubRoutes.PREVIEW, component: InvoicePreviewContent }],
 	[BasicRoutes.ECOMMERCE]: [],
 	[BasicRoutes.PROFILE]: [],
 	[BasicRoutes.TYPOGRAPHY]: [],

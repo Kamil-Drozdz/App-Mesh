@@ -10,13 +10,14 @@ import { BiCalendar } from 'react-icons/bi';
 import { GoDotFill } from 'react-icons/go';
 
 const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEvent }) => {
+	console.log(formData);
 	return (
 		<>
 			<div className={`fixed  z-[51] ${isOpen ? 'translate-x-0' : 'translate-x-full'} space-y-4 text-gray-900 dark:text-white transition-transform duration-300 ease-in-out p-6 right-0 max-w-[24rem] h-full w-3/4  dark:bg-mediumBlue bg-white`}>
 				Add Event
 				<div className='relative'>
-					<Input type='text' id='location' value={formData.location} onChange={e => setFormData({ ...formData, title: e.target.value })} className='block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer' placeholder=' ' />
-					<label htmlFor='location' className='absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-mediumBlue px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'>
+					<Input type='text' id='title' value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className='block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer' placeholder=' ' />
+					<label htmlFor='title' className='absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-mediumBlue px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'>
 						Title
 					</label>
 				</div>
