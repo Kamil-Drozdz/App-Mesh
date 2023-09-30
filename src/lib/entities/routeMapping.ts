@@ -6,6 +6,8 @@ import EcommerceContent from '@/components/pages/Dashboard/path/ecommerce/Ecomme
 import EmailContent from '@/components/pages/Email/EmailContent';
 import InvoicePreviewContent from '@/components/pages/Invoice/path/preview/InvoicePreviewContent';
 import TodoContent from '@/components/pages/Todo/TodoContent';
+import DetailsContent from '@/components/pages/eCommerce/Details/DetailsContent';
+import ShopContent from '@/components/pages/eCommerce/Shop/ShopContent';
 
 interface RouteConfig {
 	subPath: string;
@@ -24,7 +26,10 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 	[BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent }],
 	[BasicRoutes.PAGES]: [],
 	[BasicRoutes.INVOICE]: [{ subPath: SubRoutes.PREVIEW, component: InvoicePreviewContent }],
-	[BasicRoutes.ECOMMERCE]: [],
+	[BasicRoutes.ECOMMERCE]: [
+		{ subPath: SubRoutes.SHOP, component: ShopContent },
+		{ subPath: `${SubRoutes.DETAILS}/:productID`, component: DetailsContent },
+	],
 	[BasicRoutes.PROFILE]: [],
 	[BasicRoutes.TYPOGRAPHY]: [],
 	[BasicRoutes.COLORS]: [],
