@@ -6,9 +6,11 @@ import GermanyIcon from '@/assets/germany-flag-icon.svg';
 import PolandIcon from '@/assets/poland-flag-icon.svg';
 import selfPhoto from '@/assets/selfPhoto.jpeg';
 import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
+import BorderedBadge from '@/common/BorderedBadge';
 import { topNavbarIcons } from '@/data/navigation/topNavbarItems';
 import { IconSize } from '@/lib/entities/iconSize';
 import useMenu from '@/store/useMenu';
+import useProductsStore from '@/store/useProductsStore';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BsMoon, BsSun } from 'react-icons/bs';
@@ -20,6 +22,7 @@ const TopNavbar = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
 	const [visible, setVisible] = useState(true);
+	const { cart } = useProductsStore();
 
 	const handleToggleTheme = () => {
 		htmlElement.classList.toggle('dark');
@@ -85,9 +88,16 @@ const TopNavbar = () => {
 							</SelectContent>
 						</Select>
 						{topNavbarIcons.userToolbar.map((icon, index) => (
-							<li onClick={index === 0 ? handleToggleTheme : undefined} key={index}>
-								<a>{isDarkMode ? icon.type === BsSun ? <BsMoon size={IconSize.basic} /> : icon : icon}</a>
-							</li>
+							<>
+								<li onClick={index === 0 ? handleToggleTheme : undefined} key={index}>
+									<a>{isDarkMode ? icon.type === BsSun ? <BsMoon size={IconSize.basic} /> : icon : icon}</a>
+								</li>
+								{index === 3 && (
+									<div className='relative'>
+										<BorderedBadge count={cart.length} />
+									</div>
+								)}
+							</>
 						))}
 					</>
 				</ul>

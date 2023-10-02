@@ -1,5 +1,3 @@
-
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ['class'],
@@ -58,7 +56,7 @@ module.exports = {
 				md: `calc(var(--radius) - 2px)`,
 				sm: 'calc(var(--radius) - 4px)',
 			},
-			
+
 			keyframes: {
 				'accordion-down': {
 					from: { height: 0 },
@@ -72,6 +70,10 @@ module.exports = {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+			},
+			gridTemplateColumns: {
+				'auto-fill-100': 'repeat(auto-fill, minmax(200px, 1fr))',
+				'auto-fit-100': 'repeat(auto-fit, minmax(200px, 1fr))',
 			},
 		},
 	},

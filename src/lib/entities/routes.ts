@@ -42,7 +42,7 @@ export enum SubRoutes {
 	SHOP = '/shop',
 	DETAILS = '/details',
 	WISH_LIST = '/wish-list',
-	CHECKOUT = '/Checkout',
+	CHECKOUT = '/checkout',
 	USER_LIST = '/list',
 	USER_VIEW = '/view',
 	USER_EDIT = '/Edit',

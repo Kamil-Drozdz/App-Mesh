@@ -6,7 +6,9 @@ const ShopHeader = () => {
 
 	return (
 		<div className='flex items-center space-x-2 mb-2'>
-			<h2 className='border-r px-2 border-gray-600'>Shop</h2>
+			<Link to='/ecommerce/shop'>
+				<h2 className='border-r px-2 border-gray-600'>Shop</h2>
+			</Link>
 			{pathSegments.map((segment, index) => {
 				if (index === pathSegments.length - 1) {
 					const lastSegmentIsNumber = /^\d+$/.test(segment);

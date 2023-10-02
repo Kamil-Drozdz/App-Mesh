@@ -120,7 +120,7 @@ const CardTodo = () => {
 					<div className='w-full '>
 						<DragDropContext onDragEnd={onDragEnd}>
 							<div className='relative mb-2'>
-								<BiSearch className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={handleSearchChange} className='pl-6' placeholder='Search todo' />
+								<BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={handleSearchChange} className='pl-8' placeholder='Search todo' />
 							</div>
 							<Droppable droppableId='todolist'>
 								{provided => (

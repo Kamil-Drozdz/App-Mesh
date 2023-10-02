@@ -6,8 +6,10 @@ import EcommerceContent from '@/components/pages/Dashboard/path/ecommerce/Ecomme
 import EmailContent from '@/components/pages/Email/EmailContent';
 import InvoicePreviewContent from '@/components/pages/Invoice/path/preview/InvoicePreviewContent';
 import TodoContent from '@/components/pages/Todo/TodoContent';
+import CheckoutContent from '@/components/pages/eCommerce/Checkout/CheckoutContent';
 import DetailsContent from '@/components/pages/eCommerce/Details/DetailsContent';
 import ShopContent from '@/components/pages/eCommerce/Shop/ShopContent';
+import WishlistContent from '@/components/pages/eCommerce/Wish List/WishlistContent';
 
 interface RouteConfig {
 	subPath: string;
@@ -29,6 +31,9 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 	[BasicRoutes.ECOMMERCE]: [
 		{ subPath: SubRoutes.SHOP, component: ShopContent },
 		{ subPath: `${SubRoutes.DETAILS}/:productID`, component: DetailsContent },
+		{ subPath: `${SubRoutes.DETAILS}`, component: DetailsContent },
+		{ subPath: `${SubRoutes.WISH_LIST}`, component: WishlistContent },
+		{ subPath: `${SubRoutes.CHECKOUT}`, component: CheckoutContent },
 	],
 	[BasicRoutes.PROFILE]: [],
 	[BasicRoutes.TYPOGRAPHY]: [],

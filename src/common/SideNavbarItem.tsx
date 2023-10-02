@@ -6,7 +6,7 @@ const SideNavbarItem = ({ icon, handleActiveDropdown, activeDropdown, name, href
 	const open = name === activeDropdown;
 	const pathname = window.location.pathname;
 	const isActiveItem = pathname === href;
-	const isActiveDropdownItem = dropdown?.some(item => item.href === pathname);
+	const isActiveDropdownItem = dropdown?.some(item => pathname.startsWith(item.href));
 
 	return (
 		<>
@@ -27,7 +27,7 @@ const SideNavbarItem = ({ icon, handleActiveDropdown, activeDropdown, name, href
 			<div className={` overflow-hidden transition-all duration-300 ease ${open ? 'max-h-96' : 'max-h-0'}`}>
 				{open
 					? dropdown?.map((item, index) => (
-							<Link to={item.href} key={index} className={`${item.href === pathname ? 'dark:bg-darkBlue bg-lightWhite dark:text-white' : ''} ${menuCollapsed ? 'hidden' : 'flex'} items-center justify-between m-1 px-4 py-2.5 hover:dark:bg-darkBlue focus:dark:bg-darkBlue mx-5 rounded-lg transition-colors duration-150 ease-in-out`}>
+							<Link to={item.href} key={index} className={`${pathname.startsWith(item.href) ? 'dark:bg-darkBlue bg-lightWhite dark:text-white' : ''} ${menuCollapsed ? 'hidden' : 'flex'} items-center justify-between m-1 px-4 py-2.5 hover:dark:bg-darkBlue focus:dark:bg-darkBlue mx-5 rounded-lg transition-colors duration-150 ease-in-out`}>
 								<div className='flex items-center space-x-2'>
 									<LiaDotCircle /> <span>{item.name}</span>
 								</div>
