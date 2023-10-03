@@ -10,11 +10,11 @@ import FullCalendar from '@fullcalendar/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './calendar.css';
-import { v4 as uuidv4 } from 'uuid';
 import LeftEditSidebar from './content/LeftEditSidebar';
+import { v4 as uuidv4 } from 'uuid';
 
 interface CalendarEvent {
-	id: any;
+	id: string;
 	title: string;
 	start: Date;
 	label: string | null;

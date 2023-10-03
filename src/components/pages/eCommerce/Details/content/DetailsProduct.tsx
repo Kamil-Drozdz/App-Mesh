@@ -14,6 +14,9 @@ import { PiMedalBold } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
 const DetailsProduct = ({ productID }) => {
+	if (typeof productID === 'undefined') {
+		productID = 2;
+	}
 	const { data: product, loading, error }: any = useFetch(`https://fakestoreapi.com/products/${productID}`);
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -41,7 +44,7 @@ const DetailsProduct = ({ productID }) => {
 						<img className=' object-contain aspect-video' src={product?.image} alt={product?.title} />
 					</div>
 				</div>
-				<div className='space-y-3 ml-4 md:w-1/2 py-6'>
+				<div className='space-y-3 md:ml-4 md:w-1/2 py-6'>
 					<p className='w-full text-left font-semibold hover:text-violet-500 '>{product?.title}</p>
 					<div className='flex items-center space-x-2'>
 						<p className=' font-semibold text-violet-500'>${product?.price}</p>

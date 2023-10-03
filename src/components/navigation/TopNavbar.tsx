@@ -88,16 +88,16 @@ const TopNavbar = () => {
 							</SelectContent>
 						</Select>
 						{topNavbarIcons.userToolbar.map((icon, index) => (
-							<>
-								<li onClick={index === 0 ? handleToggleTheme : undefined} key={index}>
+							<div className='cursor-pointer' key={index}>
+								<li onClick={index === 0 ? handleToggleTheme : undefined}>
 									<a>{isDarkMode ? icon.type === BsSun ? <BsMoon size={IconSize.basic} /> : icon : icon}</a>
 								</li>
-								{index === 3 && (
+								{index === 2 && (
 									<div className='relative'>
 										<BorderedBadge count={cart.length} />
 									</div>
 								)}
-							</>
+							</div>
 						))}
 					</>
 				</ul>

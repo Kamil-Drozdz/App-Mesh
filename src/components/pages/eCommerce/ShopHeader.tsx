@@ -16,12 +16,12 @@ const ShopHeader = () => {
 					if (lastSegmentIsNumber) {
 						return null;
 					} else {
-						return <span key={segment}>{segment}</span>;
+						return <span key={segment}>{segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}</span>;
 					}
 				} else {
 					return (
 						<Link className='text-violet-500' key={segment} to={`/${segment}`}>
-							{`${segment}  `}
+							{segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}
 							<span className='text-white mx-2'>&gt;</span>
 						</Link>
 					);
