@@ -28,11 +28,12 @@ const CardTodo = () => {
 	const [filteredTasks, setFilteredTasks] = useState<Task[] | null>(null);
 	const [search, setSearch] = useState('');
 	const [activeTag, setActiveTag] = useState('');
-
+	const [isSorted, setIsSorted] = useState(true);
 	const filterTasks = tasks.filter(task => task.title.toLowerCase().includes(search.toLocaleLowerCase()) || task.description.toLowerCase().includes(search.toLocaleLowerCase()));
 
 	const onDragEnd = result => {
 		if (!result.destination) return;
+		setIsSorted(false);
 		const newTasks = [...tasks];
 		const [reorderedTask] = newTasks.splice(result.source.index, 1);
 		newTasks.splice(result.destination.index, 0, reorderedTask);
@@ -80,6 +81,7 @@ const CardTodo = () => {
 		setIsOpen(true);
 	};
 	const filterByTag = tag => {
+		setIsSorted(true);
 		if (activeTag === tag) {
 			setFilteredTasks(null);
 			setActiveTag('');
@@ -88,7 +90,7 @@ const CardTodo = () => {
 		}
 	};
 
-	const mapedtasks = search ? filterTasks : filteredTasks !== null ? filteredTasks : tasks.sort((a, b) => a.date.getTime() - b.date.getTime());
+	const mapedtasks = search ? filterTasks : filteredTasks !== null ? filteredTasks : isSorted ? tasks.sort((a, b) => a.date.getTime() - b.date.getTime()) : tasks;
 
 	return (
 		<>
@@ -120,7 +122,7 @@ const CardTodo = () => {
 					<div className='w-full '>
 						<DragDropContext onDragEnd={onDragEnd}>
 							<div className='relative mb-2'>
-								<BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={handleSearchChange} className='pl-8' placeholder='Search todo' />
+								<BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={handleSearchChange} className='pl-8 w-full h-9' placeholder='Search todo' />
 							</div>
 							<Droppable droppableId='todolist'>
 								{provided => (

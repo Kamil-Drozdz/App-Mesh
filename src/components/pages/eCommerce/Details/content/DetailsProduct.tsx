@@ -22,8 +22,8 @@ const DetailsProduct = ({ productID }) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const stars = product ? useStarRating(product?.rating?.rate) : null;
 	const { addToWishlist, cart, addToCart, removeFromWishlist, wishlist } = useProductsStore();
-	const isProductInWishlist = wishlist.some(item => item.id === product.id);
-	const isProductInCart = cart.some(item => item.id === product.id);
+	const isProductInWishlist = wishlist.some(item => item.id === product?.id);
+	const isProductInCart = cart.some(item => item.id === product?.id);
 
 	if (loading) {
 		return <Skeleton className='flex' SkeletonLength={1} />;
@@ -36,6 +36,9 @@ const DetailsProduct = ({ productID }) => {
 	if (product === null) {
 		return <div>No product data available</div>;
 	}
+
+
+    
 	return (
 		<>
 			<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg m-4 shadow-md dark:shadow-black shadow-lightGray flex md:flex-row flex-col items-start'>
@@ -81,7 +84,7 @@ const DetailsProduct = ({ productID }) => {
 						<Button
 							onClick={() => {
 								if (isProductInWishlist) {
-									removeFromWishlist(product.id);
+									removeFromWishlist(product?.id);
 								} else {
 									addToWishlist(product);
 								}

@@ -1,4 +1,5 @@
 import CheckoutAddress from './CheckoutAddress';
+import CheckoutPayment from './CheckoutPayment';
 import CheckoutStepperItem from './CheckoutStepperItem';
 import emptyCart from '@/assets/empty-cart.svg';
 import useProductsStore from '@/store/useProductsStore';
@@ -18,6 +19,7 @@ const CheckoutStepper = ({ activeStep, setFormData, formData }) => {
 						</>
 					)}
 					{activeStep === 'Address' && <CheckoutAddress setFormData={setFormData} formData={formData} />}
+					{activeStep === 'Payment' && <CheckoutPayment />}
 				</div>
 			) : (
 				<div className='w-full col-span-3 h-full min-h-[70vh] flex justify-center items-center flex-col space-y-4'>

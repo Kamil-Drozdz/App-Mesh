@@ -22,7 +22,7 @@ const ShopProducts = () => {
 	return (
 		<>
 			<div className='relative m-4'>
-				<BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={e => setSearch(e.target.value)} className='pl-8' placeholder='Search' />
+				<BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={e => setSearch(e.target.value)} className='pl-8 w-full h-9' placeholder='Search' />
 			</div>
 			<div>
 				{filteredProducts?.length ? (
