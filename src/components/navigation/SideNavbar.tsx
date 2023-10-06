@@ -1,6 +1,7 @@
 import SideNavbarItem from '../../common/SideNavbarItem';
 import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
+import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
 import useMenu from '@/store/useMenu';
 import { useState } from 'react';
 import { FaRegDotCircle } from 'react-icons/fa';
@@ -28,7 +29,7 @@ const SideNavbar = () => {
 	return (
 		<>
 			<div className={`dark:bg-darkBlue bg-lightWhite w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} top-0 z-[11] right-0 fixed h-screen`}>
-				<button onClick={toggleCollapse} className='p-2 lg:block hidden dark:bg-mediumBlue bg-white text-gray-800 dark:text-lightGray  dark:hover:bg-darkBlueHover  dark:focus:bg-darkBlueHover absolute top-0 right-0 rounded-full z-10'>
+				<button onClick={toggleCollapse} className='p-2 lg:block hidden dark:bg-mediumBlue bg-white text-gray-800 dark:text-lightGray dark:hover:bg-darkBlueHover dark:focus:bg-darkBlueHover absolute top-0 right-0 rounded-full z-10'>
 					Collaps
 				</button>
 				<nav
@@ -42,12 +43,12 @@ const SideNavbar = () => {
 							setMenuCollapsed(true);
 						}
 					}}
-					className={`${menuCollapsed ? 'w-20' : 'w-72'} ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} dark:bg-mediumBlue bg-white transition-all duration-300 ease-out fixed  text-gray-500  dark:text-lightGray overflow-y-auto h-full`}>
+					className={`${menuCollapsed ? 'w-20' : 'w-72'} ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} dark:bg-mediumBlue bg-white transition-all duration-300 ease-out fixed text-gray-500 dark:text-lightGray overflow-y-auto h-full`}>
 					<ul className='my-2'>
 						<li className='flex items-center justify-between space-x-4 px-6'>
 							{!menuCollapsed ? (
 								<>
-									<a href='/dashboard/ecommerce' className='flex items-center '>
+									<a href={`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`} className='flex items-center '>
 										<img src={logo} alt='Logo' className='w-8 h-8 mr-4' />
 										<span className='text-2xl font-semibold'>Admin</span>
 									</a>

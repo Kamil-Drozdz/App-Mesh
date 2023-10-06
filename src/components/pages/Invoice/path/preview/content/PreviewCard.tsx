@@ -24,9 +24,9 @@ const PreviewCard = () => {
 				</div>
 			</div>
 			<Separator />
-			<div className='flex flex-col md:flex-row print:flex-row space-y-4 md:space-y-0  justify-between my-4'>
+			<div className='flex flex-col md:flex-row print:flex-row space-y-4 md:space-y-0 justify-between my-4'>
 				<div className=' pr-8'>
-					<div className='font-medium mb-4'>Invoice To:</div>
+					<div className='text-2xl font-medium mb-4'>Invoice To:</div>
 					<p className='font-semibold'>Tony Herrera</p>
 					<p>Leonard-Garcia and Sons</p>
 					<p>5345 Robert Squares Denmark</p>
@@ -63,7 +63,7 @@ const PreviewCard = () => {
 					))}
 				</TableBody>
 			</Table>
-			<div className='flex flex-col md:flex-row print:flex-row space-y-4 md:space-y-0  justify-between p-2 mt-6'>
+			<div className='flex flex-col md:flex-row print:flex-row space-y-4 md:space-y-0 justify-between p-2 mt-6'>
 				<LabelRow label='Salesperson:' className='space-x-2' value='Kamil Dróżdż' />
 				<div>
 					<LabelRow label='SubTotal:' className='space-x-2 w-full justify-between' value={`$ ${subTotal.toFixed(2)}`} />

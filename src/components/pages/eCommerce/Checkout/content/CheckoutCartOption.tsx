@@ -19,7 +19,7 @@ const  CheckoutCartOption = ({amount,discount,tax,totalAmount,setActiveStep}) =>
 				<p className='text-gray-400'>Bag discount</p>
 				<span className='text-green-500'>-{discount}$</span>
 			</div>
-			<div className='w-full  flex justify-between items-center'>
+			<div className='w-full flex justify-between items-center'>
 				<p className='text-gray-400'>Tax</p>
 				<span>${tax}</span>
 			</div>

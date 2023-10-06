@@ -38,7 +38,7 @@ const TopNavbar = () => {
 	}, [prevScrollPos]);
 
 	return (
-		<div className={`flex  ${visible ? 'top-0' : '-top-16'} print:hidden justify-between sticky top-8 z-[9] dark:bg-mediumBlue dark:text-gray-300 bg-white transition-all duration-300 ease text-gray-800 bg rounded-lg px-4 py-2 shadow-md dark:shadow-black shadow-lightGray`}>
+		<div className={`flex ${visible ? 'top-0' : '-top-16'} print:hidden justify-between sticky top-8 z-[9] dark:bg-mediumBlue dark:text-gray-300 bg-white transition-all duration-300 ease text-gray-800 bg rounded-lg px-4 py-2 shadow-md dark:shadow-black shadow-lightGray`}>
 			<ul className='flex items-center space-x-2'>
 				{topNavbarIcons.icons.map((icon, index) => (
 					<li className={`${index === 0 ? 'lg:hidden block' : 'md:block hidden'}`} key={index}>

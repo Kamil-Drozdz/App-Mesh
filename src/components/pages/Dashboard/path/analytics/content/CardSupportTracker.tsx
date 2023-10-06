@@ -12,7 +12,7 @@ const CardSupportTracker = () => {
 					<h3 className='text-2xl font-semibold dark:text-white'>Support Tracker</h3>
 					<span>Last 7 Days</span>
 				</div>
-				<div className='flex  items-start justify-center h-full'>
+				<div className='flex items-start justify-center h-full'>
 					<div className='space-y-2'>
 						<h2 className='dark:text-3xl font-bold dark:text-white'>163</h2>
 						<p className='text-lg font-thin'>Tickets</p>

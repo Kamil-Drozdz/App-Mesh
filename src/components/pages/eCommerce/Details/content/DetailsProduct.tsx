@@ -43,7 +43,7 @@ const DetailsProduct = ({ productID }) => {
 		<>
 			<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg m-4 shadow-md dark:shadow-black shadow-lightGray flex md:flex-row flex-col items-start'>
 				<div className='md:w-1/2 h-full flex justify-center items-center'>
-					<div className='h-full  text-center p-2 bg-white rounded-lg justify-center flex items-center'>
+					<div className='h-full text-center p-2 bg-white rounded-lg justify-center flex items-center'>
 						<img className=' object-contain aspect-video' src={product?.image} alt={product?.title} />
 					</div>
 				</div>
@@ -58,7 +58,7 @@ const DetailsProduct = ({ productID }) => {
 						<p>Available -</p>
 						<span className='text-green-500 font-semibold'>{product?.rating?.count}</span>
 					</div>
-					<p className=' w-full   break-all'>{product?.description}</p>
+					<p className=' w-full break-all'>{product?.description}</p>
 					<div className='font-semibold flex items-center space-x-2'>
 						<FiShoppingCart size={IconSize.basic} />
 						<p>Free Shipping</p>

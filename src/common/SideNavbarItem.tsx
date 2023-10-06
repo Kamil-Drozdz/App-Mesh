@@ -32,7 +32,7 @@ const SideNavbarItem = ({ icon, handleActiveDropdown, activeDropdown, name, href
 									<LiaDotCircle /> <span>{item.name}</span>
 								</div>
 							</Link>
-					  ))
+					 ))
 					: null}
 			</div>
 		</>

@@ -96,7 +96,7 @@ const CardTodo = () => {
 		<>
 			<LeftEditSidebar isOpen={isOpen} setIsOpen={setIsOpen} newTask={newTask} setNewTask={setNewTask} handleAddTodo={handleAddTodo} />
 			<PageContainer>
-				<CardContainer className='flex w-full md:space-x-4 space-y-0  text-gray-700 dark:text-gray-300'>
+				<CardContainer className='flex w-full md:space-x-4 space-y-0 text-gray-700 dark:text-gray-300'>
 					<div className='h-full min-w-[12rem] md:block hidden'>
 						<Button onClick={handleOpenSideBar} className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white w-full'>
 							Add Event
@@ -133,7 +133,7 @@ const CardTodo = () => {
 													{provided => (
 														<li className='px-2 py-1 border-[1px] rounded-lg flex items-center justify-between ' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 															<div className=' flex items-center space-x-3 md:space-x-6 '>
-																<Input type='checkbox' className='w-4 h-4  accent-green-500 cursor-pointer' checked={task.completed} onChange={() => handleChecked(task.id)} />
+																<Input type='checkbox' className='w-4 h-4 accent-green-500 cursor-pointer' checked={task.completed} onChange={() => handleChecked(task.id)} />
 																<div className={`${task.completed ? 'text-green-500' : ''} space-y-2`}>
 																	<p className='break-all'>{task.title.charAt(0).toLocaleUpperCase() + task.title.slice(1)}</p>
 																</div>

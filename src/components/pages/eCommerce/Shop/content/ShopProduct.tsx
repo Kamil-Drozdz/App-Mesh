@@ -1,6 +1,7 @@
 import { Button } from '@/UI/Button';
 import { useStarRating } from '@/hooks/useStarRating';
 import { IconSize } from '@/lib/entities/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
 import useProductsStore, { ProductProps } from '@/store/useProductsStore';
 import { AiFillHeart } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
@@ -19,17 +20,17 @@ const ShopProduct = ({ product }: ShopProductProps) => {
 	return (
 		<div className=' m-4'>
 			<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-t-lg space-y-3 flex flex-col items-center justify-center'>
-				<Link to={`/ecommerce/details/${product.id}`} className='w-34 h-34 p-2 bg-white rounded-lg'>
-					<img className=' object-contain  aspect-video' src={product?.image} alt={product?.title} />
+				<Link to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`} className='w-34 h-34 p-2 bg-white rounded-lg'>
+					<img className=' object-contain aspect-video' src={product?.image} alt={product?.title} />
 				</Link>
 				<div className='flex justify-between w-full'>
 					<div className='flex text-amber-500'>{stars}</div>
 					<p className=' font-semibold text-gray-400'>${product.price}</p>
 				</div>
-				<Link className='w-full' to={`/ecommerce/details/${product.id}`}>
+				<Link className='w-full' to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`}>
 					<p className='w-full min-h-[100px] text-left font-semibold hover:text-violet-500 '>{product?.title}</p>
 				</Link>
-				<p className='truncate w-full  break-all'>{product?.description}</p>
+				<p className='truncate w-full break-all'>{product?.description}</p>
 			</div>
 			<div className=' flex w-full'>
 				<Button
@@ -41,7 +42,7 @@ const ShopProduct = ({ product }: ShopProductProps) => {
 						}
 					}}
 					variant='ghost'
-					className='space-x-2 w-full  border border-t-0 border-gray-600  rounded-none !rounded-bl-lg'>
+					className='space-x-2 w-full border border-t-0 border-gray-600 rounded-none !rounded-bl-lg'>
 					{isProductInWishlist ? <AiFillHeart size={IconSize.basic} className='text-red-500' /> : <BiHeart size={IconSize.basic} />}
 					<p> Add to Wishlist</p>
 				</Button>

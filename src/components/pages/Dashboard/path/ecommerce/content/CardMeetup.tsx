@@ -22,7 +22,7 @@ const CardMeetup = () => {
 					</div>
 					<div className='flex flex-col items-center justify-start'>
 						<p className='text-left w-full text-lg dark:text-gray-200 font-semibold'>Developer Meetup</p>
-						<span className='text-left w-full  text-gray-400'>Meet world popular developers</span>
+						<span className='text-left w-full text-gray-400'>Meet world popular developers</span>
 					</div>
 				</div>
 				<div className='flex'>

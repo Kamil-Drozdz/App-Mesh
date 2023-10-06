@@ -65,7 +65,7 @@ const CalendarContent = () => {
 			end: info.event._instance.range.end,
 			eventUrl: info.event._def.extendedProps.eventUrl,
 			location: info.event._def.extendedProps.location,
-			description: info.event._def.extendedProps.label.description,
+			description: info.event._def.extendedProps.description,
 			label: info.event._def.extendedProps.label,
 		});
 	};
@@ -98,7 +98,6 @@ const CalendarContent = () => {
 	});
 
 	const handleDateSelect = info => {
-		console.log(info);
 		setIsOpen(true);
 		setFormData({
 			id: uuidv4(),
@@ -123,7 +122,7 @@ const CalendarContent = () => {
 			<LeftEditSidebar isOpen={isOpen} formData={formData} handleAddEvent={handleAddEvent} setFormData={setFormData} setIsOpen={setIsOpen} />
 			<PageContainer>
 				<CardContainer className='flex w-full space-x-8'>
-					<div className='md:flex hidden min-w-[12rem]  mt-3  justify-between flex-col'>
+					<div className='md:flex hidden min-w-[12rem] mt-3 justify-between flex-col'>
 						<div className='h-full'>
 							<Button onClick={() => setIsOpen(true)} className='!bg-violet-500 mb-4 hover:bg-violet-400 w-full !text-white'>
 								Add Event

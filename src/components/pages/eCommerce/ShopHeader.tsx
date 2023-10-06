@@ -1,3 +1,4 @@
+import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
 import { Link, useLocation } from 'react-router-dom';
 
 const ShopHeader = () => {
@@ -6,13 +7,12 @@ const ShopHeader = () => {
 
 	return (
 		<div className='flex items-center space-x-2 mb-2'>
-			<Link to='/ecommerce/shop'>
+			<Link to={`${BasicRoutes.ECOMMERCE}${SubRoutes.SHOP}`}>
 				<h2 className='border-r px-2 border-gray-600'>Shop</h2>
 			</Link>
 			{pathSegments.map((segment, index) => {
 				if (index === pathSegments.length - 1) {
 					const lastSegmentIsNumber = /^\d+$/.test(segment);
-
 					if (lastSegmentIsNumber) {
 						return null;
 					} else {

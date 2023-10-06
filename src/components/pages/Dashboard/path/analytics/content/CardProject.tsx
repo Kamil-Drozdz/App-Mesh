@@ -14,8 +14,8 @@ const CardProject = () => {
 			<div className='dark:text-white flex flex-col'>
 				<p>TEAM </p>
 				<div className='px-2 flex space-x-3'>
-					<p className='text-orange-600 px-2 bg-orange-600 bg-opacity-30 w-fit  text-center rounded-lg'>Figma</p>
-					<p className='text-violet-600 px-2 bg-violet-600 bg-opacity-30 w-fit  text-center rounded-lg'>Wireframe</p>
+					<p className='text-orange-600 px-2 bg-orange-600 bg-opacity-30 w-fit text-center rounded-lg'>Figma</p>
+					<p className='text-violet-600 px-2 bg-violet-600 bg-opacity-30 w-fit text-center rounded-lg'>Wireframe</p>
 				</div>
 			</div>
 			<p className='dark:text-white'>MEMBERS</p>
@@ -36,13 +36,13 @@ const CardProject = () => {
 				<p className='ml-2 text-white'>+4</p>
 			</div>
 			<div className='flex justify-start items-center space-x-4'>
-				<div className='px-2 dark:bg-gray-900 bg-gray-200  rounded py-1 text-center'>
+				<div className='px-2 dark:bg-gray-900 bg-gray-200 rounded py-1 text-center'>
 					<p className='text-gray-500'>Due Date</p> <span className='text-gray-400 font-semibold'>12 Apr, 21</span>
 				</div>
-				<div className='px-2 dark:bg-gray-900 bg-gray-200  rounded py-1  text-center'>
+				<div className='px-2 dark:bg-gray-900 bg-gray-200 rounded py-1 text-center'>
 					<p className='text-gray-500'>Budget</p> <span className='text-gray-400 font-semibold'>$49251.91 </span>
 				</div>
-				<div className='px-2 dark:bg-gray-900 bg-gray-200  rounded py-1  text-center'>
+				<div className='px-2 dark:bg-gray-900 bg-gray-200 rounded py-1 text-center'>
 					<p className='text-gray-500'>Cost</p> <span className='text-gray-400 font-semibold'>$840.99 </span>
 				</div>
 			</div>

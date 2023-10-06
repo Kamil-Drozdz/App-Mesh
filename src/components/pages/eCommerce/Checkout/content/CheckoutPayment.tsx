@@ -13,7 +13,7 @@ const CheckoutPayment = () => {
 			<p className='text-gray-500'> Be sure to click on correct payment option</p>
 
 			<div className='flex justify-between items-center'>
-				<RadioGroup className='flex  flex-col space-y-1 w-full '>
+				<RadioGroup className='flex flex-col space-y-1 w-full '>
 					<p>John Doe</p>
 					<div className='flex items-center space-x-2'>
 						<RadioGroupItem className='text-violet-500' value='debet-card' id='debet-card' />

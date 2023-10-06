@@ -16,12 +16,12 @@ interface FormData {
 const CheckoutContent = () => {
 	const [activeStep, setActiveStep] = useState('Cart');
 	const [formData, setFormData] = useState<FormData>({ fullName: '', address: '', city: '', state: '', zipCode: '', phone: '' });
-    
+  
 	return (
 		<PageContainer>
 			<ShopHeader />
 			<CheckoutStepperHeader setActiveStep={setActiveStep} activeStep={activeStep} />
-			<div className='grid grid-cols-1 md:grid-cols-3  space-x-0 space-y-6 md:space-y-0 md:space-x-6'>
+			<div className='grid grid-cols-1 md:grid-cols-3 space-x-0 space-y-6 md:space-y-0 md:space-x-6'>
 				<CheckoutStepper formData={formData} setFormData={setFormData} activeStep={activeStep} />
 				<CheckoutOptions formData={formData} setActiveStep={setActiveStep} activeStep={activeStep} />
 			</div>
