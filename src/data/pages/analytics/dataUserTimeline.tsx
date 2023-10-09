@@ -1,6 +1,6 @@
 import { generateData } from '../ecommerce/dataCompany';
 import { generateMeetupData } from '../ecommerce/dataMeetup';
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
 import { HiOutlineDocument } from 'react-icons/hi2';
 
 export const data = [

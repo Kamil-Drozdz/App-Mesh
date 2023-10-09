@@ -1,6 +1,6 @@
 import CardContainer from './CardContainer';
 import { convert } from '@/lib/convert';
-import { totalValue } from '@/lib/entities/totalValue';
+import { totalValue } from '@/lib/totalValue';
 import { ReactNode } from 'react';
 
 interface CardDataProps {
@@ -25,7 +25,7 @@ const CardChart = ({ className, title, data, icon, children, iconColor }: CardDa
 		<CardContainer className={className}>
 			{icon && <div className={`${iconColor} h-12 w-12 rounded-full bg-opacity-25 flex justify-center items-center `}>{icon}</div>}
 			<div className='dark:text-white text-gray-500'>{title}</div>
-			<h4 className='dark:text-gray-200 text-2xl font-semibold'>{convert(totalValue(data))}</h4>
+			<h4 className='dark:text-gray-200 text-2xl font-semibold'>{convert(totalValue(data.datasets[0].data))}</h4>
 			{children}
 		</CardContainer>
 	);

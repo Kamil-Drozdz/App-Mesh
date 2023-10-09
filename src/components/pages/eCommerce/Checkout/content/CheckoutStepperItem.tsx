@@ -1,14 +1,14 @@
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
-import { useStarRating } from '@/hooks/useStarRating';
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
+import { starRating } from '@/lib/starRating';
 import useProductsStore from '@/store/useProductsStore';
 import { AiFillHeart, AiOutlineClose } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
 
 const CheckoutStepperItem = ({ product }) => {
 	const { cart, wishlist, addToWishlist, removeFromWishlist, removeFromCart } = useProductsStore();
-	const stars = useStarRating(product.rating.rate);
+	const stars = starRating(product.rating.rate);
 	const isProductInWishlist = wishlist.some(item => item.id === product.id);
 	const isProductInCart = cart.some(item => item.id === product.id);
 

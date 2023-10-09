@@ -1,5 +1,5 @@
-import { IconSize } from '@/lib/entities/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
+import { IconSize } from '@/lib/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/routes';
 import { useTranslation } from 'react-i18next';
 import { AiFillCheckCircle, AiOutlineCalendar, AiOutlineCreditCard, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineHome, AiOutlineLayout, AiOutlinePieChart, AiOutlinePlusCircle, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
 import { BiBox, BiCopy, BiDroplet } from 'react-icons/bi';
@@ -136,7 +136,7 @@ export const NavItems = () => {
 					dropdown: [
 						{
 							name: t('List'),
-							href: `${BasicRoutes.PROFILE}${SubRoutes.USER_LIST}`,
+							href: `${BasicRoutes.PROFILE}${SubRoutes.LIST}`,
 						},
 						{
 							name: t('View'),

@@ -1,7 +1,7 @@
 import { Button } from '@/UI/Button';
-import { useStarRating } from '@/hooks/useStarRating';
-import { IconSize } from '@/lib/entities/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
+import { IconSize } from '@/lib/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/useProductsStore';
 import { AiFillHeart } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
@@ -12,13 +12,13 @@ interface ShopProductProps {
 	product: ProductProps;
 }
 const ShopProduct = ({ product }: ShopProductProps) => {
-	const stars = useStarRating(product.rating.rate);
+	const stars = starRating(product.rating.rate);
 	const { addToWishlist, cart, addToCart, removeFromCart, removeFromWishlist, wishlist } = useProductsStore();
 	const isProductInWishlist = wishlist.some(item => item.id === product.id);
 	const isProductInCart = cart.some(item => item.id === product.id);
 
 	return (
-		<div className=' m-4'>
+		<div className='m-4'>
 			<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-t-lg space-y-3 flex flex-col items-center justify-center'>
 				<Link to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`} className='w-34 h-34 p-2 bg-white rounded-lg'>
 					<img className=' object-contain aspect-video' src={product?.image} alt={product?.title} />

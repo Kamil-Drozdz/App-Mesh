@@ -4,7 +4,7 @@ import { Separator } from '@/UI/Separator';
 import CardContainer from '@/common/CardContainer';
 import { DataRevenueReport } from '@/data/charts/dataRevenueReport';
 import { convert } from '@/lib/convert';
-import { totalValue } from '@/lib/entities/totalValue';
+import { totalValue } from '@/lib/totalValue';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
@@ -41,7 +41,7 @@ const CardRevenueReport = () => {
 				</Select>
 				<div className='dark:text-white text-lg'>$25.852</div>
 				<h4 className='dark:text-gray-300 dark:text-base'>
-					{t('Budget')} {convert(totalValue(data))}
+					{t('Budget')} {convert(totalValue(data.datasets[0].data))}
 				</h4>
 				<Line className='px-4 w-full' options={optionsLine} data={data} />
 				<Button className='!bg-violet-500 hover:!bg-violet-400 !text-white'>{t('Increase Budget')}</Button>

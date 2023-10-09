@@ -1,13 +1,13 @@
 import CardContainer from '@/common/CardContainer';
 import CardTransactionItem from '@/common/CardTransactionItem';
 import { generateData } from '@/data/pages/ecommerce/dataCompany';
-import { generateTransactionData } from '@/data/pages/ecommerce/dataTransaction';
-import { IconSize } from '@/lib/entities/iconSize';
+import { TransactionData, generateTransactionData } from '@/data/pages/ecommerce/dataTransaction';
+import { IconSize } from '@/lib/iconSize';
 import { useTranslation } from 'react-i18next';
 import { BiDotsVertical } from 'react-icons/bi';
 
 const CardTransaction = () => {
-	const data = generateData(20, generateTransactionData);
+	const data: TransactionData[] = generateData(20, generateTransactionData);
 	const { t } = useTranslation();
 	return (
 		<CardContainer className='basis-1/3'>

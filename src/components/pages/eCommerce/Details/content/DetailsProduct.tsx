@@ -2,10 +2,10 @@ import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import Skeleton from '@/UI/skeleton/Skeleton';
 import useFetch from '@/hooks/useFetch';
-import { useStarRating } from '@/hooks/useStarRating';
-import { IconSize } from '@/lib/entities/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
-import useProductsStore from '@/store/useProductsStore';
+import { IconSize } from '@/lib/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { starRating } from '@/lib/starRating';
+import useProductsStore, { ProductProps } from '@/store/useProductsStore';
 import { AiFillHeart } from 'react-icons/ai';
 import { BiHeart, BiTimeFive } from 'react-icons/bi';
 import { BsShield } from 'react-icons/bs';
@@ -13,14 +13,19 @@ import { FiDollarSign, FiShare2, FiShoppingCart } from 'react-icons/fi';
 import { PiMedalBold } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
+interface FetchProps {
+	data: ProductProps | null;
+	loading: boolean;
+	error: null | string;
+}
 const DetailsProduct = ({ productID }) => {
 	if (typeof productID === 'undefined') {
 		productID = 2;
 	}
-	const { data: product, loading, error }: any = useFetch(`https://fakestoreapi.com/products/${productID}`);
 
-	// eslint-disable-next-line react-hooks/rules-of-hooks
-	const stars = product ? useStarRating(product?.rating?.rate) : null;
+	// Aded the type annotation
+	const { data: product, loading, error }: FetchProps = useFetch(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products/${productID}`) as FetchProps;
+	const stars = product ? starRating(product?.rating?.rate) : null;
 	const { addToWishlist, cart, addToCart, removeFromWishlist, wishlist } = useProductsStore();
 	const isProductInWishlist = wishlist.some(item => item.id === product?.id);
 	const isProductInCart = cart.some(item => item.id === product?.id);
@@ -30,15 +35,13 @@ const DetailsProduct = ({ productID }) => {
 	}
 
 	if (error) {
-		return <div>Error: {error?.message}</div>;
+		return <div>Error: {error}</div>;
 	}
 
 	if (product === null) {
 		return <div>No product data available</div>;
 	}
 
-
-    
 	return (
 		<>
 			<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg m-4 shadow-md dark:shadow-black shadow-lightGray flex md:flex-row flex-col items-start'>

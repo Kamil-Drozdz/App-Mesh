@@ -1,4 +1,4 @@
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiDollar, BiTrendingUp } from 'react-icons/bi';

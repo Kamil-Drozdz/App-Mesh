@@ -1,3 +1,4 @@
+import { FormDataProps } from '../CalendarContent';
 import { Button } from '@/UI/Button';
 import { Calendar } from '@/UI/Calendar';
 import { Input } from '@/UI/Input';
@@ -9,7 +10,15 @@ import { format } from 'date-fns';
 import { BiCalendar } from 'react-icons/bi';
 import { GoDotFill } from 'react-icons/go';
 
-const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEvent }) => {
+interface LeftEditSidebarProps {
+	isOpen: boolean;
+	formData: FormDataProps;
+	handleAddEvent: () => void;
+	setFormData: (formData: FormDataProps) => void;
+	setIsOpen: (isOpen: boolean) => void;
+}
+
+const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEvent }: LeftEditSidebarProps) => {
 	return (
 		<>
 			<div className={`fixed z-[51] ${isOpen ? 'translate-x-0' : 'translate-x-full'} space-y-4 text-gray-900 dark:text-white transition-transform duration-300 ease-in-out p-6 right-0 max-w-[24rem] h-full w-3/4 dark:bg-mediumBlue bg-white`}>

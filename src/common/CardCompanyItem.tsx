@@ -1,7 +1,11 @@
 import { Separator } from '@/UI/Separator';
+import { CompanyData } from '@/data/pages/ecommerce/dataCompany';
 import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
 
-const CardCompanyItem = ({ item }) => {
+interface CardCompanyItemProps {
+	item: CompanyData;
+}
+const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
 	return (
 		<>
 			<dl className='hover:dark:bg-darkBlue transition-colors duration-200 ease-in-out flex items-center justify-center w-full md:px-4 my-1 py-1 space-x-2 text-[12px] md:text-base'>

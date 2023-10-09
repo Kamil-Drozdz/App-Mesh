@@ -1,5 +1,5 @@
-import { getRandomHexColor } from '@/lib/entities/generateRandomColor';
-import { IconSize } from '@/lib/entities/iconSize';
+import { getRandomHexColor } from '@/lib/generateRandomColor';
+import { IconSize } from '@/lib/iconSize';
 import { faker } from '@faker-js/faker';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineDesktop, AiOutlineMobile, AiOutlineLaptop, AiOutlineShoppingCart, AiOutlineCode } from 'react-icons/ai';

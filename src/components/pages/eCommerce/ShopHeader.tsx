@@ -1,4 +1,4 @@
-import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
+import { BasicRoutes, SubRoutes } from '@/lib/routes';
 import { Link, useLocation } from 'react-router-dom';
 
 const ShopHeader = () => {

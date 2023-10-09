@@ -1,7 +1,7 @@
 import leftDecore from '@/assets/decore-left.png';
 import rightDecore from '@/assets/decore-right.png';
 import CardContainer from '@/common/CardContainer';
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
 import { useTranslation } from 'react-i18next';
 import { PiMedal } from 'react-icons/pi';
 

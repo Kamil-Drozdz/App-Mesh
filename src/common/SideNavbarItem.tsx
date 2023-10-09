@@ -2,7 +2,21 @@ import { AiOutlineRight } from 'react-icons/ai';
 import { LiaDotCircle } from 'react-icons/lia';
 import { Link } from 'react-router-dom';
 
-const SideNavbarItem = ({ icon, handleActiveDropdown, activeDropdown, name, href, dropdown, menuCollapsed }) => {
+interface DropdownItem {
+	name: string;
+	href: string;
+}
+
+interface SideNavbarItemProps {
+	icon: JSX.Element;
+	handleActiveDropdown: (name: string) => void;
+	activeDropdown: string | null;
+	name: string;
+	href: string;
+	dropdown?: DropdownItem[];
+	menuCollapsed: boolean;
+}
+const SideNavbarItem = ({ icon, handleActiveDropdown, activeDropdown, name, href, dropdown, menuCollapsed }: SideNavbarItemProps) => {
 	const open = name === activeDropdown;
 	const pathname = window.location.pathname;
 	const isActiveItem = pathname === href;
@@ -32,7 +46,8 @@ const SideNavbarItem = ({ icon, handleActiveDropdown, activeDropdown, name, href
 									<LiaDotCircle /> <span>{item.name}</span>
 								</div>
 							</Link>
-					 ))
+							/*eslint no-mixed-spaces-and-tabs: ["error", "smart-tabs"]*/
+					  ))
 					: null}
 			</div>
 		</>

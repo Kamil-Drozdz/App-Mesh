@@ -5,7 +5,7 @@ import CompletedStamp from '@/assets/completed-stamp.png';
 import CardContainer from '@/common/CardContainer';
 import PageContainer from '@/common/PageContainer';
 import { initialTasks, tags } from '@/data/pages/todo/todoData';
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
 import { format } from 'date-fns';
 import { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';

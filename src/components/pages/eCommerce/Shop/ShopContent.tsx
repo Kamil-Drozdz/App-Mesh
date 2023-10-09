@@ -6,6 +6,7 @@ const ShopContent = () => {
 	return (
 		<PageContainer>
 			<ShopHeader />
+
 			<ShopProducts />
 		</PageContainer>
 	);

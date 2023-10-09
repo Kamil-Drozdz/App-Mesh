@@ -2,12 +2,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/T
 import organizePhoto from '@/assets/organize.svg';
 import CardContainer from '@/common/CardContainer';
 import { generateData } from '@/data/pages/ecommerce/dataCompany';
-import { generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
+import { MeetupDataProps, generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { PiMapPinBold } from 'react-icons/pi';
 
 const CardMeetup = () => {
-	const data = generateData(8, generateMeetupData);
+	const data: MeetupDataProps[] = generateData(8, generateMeetupData);
 
 	return (
 		<CardContainer className='basis-1/3 p-0'>

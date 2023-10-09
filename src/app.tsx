@@ -1,6 +1,6 @@
 import SideNavbar from './components/navigation/SideNavbar';
-import { FULL_PATHS } from './lib/entities/routeMapping';
-import { BasicRoutes, SubRoutes } from './lib/entities/routes';
+import { FULL_PATHS } from './lib/routeMapping';
+import { BasicRoutes, SubRoutes } from './lib/routes';
 import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 

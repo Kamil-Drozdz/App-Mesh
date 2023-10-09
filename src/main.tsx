@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 const rootElement = document.getElementById('root');
 
+
 if (rootElement) {
 	const Root: FC = () => {
 		return (

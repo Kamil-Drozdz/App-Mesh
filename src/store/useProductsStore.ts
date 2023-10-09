@@ -8,7 +8,7 @@ export interface ProductProps {
 	description: string;
 	rating: {
 		rate: number;
-		count?: number;
+		count: number;
 	};
 }
 interface ProdusctsStoreProps {

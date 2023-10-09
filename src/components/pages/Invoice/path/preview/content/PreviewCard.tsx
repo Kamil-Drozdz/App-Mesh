@@ -3,9 +3,10 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import CardContainer from '@/common/CardContainer';
 import LabelRow from '@/common/LabelRow';
 import { invoices } from '@/data/pages/invoice/invoiceData';
+import { totalValue } from '@/lib/totalValue';
 
 const PreviewCard = () => {
-	const subTotal = invoices.reduce((accumulator, currentValue) => accumulator + currentValue.rate * currentValue.hours, 0);
+	const subTotal = totalValue(invoices.map(invoice => invoice.rate * invoice.hours));
 	const tax = 23;
 	const total = (subTotal * (1 + tax / 100)).toFixed(2);
 	return (

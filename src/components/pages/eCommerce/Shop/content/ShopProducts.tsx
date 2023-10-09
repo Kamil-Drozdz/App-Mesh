@@ -3,21 +3,27 @@ import { Input } from '@/UI/Input';
 import Skeleton from '@/UI/skeleton/Skeleton';
 import noData from '@/assets/no-data.svg';
 import useFetch from '@/hooks/useFetch';
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
+import { ProductProps } from '@/store/useProductsStore';
 import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
+interface FetchProps {
+	data: ProductProps[] | null;
+	loading: boolean;
+	error: null | string;
+}
 const ShopProducts = () => {
 	const [search, setSearch] = useState('');
-	const { data: products, loading, error }: any = useFetch('https://fakestoreapi.com/products');
-	const filteredProducts = products?.filter(product => product.title.toLowerCase().includes(search.toLowerCase()) || product.description.toLowerCase().includes(search.toLowerCase()));
+	const { data: products, loading, error }: FetchProps = useFetch(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products`);
+	const filteredProducts = products ? (products as ProductProps[]).filter(product => product.title.toLowerCase().includes(search.toLowerCase()) || product.description.toLowerCase().includes(search.toLowerCase())) : [];
 
 	if (loading) {
-		return <Skeleton className='grid grid-cols-auto-fill-100 md:grid-cols-3 xl:grid-cols-4' SkeletonLength={12} />;
+		return <Skeleton className='grid grid-cols-auto-fill-100 md:grid-cols-3 xl:grid-cols-4 p-4' SkeletonLength={12} />;
 	}
 
 	if (error) {
-		return <div>Error: {error?.message}</div>;
+		return <div>Error: {error}</div>;
 	}
 	return (
 		<>

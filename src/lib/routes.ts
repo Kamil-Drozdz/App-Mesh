@@ -1,4 +1,5 @@
 export enum BasicRoutes {
+	NOTFOUND = '*',
 	HOME = '/',
 	DASHBOARD = '/dashboard',
 	EMAIL = '/email',
@@ -43,7 +44,6 @@ export enum SubRoutes {
 	DETAILS = '/details',
 	WISH_LIST = '/wish-list',
 	CHECKOUT = '/checkout',
-	USER_LIST = '/list',
 	USER_VIEW = '/view',
 	USER_EDIT = '/Edit',
 	BASIC = '/basic',

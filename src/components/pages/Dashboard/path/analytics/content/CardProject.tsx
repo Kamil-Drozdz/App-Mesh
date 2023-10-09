@@ -2,10 +2,10 @@ import { Button } from '@/UI/Button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import CardContainer from '@/common/CardContainer';
 import { generateData } from '@/data/pages/ecommerce/dataCompany';
-import { generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
+import { MeetupDataProps, generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
 
 const CardProject = () => {
-	const data = generateData(6, generateMeetupData);
+	const data: MeetupDataProps[] = generateData(6, generateMeetupData);
 	return (
 		<CardContainer className='basis-1/3 space-y-3 flex flex-col justify-between'>
 			<p className='text-blue-500 bg-blue-500 bg-opacity-30 px-2 text-center rounded-lg w-fit'>03 Sep, 20</p>

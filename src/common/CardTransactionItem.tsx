@@ -1,6 +1,10 @@
 import { Separator } from '@/UI/Separator';
+import { TransactionData } from '@/data/pages/ecommerce/dataTransaction';
 
-const CardTransactionItem = ({ item }) => {
+interface CardTransactionItemProps {
+	item: TransactionData;
+}
+const CardTransactionItem = ({ item }: CardTransactionItemProps) => {
 	return (
 		<>
 			<dl className='flex items-center justify-center w-full px-4 my-1 py-1 hover:dark:bg-darkBlue hover:bg-lightWhite transition-colors duration-200 ease-in-out'>

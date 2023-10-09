@@ -1,7 +1,7 @@
 import SideNavbarItem from '../../common/SideNavbarItem';
 import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
-import { BasicRoutes, SubRoutes } from '@/lib/entities/routes';
+import { BasicRoutes, SubRoutes } from '@/lib/routes';
 import useMenu from '@/store/useMenu';
 import { useState } from 'react';
 import { FaRegDotCircle } from 'react-icons/fa';
@@ -65,7 +65,7 @@ const SideNavbar = () => {
 							<ul>
 								{group.items.map((item, indexItem) => (
 									<li key={indexItem}>
-										<SideNavbarItem handleActiveDropdown={handleActiveDropdown} activeDropdown={activeDropdown} icon={item.icon} name={item.name} href={item.href} dropdown={item.dropdown} menuCollapsed={menuCollapsed} />
+										<SideNavbarItem handleActiveDropdown={handleActiveDropdown} activeDropdown={activeDropdown} icon={item.icon} name={item.name} href={item.href || ''} dropdown={item.dropdown} menuCollapsed={menuCollapsed} />
 									</li>
 								))}
 							</ul>

@@ -7,7 +7,7 @@ import { data, labels } from '@/data/pages/calendar/calendarData';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './calendar.css';
 import LeftEditSidebar from './content/LeftEditSidebar';
@@ -16,15 +16,25 @@ import { v4 as uuidv4 } from 'uuid';
 interface CalendarEvent {
 	id: string;
 	title: string;
-	start: Date;
+	start?: Date;
 	label: string | null;
+}
+export interface FormDataProps {
+	id: string;
+	title: string;
+	start?: Date;
+	label: string;
+	end?: Date;
+	eventUrl: string;
+	location: string;
+	description: string;
 }
 
 const CalendarContent = () => {
 	const today = new Date();
 	const [events, setEvents] = useState<CalendarEvent[]>(data);
 	const [selectedFilters, setSelectedFilters] = useState<string[]>(labels.map(item => item.name));
-	const [formData, setFormData] = useState({ id: uuidv4(), title: '', start: today, end: today, eventUrl: '', location: '', description: '', label: '' });
+	const [formData, setFormData] = useState<FormDataProps>({ id: uuidv4(), title: '', start: today, end: today, eventUrl: '', location: '', description: '', label: '' });
 	const [isOpen, setIsOpen] = useState(false);
 	const { i18n } = useTranslation();
 
@@ -70,7 +80,7 @@ const CalendarContent = () => {
 		});
 	};
 
-	const handleFilterChange = event => {
+	const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const filterName = event.target.id;
 
 		if (filterName === 'View All') {

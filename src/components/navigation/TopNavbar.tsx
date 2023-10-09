@@ -1,14 +1,17 @@
 import StatusBadge from '../../common/StatusBadge';
-import { UserStatuses } from '../../lib/entities/user';
+import { UserStatuses } from '../../lib/user';
+import CartPopover from '../pages/eCommerce/CartPopover';
 import { Button } from '@/UI/Button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/UI/Select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import GermanyIcon from '@/assets/germany-flag-icon.svg';
 import PolandIcon from '@/assets/poland-flag-icon.svg';
 import selfPhoto from '@/assets/selfPhoto.jpeg';
 import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
 import BorderedBadge from '@/common/BorderedBadge';
 import { topNavbarIcons } from '@/data/navigation/topNavbarItems';
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
 import useMenu from '@/store/useMenu';
 import useProductsStore from '@/store/useProductsStore';
 import { useState, useEffect } from 'react';
@@ -22,7 +25,7 @@ const TopNavbar = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
 	const [visible, setVisible] = useState(true);
-	const { cart } = useProductsStore();
+	const { cart, removeFromCart } = useProductsStore();
 
 	const handleToggleTheme = () => {
 		htmlElement.classList.toggle('dark');
@@ -52,7 +55,6 @@ const TopNavbar = () => {
 					</li>
 				))}
 			</ul>
-
 			<div className='flex items-center space-x-6'>
 				<ul className='flex items-center space-x-2'>
 					<>
@@ -87,16 +89,38 @@ const TopNavbar = () => {
 								</SelectGroup>
 							</SelectContent>
 						</Select>
-						{topNavbarIcons.userToolbar.map((icon, index) => (
+						{topNavbarIcons.userToolbar.map((item, index) => (
 							<div className='cursor-pointer' key={index}>
-								<li onClick={index === 0 ? handleToggleTheme : undefined}>
-									<a>{isDarkMode ? icon.type === BsSun ? <BsMoon size={IconSize.basic} /> : icon : icon}</a>
-								</li>
-								{index === 2 && (
-									<div className='relative'>
-										<BorderedBadge count={cart.length} />
-									</div>
-								)}
+								<TooltipProvider>
+									<Popover>
+										<Tooltip>
+											<TooltipTrigger asChild>
+												{index === 2 ? (
+													<PopoverTrigger>
+														<>
+															<li>{item.icon}</li>
+															<div className='relative'>
+																<BorderedBadge count={cart.length} />
+															</div>
+														</>
+													</PopoverTrigger>
+												) : (
+													<li onClick={index === 0 ? handleToggleTheme : undefined}>
+														<a>{isDarkMode ? item.icon.type === BsSun ? <BsMoon size={IconSize.basic} /> : item.icon : item.icon}</a>
+													</li>
+												)}
+											</TooltipTrigger>
+											<TooltipContent className='p-2 bg-black text-white !text-base' sideOffset={12} side='bottom'>
+												<p>{item.tooltip}</p>
+											</TooltipContent>
+										</Tooltip>
+										{!!cart.length && (
+											<PopoverContent className='w-auto p-0 z-[52] dark:bg-mediumBlue' sideOffset={22} align='center'>
+												<CartPopover removeFromCart={removeFromCart} cart={cart} />
+											</PopoverContent>
+										)}
+									</Popover>
+								</TooltipProvider>
 							</div>
 						))}
 					</>

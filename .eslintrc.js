@@ -1,3 +1,7 @@
+/* eslint-env node */
 module.exports = {
-	extends: ['@innei-util/eslint-config-react-ts'],
+	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+	parser: '@typescript-eslint/parser',
+	plugins: ['@typescript-eslint'],
+	root: true,
 };

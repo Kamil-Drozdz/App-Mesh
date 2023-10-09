@@ -1,5 +1,5 @@
 import clsx from '../lib/clsx';
-import { getRandomHexColor } from '@/lib/entities/generateRandomColor';
+import { getRandomHexColor } from '@/lib/generateRandomColor';
 import { Transition } from 'react-transition-group';
 
 interface ProgressBarProps {

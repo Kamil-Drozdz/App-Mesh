@@ -2,11 +2,10 @@ import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import { RadioGroup, RadioGroupItem } from '@/UI/RadioGroup';
 import { Separator } from '@/UI/Separator';
-import { IconSize } from '@/lib/entities/iconSize';
+import { IconSize } from '@/lib/iconSize';
 import { AiFillPlusCircle } from 'react-icons/ai';
 
 const CheckoutPayment = () => {
-    
 	return (
 		<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg space-y-3 h-fit'>
 			<h2 className='text-lg font-semibold'>Payment options</h2>

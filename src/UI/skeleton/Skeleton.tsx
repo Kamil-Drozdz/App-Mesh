@@ -2,7 +2,7 @@ import clsx from '@/lib/clsx';
 
 function Skeleton({ SkeletonLength, className }: { className?: string; SkeletonLength: number }) {
 	return (
-		<div className={clsx('', className)}>
+		<div className={clsx(className)}>
 			{Array.from({ length: SkeletonLength }, (_, i) => i).map(i => (
 				<div key={i} role='status' className='animate-pulse m-4 p-2 bg-stone-900 rounded-lg flex justify-start items-start gap-2 flex-wrap'>
 					<div className='flex items-center w-full'>

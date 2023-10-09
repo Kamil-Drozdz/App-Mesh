@@ -1,8 +1,8 @@
-export function convert(value) {
+export function convert(value: number): string {
 	if (value >= 1000000) {
-		value = `${value / 1000000}M`;
+		return `${value / 1000000}M`;
 	} else if (value >= 1000) {
-		value = `${value / 1000}K`;
+		return `${value / 1000}K`;
 	}
-	return value;
+	return value.toString();
 }

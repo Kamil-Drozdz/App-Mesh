@@ -1,4 +1,5 @@
 import { BasicRoutes, SubRoutes } from './routes';
+import NotFound from '@/common/NotFound';
 import CalendarContent from '@/components/pages/Calendar/CalendarContent';
 import ChatContent from '@/components/pages/Chat/ChatContent';
 import AnalyticsContent from '@/components/pages/Dashboard/path/analytics/AnalyticsContent';
@@ -13,10 +14,11 @@ import WishlistContent from '@/components/pages/eCommerce/Wish List/WishlistCont
 
 interface RouteConfig {
 	subPath: string;
-	component: React.ComponentType<any>;
+	component: React.ComponentType;
 }
 
 const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
+	[BasicRoutes.NOTFOUND]: [{ subPath: '', component: NotFound }],
 	[BasicRoutes.DASHBOARD]: [
 		{ subPath: SubRoutes.ANALYTICS, component: AnalyticsContent },
 		{ subPath: SubRoutes.ECOMMERCE, component: EcommerceContent },

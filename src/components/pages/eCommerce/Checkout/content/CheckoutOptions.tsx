@@ -1,11 +1,13 @@
 import CheckoutAdressOption from './CheckoutAdressOption';
 import CheckoutCartOption from './CheckoutCartOption';
 import CheckoutPaymentOption from './CheckoutPaymentOption';
+import { totalValue } from '@/lib/totalValue';
 import useProductsStore from '@/store/useProductsStore';
 
 const CheckoutOptions = ({ activeStep, setActiveStep, formData }) => {
 	const { cart } = useProductsStore();
-	const amount = cart.reduce((total, product) => total + product.price, 0);
+	const amount = totalValue(cart.map(product => product.price));
+
 	const discount = 10;
 	const tax = 1.3;
 	const totalAmount = (amount - discount - tax).toFixed(2);
