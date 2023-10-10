@@ -39,6 +39,7 @@
 		"class-variance-authority": "^0.7.0",
 		"date-fns": "^2.30.0",
 		"faker": "^5.5.3",
+		"firebase": "^10.4.0",
 		"flatpickr": "^4.6.13",
 		"i18next": "^23.5.1",
 		"jspdf": "^2.5.1",
@@ -54,7 +55,6 @@
 		"stylelint": "^15.10.3",
 		"tailwindcss-animate": "^1.0.7",
 		"uuid": "^9.0.1",
-		"vite-plugin-compression": "^0.5.1",
 		"zustand": "^4.4.1"
 	},
 	"devDependencies": {
@@ -74,7 +74,9 @@
 		"prettier": "2.8.8",
 		"react-router-dom": "^6.16.0",
 		"tailwindcss": "3.1.6",
+		"terser": "^5.21.0",
 		"typescript": "^5.2.2",
-		"vite": "^3.2.7"
+		"vite": "^3.2.7",
+		"vite-plugin-compression": "^0.5.1"
 	}
 }

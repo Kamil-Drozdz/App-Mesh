@@ -16,7 +16,6 @@ const ShopProduct = ({ product }: ShopProductProps) => {
 	const { addToWishlist, cart, addToCart, removeFromCart, removeFromWishlist, wishlist } = useProductsStore();
 	const isProductInWishlist = wishlist.some(item => item.id === product.id);
 	const isProductInCart = cart.some(item => item.id === product.id);
-
 	return (
 		<div className='m-4'>
 			<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-t-lg space-y-3 flex flex-col items-center justify-center'>

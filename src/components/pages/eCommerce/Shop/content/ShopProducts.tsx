@@ -11,7 +11,7 @@ import { BiSearch } from 'react-icons/bi';
 interface FetchProps {
 	data: ProductProps[] | null;
 	loading: boolean;
-	error: null | string;
+	error: { message: string | null };
 }
 const ShopProducts = () => {
 	const [search, setSearch] = useState('');
@@ -23,8 +23,9 @@ const ShopProducts = () => {
 	}
 
 	if (error) {
-		return <div>Error: {error}</div>;
+		return <div>Error: {error.message}</div>;
 	}
+
 	return (
 		<>
 			<div className='relative m-4'>

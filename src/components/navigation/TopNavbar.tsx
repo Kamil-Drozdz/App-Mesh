@@ -114,11 +114,9 @@ const TopNavbar = () => {
 												<p>{item.tooltip}</p>
 											</TooltipContent>
 										</Tooltip>
-										{!!cart.length && (
-											<PopoverContent className='w-auto p-0 z-[52] dark:bg-mediumBlue' sideOffset={22} align='center'>
-												<CartPopover removeFromCart={removeFromCart} cart={cart} />
-											</PopoverContent>
-										)}
+										<PopoverContent className='w-auto p-0 z-[52] dark:bg-mediumBlue' sideOffset={22} align='center'>
+											{cart.length ? <CartPopover removeFromCart={removeFromCart} cart={cart} /> : <div className='min-w-[200px] h-24 text-center'>Your cart is empty</div>}
+										</PopoverContent>
 									</Popover>
 								</TooltipProvider>
 							</div>

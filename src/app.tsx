@@ -1,3 +1,4 @@
+import { ProtectedComponent } from './common/ProtectedComponent';
 import SideNavbar from './components/navigation/SideNavbar';
 import { FULL_PATHS } from './lib/routeMapping';
 import { BasicRoutes, SubRoutes } from './lib/routes';
@@ -18,9 +19,9 @@ const App = () => {
 		<>
 			<SideNavbar />
 			<Routes>
-				{FULL_PATHS.map(({ path, component }, index) => {
-					return <Route key={index} path={path} element={React.createElement(component)} />;
-				})}
+				{FULL_PATHS.map(({ path, component, isSecured }, index) => (
+					<Route key={index} path={path} element={isSecured ? <ProtectedComponent component={component} /> : React.createElement(component)} />
+				))}
 			</Routes>
 		</>
 	);

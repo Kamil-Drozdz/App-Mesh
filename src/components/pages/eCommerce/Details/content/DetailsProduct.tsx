@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 interface FetchProps {
 	data: ProductProps | null;
 	loading: boolean;
-	error: null | string;
+	error: { message: string | null };
 }
 const DetailsProduct = ({ productID }) => {
 	if (typeof productID === 'undefined') {
@@ -35,7 +35,7 @@ const DetailsProduct = ({ productID }) => {
 	}
 
 	if (error) {
-		return <div>Error: {error}</div>;
+		return <div>Error: {error.message}</div>;
 	}
 
 	if (product === null) {

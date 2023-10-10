@@ -1,4 +1,6 @@
 export enum BasicRoutes {
+	LOGIN = '/login',
+	UNUAUTHORIZED = '/unauthorized',
 	NOTFOUND = '*',
 	HOME = '/',
 	DASHBOARD = '/dashboard',

@@ -1,11 +1,13 @@
 import { BasicRoutes, SubRoutes } from './routes';
 import NotFound from '@/common/NotFound';
+import Unauthorized from '@/common/Unauthorized';
 import CalendarContent from '@/components/pages/Calendar/CalendarContent';
 import ChatContent from '@/components/pages/Chat/ChatContent';
 import AnalyticsContent from '@/components/pages/Dashboard/path/analytics/AnalyticsContent';
 import EcommerceContent from '@/components/pages/Dashboard/path/ecommerce/EcommerceContent';
 import EmailContent from '@/components/pages/Email/EmailContent';
 import InvoicePreviewContent from '@/components/pages/Invoice/path/preview/InvoicePreviewContent';
+import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import TodoContent from '@/components/pages/Todo/TodoContent';
 import CheckoutContent from '@/components/pages/eCommerce/Checkout/CheckoutContent';
 import DetailsContent from '@/components/pages/eCommerce/Details/DetailsContent';
@@ -15,27 +17,30 @@ import WishlistContent from '@/components/pages/eCommerce/Wish List/WishlistCont
 interface RouteConfig {
 	subPath: string;
 	component: React.ComponentType;
+	isSecured?: boolean;
 }
 
 const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
+	[BasicRoutes.UNUAUTHORIZED]: [{ subPath: '', component: Unauthorized }],
+	[BasicRoutes.LOGIN]: [{ subPath: '', component: LoginContent }],
 	[BasicRoutes.NOTFOUND]: [{ subPath: '', component: NotFound }],
 	[BasicRoutes.DASHBOARD]: [
-		{ subPath: SubRoutes.ANALYTICS, component: AnalyticsContent },
-		{ subPath: SubRoutes.ECOMMERCE, component: EcommerceContent },
+		{ subPath: SubRoutes.ANALYTICS, component: AnalyticsContent, isSecured: true },
+		{ subPath: SubRoutes.ECOMMERCE, component: EcommerceContent, isSecured: true },
 	],
-	[BasicRoutes.EMAIL]: [{ subPath: '', component: EmailContent }],
-	[BasicRoutes.CHAT]: [{ subPath: '', component: ChatContent }],
-	[BasicRoutes.TODO]: [{ subPath: SubRoutes.ALL, component: TodoContent }],
+	[BasicRoutes.EMAIL]: [{ subPath: '', component: EmailContent, isSecured: true }],
+	[BasicRoutes.CHAT]: [{ subPath: '', component: ChatContent, isSecured: true }],
+	[BasicRoutes.TODO]: [{ subPath: SubRoutes.ALL, component: TodoContent, isSecured: true }],
 	[BasicRoutes.HOME]: [],
-	[BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent }],
+	[BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent, isSecured: true }],
 	[BasicRoutes.PAGES]: [],
-	[BasicRoutes.INVOICE]: [{ subPath: SubRoutes.PREVIEW, component: InvoicePreviewContent }],
+	[BasicRoutes.INVOICE]: [{ subPath: SubRoutes.PREVIEW, component: InvoicePreviewContent, isSecured: true }],
 	[BasicRoutes.ECOMMERCE]: [
-		{ subPath: SubRoutes.SHOP, component: ShopContent },
-		{ subPath: `${SubRoutes.DETAILS}/:productID`, component: DetailsContent },
-		{ subPath: `${SubRoutes.DETAILS}`, component: DetailsContent },
-		{ subPath: `${SubRoutes.WISH_LIST}`, component: WishlistContent },
-		{ subPath: `${SubRoutes.CHECKOUT}`, component: CheckoutContent },
+		{ subPath: SubRoutes.SHOP, component: ShopContent, isSecured: true },
+		{ subPath: `${SubRoutes.DETAILS}/:productID`, component: DetailsContent, isSecured: true },
+		{ subPath: `${SubRoutes.DETAILS}`, component: DetailsContent, isSecured: true },
+		{ subPath: `${SubRoutes.WISH_LIST}`, component: WishlistContent, isSecured: true },
+		{ subPath: `${SubRoutes.CHECKOUT}`, component: CheckoutContent, isSecured: true },
 	],
 	[BasicRoutes.PROFILE]: [],
 	[BasicRoutes.TYPOGRAPHY]: [],
@@ -51,7 +56,7 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 	[BasicRoutes.MENU]: [],
 };
 export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, routes]) => {
-	return routes.map(({ subPath, component }) => ({ path: `${basicRoute}${subPath}`, component }));
+	return routes.map(({ subPath, component, isSecured }) => ({ path: `${basicRoute}${subPath}`, component, isSecured }));
 });
 
 // [BasicRoutes.PAGES]: [{subPaths: [SubRoutes.AUTHENTICATION, SubRoutes.SETTINGS, SubRoutes.PROFILE, SubRoutes.FAQ, SubRoutes.KNOWLEDGE, SubRoutes.PRICING, SubRoutes.BLOG, SubRoutes.MAIL, SubRoutes.MISCELLANEOUS], component: PagesContent }],
