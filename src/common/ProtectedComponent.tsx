@@ -1,11 +1,10 @@
+import { auth } from '@/../firebaseConfig';
 import { BasicRoutes } from '@/lib/routes';
-import { auth } from 'firebase';
 import { Navigate } from 'react-router-dom';
 
 export const ProtectedComponent = ({ component: Component }) => {
-	console.log(auth);
-	if (auth) {
-		return <Navigate to={BasicRoutes.UNUAUTHORIZED} />;
+	if (!auth.currentUser || !auth.currentUser.email) {
+		return <Navigate to={BasicRoutes.UNAUTHORIZED} />;
 	}
 
 	return <Component />;

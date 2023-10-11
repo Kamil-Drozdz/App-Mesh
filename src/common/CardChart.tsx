@@ -14,7 +14,7 @@ interface CardDataProps {
 			data: number[];
 			backgroundColor: string;
 			borderColor?: string;
-		};
+		}[];
 	};
 	children: ReactNode;
 	icon?: ReactNode;

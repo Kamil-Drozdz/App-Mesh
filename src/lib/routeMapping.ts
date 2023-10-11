@@ -21,7 +21,7 @@ interface RouteConfig {
 }
 
 const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
-	[BasicRoutes.UNUAUTHORIZED]: [{ subPath: '', component: Unauthorized }],
+	[BasicRoutes.UNAUTHORIZED]: [{ subPath: '', component: Unauthorized }],
 	[BasicRoutes.LOGIN]: [{ subPath: '', component: LoginContent }],
 	[BasicRoutes.NOTFOUND]: [{ subPath: '', component: NotFound }],
 	[BasicRoutes.DASHBOARD]: [

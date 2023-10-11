@@ -90,7 +90,7 @@ const TopNavbar = () => {
 							</SelectContent>
 						</Select>
 						{topNavbarIcons.userToolbar.map((item, index) => (
-							<div className='cursor-pointer' key={index}>
+							<div className='cursor-pointer flex items-center' key={index}>
 								<TooltipProvider>
 									<Popover>
 										<Tooltip>

@@ -1,6 +1,8 @@
 export enum BasicRoutes {
+	FORGOT = '/forgot-password',
+	REGISTER = '/register',
 	LOGIN = '/login',
-	UNUAUTHORIZED = '/unauthorized',
+	UNAUTHORIZED = '/unauthorized',
 	NOTFOUND = '*',
 	HOME = '/',
 	DASHBOARD = '/dashboard',

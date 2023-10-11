@@ -1,4 +1,4 @@
-import Login from './content/Login';
+import Login from './content/LoginPage';
 
 const LoginContent = () => {
 	return (

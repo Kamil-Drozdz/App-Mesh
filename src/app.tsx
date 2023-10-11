@@ -1,7 +1,6 @@
 import { ProtectedComponent } from './common/ProtectedComponent';
-import SideNavbar from './components/navigation/SideNavbar';
 import { FULL_PATHS } from './lib/routeMapping';
-import { BasicRoutes, SubRoutes } from './lib/routes';
+import { BasicRoutes } from './lib/routes';
 import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
@@ -11,13 +10,12 @@ const App = () => {
 
 	useEffect(() => {
 		if (pathname === '/') {
-			navigate(`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`);
+			navigate(`${BasicRoutes.LOGIN}`);
 		}
 	}, [navigate, pathname]);
 
 	return (
 		<>
-			<SideNavbar />
 			<Routes>
 				{FULL_PATHS.map(({ path, component, isSecured }, index) => (
 					<Route key={index} path={path} element={isSecured ? <ProtectedComponent component={component} /> : React.createElement(component)} />
