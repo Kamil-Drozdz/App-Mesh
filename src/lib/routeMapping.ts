@@ -42,6 +42,8 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 		{ subPath: `${SubRoutes.WISH_LIST}`, component: WishlistContent, isSecured: true },
 		{ subPath: `${SubRoutes.CHECKOUT}`, component: CheckoutContent, isSecured: true },
 	],
+	[BasicRoutes.FORGOT]: [],
+	[BasicRoutes.REGISTER]: [],
 	[BasicRoutes.PROFILE]: [],
 	[BasicRoutes.TYPOGRAPHY]: [],
 	[BasicRoutes.COLORS]: [],

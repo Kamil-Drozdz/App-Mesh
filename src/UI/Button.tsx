@@ -12,6 +12,7 @@ const buttonVariants = cva('inline-flex items-center justify-center rounded-md t
 			secondary: 'dark:bg-secondary dark:text-secondary-foreground hover:dark:bg-secondary/80',
 			ghost: 'hover:dark:bg-accent hover:dark:text-accent-foreground',
 			link: 'dark:text-primary underline-offset-4 hover:underline',
+			empty: '',
 		},
 		size: {
 			default: 'h-10 px-4 py-2',

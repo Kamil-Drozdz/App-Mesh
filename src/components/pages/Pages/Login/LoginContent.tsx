@@ -1,9 +1,10 @@
-import Login from './content/LoginPage';
+import LoginPage from "./content/LoginPage";
+
 
 const LoginContent = () => {
 	return (
 		<div>
-			<Login />
+			<LoginPage />
 		</div>
 	);
 };
