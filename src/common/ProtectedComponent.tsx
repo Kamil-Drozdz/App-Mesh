@@ -1,15 +1,24 @@
 import Loader from './Loader';
 import { auth } from '@/../firebaseConfig';
 import { BasicRoutes } from '@/lib/routes';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import useCurrentUser from '@/store/CurrentUser';
+import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
 export const ProtectedComponent = ({ component: Component }) => {
-	const [user, loading] = useAuthState(auth);
+	const [loading, setLoading] = useState(true);
+	const { setCurrentUser, currentUser } = useCurrentUser();
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged(user => {
+			setCurrentUser(user);
+			setLoading(false);
+		});
+		return unsubscribe;
+	}, []);
 
 	if (loading) {
 		return <Loader />;
 	}
 
-	return user ? <Component /> : <Navigate to={BasicRoutes.UNAUTHORIZED} />;
+	return currentUser?.email ? <Component /> : <Navigate to={BasicRoutes.UNAUTHORIZED} />;
 };

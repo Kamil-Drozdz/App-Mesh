@@ -1,6 +1,6 @@
 import ShopProduct from '../../Shop/content/ShopProduct';
 import noData from '@/assets/no-data.svg';
-import useProductsStore from '@/store/useProductsStore';
+import useProductsStore from '@/store/ProductsStore';
 
 const WishListProducts = () => {
 	const { wishlist } = useProductsStore();

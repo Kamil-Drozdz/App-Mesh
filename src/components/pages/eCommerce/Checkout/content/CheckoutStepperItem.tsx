@@ -2,7 +2,7 @@ import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import { IconSize } from '@/lib/iconSize';
 import { starRating } from '@/lib/starRating';
-import useProductsStore from '@/store/useProductsStore';
+import useProductsStore from '@/store/ProductsStore';
 import { AiFillHeart, AiOutlineClose } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
 

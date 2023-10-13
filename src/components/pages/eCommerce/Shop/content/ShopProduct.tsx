@@ -2,7 +2,7 @@ import { Button } from '@/UI/Button';
 import { IconSize } from '@/lib/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/routes';
 import { starRating } from '@/lib/starRating';
-import useProductsStore, { ProductProps } from '@/store/useProductsStore';
+import useProductsStore, { ProductProps } from '@/store/ProductsStore';
 import { AiFillHeart } from 'react-icons/ai';
 import { BiHeart } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';

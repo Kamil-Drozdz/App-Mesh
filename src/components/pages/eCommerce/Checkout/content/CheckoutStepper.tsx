@@ -2,7 +2,7 @@ import CheckoutAddress from './CheckoutAddress';
 import CheckoutPayment from './CheckoutPayment';
 import CheckoutStepperItem from './CheckoutStepperItem';
 import emptyCart from '@/assets/empty-cart.svg';
-import useProductsStore from '@/store/useProductsStore';
+import useProductsStore from '@/store/ProductsStore';
 
 const CheckoutStepper = ({ activeStep, setFormData, formData }) => {
 	const { cart } = useProductsStore();

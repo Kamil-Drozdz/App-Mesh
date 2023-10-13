@@ -4,7 +4,7 @@ import Skeleton from '@/UI/skeleton/Skeleton';
 import noData from '@/assets/no-data.svg';
 import useFetch from '@/hooks/useFetch';
 import { IconSize } from '@/lib/iconSize';
-import { ProductProps } from '@/store/useProductsStore';
+import { ProductProps } from '@/store/ProductsStore';
 import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
@@ -22,7 +22,7 @@ const ShopProducts = () => {
 		return <Skeleton className='grid grid-cols-auto-fill-100 md:grid-cols-3 xl:grid-cols-4 p-4' SkeletonLength={12} />;
 	}
 
-	if (error) {
+	if (error.message) {
 		return <div>Error: {error.message}</div>;
 	}
 

@@ -2,7 +2,7 @@ import CheckoutAdressOption from './CheckoutAdressOption';
 import CheckoutCartOption from './CheckoutCartOption';
 import CheckoutPaymentOption from './CheckoutPaymentOption';
 import { totalValue } from '@/lib/totalValue';
-import useProductsStore from '@/store/useProductsStore';
+import useProductsStore from '@/store/ProductsStore';
 
 const CheckoutOptions = ({ activeStep, setActiveStep, formData }) => {
 	const { cart } = useProductsStore();

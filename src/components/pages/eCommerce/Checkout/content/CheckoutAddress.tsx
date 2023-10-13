@@ -2,44 +2,49 @@ import { Button } from '@/UI/Button';
 import InputWithLabel from '@/common/InputWithLabel';
 import { formFields } from '@/data/pages/ecommerce/formFields';
 import { useState } from 'react';
+import { z } from 'zod';
 
 const CheckoutAddress = ({ formData, setFormData }) => {
-	const [errors, setErrors] = useState<Record<string, string>>({});
+	const [errors, setErrors] = useState({});
+
+	const addressSchema = z.object({
+		fullName: z.string().nonempty({ message: "Full Name can't be empty" }),
+		address: z.string().nonempty({ message: "Address can't be empty" }),
+		city: z.string().nonempty({ message: "City can't be empty" }),
+		state: z.string().nonempty({ message: "State can't be empty" }),
+		zipCode: z.string().refine(value => /^\d{5}$/.test(value), {
+			message: 'Zip Code must be a 5-digit number',
+		}),
+		phone: z.string().refine(value => /^\d{9}$/.test(value), {
+			message: 'Phone number must be a 9-digit number',
+		}),
+	});
 
 	const validateForm = () => {
-		const newErrors: Record<string, string> = {};
-
-		if (formData.fullName.trim() === '') {
-			newErrors.fullName = 'Full Name is required';
+		const formDataObj = {
+			fullName: formData.fullName,
+			address: formData.address,
+			city: formData.city,
+			state: formData.state,
+			zipCode: formData.zipCode,
+			phone: formData.phone,
+		};
+		try {
+			const parsedData = addressSchema.parse(formDataObj);
+			console.log(parsedData);
+			setErrors({});
+			return true;
+		} catch (error) {
+			if (error instanceof z.ZodError) {
+				setErrors(error.formErrors.fieldErrors);
+			}
+			return false;
 		}
-
-		if (formData.address.trim() === '') {
-			newErrors.address = 'Address is required';
-		}
-
-		if (formData.city.trim() === '') {
-			newErrors.city = 'City is required';
-		}
-
-		if (formData.state.trim() === '') {
-			newErrors.state = 'State is required';
-		}
-
-		if (!/^\d{5}$/.test(formData.zipCode.trim())) {
-			newErrors.zipCode = 'Zip Code must be a 5-digit number';
-		}
-
-		if (!/^\d{9}$/.test(formData.phone.trim())) {
-			newErrors.phone = 'Phone number must be a 9-digit number';
-		}
-
-		setErrors(newErrors);
-		return Object.keys(newErrors).length === 0;
 	};
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
+
+	const handleChange = (e, field) => {
 		setFormData({ ...formData, [field]: e.target.value });
 	};
-
 	return (
 		<div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg space-y-3'>
 			<h2 className='text-xl font-semibold'>Add New Address</h2>

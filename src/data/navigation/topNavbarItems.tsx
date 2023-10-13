@@ -1,8 +1,8 @@
 import { IconSize } from '@/lib/iconSize';
-import { AiOutlineCalendar } from 'react-icons/ai';
-import { BiBell } from 'react-icons/bi';
-import { BsCheck2Square, BsSun } from 'react-icons/bs';
-import { FiShoppingCart, FiStar } from 'react-icons/fi';
+import { AiOutlineCalendar, AiOutlinePoweroff, AiOutlineQuestionCircle } from 'react-icons/ai';
+import { BiBell, BiSolidUser } from 'react-icons/bi';
+import { BsCheck2Square, BsFillCreditCard2FrontFill, BsSun } from 'react-icons/bs';
+import { FiSettings, FiShoppingCart, FiStar } from 'react-icons/fi';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { HiOutlineChatBubbleLeft, HiOutlineEnvelope } from 'react-icons/hi2';
 
@@ -14,3 +14,14 @@ export const topNavbarIcons = {
 		{ icon: <FiShoppingCart size={IconSize.basic} />, tooltip: 'Shopping Cart' },
 	],
 };
+
+export const profileOptions = [
+	{ label: 'Profile', href: '/profile', icon: <BiSolidUser size={IconSize.basic} /> },
+	{ label: 'Inbox', href: '/inbox', icon: <HiOutlineEnvelope size={IconSize.basic} /> },
+	{ label: 'Task', href: '/todo/all', icon: <BsCheck2Square size={IconSize.basic} /> },
+	{ label: 'Chats', href: '/chat', icon: <HiOutlineChatBubbleLeft size={IconSize.basic} /> },
+	{ label: 'Settings', href: '/settings', icon: <FiSettings size={IconSize.basic} /> },
+	{ label: 'Pricing', href: '/pricing', icon: <BsFillCreditCard2FrontFill size={IconSize.basic} /> },
+	{ label: 'FAQ', href: '/faq', icon: <AiOutlineQuestionCircle size={IconSize.basic} /> },
+	{ label: 'Logout', icon: <AiOutlinePoweroff size={IconSize.basic} /> },
+];

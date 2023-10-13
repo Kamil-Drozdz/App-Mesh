@@ -2,7 +2,7 @@ import SideNavbarItem from '../../common/SideNavbarItem';
 import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
 import { BasicRoutes, SubRoutes } from '@/lib/routes';
-import useMenu from '@/store/useMenu';
+import useMenu from '@/store/Menu';
 import { useState } from 'react';
 import { FaRegDotCircle } from 'react-icons/fa';
 

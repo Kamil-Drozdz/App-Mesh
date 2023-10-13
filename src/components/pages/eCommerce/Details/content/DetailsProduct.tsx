@@ -5,7 +5,7 @@ import useFetch from '@/hooks/useFetch';
 import { IconSize } from '@/lib/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/routes';
 import { starRating } from '@/lib/starRating';
-import useProductsStore, { ProductProps } from '@/store/useProductsStore';
+import useProductsStore, { ProductProps } from '@/store/ProductsStore';
 import { AiFillHeart } from 'react-icons/ai';
 import { BiHeart, BiTimeFive } from 'react-icons/bi';
 import { BsShield } from 'react-icons/bs';
@@ -34,7 +34,7 @@ const DetailsProduct = ({ productID }) => {
 		return <Skeleton className='flex' SkeletonLength={1} />;
 	}
 
-	if (error) {
+	if (error.message) {
 		return <div>Error: {error.message}</div>;
 	}
 

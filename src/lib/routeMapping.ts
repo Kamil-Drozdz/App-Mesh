@@ -7,7 +7,9 @@ import AnalyticsContent from '@/components/pages/Dashboard/path/analytics/Analyt
 import EcommerceContent from '@/components/pages/Dashboard/path/ecommerce/EcommerceContent';
 import EmailContent from '@/components/pages/Email/EmailContent';
 import InvoicePreviewContent from '@/components/pages/Invoice/path/preview/InvoicePreviewContent';
+import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/ForgotPasswordContent';
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
+import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
 import TodoContent from '@/components/pages/Todo/TodoContent';
 import CheckoutContent from '@/components/pages/eCommerce/Checkout/CheckoutContent';
 import DetailsContent from '@/components/pages/eCommerce/Details/DetailsContent';
@@ -42,8 +44,8 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 		{ subPath: `${SubRoutes.WISH_LIST}`, component: WishlistContent, isSecured: true },
 		{ subPath: `${SubRoutes.CHECKOUT}`, component: CheckoutContent, isSecured: true },
 	],
-	[BasicRoutes.FORGOT]: [],
-	[BasicRoutes.REGISTER]: [],
+	[BasicRoutes.FORGOT]: [{ subPath: '', component: ForgotPasswordContent }],
+	[BasicRoutes.REGISTER]: [{ subPath: '', component: RegisterContent }],
 	[BasicRoutes.PROFILE]: [],
 	[BasicRoutes.TYPOGRAPHY]: [],
 	[BasicRoutes.COLORS]: [],
