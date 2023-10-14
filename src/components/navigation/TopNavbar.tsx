@@ -156,9 +156,9 @@ const TopNavbar = () => {
 								<PopoverContent className='w-auto p-0 z-[52] dark:bg-mediumBlue' sideOffset={18} align='center'>
 									<div className='min-w-[140px]'>
 										{profileOptions.map((item, index) => (
-											<div>
+											<div key={index}>
 												{item.href ? (
-													<Link className='flex items-center space-x-3 p-2 my-1 hover:text-violet-500 hover:bg-violet-500 hover:bg-opacity-20' key={index} to={item.href || ''}>
+													<Link className='flex items-center space-x-3 p-2 my-1 hover:text-violet-500 hover:bg-violet-500 hover:bg-opacity-20' to={item.href || ''}>
 														{item.icon}
 														<p className='text-lg'>{item.label}</p>
 													</Link>

@@ -1,12 +1,10 @@
 import { Button } from '@/UI/Button';
 import InputWithLabel from '@/common/InputWithLabel';
 import { formFields } from '@/data/pages/ecommerce/formFields';
-import { useState } from 'react';
+import { validateField } from '@/lib/validateField';
 import { z } from 'zod';
 
-const CheckoutAddress = ({ formData, setFormData }) => {
-	const [errors, setErrors] = useState({});
-
+const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
 	const addressSchema = z.object({
 		fullName: z.string().nonempty({ message: "Full Name can't be empty" }),
 		address: z.string().nonempty({ message: "Address can't be empty" }),
@@ -19,26 +17,11 @@ const CheckoutAddress = ({ formData, setFormData }) => {
 			message: 'Phone number must be a 9-digit number',
 		}),
 	});
-
-	const validateForm = () => {
-		const formDataObj = {
-			fullName: formData.fullName,
-			address: formData.address,
-			city: formData.city,
-			state: formData.state,
-			zipCode: formData.zipCode,
-			phone: formData.phone,
-		};
-		try {
-			const parsedData = addressSchema.parse(formDataObj);
-			console.log(parsedData);
-			setErrors({});
-			return true;
-		} catch (error) {
-			if (error instanceof z.ZodError) {
-				setErrors(error.formErrors.fieldErrors);
-			}
-			return false;
+	const handleCheckoutAdress = () => {
+		const isCheckoutAdressValid = validateField(addressSchema, formData, setErrors);
+		if (isCheckoutAdressValid) {
+			console.log('Checked');
+			// TODO
 		}
 	};
 
@@ -57,13 +40,7 @@ const CheckoutAddress = ({ formData, setFormData }) => {
 					</div>
 				))}
 			</div>
-			<Button
-				className='!bg-violet-500 hover:!bg-violet-400 !text-white'
-				onClick={() => {
-					if (validateForm()) {
-						// TODO
-					}
-				}}>
+			<Button className='!bg-violet-500 hover:!bg-violet-400 !text-white' onClick={handleCheckoutAdress}>
 				Save and Deliver here
 			</Button>
 		</div>

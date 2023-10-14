@@ -4,7 +4,7 @@ import CheckoutStepperItem from './CheckoutStepperItem';
 import emptyCart from '@/assets/empty-cart.svg';
 import useProductsStore from '@/store/ProductsStore';
 
-const CheckoutStepper = ({ activeStep, setFormData, formData }) => {
+const CheckoutStepper = ({ activeStep, setFormData, formData, errors, setErrors }) => {
 	const { cart } = useProductsStore();
 
 	return (
@@ -18,7 +18,7 @@ const CheckoutStepper = ({ activeStep, setFormData, formData }) => {
 							))}
 						</>
 					)}
-					{activeStep === 'Address' && <CheckoutAddress setFormData={setFormData} formData={formData} />}
+					{activeStep === 'Address' && <CheckoutAddress errors={errors} setErrors={setErrors} setFormData={setFormData} formData={formData} />}
 					{activeStep === 'Payment' && <CheckoutPayment />}
 				</div>
 			) : (
