@@ -1,4 +1,4 @@
-type ClsxProps = Array<string | boolean | undefined | null>
+type ClsxProps = Array<string | boolean | undefined | null>;
 export default function clsx(...classes: ClsxProps) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }

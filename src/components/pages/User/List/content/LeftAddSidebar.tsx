@@ -34,7 +34,7 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
 				New User
 				<InputWithLabel label='Display Name' className='mt-4' type='text' id='displayName' value={formData.displayName} onChange={e => setFormData({ ...formData, displayName: e.target.value })} />
 				<InputWithLabel label='Email' type='email' id='email' value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
-				<Select value={formData.role} onValueChange={e => setFormData({ ...formData, role: e })}>
+				<Select value={formData.role} onValueChange={e => setFormData({ ...formData, role: e as string })}>
 					<SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>{formData.role ? formData.role : 'choose role'}</SelectTrigger>
 					<SelectContent className='border-gray-300 z-[52]'>
 						<SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
@@ -48,7 +48,7 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
 						</SelectGroup>
 					</SelectContent>
 				</Select>
-				<Select value={formData.plan} onValueChange={e => setFormData({ ...formData, plan: e })}>
+				<Select value={formData.plan} onValueChange={e => setFormData({ ...formData, plan: e as string })}>
 					<SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>{formData.plan ? formData.plan : 'choose plan'}</SelectTrigger>
 					<SelectContent className='border-gray-300 z-[52]'>
 						<SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>

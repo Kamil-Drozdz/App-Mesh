@@ -19,7 +19,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
 						Title
 					</label>
 				</div>
-				<Select value={newTask.tag} onValueChange={e => setNewTask({ ...newTask, tag: e })}>
+				<Select value={newTask.tag} onValueChange={e => setNewTask({ ...newTask, tag: e as string })}>
 					<SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>
 						<SelectValue placeholder='choose tag' />
 					</SelectTrigger>

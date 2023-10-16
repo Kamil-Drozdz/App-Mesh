@@ -4,4 +4,3 @@ export enum UserStatuses {
   DND = 'dnd',
   Offline = 'offline',
 }
-

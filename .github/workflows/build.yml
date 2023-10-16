@@ -33,11 +33,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
 
-      - name: Set up npm
-        uses: npm/action-setup@v2.0.1
-        with:
-          version: 6.0.2
-          run_install: true
+      - name: Install dependencies
+        run: npm install
 
       - name: Build project
         run: npm run build

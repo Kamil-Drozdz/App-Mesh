@@ -29,7 +29,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
 						Title
 					</label>
 				</div>
-				<Select value={formData.label} onValueChange={e => setFormData({ ...formData, label: e })}>
+				<Select value={formData.label} onValueChange={e => setFormData({ ...formData, label: e as string })}>
 					<SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>
 						<SelectValue placeholder='choose Label' />
 					</SelectTrigger>

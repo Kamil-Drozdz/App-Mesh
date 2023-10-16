@@ -78,7 +78,7 @@ const TopNavbar = () => {
 					<div className='flex items-center space-x-6'>
 						<ul className='flex items-center space-x-2'>
 							<>
-								<Select onValueChange={e => i18n.changeLanguage(e)}>
+								<Select onValueChange={e => i18n.changeLanguage(String(e))}>
 									<SelectTrigger className='md:w-[140px] border-darkBlue whitespace-nowrap'>
 										<SelectValue
 											placeholder={

@@ -18,51 +18,97 @@ import ShopContent from '@/components/pages/eCommerce/Shop/ShopContent';
 import WishlistContent from '@/components/pages/eCommerce/Wish List/WishlistContent';
 
 interface RouteConfig {
-	subPath: string;
-	component: React.ComponentType;
-	isSecured?: boolean;
+  subPath: string;
+  component: React.ComponentType;
+  isSecured?: boolean;
 }
 
 const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
-	[BasicRoutes.UNAUTHORIZED]: [{ subPath: '', component: Unauthorized }],
-	[BasicRoutes.LOGIN]: [{ subPath: '', component: LoginContent }],
-	[BasicRoutes.NOTFOUND]: [{ subPath: '', component: NotFound }],
-	[BasicRoutes.DASHBOARD]: [
-		{ subPath: SubRoutes.ANALYTICS, component: AnalyticsContent, isSecured: true },
-		{ subPath: SubRoutes.ECOMMERCE, component: EcommerceContent, isSecured: true },
-	],
-	[BasicRoutes.EMAIL]: [{ subPath: '', component: EmailContent, isSecured: true }],
-	[BasicRoutes.CHAT]: [{ subPath: '', component: ChatContent, isSecured: true }],
-	[BasicRoutes.TODO]: [{ subPath: SubRoutes.ALL, component: TodoContent, isSecured: true }],
-	[BasicRoutes.HOME]: [],
-	[BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent, isSecured: true }],
-	[BasicRoutes.PAGES]: [],
-	[BasicRoutes.INVOICE]: [{ subPath: SubRoutes.PREVIEW, component: InvoicePreviewContent, isSecured: true }],
-	[BasicRoutes.ECOMMERCE]: [
-		{ subPath: SubRoutes.SHOP, component: ShopContent, isSecured: true },
-		{ subPath: `${SubRoutes.DETAILS}/:productID`, component: DetailsContent, isSecured: true },
-		{ subPath: `${SubRoutes.DETAILS}`, component: DetailsContent, isSecured: true },
-		{ subPath: `${SubRoutes.WISH_LIST}`, component: WishlistContent, isSecured: true },
-		{ subPath: `${SubRoutes.CHECKOUT}`, component: CheckoutContent, isSecured: true },
-	],
-	[BasicRoutes.FORGOT]: [{ subPath: '', component: ForgotPasswordContent }],
-	[BasicRoutes.REGISTER]: [{ subPath: '', component: RegisterContent }],
-	[BasicRoutes.PROFILE]: [{ subPath: SubRoutes.LIST, component: UserContent, isSecured: true }],
-	[BasicRoutes.TYPOGRAPHY]: [],
-	[BasicRoutes.COLORS]: [],
-	[BasicRoutes.FEATHER]: [],
-	[BasicRoutes.CARDS]: [],
-	[BasicRoutes.COMPONENTS]: [],
-	[BasicRoutes.EXTENSION]: [],
-	[BasicRoutes.LAYOUTS]: [],
-	[BasicRoutes.FORMS]: [],
-	[BasicRoutes.CHARTS]: [],
-	[BasicRoutes.MAPS]: [],
-	[BasicRoutes.MENU]: [],
+  [BasicRoutes.UNAUTHORIZED]: [{ subPath: '', component: Unauthorized }],
+  [BasicRoutes.LOGIN]: [{ subPath: '', component: LoginContent }],
+  [BasicRoutes.NOTFOUND]: [{ subPath: '', component: NotFound }],
+  [BasicRoutes.DASHBOARD]: [
+    {
+      subPath: SubRoutes.ANALYTICS,
+      component: AnalyticsContent,
+      isSecured: true,
+    },
+    {
+      subPath: SubRoutes.ECOMMERCE,
+      component: EcommerceContent,
+      isSecured: true,
+    },
+  ],
+  [BasicRoutes.EMAIL]: [
+    { subPath: '', component: EmailContent, isSecured: true },
+  ],
+  [BasicRoutes.CHAT]: [
+    { subPath: '', component: ChatContent, isSecured: true },
+  ],
+  [BasicRoutes.TODO]: [
+    { subPath: SubRoutes.ALL, component: TodoContent, isSecured: true },
+  ],
+  [BasicRoutes.HOME]: [],
+  [BasicRoutes.CALENDAR]: [
+    { subPath: '', component: CalendarContent, isSecured: true },
+  ],
+  [BasicRoutes.PAGES]: [],
+  [BasicRoutes.INVOICE]: [
+    {
+      subPath: SubRoutes.PREVIEW,
+      component: InvoicePreviewContent,
+      isSecured: true,
+    },
+  ],
+  [BasicRoutes.ECOMMERCE]: [
+    { subPath: SubRoutes.SHOP, component: ShopContent, isSecured: true },
+    {
+      subPath: `${SubRoutes.DETAILS}/:productID`,
+      component: DetailsContent,
+      isSecured: true,
+    },
+    {
+      subPath: `${SubRoutes.DETAILS}`,
+      component: DetailsContent,
+      isSecured: true,
+    },
+    {
+      subPath: `${SubRoutes.WISH_LIST}`,
+      component: WishlistContent,
+      isSecured: true,
+    },
+    {
+      subPath: `${SubRoutes.CHECKOUT}`,
+      component: CheckoutContent,
+      isSecured: true,
+    },
+  ],
+  [BasicRoutes.FORGOT]: [{ subPath: '', component: ForgotPasswordContent }],
+  [BasicRoutes.REGISTER]: [{ subPath: '', component: RegisterContent }],
+  [BasicRoutes.PROFILE]: [
+    { subPath: SubRoutes.LIST, component: UserContent, isSecured: true },
+  ],
+  [BasicRoutes.TYPOGRAPHY]: [],
+  [BasicRoutes.COLORS]: [],
+  [BasicRoutes.FEATHER]: [],
+  [BasicRoutes.CARDS]: [],
+  [BasicRoutes.COMPONENTS]: [],
+  [BasicRoutes.EXTENSION]: [],
+  [BasicRoutes.LAYOUTS]: [],
+  [BasicRoutes.FORMS]: [],
+  [BasicRoutes.CHARTS]: [],
+  [BasicRoutes.MAPS]: [],
+  [BasicRoutes.MENU]: [],
 };
-export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, routes]) => {
-	return routes.map(({ subPath, component, isSecured }) => ({ path: `${basicRoute}${subPath}`, component, isSecured }));
-});
+export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(
+  ([basicRoute, routes]) => {
+    return routes.map(({ subPath, component, isSecured }) => ({
+      path: `${basicRoute}${subPath}`,
+      component,
+      isSecured,
+    }));
+  },
+);
 
 // [BasicRoutes.PAGES]: [{subPaths: [SubRoutes.AUTHENTICATION, SubRoutes.SETTINGS, SubRoutes.PROFILE, SubRoutes.FAQ, SubRoutes.KNOWLEDGE, SubRoutes.PRICING, SubRoutes.BLOG, SubRoutes.MAIL, SubRoutes.MISCELLANEOUS], component: PagesContent }],
 // [BasicRoutes.INVOICE]: [{subPaths: [SubRoutes.LIST, SubRoutes.PREVIEW, SubRoutes.EDIT, SubRoutes.ADD], component: InvoiceContent }],

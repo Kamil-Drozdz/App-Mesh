@@ -9,7 +9,7 @@ const UserFilter = ({ filters, setFilters }) => {
 		<CardContainer>
 			<p>Search Filter</p>
 			<div className='flex space-x-2'>
-				<Select onValueChange={e => setFilters({ ...filters, role: e })}>
+				<Select onValueChange={e => setFilters({ ...filters, role: e as string })}>
 					<SelectTrigger className='md:w-[150px]  whitespace-nowrap mx-2'>
 						<SelectValue
 							placeholder={
@@ -31,7 +31,7 @@ const UserFilter = ({ filters, setFilters }) => {
 						</SelectGroup>
 					</SelectContent>
 				</Select>
-				<Select onValueChange={e => setFilters({ ...filters, plan: e })}>
+				<Select onValueChange={e => setFilters({ ...filters, plan: e as string })}>
 					<SelectTrigger className='md:w-[150px]  whitespace-nowrap mx-2'>
 						<SelectValue
 							placeholder={
@@ -53,7 +53,7 @@ const UserFilter = ({ filters, setFilters }) => {
 						</SelectGroup>
 					</SelectContent>
 				</Select>
-				<Select onValueChange={e => setFilters({ ...filters, status: e })}>
+				<Select onValueChange={e => setFilters({ ...filters, status: e as string })}>
 					<SelectTrigger className='md:w-[150px]  whitespace-nowrap mx-2'>
 						<SelectValue
 							placeholder={
