@@ -1,13 +1,11 @@
-import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import registerPage from '@/assets/register-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
 import SocialLoginButtons from '@/common/SocialLoginButtons';
+import { createUser } from '@/lib/createUser';
 import { BasicRoutes } from '@/lib/routes';
 import { validateField } from '@/lib/validateField';
-import { User, updateProfile } from 'firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -39,24 +37,17 @@ const RegisterPage = () => {
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const navigate = useNavigate();
 	const handleLogin = async () => {
-		try {
-			const isRegisterValid = validateField(registerSchema, formData, setErrors);
-			if (!isRegisterValid) {
-				return;
-			}
-			const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-			const user = userCredential.user as User;
-			const profile = {
-				displayName: formData.displayName,
-				role: formData.role,
-			};
-			await updateProfile(user, profile);
+		const isRegisterValid = validateField(registerSchema, formData, setErrors);
+		if (!isRegisterValid) {
+			return;
+		}
+		const result = await createUser(formData);
+		if (result.success) {
 			toast.success('Great! Your new account is ready and waiting for you. Log in now and start your adventure');
 			navigate(`${BasicRoutes.LOGIN}`);
 			setFormData({ email: '', password: '', role: 'User', terms: false, displayName: '' });
-		} catch (error) {
+		} else {
 			toast.error('Oops! Something went wrong during registration. Please try again later.');
-			console.error('Error:', error);
 		}
 	};
 

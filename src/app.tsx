@@ -10,11 +10,14 @@ import useCurrentUser from './store/CurrentUser';
 const App = () => {
 	const navigate = useNavigate();
 	const { currentUser } = useCurrentUser();
+	const pathname = window.location.pathname;
 	useEffect(() => {
-		if (currentUser) {
-			navigate(`${BasicRoutes.LOGIN}`);
-		} else {
-			navigate(`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`);
+		if (pathname === '/') {
+			if (currentUser) {
+				navigate(`${BasicRoutes.LOGIN}`);
+			} else {
+				navigate(`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`);
+			}
 		}
 	}, []);
 

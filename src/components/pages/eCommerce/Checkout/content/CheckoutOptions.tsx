@@ -9,7 +9,7 @@ const CheckoutOptions = ({ activeStep, setActiveStep, errors, formData }) => {
 	const amount = totalValue(cart.map(product => product.price));
 	const discount = 10;
 	const tax = 1.3;
-	const totalAmount = (amount - discount - tax).toFixed(2);
+	const totalAmount = (amount - discount + tax).toFixed(2);
 	return (
 		<>
 			{cart.length ? (

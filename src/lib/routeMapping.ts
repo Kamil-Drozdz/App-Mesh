@@ -11,6 +11,7 @@ import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/Forgo
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
 import TodoContent from '@/components/pages/Todo/TodoContent';
+import UserContent from '@/components/pages/User/UserContent';
 import CheckoutContent from '@/components/pages/eCommerce/Checkout/CheckoutContent';
 import DetailsContent from '@/components/pages/eCommerce/Details/DetailsContent';
 import ShopContent from '@/components/pages/eCommerce/Shop/ShopContent';
@@ -46,7 +47,7 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
 	],
 	[BasicRoutes.FORGOT]: [{ subPath: '', component: ForgotPasswordContent }],
 	[BasicRoutes.REGISTER]: [{ subPath: '', component: RegisterContent }],
-	[BasicRoutes.PROFILE]: [],
+	[BasicRoutes.PROFILE]: [{ subPath: SubRoutes.LIST, component: UserContent, isSecured: true }],
 	[BasicRoutes.TYPOGRAPHY]: [],
 	[BasicRoutes.COLORS]: [],
 	[BasicRoutes.FEATHER]: [],

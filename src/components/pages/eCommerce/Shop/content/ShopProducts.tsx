@@ -1,12 +1,9 @@
 import ShopProduct from './ShopProduct';
-import { Input } from '@/UI/Input';
 import Skeleton from '@/UI/skeleton/Skeleton';
 import noData from '@/assets/no-data.svg';
 import useFetch from '@/hooks/useFetch';
-import { IconSize } from '@/lib/iconSize';
+import useSearch from '@/hooks/useSearch';
 import { ProductProps } from '@/store/ProductsStore';
-import { useState } from 'react';
-import { BiSearch } from 'react-icons/bi';
 
 interface FetchProps {
 	data: ProductProps[] | null;
@@ -14,7 +11,7 @@ interface FetchProps {
 	error: { message: string | null };
 }
 const ShopProducts = () => {
-	const [search, setSearch] = useState('');
+	const { search, SearchInput } = useSearch();
 	const { data: products, loading, error }: FetchProps = useFetch(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products`);
 	const filteredProducts = products ? (products as ProductProps[]).filter(product => product.title.toLowerCase().includes(search.toLowerCase()) || product.description.toLowerCase().includes(search.toLowerCase())) : [];
 
@@ -28,9 +25,7 @@ const ShopProducts = () => {
 
 	return (
 		<>
-			<div className='relative m-4'>
-				<BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' /> <Input value={search} onChange={e => setSearch(e.target.value)} className='pl-8 w-full h-9' placeholder='Search' />
-			</div>
+			<SearchInput />
 			<div>
 				{filteredProducts?.length ? (
 					<div className='grid grid-cols-auto-fit-100 md:grid-cols-3 xl:grid-cols-4 '>
