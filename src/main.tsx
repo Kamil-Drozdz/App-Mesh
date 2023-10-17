@@ -7,17 +7,16 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 const rootElement = document.getElementById('root');
 
-
 if (rootElement) {
-	const Root: FC = () => {
-		return (
-			<Router>
-				<App />
-			</Router>
-		);
-	};
+  const Root: FC = () => {
+    return (
+      <Router>
+        <App />
+      </Router>
+    );
+  };
 
-	createRoot(rootElement).render(<Root />);
+  createRoot(rootElement).render(<Root />);
 } else {
-	console.error("Element with id 'root' not found. Make sure such an element exists in your HTML.");
+  console.error("Element with id 'root' not found. Make sure such an element exists in your HTML.");
 }

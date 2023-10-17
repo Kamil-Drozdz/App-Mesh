@@ -52,6 +52,7 @@ const UserList = ({ filters }) => {
       unsubscribeSnapshot();
     };
   }, []);
+
   const filteredUsers = search
     ? users.filter((user) => user.displayName.includes(search) || user.email.includes(search))
     : users.filter(
@@ -81,20 +82,14 @@ const UserList = ({ filters }) => {
           <div className=' flex justify-between items-center'>
             <div className='flex items-center'>
               <p> Show</p>
-              <Select onValueChange={(e) => setItemsPerPage(e as number)}>
-                <SelectTrigger className='md:w-[100px]  whitespace-nowrap mx-2'>
-                  <SelectValue
-                    placeholder={
-                      <div className='flex justify-center items-center space-x-2'>
-                        <p>{numbers[0]}</p>
-                      </div>
-                    }
-                  />
+              <Select onValueChange={(e) => setItemsPerPage(Number(e))}>
+                <SelectTrigger className='md:w-[80px]  whitespace-nowrap mx-2'>
+                  <SelectValue placeholder={numbers[0]} />
                 </SelectTrigger>
                 <SelectContent className='border-darkBlue'>
                   <SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
                     {numbers.map((number) => (
-                      <SelectItem value={number} key={number}>
+                      <SelectItem value={number.toString()} key={number}>
                         <div className='flex justify-center items-center space-x-2'>
                           <p>{number}</p>
                         </div>

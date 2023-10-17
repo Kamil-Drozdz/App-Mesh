@@ -8,7 +8,7 @@ export const validateField = (schema, value, setError) => {
   } catch (error) {
     if (error instanceof z.ZodError) {
       const fieldErrors: Record<string, string> = {};
-      error.errors.forEach(err => {
+      error.errors.forEach((err) => {
         if (err.path.length > 0) {
           fieldErrors[err.path[0]] = err.message;
         }

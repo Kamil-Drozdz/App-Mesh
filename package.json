@@ -1,85 +1,85 @@
 {
-	"name": "admin-dashboard",
-	"version": "0.0.0",
-	"scripts": {
-		"prepare": "husky install",
-		"dev": "vite",
-		"build": "tsc && vite build",
-		"serve": "vite preview",
-		"format": "prettier --write \"src/**/*.ts\" ",
-		"lint": "eslint ./src --fix"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*.{js,jsx,ts,tsx,css,scss,less}": [
-			"prettier --ignore-path ./.prettierignore --write "
-		],
-		"*.{js,jsx,ts,tsx}": [
-			"eslint"
-		]
-	},
-	"dependencies": {
-		"@fullcalendar/core": "^6.1.9",
-		"@fullcalendar/daygrid": "^6.1.9",
-		"@fullcalendar/interaction": "^6.1.9",
-		"@fullcalendar/react": "^6.1.9",
-		"@radix-ui/react-popover": "^1.0.7",
-		"@radix-ui/react-radio-group": "^1.1.3",
-		"@radix-ui/react-select": "^1.2.2",
-		"@radix-ui/react-separator": "^1.0.3",
-		"@radix-ui/react-slot": "^1.0.2",
-		"@radix-ui/react-tooltip": "^1.0.6",
-		"@typescript-eslint/eslint-plugin": "^6.7.4",
-		"axios": "^1.5.1",
-		"chart.js": "^4.4.0",
-		"class-variance-authority": "^0.7.0",
-		"date-fns": "^2.30.0",
-		"faker": "^5.5.3",
-		"firebase": "^10.4.0",
-		"flatpickr": "^4.6.13",
-		"i18next": "^23.5.1",
-		"jspdf": "^2.5.1",
-		"lodash": "^4.17.21",
-		"react": "18.2.0",
-		"react-beautiful-dnd": "^13.1.1",
-		"react-chartjs-2": "^5.2.0",
-		"react-day-picker": "^8.8.2",
-		"react-dom": "18.2.0",
-		"react-i18next": "^13.2.2",
-		"react-icons": "^4.11.0",
-		"react-loader-spinner": "^5.4.5",
-		"react-toastify": "^9.1.3",
-		"react-transition-group": "^4.4.5",
-		"stylelint": "^15.10.3",
-		"tailwindcss-animate": "^1.0.7",
-		"uuid": "^9.0.1",
-		"zod": "^3.22.4",
-		"zustand": "^4.4.1"
-	},
-	"devDependencies": {
-		"@faker-js/faker": "^8.1.0",
-		"@innei-util/eslint-config-react-ts": "^0.2.1",
-		"@innei-util/prettier": "^0.8.2",
-		"@types/node": "18.16.14",
-		"@types/react": "^18.0.15",
-		"@types/react-dom": "^18.0.6",
-		"@vitejs/plugin-react": "^2",
-		"autoprefixer": "10.4.7",
-		"eslint": "8.20.0",
-		"husky": "8.0.1",
-		"lint-staged": "13.2.2",
-		"postcss": "8.4.14",
-		"postcss-import": "14.1.0",
-		"prettier": "2.8.8",
-		"react-router-dom": "^6.16.0",
-		"tailwindcss": "3.1.6",
-		"terser": "^5.21.0",
-		"typescript": "^5.2.2",
-		"vite": "^3.2.7",
-		"vite-plugin-compression": "^0.5.1"
-	}
+  "name": "admin-dashboard",
+  "version": "0.0.0",
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json}\"",
+    "lint": "eslint ./src --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,scss,less}": [
+      "prettier --ignore-path ./.prettierignore --write "
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint"
+    ]
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.9",
+    "@fullcalendar/daygrid": "^6.1.9",
+    "@fullcalendar/interaction": "^6.1.9",
+    "@fullcalendar/react": "^6.1.9",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-select": "^1.2.2",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tooltip": "^1.0.6",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "axios": "^1.5.1",
+    "chart.js": "^4.4.0",
+    "class-variance-authority": "^0.7.0",
+    "date-fns": "^2.30.0",
+    "faker": "^5.5.3",
+    "firebase": "^10.4.0",
+    "flatpickr": "^4.6.13",
+    "i18next": "^23.5.1",
+    "jspdf": "^2.5.1",
+    "lodash": "^4.17.21",
+    "react": "18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-day-picker": "^8.8.2",
+    "react-dom": "18.2.0",
+    "react-i18next": "^13.2.2",
+    "react-icons": "^4.11.0",
+    "react-loader-spinner": "^5.4.5",
+    "react-toastify": "^9.1.3",
+    "react-transition-group": "^4.4.5",
+    "stylelint": "^15.10.3",
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.1.0",
+    "@innei-util/eslint-config-react-ts": "^0.2.1",
+    "@innei-util/prettier": "^0.8.2",
+    "@types/node": "18.16.14",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2",
+    "autoprefixer": "10.4.7",
+    "eslint": "8.20.0",
+    "husky": "8.0.1",
+    "lint-staged": "13.2.2",
+    "postcss": "8.4.14",
+    "postcss-import": "14.1.0",
+    "prettier": "2.8.8",
+    "react-router-dom": "^6.16.0",
+    "tailwindcss": "3.1.6",
+    "terser": "^5.21.0",
+    "typescript": "^5.2.2",
+    "vite": "^3.2.7",
+    "vite-plugin-compression": "^0.5.1"
+  }
 }

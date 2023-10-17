@@ -6,22 +6,22 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const DetailsContent = () => {
-	const { productID } = useParams();
-	const navigate = useNavigate();
-	const location = useLocation();
+  const { productID } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-	useEffect(() => {
-		if (productID === undefined) {
-			navigate(`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/2`);
-		}
-	}, [navigate, productID, location]);
+  useEffect(() => {
+    if (productID === undefined) {
+      navigate(`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/2`);
+    }
+  }, [navigate, productID, location]);
 
-	return (
-		<PageContainer>
-			<ShopHeader />
-			<DetailsProduct productID={productID} />
-		</PageContainer>
-	);
+  return (
+    <PageContainer>
+      <ShopHeader />
+      <DetailsProduct productID={productID} />
+    </PageContainer>
+  );
 };
 
 export default DetailsContent;

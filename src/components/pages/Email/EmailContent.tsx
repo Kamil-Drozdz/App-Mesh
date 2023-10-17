@@ -1,7 +1,7 @@
-import PageContainer from "@/common/PageContainer";
+import PageContainer from '@/common/PageContainer';
 
 const EmailContent = () => {
-	return <PageContainer>hello :D </PageContainer>;
+  return <PageContainer>hello :D </PageContainer>;
 };
 
 export default EmailContent;

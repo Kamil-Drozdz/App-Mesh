@@ -2,16 +2,16 @@ import { User } from 'firebase/auth';
 import { create } from 'zustand';
 
 interface CustomUser extends User {
-	role?: string;
+  role?: string;
 }
 interface UserProps {
-	currentUser: CustomUser | null;
-	setCurrentUser: (user: CustomUser | null) => void;
+  currentUser: CustomUser | null;
+  setCurrentUser: (user: CustomUser | null) => void;
 }
 
-const useCurrentUser = create<UserProps>(set => ({
-	currentUser: null,
-	setCurrentUser: newUser => set({ currentUser: newUser }),
+const useCurrentUser = create<UserProps>((set) => ({
+  currentUser: null,
+  setCurrentUser: (newUser) => set({ currentUser: newUser }),
 }));
 
 export default useCurrentUser;

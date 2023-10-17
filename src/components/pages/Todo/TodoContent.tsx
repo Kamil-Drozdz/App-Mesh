@@ -1,7 +1,7 @@
 import CardTodo from './content/CardTodo';
 
 const TodoContent = () => {
-	return <CardTodo />;
+  return <CardTodo />;
 };
 
 export default TodoContent;

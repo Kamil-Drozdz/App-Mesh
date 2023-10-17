@@ -6,19 +6,19 @@ import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
 export const ProtectedComponent = ({ component: Component }) => {
-	const [loading, setLoading] = useState(true);
-	const { setCurrentUser, currentUser } = useCurrentUser();
-	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged(user => {
-			setCurrentUser(user);
-			setLoading(false);
-		});
-		return unsubscribe;
-	}, []);
+  const [loading, setLoading] = useState(true);
+  const { setCurrentUser, currentUser } = useCurrentUser();
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
-	if (loading) {
-		return <Loader />;
-	}
+  if (loading) {
+    return <Loader />;
+  }
 
-	return currentUser?.email ? <Component /> : <Navigate to={BasicRoutes.UNAUTHORIZED} />;
+  return currentUser?.email ? <Component /> : <Navigate to={BasicRoutes.UNAUTHORIZED} />;
 };

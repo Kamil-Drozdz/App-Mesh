@@ -22,21 +22,20 @@ interface ProdusctsStoreProps {
   removeFromCart: (productId: number) => void;
 }
 
-const useProductsStore = create<ProdusctsStoreProps>()(set => ({
+const useProductsStore = create<ProdusctsStoreProps>()((set) => ({
   products: [],
   wishlist: [],
   cart: [],
-  setProducts: newProducts => set({ products: newProducts }),
-  addToWishlist: product =>
-    set(state => ({ wishlist: [...state.wishlist, product] })),
-  removeFromWishlist: productId =>
-    set(state => ({
-      wishlist: state.wishlist.filter(product => product.id !== productId),
+  setProducts: (newProducts) => set({ products: newProducts }),
+  addToWishlist: (product) => set((state) => ({ wishlist: [...state.wishlist, product] })),
+  removeFromWishlist: (productId) =>
+    set((state) => ({
+      wishlist: state.wishlist.filter((product) => product.id !== productId),
     })),
-  addToCart: product => set(state => ({ cart: [...state.cart, product] })),
-  removeFromCart: productId =>
-    set(state => ({
-      cart: state.cart.filter(product => product.id !== productId),
+  addToCart: (product) => set((state) => ({ cart: [...state.cart, product] })),
+  removeFromCart: (productId) =>
+    set((state) => ({
+      cart: state.cart.filter((product) => product.id !== productId),
     })),
 }));
 

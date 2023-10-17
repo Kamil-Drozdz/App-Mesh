@@ -1,39 +1,39 @@
 .fc-day-today {
-	background-color: #f8f8f8 !important;
+  background-color: #f8f8f8 !important;
 }
 .dark .fc-day-today {
-	background-color: #161d31 !important;
+  background-color: #161d31 !important;
 }
 .fc-h-event {
-	background-color: transparent;
-	border-color: transparent;
+  background-color: transparent;
+  border-color: transparent;
 }
 .fc-theme-standard .fc-scrollgrid,
 .fc-theme-standard td,
 .fc-theme-standard th,
 .fc-theme-standard .fc-popover {
-	border: 1px solid #394052;
+  border: 1px solid #394052;
 }
 
 .fc-popover-header,
 .fc-popover-body {
-	background-color: #f8f8f8 !important;
+  background-color: #f8f8f8 !important;
 }
 .dark .fc-popover-header,
 .dark .fc-popover-body {
-	background-color: #283046 !important;
+  background-color: #283046 !important;
 }
 .fc .fc-daygrid-day-top {
-	flex-direction: row;
+  flex-direction: row;
 }
 
 .fc-daygrid-event-dot,
 .fc-event-time {
-	display: none;
+  display: none;
 }
 /* .fc-daygrid-event-harness {
 	width: fit-content;
 } */
 .fc-daygrid-event-harness:hover {
-	filter: brightness(1.75);
+  filter: brightness(1.75);
 }

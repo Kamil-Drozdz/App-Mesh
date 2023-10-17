@@ -5,15 +5,15 @@ import { Bar } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
 
 const CardOrder = () => {
-	const { t } = useTranslation();
-	const { data, options } = DataOrder();
-	ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+  const { t } = useTranslation();
+  const { data, options } = DataOrder();
+  ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-	return (
-		<CardChart className='basis-1/6' title={t('Orders')} data={data}>
-			<Bar data={data} options={options} />
-		</CardChart>
-	);
+  return (
+    <CardChart className='basis-1/6' title={t('Orders')} data={data}>
+      <Bar data={data} options={options} />
+    </CardChart>
+  );
 };
 
 export default CardOrder;

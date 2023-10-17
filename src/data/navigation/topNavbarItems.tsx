@@ -7,21 +7,28 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { HiOutlineChatBubbleLeft, HiOutlineEnvelope } from 'react-icons/hi2';
 
 export const topNavbarIcons = {
-	icons: [{ icon: <GiHamburgerMenu size={IconSize.basic} /> }, { icon: <HiOutlineEnvelope size={IconSize.basic} />, href: '/email' }, { icon: <HiOutlineChatBubbleLeft size={IconSize.basic} />, href: '/chat' }, { icon: <BsCheck2Square size={IconSize.basic} />, href: '/todo/all' }, { icon: <AiOutlineCalendar size={IconSize.basic} />, href: '/calendar' }, { icon: <FiStar size={IconSize.basic} /> }],
-	userToolbar: [
-		{ icon: <BsSun size={IconSize.basic} />, tooltip: 'Theme' },
-		{ icon: <BiBell size={IconSize.basic} />, tooltip: 'Notification' },
-		{ icon: <FiShoppingCart size={IconSize.basic} />, tooltip: 'Shopping Cart' },
-	],
+  icons: [
+    { icon: <GiHamburgerMenu size={IconSize.basic} /> },
+    { icon: <HiOutlineEnvelope size={IconSize.basic} />, href: '/email' },
+    { icon: <HiOutlineChatBubbleLeft size={IconSize.basic} />, href: '/chat' },
+    { icon: <BsCheck2Square size={IconSize.basic} />, href: '/todo/all' },
+    { icon: <AiOutlineCalendar size={IconSize.basic} />, href: '/calendar' },
+    { icon: <FiStar size={IconSize.basic} /> },
+  ],
+  userToolbar: [
+    { icon: <BsSun size={IconSize.basic} />, tooltip: 'Theme' },
+    { icon: <BiBell size={IconSize.basic} />, tooltip: 'Notification' },
+    { icon: <FiShoppingCart size={IconSize.basic} />, tooltip: 'Shopping Cart' },
+  ],
 };
 
 export const profileOptions = [
-	{ label: 'Profile', href: '/profile', icon: <BiSolidUser size={IconSize.basic} /> },
-	{ label: 'Inbox', href: '/inbox', icon: <HiOutlineEnvelope size={IconSize.basic} /> },
-	{ label: 'Task', href: '/todo/all', icon: <BsCheck2Square size={IconSize.basic} /> },
-	{ label: 'Chats', href: '/chat', icon: <HiOutlineChatBubbleLeft size={IconSize.basic} /> },
-	{ label: 'Settings', href: '/settings', icon: <FiSettings size={IconSize.basic} /> },
-	{ label: 'Pricing', href: '/pricing', icon: <BsFillCreditCard2FrontFill size={IconSize.basic} /> },
-	{ label: 'FAQ', href: '/faq', icon: <AiOutlineQuestionCircle size={IconSize.basic} /> },
-	{ label: 'Logout', icon: <AiOutlinePoweroff size={IconSize.basic} /> },
+  { label: 'Profile', href: '/profile', icon: <BiSolidUser size={IconSize.basic} /> },
+  { label: 'Inbox', href: '/inbox', icon: <HiOutlineEnvelope size={IconSize.basic} /> },
+  { label: 'Task', href: '/todo/all', icon: <BsCheck2Square size={IconSize.basic} /> },
+  { label: 'Chats', href: '/chat', icon: <HiOutlineChatBubbleLeft size={IconSize.basic} /> },
+  { label: 'Settings', href: '/settings', icon: <FiSettings size={IconSize.basic} /> },
+  { label: 'Pricing', href: '/pricing', icon: <BsFillCreditCard2FrontFill size={IconSize.basic} /> },
+  { label: 'FAQ', href: '/faq', icon: <AiOutlineQuestionCircle size={IconSize.basic} /> },
+  { label: 'Logout', icon: <AiOutlinePoweroff size={IconSize.basic} /> },
 ];

@@ -39,19 +39,11 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
       isSecured: true,
     },
   ],
-  [BasicRoutes.EMAIL]: [
-    { subPath: '', component: EmailContent, isSecured: true },
-  ],
-  [BasicRoutes.CHAT]: [
-    { subPath: '', component: ChatContent, isSecured: true },
-  ],
-  [BasicRoutes.TODO]: [
-    { subPath: SubRoutes.ALL, component: TodoContent, isSecured: true },
-  ],
+  [BasicRoutes.EMAIL]: [{ subPath: '', component: EmailContent, isSecured: true }],
+  [BasicRoutes.CHAT]: [{ subPath: '', component: ChatContent, isSecured: true }],
+  [BasicRoutes.TODO]: [{ subPath: SubRoutes.ALL, component: TodoContent, isSecured: true }],
   [BasicRoutes.HOME]: [],
-  [BasicRoutes.CALENDAR]: [
-    { subPath: '', component: CalendarContent, isSecured: true },
-  ],
+  [BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent, isSecured: true }],
   [BasicRoutes.PAGES]: [],
   [BasicRoutes.INVOICE]: [
     {
@@ -85,9 +77,7 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
   ],
   [BasicRoutes.FORGOT]: [{ subPath: '', component: ForgotPasswordContent }],
   [BasicRoutes.REGISTER]: [{ subPath: '', component: RegisterContent }],
-  [BasicRoutes.PROFILE]: [
-    { subPath: SubRoutes.LIST, component: UserContent, isSecured: true },
-  ],
+  [BasicRoutes.PROFILE]: [{ subPath: SubRoutes.LIST, component: UserContent, isSecured: true }],
   [BasicRoutes.TYPOGRAPHY]: [],
   [BasicRoutes.COLORS]: [],
   [BasicRoutes.FEATHER]: [],
@@ -100,15 +90,13 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
   [BasicRoutes.MAPS]: [],
   [BasicRoutes.MENU]: [],
 };
-export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(
-  ([basicRoute, routes]) => {
-    return routes.map(({ subPath, component, isSecured }) => ({
-      path: `${basicRoute}${subPath}`,
-      component,
-      isSecured,
-    }));
-  },
-);
+export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, routes]) => {
+  return routes.map(({ subPath, component, isSecured }) => ({
+    path: `${basicRoute}${subPath}`,
+    component,
+    isSecured,
+  }));
+});
 
 // [BasicRoutes.PAGES]: [{subPaths: [SubRoutes.AUTHENTICATION, SubRoutes.SETTINGS, SubRoutes.PROFILE, SubRoutes.FAQ, SubRoutes.KNOWLEDGE, SubRoutes.PRICING, SubRoutes.BLOG, SubRoutes.MAIL, SubRoutes.MISCELLANEOUS], component: PagesContent }],
 // [BasicRoutes.INVOICE]: [{subPaths: [SubRoutes.LIST, SubRoutes.PREVIEW, SubRoutes.EDIT, SubRoutes.ADD], component: InvoiceContent }],
