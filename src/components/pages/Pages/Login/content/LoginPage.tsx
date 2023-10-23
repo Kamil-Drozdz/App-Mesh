@@ -63,7 +63,7 @@ const LoginPage = () => {
   return (
     <div className='bg-darkBlue min-h-screen h-full w-full flex flex-col md:flex-row '>
       <div className='basis-2/3 px-10 py-5 flex items-center justify-center'>
-        <img height={500} width={500} alt='Login Screen Illustration' src={loginPage} />
+        <img height={800} width={800} loading='eager' alt='Login Screen Illustration' src={loginPage} />
       </div>
       <div className='basis-1/3 bg-mediumBlue flex flex-col justify-center items-center p-10'>
         <div className='px-4 space-y-4 w-full'>
@@ -87,7 +87,7 @@ const LoginPage = () => {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
-            {errors.password && <p className='text-red-500 text-sm'>{errors.email}</p>}
+            {errors.password && <p className='text-red-500 text-sm'>{errors.pasword}</p>}
           </div>
           <div className='w-full flex justify-between items-center'>
             <div className='flex space-x-2 items-center'>
