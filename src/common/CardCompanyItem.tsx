@@ -11,7 +11,13 @@ const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
       <dl className='hover:dark:bg-darkBlue transition-colors duration-200 ease-in-out flex items-center justify-center w-full md:px-4 my-1 py-1 space-x-2 text-[12px] md:text-base'>
         <div className='basis-1/5 flex items-center space-x-2 md:space-x-4 text-left overflow-hidden'>
           <dt>
-            <img className='w-10 h-10 rounded-lg' src={item.photo} alt={`${item.category} photo`} />
+            <img
+              className='w-10 h-10 rounded-lg'
+              width={40}
+              height={40}
+              src={item.photo}
+              alt={`${item.category} photo`}
+            />
           </dt>
           <div className='flex flex-col '>
             <dd>{item.name}</dd>

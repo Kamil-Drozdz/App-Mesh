@@ -19,7 +19,7 @@ function CartPopover({ cart, removeFromCart }) {
         {cart.map((item) => (
           <div className='flex flex-col relative group' key={item.id}>
             <div className='flex space-x-4 p-4 items-center justify-between '>
-              <img className='w-12 h-12' src={item.image} />
+              <img height={48} width={48} className='w-12 h-12' src={item.image} />
               <p className='truncate w-1/2'>{item.title}</p>
               <p className='dark:text-white text-black'>{item.price}$</p>
             </div>

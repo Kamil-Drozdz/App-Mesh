@@ -51,7 +51,13 @@ const DetailsProduct = ({ productID }) => {
       <div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg m-4 shadow-md dark:shadow-black shadow-lightGray flex md:flex-row flex-col items-start'>
         <div className='md:w-1/2 h-full flex justify-center items-center'>
           <div className='h-full text-center p-2 bg-white rounded-lg justify-center flex items-center'>
-            <img className=' object-contain aspect-video' src={product?.image} alt={product?.title} />
+            <img
+              height={600}
+              width={600}
+              className=' object-contain aspect-video'
+              src={product?.image}
+              alt={product?.title}
+            />
           </div>
         </div>
         <div className='space-y-3 md:ml-4 md:w-1/2 py-6'>

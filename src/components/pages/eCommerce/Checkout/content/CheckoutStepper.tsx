@@ -25,7 +25,7 @@ const CheckoutStepper = ({ activeStep, setFormData, formData, errors, setErrors 
         </div>
       ) : (
         <div className='w-full col-span-3 h-full min-h-[70vh] flex justify-center items-center flex-col space-y-4'>
-          <img className='max-w-[300px]' src={emptyCart} alt='empty cart image' />
+          <img height={300} width={300} className='max-w-[300px]' src={emptyCart} alt='empty cart image' />
           <div>Ups we dont have what you looking for check other item names </div>
         </div>
       )}

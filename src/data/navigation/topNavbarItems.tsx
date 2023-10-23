@@ -1,3 +1,6 @@
+import GermanyIcon from '@/assets/germany-flag-icon.svg';
+import PolandIcon from '@/assets/poland-flag-icon.svg';
+import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
 import { IconSize } from '@/lib/iconSize';
 import { AiOutlineCalendar, AiOutlinePoweroff, AiOutlineQuestionCircle } from 'react-icons/ai';
 import { BiBell, BiSolidUser } from 'react-icons/bi';
@@ -31,4 +34,10 @@ export const profileOptions = [
   { label: 'Pricing', href: '/pricing', icon: <BsFillCreditCard2FrontFill size={IconSize.basic} /> },
   { label: 'FAQ', href: '/faq', icon: <AiOutlineQuestionCircle size={IconSize.basic} /> },
   { label: 'Logout', icon: <AiOutlinePoweroff size={IconSize.basic} /> },
+];
+
+export const languageOptions = [
+  { value: 'en', icon: EnglandIcon, label: 'English' },
+  { value: 'de', icon: GermanyIcon, label: 'German' },
+  { value: 'pl', icon: PolandIcon, label: 'Polish' },
 ];

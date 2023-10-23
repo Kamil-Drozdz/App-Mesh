@@ -12,7 +12,7 @@ const CardMeetup = () => {
   return (
     <CardContainer className='basis-1/3 p-0'>
       <div className=' bg-lightBlue flex justify-center rounded-t-lg'>
-        <img className=' aspect-video w-full max-w-[300px]' src={organizePhoto} />
+        <img height={200} width={300} className=' aspect-video w-full max-w-[300px]' src={organizePhoto} />
       </div>
       <div className='px-4 space-y-4'>
         <div className='flex dark:bg-mediumBlue space-x-4'>
@@ -49,6 +49,8 @@ const CardMeetup = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <img
+                    height={32}
+                    width={32}
                     className='cursor-pointer object-contain rounded-full w-8 h-8 hover:scale-105 -ml-2 ring-2 ring-black hover:-translate-y-2 transition-all duration-200 ease'
                     src={item.photo}
                     alt={item.name}

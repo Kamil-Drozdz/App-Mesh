@@ -28,6 +28,8 @@ const CardProject = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <img
+                  height={32}
+                  width={32}
                   className='cursor-pointer object-contain rounded-full w-8 h-8 hover:scale-105 -ml-2 ring-2 ring-black hover:-translate-y-2 transition-all duration-200 ease'
                   src={item.photo}
                   alt={item.name}

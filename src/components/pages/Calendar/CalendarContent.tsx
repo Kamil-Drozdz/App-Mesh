@@ -1,15 +1,15 @@
 import { Button } from '@/UI/Button';
-import { Input } from '@/UI/Input';
-import calendarIllustration from '@/assets/calendar-illustration.png';
+import calendarIllustration from '@/assets/calendar-illustration.webp';
 import CardContainer from '@/common/CardContainer';
 import PageContainer from '@/common/PageContainer';
 import { data, labels } from '@/data/pages/calendar/calendarData';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './calendar.css';
+import FilterSection from './content/FilterSection';
 import LeftEditSidebar from './content/LeftEditSidebar';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -89,24 +89,6 @@ const CalendarContent = () => {
     });
   };
 
-  const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const filterName = event.target.id;
-
-    if (filterName === 'View All') {
-      if (selectedFilters.includes('View All')) {
-        setSelectedFilters([]);
-      } else {
-        setSelectedFilters(labels.map((item) => item.name));
-      }
-    } else {
-      if (selectedFilters.includes(filterName)) {
-        setSelectedFilters(selectedFilters.filter((filter) => filter !== 'View All' && filter !== filterName));
-      } else {
-        setSelectedFilters([...selectedFilters, filterName]);
-      }
-    }
-  };
-
   const filteredEvents = events.filter((event) => {
     if (selectedFilters.includes('View All')) {
       return true;
@@ -159,22 +141,13 @@ const CalendarContent = () => {
               >
                 Add Event
               </Button>
-              <p className='text-gray-400'>FILTER</p>
-              {labels.map((item, index) => (
-                <div className='flex space-x-2 items-center' key={index}>
-                  <Input
-                    id={item.name}
-                    className={`w-4 h-4 ${item.color}`}
-                    defaultChecked={true}
-                    type='checkbox'
-                    checked={selectedFilters.includes(item.name)}
-                    onChange={handleFilterChange}
-                  />
-                  <label htmlFor={item.name}> {item.name}</label>
-                </div>
-              ))}
+              <FilterSection
+                labels={labels}
+                selectedFilters={selectedFilters}
+                setSelectedFilters={setSelectedFilters}
+              />
             </div>
-            <img src={calendarIllustration} />
+            <img height={200} width={200} src={calendarIllustration} />
           </div>
           <div className='w-full h-full'>
             <FullCalendar

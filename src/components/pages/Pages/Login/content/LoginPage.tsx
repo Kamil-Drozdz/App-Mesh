@@ -63,7 +63,7 @@ const LoginPage = () => {
   return (
     <div className='bg-darkBlue min-h-screen h-full w-full flex flex-col md:flex-row '>
       <div className='basis-2/3 px-10 py-5 flex items-center justify-center'>
-        <img className='' src={loginPage} />
+        <img height={500} width={500} alt='Login Screen Illustration' src={loginPage} />
       </div>
       <div className='basis-1/3 bg-mediumBlue flex flex-col justify-center items-center p-10'>
         <div className='px-4 space-y-4 w-full'>

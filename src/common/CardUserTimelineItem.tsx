@@ -22,6 +22,8 @@ function CardTimelineItem({ title, timestamp, content, images, icon, color }) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <img
+                    width={32}
+                    height={32}
                     className='cursor-pointer object-contain rounded-full w-8 h-8 hover:scale-105 ring-2 ring-black hover:-translate-y-2 transition-all duration-200 ease'
                     src={item.photo}
                     alt={item.name}

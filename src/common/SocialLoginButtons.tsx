@@ -65,6 +65,7 @@ const SocialLoginButtons = ({ setFormData }) => {
             <Tooltip key={index}>
               <TooltipTrigger asChild>
                 <Button
+                  aria-label={item.tooltip}
                   variant='empty'
                   className={`${
                     index !== icons.length - 1 ? 'border-r' : 'border-none'

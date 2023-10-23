@@ -15,7 +15,7 @@ const WishListProducts = () => {
         </div>
       ) : (
         <div className='w-full h-full min-h-[70vh] flex justify-center items-center flex-col space-y-4'>
-          <img className='max-w-[300px]' src={noData} alt='no data image' />
+          <img height={300} width={300} className='max-w-[300px]' src={noData} alt='no data image' />
           <div>ups you dont have any items on wishlist maybe its good time to change it? </div>
         </div>
       )}

@@ -16,7 +16,7 @@ const CheckoutStepperItem = ({ product }) => {
     <div key={product.id}>
       <div className='relative dark:bg-mediumBlue bg-white p-4 rounded space-y-3 mb-8 grid grid-cols-1 md:grid-cols-auto-fit-100 items-center justify-center'>
         <div className=' md:max-w-[90%] p-2 bg-white rounded-lg flex justify-center items-center'>
-          <img className='object-contain max-h-[400px] aspect-square' src={product?.image} alt={product?.title} />
+          <img height={400} width={400}  className='object-contain max-h-[400px] aspect-square' src={product?.image} alt={product?.title} />
         </div>
         <div className=' md:col-span-2 h-full space-y-2'>
           <p className='w-full text-left font-semibold hover:text-violet-500 '>{product?.title}</p>

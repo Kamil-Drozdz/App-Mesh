@@ -5,6 +5,7 @@ import { BasicRoutes, SubRoutes } from '@/lib/routes';
 import useMenu from '@/store/Menu';
 import { useState } from 'react';
 import { FaRegDotCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const SideNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenu();
@@ -58,10 +59,10 @@ const SideNavbar = () => {
             <li className='flex items-center justify-between space-x-4 px-6'>
               {!menuCollapsed ? (
                 <>
-                  <a href={`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`} className='flex items-center '>
-                    <img src={logo} alt='Logo' className='w-8 h-8 mr-4' />
+                  <Link to={`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`} className='flex items-center '>
+                    <img src={logo} alt='Logo' width={32} height={32} className='w-8 h-8 mr-4' />
                     <span className='text-2xl font-semibold'>Admin</span>
-                  </a>
+                  </Link>
                   <FaRegDotCircle />
                 </>
               ) : (

@@ -36,20 +36,18 @@ const ShopProducts = () => {
   return (
     <>
       <SearchInput />
-      <div>
-        {filteredProducts?.length ? (
-          <div className='grid grid-cols-auto-fit-100 md:grid-cols-3 xl:grid-cols-4 '>
-            {filteredProducts?.map((product) => (
-              <ShopProduct key={product.id} product={product} />
-            ))}
-          </div>
-        ) : (
-          <div className='w-full h-full min-h-[70vh] flex justify-center items-center flex-col space-y-4'>
-            <img className='max-w-[300px]' src={noData} alt='no data image' />
-            <div>Ups we dont have what you looking for check other item names </div>
-          </div>
-        )}
-      </div>
+      {filteredProducts?.length ? (
+        <div className='grid grid-cols-auto-fit-100 md:grid-cols-3 xl:grid-cols-4 '>
+          {filteredProducts?.map((product) => (
+            <ShopProduct key={product.id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <div className='w-full h-full min-h-[70vh] flex justify-center items-center flex-col space-y-4'>
+          <img height={300} width={300} className='max-w-[300px]' src={noData} alt='no data image' />
+          <div>Ups we dont have what you looking for check other item names </div>
+        </div>
+      )}
     </>
   );
 };

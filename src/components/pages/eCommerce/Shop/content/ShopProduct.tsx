@@ -21,9 +21,9 @@ const ShopProduct = ({ product }: ShopProductProps) => {
       <div className='relative dark:bg-mediumBlue bg-white p-4 rounded-t-lg space-y-3 flex flex-col items-center justify-center'>
         <Link
           to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`}
-          className='w-34 h-34 p-2 bg-white rounded-lg'
+          className='w-32 h-32 p-2 bg-white rounded-lg'
         >
-          <img className=' object-contain aspect-video' src={product?.image} alt={product?.title} />
+          <img className='object-contain aspect-square' src={product?.image} alt={product?.title} />
         </Link>
         <div className='flex justify-between w-full'>
           <div className='flex text-amber-500'>{stars}</div>

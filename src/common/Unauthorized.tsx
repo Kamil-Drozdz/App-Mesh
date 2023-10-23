@@ -1,6 +1,6 @@
 import PageContainer from './PageContainer';
 import { Button } from '@/UI/Button';
-import unauthorizedPhoto from '@/assets/unauthorized-error.png';
+import unauthorizedPhoto from '@/assets/unauthorized-error.webp';
 import { Link } from 'react-router-dom';
 
 const Unauthorized = () => {
@@ -8,9 +8,11 @@ const Unauthorized = () => {
     <PageContainer>
       <img
         className='mx-auto my-auto h-[50%] object-contain'
+        width={500}
+        height={500}
         src={unauthorizedPhoto}
         alt='named you shall not pass'
-      ></img>
+      />
       <h2 className='text:sm flex flex-col items-center justify-center text-gray-300 md:text-2xl'>
         You Shall not pass!
         <Link to='/login'>

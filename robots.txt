@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /private/
+Allow: /public/
+Sitemap:https://admin-dashboard-two-gray.vercel.app/sitemap.xml
