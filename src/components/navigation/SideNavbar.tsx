@@ -1,10 +1,10 @@
 import SideNavbarItem from '../../common/SideNavbarItem';
 import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
-import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import useMenu from '@/store/Menu';
 import { useState } from 'react';
-import { FaRegDotCircle } from 'react-icons/fa';
+import { FaRegCircle, FaRegDotCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const SideNavbar = () => {
@@ -13,11 +13,6 @@ const SideNavbar = () => {
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const navItems = NavItems();
-
-  const toggleCollapse = () => {
-    setIsCollapsed((prev) => !prev);
-    setMenuCollapsed((prev) => !prev);
-  };
 
   const handleActiveDropdown = (name) => {
     if (activeDropdown === name) {
@@ -34,12 +29,6 @@ const SideNavbar = () => {
           isMenuOpen ? 'left-0' : '-left-72 lg:left-0'
         } top-0 z-[11] right-0 fixed h-screen`}
       >
-        <button
-          onClick={toggleCollapse}
-          className='p-2 lg:block hidden dark:bg-mediumBlue bg-white text-gray-800 dark:text-lightGray dark:hover:bg-darkBlueHover dark:focus:bg-darkBlueHover absolute top-0 right-0 rounded-full z-10'
-        >
-          Collaps
-        </button>
         <nav
           onMouseEnter={() => {
             if (isCollapsed) {
@@ -63,7 +52,10 @@ const SideNavbar = () => {
                     <img src={logo} alt='Logo' width={32} height={32} className='w-8 h-8 mr-4' />
                     <span className='text-2xl font-semibold'>Admin</span>
                   </Link>
-                  <FaRegDotCircle />
+
+                  <button onClick={() => setIsCollapsed((prev) => !prev)}>
+                    {isCollapsed ? <FaRegCircle /> : <FaRegDotCircle />}
+                  </button>
                 </>
               ) : (
                 <img src={logo} alt='Logo' className='w-8 h-8' />

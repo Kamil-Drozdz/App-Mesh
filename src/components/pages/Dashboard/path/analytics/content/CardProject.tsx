@@ -1,8 +1,8 @@
 import { Button } from '@/UI/Button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import CardContainer from '@/common/CardContainer';
-import { generateData } from '@/data/pages/ecommerce/dataCompany';
 import { MeetupDataProps, generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
+import { generateData } from '@/lib/generateData';
 
 const CardProject = () => {
   const data: MeetupDataProps[] = generateData(6, generateMeetupData);

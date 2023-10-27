@@ -4,7 +4,7 @@ import registerPage from '@/assets/register-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
 import SocialLoginButtons from '@/common/SocialLoginButtons';
 import { createUser } from '@/lib/createUser';
-import { BasicRoutes } from '@/lib/routes';
+import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';

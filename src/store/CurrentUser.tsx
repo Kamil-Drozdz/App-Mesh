@@ -1,7 +1,7 @@
 import { User } from 'firebase/auth';
 import { create } from 'zustand';
 
-interface CustomUser extends User {
+export interface CustomUser extends User {
   role?: string;
 }
 interface UserProps {

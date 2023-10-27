@@ -2,7 +2,7 @@ import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
 import forgotPasswordPage from '@/assets/forgot-password-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
-import { BasicRoutes } from '@/lib/routes';
+import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';

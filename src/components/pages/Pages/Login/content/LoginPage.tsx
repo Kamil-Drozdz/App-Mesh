@@ -4,7 +4,7 @@ import { Input } from '@/UI/Input';
 import loginPage from '@/assets/login-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
 import SocialLoginButtons from '@/common/SocialLoginButtons';
-import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
 import {
   browserLocalPersistence,

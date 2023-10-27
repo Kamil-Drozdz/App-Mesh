@@ -1,6 +1,6 @@
 import Loader from './Loader';
 import { auth } from '@/../firebaseConfig';
-import { BasicRoutes } from '@/lib/routes';
+import { BasicRoutes } from '@/lib/enums/routes';
 import useCurrentUser from '@/store/CurrentUser';
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';

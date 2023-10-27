@@ -1,21 +1,23 @@
-import { BasicRoutes, SubRoutes } from './routes';
+import { BasicRoutes, SubRoutes } from './enums/routes';
 import NotFound from '@/common/NotFound';
 import Unauthorized from '@/common/Unauthorized';
-import CalendarContent from '@/components/pages/Calendar/CalendarContent';
-import ChatContent from '@/components/pages/Chat/ChatContent';
-import AnalyticsContent from '@/components/pages/Dashboard/path/analytics/AnalyticsContent';
-import EcommerceContent from '@/components/pages/Dashboard/path/ecommerce/EcommerceContent';
 import EmailContent from '@/components/pages/Email/EmailContent';
 import InvoicePreviewContent from '@/components/pages/Invoice/path/preview/InvoicePreviewContent';
 import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/ForgotPasswordContent';
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
-import TodoContent from '@/components/pages/Todo/TodoContent';
 import UserContent from '@/components/pages/User/UserContent';
-import CheckoutContent from '@/components/pages/eCommerce/Checkout/CheckoutContent';
-import DetailsContent from '@/components/pages/eCommerce/Details/DetailsContent';
-import ShopContent from '@/components/pages/eCommerce/Shop/ShopContent';
-import WishlistContent from '@/components/pages/eCommerce/Wish List/WishlistContent';
+import { lazy } from 'react';
+
+const CalendarContent = lazy(() => import('@/components/pages/Calendar/CalendarContent'));
+const ChatContent = lazy(() => import('@/components/pages/Chat/ChatContent'));
+const EcommerceContent = lazy(() => import('@/components/pages/Dashboard/path/ecommerce/EcommerceContent'));
+const AnalyticsContent = lazy(() => import('@/components/pages/Dashboard/path/analytics/AnalyticsContent'));
+const TodoContent = lazy(() => import('@/components/pages/Todo/TodoContent'));
+const WishlistContent = lazy(() => import('@/components/pages/eCommerce/Wish List/WishlistContent'));
+const DetailsContent = lazy(() => import('@/components/pages/eCommerce/Details/DetailsContent'));
+const CheckoutContent = lazy(() => import('@/components/pages/eCommerce/Checkout/CheckoutContent'));
+const ShopContent = lazy(() => import('@/components/pages/eCommerce/Shop/ShopContent'));
 
 interface RouteConfig {
   subPath: string;

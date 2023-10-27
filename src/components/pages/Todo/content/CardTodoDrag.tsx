@@ -3,7 +3,7 @@ import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import CompletedStamp from '@/assets/completed-stamp.webp';
 import { tags } from '@/data/pages/todo/todoData';
-import { IconSize } from '@/lib/iconSize';
+import { IconSize } from '@/lib/enums/iconSize';
 import { format } from 'date-fns';
 import { useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
@@ -68,7 +68,7 @@ const CardTodoDrag = ({
   };
 
   return (
-    <div className='w-full '>
+    <div className='w-full select-none'>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className='relative mb-2'>
           <BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' />{' '}

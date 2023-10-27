@@ -1,7 +1,7 @@
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
-import { IconSize } from '@/lib/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { IconSize } from '@/lib/enums/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { totalValue } from '@/lib/totalValue';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';

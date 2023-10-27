@@ -1,5 +1,5 @@
+import { IconSize } from '@/lib/enums/iconSize';
 import { getRandomHexColor } from '@/lib/generateRandomColor';
-import { IconSize } from '@/lib/iconSize';
 import { faker } from '@faker-js/faker';
 import { useTranslation } from 'react-i18next';
 import {
@@ -49,12 +49,4 @@ export const generateCompanyData = (): CompanyData => {
     icon: generateRandomIcon(),
   };
   return company;
-};
-
-export const generateData = <T,>(count: number, generator: () => T): T[] => {
-  const data: T[] = [];
-  for (let i = 0; i < count; i++) {
-    data.push(generator());
-  }
-  return data;
 };

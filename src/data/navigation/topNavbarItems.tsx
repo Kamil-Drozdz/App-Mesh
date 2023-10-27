@@ -1,7 +1,7 @@
 import GermanyIcon from '@/assets/germany-flag-icon.svg';
 import PolandIcon from '@/assets/poland-flag-icon.svg';
 import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
-import { IconSize } from '@/lib/iconSize';
+import { IconSize } from '@/lib/enums/iconSize';
 import { AiOutlineCalendar, AiOutlinePoweroff, AiOutlineQuestionCircle } from 'react-icons/ai';
 import { BiBell, BiSolidUser } from 'react-icons/bi';
 import { BsCheck2Square, BsFillCreditCard2FrontFill, BsSun } from 'react-icons/bs';

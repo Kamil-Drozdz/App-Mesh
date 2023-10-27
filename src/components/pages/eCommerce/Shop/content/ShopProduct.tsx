@@ -1,6 +1,6 @@
 import { Button } from '@/UI/Button';
-import { IconSize } from '@/lib/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { IconSize } from '@/lib/enums/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/ProductsStore';
 import { AiFillHeart } from 'react-icons/ai';

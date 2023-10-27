@@ -1,7 +1,7 @@
 import ShopHeader from '../ShopHeader';
 import DetailsProduct from './content/DetailsProduct';
 import PageContainer from '@/common/PageContainer';
-import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 

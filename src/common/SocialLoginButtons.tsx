@@ -2,8 +2,8 @@ import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
-import { IconSize } from '@/lib/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { IconSize } from '@/lib/enums/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import {
   FacebookAuthProvider,
   GithubAuthProvider,

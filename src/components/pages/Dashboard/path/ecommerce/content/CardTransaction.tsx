@@ -1,8 +1,8 @@
 import CardContainer from '@/common/CardContainer';
 import CardTransactionItem from '@/common/CardTransactionItem';
-import { generateData } from '@/data/pages/ecommerce/dataCompany';
 import { TransactionData, generateTransactionData } from '@/data/pages/ecommerce/dataTransaction';
-import { IconSize } from '@/lib/iconSize';
+import { IconSize } from '@/lib/enums/iconSize';
+import { generateData } from '@/lib/generateData';
 import { useTranslation } from 'react-i18next';
 import { BiDotsVertical } from 'react-icons/bi';
 

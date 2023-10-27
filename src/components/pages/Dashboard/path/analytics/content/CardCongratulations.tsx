@@ -1,7 +1,7 @@
 import leftDecore from '@/assets/decore-left.webp';
 import rightDecore from '@/assets/decore-right.webp';
 import CardContainer from '@/common/CardContainer';
-import { IconSize } from '@/lib/iconSize';
+import { IconSize } from '@/lib/enums/iconSize';
 import useCurrentUser from '@/store/CurrentUser';
 import { useTranslation } from 'react-i18next';
 import { PiMedal } from 'react-icons/pi';

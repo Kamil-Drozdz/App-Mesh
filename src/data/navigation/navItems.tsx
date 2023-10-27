@@ -1,5 +1,5 @@
-import { IconSize } from '@/lib/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/routes';
+import { IconSize } from '@/lib/enums/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { useTranslation } from 'react-i18next';
 import {
   AiFillCheckCircle,

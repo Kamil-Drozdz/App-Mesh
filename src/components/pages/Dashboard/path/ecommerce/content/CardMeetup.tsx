@@ -1,7 +1,7 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import organizePhoto from '@/assets/organize.svg';
 import CardContainer from '@/common/CardContainer';
-import { generateData } from '@/data/pages/ecommerce/dataCompany';
+import { generateData } from '@/lib/generateData';
 import { MeetupDataProps, generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { PiMapPinBold } from 'react-icons/pi';

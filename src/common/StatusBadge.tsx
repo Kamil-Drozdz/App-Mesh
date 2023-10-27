@@ -1,5 +1,5 @@
 import clsx from '../lib/clsx';
-import { UserStatuses } from '../lib/user';
+import { UserStatuses } from '../lib/enums/user';
 
 interface StatusBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   status: UserStatuses;

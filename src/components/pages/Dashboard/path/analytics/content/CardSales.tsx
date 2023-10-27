@@ -1,6 +1,6 @@
 import CardContainer from '@/common/CardContainer';
 import { DataSales } from '@/data/charts/dataSales';
-import { IconSize } from '@/lib/iconSize';
+import { IconSize } from '@/lib/enums/iconSize';
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 import { BiDotsVertical } from 'react-icons/bi';

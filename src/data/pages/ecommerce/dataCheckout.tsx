@@ -1,4 +1,4 @@
-import { IconSize } from '@/lib/iconSize';
+import { IconSize } from '@/lib/enums/iconSize';
 import { AiOutlineCreditCard } from 'react-icons/ai';
 import { BiHomeAlt } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';

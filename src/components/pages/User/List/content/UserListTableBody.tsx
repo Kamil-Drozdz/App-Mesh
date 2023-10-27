@@ -2,7 +2,7 @@ import { UserProps } from './UserList';
 import { Button } from '@/UI/Button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { TableCell, TableBody, TableRow } from '@/UI/Table';
-import { IconSize } from '@/lib/iconSize';
+import { IconSize } from '@/lib/enums/iconSize';
 import { BiDotsVertical, BiUser } from 'react-icons/bi';
 import { CgFileDocument } from 'react-icons/cg';
 import { FiTrash } from 'react-icons/fi';

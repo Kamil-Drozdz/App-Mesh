@@ -1,6 +1,7 @@
 import CardCompanyItem from '@/common/CardCompanyItem';
 import CardContainer from '@/common/CardContainer';
-import { CompanyData, DataCompany, generateCompanyData, generateData } from '@/data/pages/ecommerce/dataCompany';
+import { CompanyData, DataCompany, generateCompanyData } from '@/data/pages/ecommerce/dataCompany';
+import { generateData } from '@/lib/generateData';
 
 const CardCompany = () => {
   const data: CompanyData[] = generateData(20, generateCompanyData);

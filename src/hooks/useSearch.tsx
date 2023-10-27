@@ -1,33 +1,30 @@
 import { Input } from '@/UI/Input';
 import clsx from '@/lib/clsx';
 import { delay } from '@/lib/delay';
-import { IconSize } from '@/lib/iconSize';
-import { useEffect, useRef, useState } from 'react';
+import { IconSize } from '@/lib/enums/iconSize';
+import { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
-const useSearch = (isIcon = true) => {
+const useSearch = (isIcon = true, ...props) => {
   const [search, setSearch] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
-  //useref with delay is due to the autofocus problem regarding Search, due to the component's rerendering there must be such an intention
+  const [isFocused, setFocused] = useState(false);
   useEffect(() => {
-    const focusInput = async () => {
+    const asyncEffect = async () => {
       await delay(800);
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
+      setFocused(true);
     };
-
-    focusInput();
-
-    // ... (inny kod)
+    asyncEffect();
   }, []);
+
+  console.log(isFocused);
   //TO CHECK potential rerendering problem
   const SearchInput = ({ className }: { className?: string }) => (
     <div className={clsx('relative m-4', className)}>
       {isIcon && <BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' />}
       <Input
+        {...props}
         value={search}
-        ref={inputRef}
+        autoFocus={isFocused}
         onChange={(e) => setSearch(e.target.value)}
         className={`${isIcon ? 'pl-8' : ''} w-full h-9`}
         placeholder={`${isIcon ? 'Search' : ''}`}
