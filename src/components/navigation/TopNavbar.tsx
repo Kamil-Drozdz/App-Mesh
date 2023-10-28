@@ -5,12 +5,14 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
 import { languageOptions, topNavbarIcons } from '@/data/navigation/topNavbarItems';
 import useCurrentUser from '@/store/CurrentUser';
+import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const TopNavbar = () => {
   const { t, i18n } = useTranslation();
+  const { isFullScreen } = useFullScreen();
   const { currentUser } = useCurrentUser();
   const { toggleMenu } = useMenu();
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
@@ -34,8 +36,8 @@ const TopNavbar = () => {
     <>
       {currentUser ? (
         <div
-          className={`flex ${
-            visible ? 'top-0' : '-top-16'
+          className={`flex ${visible ? 'top-0' : '-top-16'}  ${
+            isFullScreen ? 'opacity-0 !absolute' : 'opacity-100'
           } print:hidden justify-between sticky top-8 z-[9] dark:bg-mediumBlue dark:text-gray-300 bg-white transition-all duration-300 ease text-gray-800 bg rounded-lg px-4 py-2 shadow-md dark:shadow-black shadow-lightGray`}
         >
           <ul className='flex items-center space-x-2'>

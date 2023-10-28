@@ -22,8 +22,8 @@ const Chat = () => {
   const filteredChats = data.filter((chat) => chat.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <CardContainer className='flex p-0 space-y-0'>
-      <div className='w-1/4 md:min-w-[300px] bg-lightBlue text-white border-r-gray-600  border-r-[1px]'>
+    <CardContainer className='flex p-0 space-y-0 '>
+      <div className='w-1/4 md:min-w-[300px] bg-lightBlue text-white border-r-gray-600 rounded-l-lg border-r-[1px]'>
         <div className='flex p-4 justify-center items-center w-full space-x-2 '>
           <div
             className={`min-w-[40px] relative hidden lg:flex h-10 w-10 items-center justify-center rounded-full dark:text-white ${
@@ -42,17 +42,24 @@ const Chat = () => {
             {filteredChats.length ? (
               <>
                 {filteredChats.map((chat) => (
-                  <div onClick={() => handleUserClick(chat)} className='p-2 flex items-center space-x-3 rounded mb-2'>
-                    <img height={40} width={40} className='rounded-full' src={chat.photo || undefined} />
-                    <p className='font-bold'>{chat.name}</p>
-                  </div>
+                  <>
+                    <div
+                      key={chat.name}
+                      onClick={() => handleUserClick(chat)}
+                      className='p-2 flex items-center space-x-3 rounded my-1 cursor-pointer hover:bg-darkBlue'
+                    >
+                      <img height={40} width={40} className='rounded-full' src={chat.photo || undefined} />
+                      <p className='font-bold'>{chat.name}</p>
+                    </div>
+                    <Separator />
+                  </>
                 ))}
               </>
             ) : (
               <div>Chat not found</div>
             )}
           </div>
-          <h2 className=' font-semibold'>Contacts</h2>
+          <h2 className='!text-violet-500 text-lg font-semibold mt-4'>Contacts</h2>
           <div className='mt-4'>
             <div className='p-2 bg-gray-800 rounded mb-2'>
               <p className='font-bold'>Felicia Rower</p>
@@ -62,8 +69,8 @@ const Chat = () => {
           </div>
         </div>
       </div>
-      <div className='w-3/4 bg-darkBlue'>
-        <div className=' text-white p-4 bg-lightBlue border-b-gray-600  border-b-[1px]'>
+      <div className='w-3/4 bg-darkBlue '>
+        <div className=' text-white p-4 bg-lightBlue border-b-gray-600 rounded-tr-lg border-b-[1px]'>
           <div className='flex items-center space-x-4 '>
             <div className='min-w-[40px] relative hidden lg:flex h-10 w-10 items-center justify-center rounded-full dark:text-white'>
               <img height={40} width={40} className='rounded-full' src={activeChat.photo || undefined} />

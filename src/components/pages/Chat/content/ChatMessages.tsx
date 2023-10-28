@@ -1,3 +1,4 @@
+import { Input } from '@/UI/Input';
 import defaultUser from '@/assets/default-user.webp';
 import { Message } from '@/data/pages/chat/chatData';
 import { CustomUser } from '@/store/CurrentUser';
@@ -27,7 +28,7 @@ const ChatMessages = ({ messagesArray, currentUser }: Messages) => {
 
   return (
     <>
-      <div className='space-y-2 w-full'>
+      <div className='space-y-2 mt-4 w-full relative'>
         {messages.map((message, index) =>
           message.sender === currentUser?.displayName ? (
             <div key={index} className='-ml-2 w-full justify-end flex'>
@@ -56,9 +57,9 @@ const ChatMessages = ({ messagesArray, currentUser }: Messages) => {
             </div>
           )
         )}
-      </div>
-      <div className='mt-4 p-2 bg-gray-300 rounded-b'>
-        <input className='w-full p-2' placeholder='Type your message or use speech to text' />
+        <div className='pt-6 pb-2 rounded-br  px-4 w-full'>
+          <Input className='w-full bottom-2 ' placeholder='Type your message or use speech to text' />
+        </div>
       </div>
     </>
   );

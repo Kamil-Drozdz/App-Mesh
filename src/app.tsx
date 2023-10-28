@@ -1,10 +1,11 @@
 import { ProtectedComponent } from './common/ProtectedComponent';
 import { BasicRoutes, SubRoutes } from './lib/enums/routes';
-import { FULL_PATHS } from './lib/routeMapping';
+import { FULL_PATHS, publicPaths } from './lib/routeMapping';
 import React, { Suspense, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageContentSkeleton from './UI/skeleton/PageContentSkeleton';
 import useCurrentUser from './store/CurrentUser';
 
 const App = () => {
@@ -24,13 +25,19 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<PageContentSkeleton />}>
         <Routes>
-          {FULL_PATHS.map(({ path, component, isSecured }, index) => (
+          {FULL_PATHS.map(({ path, component }, index) => (
             <Route
               key={index}
               path={path}
-              element={isSecured ? <ProtectedComponent component={component} /> : React.createElement(component)}
+              element={
+                publicPaths.includes(path) ? (
+                  React.createElement(component)
+                ) : (
+                  <ProtectedComponent component={component} />
+                )
+              }
             />
           ))}
         </Routes>

@@ -2,11 +2,9 @@ import { BasicRoutes, SubRoutes } from './enums/routes';
 import NotFound from '@/common/NotFound';
 import Unauthorized from '@/common/Unauthorized';
 import EmailContent from '@/components/pages/Email/EmailContent';
-import InvoicePreviewContent from '@/components/pages/Invoice/path/preview/InvoicePreviewContent';
 import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/ForgotPasswordContent';
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
-import UserContent from '@/components/pages/User/UserContent';
 import { lazy } from 'react';
 
 const CalendarContent = lazy(() => import('@/components/pages/Calendar/CalendarContent'));
@@ -18,12 +16,20 @@ const WishlistContent = lazy(() => import('@/components/pages/eCommerce/Wish Lis
 const DetailsContent = lazy(() => import('@/components/pages/eCommerce/Details/DetailsContent'));
 const CheckoutContent = lazy(() => import('@/components/pages/eCommerce/Checkout/CheckoutContent'));
 const ShopContent = lazy(() => import('@/components/pages/eCommerce/Shop/ShopContent'));
+const UserContent = lazy(() => import('@/components/pages/User/UserContent'));
+const InvoicePreviewContent = lazy(() => import('@/components/pages/Invoice/path/preview/InvoicePreviewContent'));
 
 interface RouteConfig {
   subPath: string;
   component: React.ComponentType;
-  isSecured?: boolean;
 }
+
+export const publicPaths: string[] = [
+  BasicRoutes.LOGIN,
+  BasicRoutes.REGISTER,
+  BasicRoutes.FORGOT,
+  BasicRoutes.UNAUTHORIZED,
+];
 
 const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
   [BasicRoutes.UNAUTHORIZED]: [{ subPath: '', component: Unauthorized }],
@@ -33,53 +39,46 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
     {
       subPath: SubRoutes.ANALYTICS,
       component: AnalyticsContent,
-      isSecured: true,
     },
     {
       subPath: SubRoutes.ECOMMERCE,
       component: EcommerceContent,
-      isSecured: true,
     },
   ],
-  [BasicRoutes.EMAIL]: [{ subPath: '', component: EmailContent, isSecured: true }],
-  [BasicRoutes.CHAT]: [{ subPath: '', component: ChatContent, isSecured: true }],
-  [BasicRoutes.TODO]: [{ subPath: SubRoutes.ALL, component: TodoContent, isSecured: true }],
+  [BasicRoutes.EMAIL]: [{ subPath: '', component: EmailContent }],
+  [BasicRoutes.CHAT]: [{ subPath: '', component: ChatContent }],
+  [BasicRoutes.TODO]: [{ subPath: SubRoutes.ALL, component: TodoContent }],
   [BasicRoutes.HOME]: [],
-  [BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent, isSecured: true }],
+  [BasicRoutes.CALENDAR]: [{ subPath: '', component: CalendarContent }],
   [BasicRoutes.PAGES]: [],
   [BasicRoutes.INVOICE]: [
     {
       subPath: SubRoutes.PREVIEW,
       component: InvoicePreviewContent,
-      isSecured: true,
     },
   ],
   [BasicRoutes.ECOMMERCE]: [
-    { subPath: SubRoutes.SHOP, component: ShopContent, isSecured: true },
+    { subPath: SubRoutes.SHOP, component: ShopContent },
     {
       subPath: `${SubRoutes.DETAILS}/:productID`,
       component: DetailsContent,
-      isSecured: true,
     },
     {
       subPath: `${SubRoutes.DETAILS}`,
       component: DetailsContent,
-      isSecured: true,
     },
     {
       subPath: `${SubRoutes.WISH_LIST}`,
       component: WishlistContent,
-      isSecured: true,
     },
     {
       subPath: `${SubRoutes.CHECKOUT}`,
       component: CheckoutContent,
-      isSecured: true,
     },
   ],
   [BasicRoutes.FORGOT]: [{ subPath: '', component: ForgotPasswordContent }],
   [BasicRoutes.REGISTER]: [{ subPath: '', component: RegisterContent }],
-  [BasicRoutes.PROFILE]: [{ subPath: SubRoutes.LIST, component: UserContent, isSecured: true }],
+  [BasicRoutes.PROFILE]: [{ subPath: SubRoutes.LIST, component: UserContent }],
   [BasicRoutes.TYPOGRAPHY]: [],
   [BasicRoutes.COLORS]: [],
   [BasicRoutes.FEATHER]: [],
@@ -93,10 +92,9 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
   [BasicRoutes.MENU]: [],
 };
 export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, routes]) => {
-  return routes.map(({ subPath, component, isSecured }) => ({
+  return routes.map(({ subPath, component }) => ({
     path: `${basicRoute}${subPath}`,
     component,
-    isSecured,
   }));
 });
 

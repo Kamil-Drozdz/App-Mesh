@@ -2,12 +2,14 @@ import SideNavbarItem from '../../common/SideNavbarItem';
 import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
+import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
 import { useState } from 'react';
 import { FaRegCircle, FaRegDotCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const SideNavbar = () => {
+  const { isFullScreen } = useFullScreen();
   const { isMenuOpen, toggleMenu } = useMenu();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
@@ -25,9 +27,9 @@ const SideNavbar = () => {
   return (
     <>
       <div
-        className={`dark:bg-darkBlue bg-lightWhite w-72 ${
-          isMenuOpen ? 'left-0' : '-left-72 lg:left-0'
-        } top-0 z-[11] right-0 fixed h-screen`}
+        className={`dark:bg-darkBlue bg-lightWhite w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} ${
+          isFullScreen ? '!-left-72' : 'left-0 '
+        } top-0 z-[11] right-0 transition-all duration-300 ease-out fixed h-screen`}
       >
         <nav
           onMouseEnter={() => {
@@ -40,8 +42,8 @@ const SideNavbar = () => {
               setMenuCollapsed(true);
             }
           }}
-          className={`${menuCollapsed ? 'w-20' : 'w-72'} ${
-            isMenuOpen ? 'left-0' : '-left-72 lg:left-0'
+          className={`${
+            menuCollapsed ? 'w-20' : 'w-72'
           } dark:bg-mediumBlue bg-white transition-all duration-300 ease-out fixed text-gray-500 dark:text-lightGray overflow-y-auto h-full`}
         >
           <ul className='my-2'>

@@ -14,8 +14,8 @@ const CheckoutAdressOption = ({ formData, setActiveStep, errors }) => {
         </div>
       </div>
       <Button
+        disabled={!!Object.keys(errors).length}
         onClick={() => setActiveStep('Payment')}
-        disabled={!Object.keys(errors).length}
         className='!bg-violet-500 disabled:opacity-20 hover:!bg-violet-400 !text-white space-x-2 w-full'
       >
         Deliver to this Adress
