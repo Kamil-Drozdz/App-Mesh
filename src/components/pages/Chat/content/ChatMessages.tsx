@@ -3,7 +3,7 @@ import { ChatData } from '@/data/pages/chat/chatData';
 import { CustomUser } from '@/store/CurrentUser';
 import { useState, useEffect, useRef } from 'react';
 import ChatInput from './ChatInput';
-import beginChat from '@/assets/Begin-chat.svg';
+import beginChat from '@/assets/begin-chat.svg';
 
 interface Messages {
   activeChat: ChatData;
