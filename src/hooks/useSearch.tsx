@@ -16,7 +16,6 @@ const useSearch = (isIcon = true, ...props) => {
     asyncEffect();
   }, []);
 
-  console.log(isFocused);
   //TO CHECK potential rerendering problem
   const SearchInput = ({ className }: { className?: string }) => (
     <div className={clsx('relative m-4', className)}>

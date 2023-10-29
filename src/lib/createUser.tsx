@@ -2,7 +2,7 @@ import { auth, db } from '@/../firebaseConfig';
 import { createUserWithEmailAndPassword, updateProfile, User } from 'firebase/auth';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
-export const createUser = async (formData) => {
+export const createUser = async(formData)=> {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
     const docRef = doc(db, 'users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
@@ -16,7 +16,7 @@ export const createUser = async (formData) => {
         emailVerified: 'inactive',
       }),
     });
-    const user = userCredential.user as User;
+    const user = userCredential.user as User; 
     const profile = {
       displayName: formData.displayName,
       role: formData.role,

@@ -1,6 +1,10 @@
-import { z } from 'zod';
+import { z, ZodType } from 'zod';
 
-export const validateField = (schema, value, setError) => {
+export const validateField = <T>(
+  schema: ZodType<T>,
+  value: T,
+  setError: (errors) => void
+): boolean => { 
   try {
     schema.parse(value);
     setError({});
@@ -16,5 +20,6 @@ export const validateField = (schema, value, setError) => {
       setError(fieldErrors);
       return false;
     }
+    throw error;
   }
 };

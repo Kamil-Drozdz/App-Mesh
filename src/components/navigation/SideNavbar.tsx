@@ -55,7 +55,7 @@ const SideNavbar = () => {
                     <span className='text-2xl font-semibold'>Admin</span>
                   </Link>
 
-                  <button onClick={() => setIsCollapsed((prev) => !prev)}>
+                  <button aria-label='collaps menu button' onClick={() => setIsCollapsed((prev) => !prev)}>
                     {isCollapsed ? <FaRegCircle /> : <FaRegDotCircle />}
                   </button>
                 </>

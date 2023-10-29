@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+	
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/</loc>
+	<lastmod>2023-10-29T12:15:27+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/email/</loc>
+	<lastmod>2023-10-29T12:15:27+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/chat/</loc>
+	<lastmod>2023-10-29T12:15:29+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/todo/all/</loc>
+	<lastmod>2023-10-29T12:15:29+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/calendar/</loc>
+	<lastmod>2023-10-29T12:15:30+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/profile/</loc>
+	<lastmod>2023-10-29T12:15:30+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/inbox/</loc>
+	<lastmod>2023-10-29T12:15:30+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/forgot-password/</loc>
+	<lastmod>2023-10-29T12:15:31+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/faq/</loc>
+	<lastmod>2023-10-29T12:15:31+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/terms/</loc>
+	<lastmod>2023-10-29T12:15:32+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/login/</loc>
+	<lastmod>2023-10-29T12:15:32+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/pricing/</loc>
+	<lastmod>2023-10-29T12:15:32+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://admin-dashboard-two-gray.vercel.app/register'/</loc>
+ <lastmod>2023-10-29T12:15:32+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+</urlset>

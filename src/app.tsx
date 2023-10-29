@@ -22,7 +22,7 @@ const App = () => {
     }
   }, []);
 
-  return (
+  return ( 
     <>
       <ToastContainer />
       <Suspense fallback={<PageContentSkeleton />}>

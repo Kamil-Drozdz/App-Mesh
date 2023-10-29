@@ -27,7 +27,7 @@ const PageContainer = ({ children }: PropsWithChildren) => {
           </div>
         )}
       </Transition>
-      <Button onClick={toggleFullScreen} className='z-[100] fixed right-8 bottom-8'>
+      <Button onClick={toggleFullScreen} className='z-[100] md:block hidden fixed right-8 bottom-8'>
         {isFullScreen ? 'Back to dashboard Mode' : ' Try Fullscreen'}
       </Button>
     </main>

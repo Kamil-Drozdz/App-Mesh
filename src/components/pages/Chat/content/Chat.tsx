@@ -3,7 +3,7 @@ import { Separator } from '@/UI/Separator';
 import defaultUser from '@/assets/default-user.webp';
 import CardContainer from '@/common/CardContainer';
 import StatusBadge from '@/common/StatusBadge';
-import { generateChatData } from '@/data/pages/chat/chatData';
+import { generateChatData, generateContact } from '@/data/pages/chat/chatData';
 import useSearch from '@/hooks/useSearch';
 import { UserStatuses } from '@/lib/enums/user';
 import { generateData } from '@/lib/generateData';
@@ -12,14 +12,18 @@ import { useMemo, useState } from 'react';
 
 const Chat = () => {
   const { currentUser } = useCurrentUser();
-  const data = useMemo(() => generateData(5, () => generateChatData(currentUser?.displayName)), [currentUser]);
-  const [activeChat, setActiveChat] = useState(data[0]);
+  const chatsData = useMemo(() => generateData(2, () => generateChatData(currentUser?.displayName)), [currentUser]);
+  const [chats, setChats] = useState(chatsData);
+  const contacts = useMemo(() => generateData(5, generateContact), []);
+  const [activeChat, setActiveChat] = useState(chatsData[0]);
   const { search, SearchInput } = useSearch();
 
-  function handleUserClick(chat) {
-    setActiveChat(chat);
+  function handleUserClick(selectedUser) {
+    setActiveChat(selectedUser);
   }
-  const filteredChats = data.filter((chat) => chat.name.toLowerCase().includes(search.toLowerCase()));
+
+  const filteredChats = chats.filter((chat) => chat.name.toLowerCase().includes(search.toLowerCase()));
+  const filteredContact = contacts.filter((contact) => contact.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <CardContainer className='flex p-0 space-y-0 '>
@@ -27,7 +31,7 @@ const Chat = () => {
         <div className='flex p-4 justify-center items-center w-full space-x-2 '>
           <div
             className={`min-w-[40px] relative hidden lg:flex h-10 w-10 items-center justify-center rounded-full dark:text-white ${
-              currentUser?.photoURL || 'bg-lightBlue'
+              currentUser?.photoURL || 'bg-darkBlue'
             }`}
           >
             <img height={40} width={40} className='rounded-full' src={currentUser?.photoURL || defaultUser} />
@@ -36,17 +40,19 @@ const Chat = () => {
           <SearchInput className='w-full m-0 ' />
         </div>
         <Separator />
-        <div className='px-4 '>
-          <h2 className='!text-violet-500 text-lg font-semibold'>Chats</h2>
-          <div className='mt-4'>
+        <div className='px-4'>
+          <h2 className='!text-violet-500 text-lg font-semibold my-3'>Chats</h2>
+          <div className=' max-h-[300px] overflow-y-auto'>
             {filteredChats.length ? (
               <>
                 {filteredChats.map((chat) => (
                   <>
                     <div
-                      key={chat.name}
+                      key={chat.id}
                       onClick={() => handleUserClick(chat)}
-                      className='p-2 flex items-center space-x-3 rounded my-1 cursor-pointer hover:bg-darkBlue'
+                      className={`p-2 flex items-center space-x-3 rounded ${
+                        chat.id === activeChat.id && 'bg-gradient-to-r from-[#7367f0] to-[#9e95f5]'
+                      } cursor-pointer hover:bg-darkBlue`}
                     >
                       <img height={40} width={40} className='rounded-full' src={chat.photo || undefined} />
                       <p className='font-bold'>{chat.name}</p>
@@ -59,13 +65,27 @@ const Chat = () => {
               <div>Chat not found</div>
             )}
           </div>
-          <h2 className='!text-violet-500 text-lg font-semibold mt-4'>Contacts</h2>
-          <div className='mt-4'>
-            <div className='p-2 bg-gray-800 rounded mb-2'>
-              <p className='font-bold'>Felicia Rower</p>
-              <p>Cake pie jelly beans...</p>
-            </div>
-            {/* ... add other chats here */}
+          <h2 className='!text-violet-500 text-lg font-semibold my-3'>Contacts</h2>
+          <div className='mt-4 max-h-[300px] overflow-y-auto'>
+            {filteredContact.length ? (
+              <>
+                {filteredContact.map((contact) => (
+                  <>
+                    <div
+                      key={contact.id}
+                      onClick={() => handleUserClick(contact)}
+                      className='p-2 flex items-center space-x-3 rounded cursor-pointer hover:bg-darkBlue'
+                    >
+                      <img height={40} width={40} className='rounded-full' src={contact.photo || undefined} />
+                      <p className='font-bold'>{contact.name}</p>
+                    </div>
+                    <Separator />
+                  </>
+                ))}
+              </>
+            ) : (
+              <div>Contact not found</div>
+            )}
           </div>
         </div>
       </div>
@@ -79,7 +99,7 @@ const Chat = () => {
             <h1 className='font-bold'>{activeChat.name}</h1>
           </div>
         </div>
-        <ChatMessages currentUser={currentUser} messagesArray={activeChat.messages} />
+        <ChatMessages currentUser={currentUser} activeChat={activeChat} setChats={setChats} chats={chats} />
       </div>
     </CardContainer>
   );

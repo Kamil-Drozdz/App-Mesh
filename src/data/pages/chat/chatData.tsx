@@ -1,27 +1,36 @@
 import { UserStatuses } from '@/lib/enums/user';
 import { faker } from '@faker-js/faker';
+import { v4 as uuidv4 } from 'uuid';
 
-export type ChatData = {
+export type BaseUser = {
+  id: string;
   photo: string;
   name: string;
   status: UserStatuses;
+};
+
+export type ChatData = BaseUser & {
   messages: Message[];
 };
+
+export type Contact = BaseUser & {
+  messages: Message[];
+};
+
 export type Message = {
   sender: string | undefined;
-  content: string;
-  timestamp: Date;
+  content: string | File;
+  timestamp: Date | string;
   photo: string;
 };
 
+const userStatusesArray = Object.values(UserStatuses);
+
 export const generateChatData = (currentUserDisplayName: string | null | undefined) => {
-  const userStatusesArray = Object.values(UserStatuses);
-  const randomStatus = userStatusesArray[Math.floor(Math.random() * userStatusesArray.length)];
   const name = faker.person.fullName();
   const photo = faker.image.avatarLegacy();
-
   const messages: Message[] = [];
-
+  const randomStatus = userStatusesArray[Math.floor(Math.random() * userStatusesArray.length)];
   for (let i = 0; i < 10; i++) {
     messages.push({
       photo: photo,
@@ -32,6 +41,7 @@ export const generateChatData = (currentUserDisplayName: string | null | undefin
   }
 
   const dataChat: ChatData = {
+    id: uuidv4(),
     photo: photo,
     name: name,
     status: randomStatus,
@@ -39,4 +49,15 @@ export const generateChatData = (currentUserDisplayName: string | null | undefin
   };
 
   return dataChat;
+};
+
+export const generateContact = (): Contact => {
+  const randomStatus = userStatusesArray[Math.floor(Math.random() * userStatusesArray.length)];
+  return {
+    id: uuidv4(),
+    name: faker.person.fullName(),
+    photo: faker.image.avatarLegacy(),
+    status: randomStatus,
+    messages: [],
+  };
 };

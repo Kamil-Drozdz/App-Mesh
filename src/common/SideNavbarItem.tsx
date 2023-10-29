@@ -64,7 +64,7 @@ const SideNavbarItem = ({
           </div>
         </Link>
       )}
-      <div className={` overflow-hidden transition-all duration-300 ease ${open ? 'max-h-96' : 'max-h-0'}`}>
+      <div className={`overflow-hidden transition-all duration-300 ease ${open ? 'max-h-96' : 'max-h-0'}`}>
         {open
           ? dropdown?.map((item, index) => (
               <Link
@@ -78,7 +78,6 @@ const SideNavbarItem = ({
                   <LiaDotCircle /> <span>{item.name}</span>
                 </div>
               </Link>
-              /*eslint no-mixed-spaces-and-tabs: ["error", "smart-tabs"]*/
             ))
           : null}
       </div>
