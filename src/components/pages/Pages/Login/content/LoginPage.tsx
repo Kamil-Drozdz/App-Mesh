@@ -69,7 +69,7 @@ const LoginPage = () => {
         <div className='w-full space-y-4 px-4'>
           <h1 className='text-2xl'>Welcome to Dashboard! 👋</h1>
           <h2 className='text-xl font-thin text-gray-400'>Please sign-in to your account and start the adventure👋</h2>
-          <div></div>
+          <div>
             <InputWithLabel
               label='Email'
               id='email'
