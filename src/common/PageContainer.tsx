@@ -10,8 +10,8 @@ const PageContainer = ({ children }: PropsWithChildren) => {
 
   return (
     <main
-      className={` px-6  dark:bg-darkBlue dark:text-gray-300 bg-lightWhite transition-all duration-300 ease text-gray-800 min-h-screen space-y-6 h-full  ${
-        isFullScreen ? 'ml-0 max-w-full pt-2 pb-8' : 'lg:ml-72 py-8 max-w-[1756px]'
+      className={` ease  h-full min-h-screen space-y-6 bg-lightWhite px-6 text-gray-800 transition-all duration-300 dark:bg-darkBlue dark:text-gray-300  ${
+        isFullScreen ? 'ml-0 max-w-full pt-2 pb-8' : 'max-w-[1756px] py-8 lg:ml-72'
       }`}
     >
       <SideNavbar />
@@ -19,7 +19,7 @@ const PageContainer = ({ children }: PropsWithChildren) => {
       <Transition in={true} timeout={100} appear={true}>
         {(state) => (
           <div
-            className={`space-y-6 transition-all ease-in-out duration-500 ${
+            className={`space-y-6 transition-all duration-500 ease-in-out ${
               state === 'entered' ? 'opacity-100' : 'translate-x-full opacity-0'
             }`}
           >
@@ -27,7 +27,7 @@ const PageContainer = ({ children }: PropsWithChildren) => {
           </div>
         )}
       </Transition>
-      <Button onClick={toggleFullScreen} className='z-[100] md:block hidden fixed right-8 bottom-8'>
+      <Button onClick={toggleFullScreen} className='fixed right-8 bottom-8 z-[100] hidden md:block'>
         {isFullScreen ? 'Back to dashboard Mode' : ' Try Fullscreen'}
       </Button>
     </main>

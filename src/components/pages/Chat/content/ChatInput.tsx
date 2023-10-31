@@ -1,11 +1,11 @@
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
+import defaultUser from '@/assets/default-user.webp';
 import { IconSize } from '@/lib/enums/iconSize';
 import { handleEnterDown } from '@/lib/handleEnterDown';
 import { useState } from 'react';
-import defaultUser from '@/assets/default-user.webp';
-import { BiImageAdd, BiMicrophone } from 'react-icons/bi';
 import { useTranslation } from 'react-i18next';
+import { BiImageAdd, BiMicrophone } from 'react-icons/bi';
 
 const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) => {
   const { i18n } = useTranslation();
@@ -58,7 +58,7 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
     if (!chats.find((chat) => chat.id === activeChat.id)) {
       setChats((prevChats) => [activeChat, ...prevChats]);
     }
-    
+
     if (newMessage) {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
     }
@@ -66,25 +66,25 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
   }
 
   return (
-    <div className='pt-6 pb-2 rounded-br relative px-4 w-full flex space-x-2'>
+    <div className='relative flex w-full space-x-2 rounded-br px-2 pt-6 pb-2 md:px-4'>
       <Button variant='empty' onClick={handleVoiceInput} className='absolute left-6 px-2'>
         <BiMicrophone className={isSpeaking ? 'animate-pulse text-red-500' : ''} size={IconSize.basic} />
       </Button>
       <Input
-        className='w-full bottom-2 pl-10'
+        className='bottom-2 w-full pl-10'
         value={typeof message === 'string' ? message : ''}
         onKeyDown={(e) => handleEnterDown(e, () => handleSendMessage(currentUser?.displayName, message))}
         onChange={(e) => setMessage(e.target.value)}
         placeholder='Type your message or use speech to text'
       />
-      <label className='absolute right-24 top-1/2 cursor-pointer flex' htmlFor='imageInput'>
+      <label className='absolute right-24 top-1/2 flex cursor-pointer' htmlFor='imageInput'>
         <BiImageAdd size={IconSize.basic} />
-        {message instanceof File && <span className='text-xs ml-2'>{message.name}</span>}
+        {message instanceof File && <span className='ml-2 text-xs'>{message.name}</span>}
       </label>
       <Input type='file' accept='image/*' onChange={handleImageInput} className='hidden' id='imageInput' />
       <Button
         onClick={() => handleSendMessage(currentUser?.displayName, message)}
-        className='!bg-violet-500 hover:!bg-violet-400 !text-white'
+        className='!bg-violet-500 !text-white hover:!bg-violet-400'
       >
         Send
       </Button>

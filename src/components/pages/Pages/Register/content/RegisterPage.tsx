@@ -52,14 +52,14 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className='bg-darkBlue min-h-screen h-full w-full flex flex-col md:flex-row '>
-      <div className='basis-2/3 px-10 py-5 flex items-center justify-center'>
+    <div className='flex h-full min-h-screen w-full flex-col bg-darkBlue md:flex-row '>
+      <div className='flex basis-2/3 items-center justify-center px-10 py-5'>
         <img height={800} width={800} loading='eager' alt='Registration Screen Illustration' src={registerPage} />
       </div>
-      <div className='basis-1/3 bg-mediumBlue flex flex-col justify-center items-center p-10'>
-        <div className='px-4 space-y-4 w-full'>
+      <div className='flex basis-1/3 flex-col items-center justify-center bg-mediumBlue p-10'>
+        <div className='w-full space-y-4 px-4'>
           <h1 className='text-2xl'>Adventure starts here 🚀 👋</h1>
-          <h2 className='text-xl text-gray-400 font-thin'>Make your app management easy and fun!</h2>
+          <h2 className='text-xl font-thin text-gray-400'>Make your app management easy and fun!</h2>
           <div>
             <InputWithLabel
               label='Username'
@@ -68,7 +68,7 @@ const RegisterPage = () => {
               value={formData.displayName}
               onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
             />
-            {errors.displayName && <p className='text-red-500 text-sm'>{errors.displayName}</p>}
+            {errors.displayName && <p className='text-sm text-red-500'>{errors.displayName}</p>}
           </div>
           <div>
             <InputWithLabel
@@ -78,7 +78,7 @@ const RegisterPage = () => {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
-            {errors.email && <p className='text-red-500 text-sm'>{errors.email}</p>}
+            {errors.email && <p className='text-sm text-red-500'>{errors.email}</p>}
           </div>
           <div>
             <InputWithLabel
@@ -88,14 +88,14 @@ const RegisterPage = () => {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
-            {errors.password && <p className='text-red-500 text-sm'>{errors.password}</p>}
+            {errors.password && <p className='text-sm text-red-500'>{errors.password}</p>}
           </div>
-          <div className='w-full flex justify-between items-center'>
+          <div className='flex w-full items-center justify-between'>
             <div className='flex flex-col  items-center'>
-              <div className='flex space-x-2 items-center'>
+              <div className='flex items-center space-x-2'>
                 <Input
                   id='terms'
-                  className={`w-4 h-4 `}
+                  className={`h-4 w-4 `}
                   defaultChecked={false}
                   type='checkbox'
                   checked={formData.terms}
@@ -103,12 +103,12 @@ const RegisterPage = () => {
                 />
                 <label htmlFor='terms'>
                   I agree to
-                  <Link to={'/terms'} className='text-violet-500 ml-1'>
+                  <Link to={'/terms'} className='ml-1 text-violet-500'>
                     privacy policy & terms
                   </Link>
                 </label>
               </div>
-              {errors.terms && <p className='text-red-500 text-sm w-full'>{errors.terms}</p>}
+              {errors.terms && <p className='w-full text-sm text-red-500'>{errors.terms}</p>}
             </div>
           </div>
           <div className='text-center'>
@@ -117,7 +117,7 @@ const RegisterPage = () => {
               Sign in instead
             </Link>
           </div>
-          <Button className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white w-full' onClick={handleLogin}>
+          <Button className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400' onClick={handleLogin}>
             Register
           </Button>
           <SocialLoginButtons setFormData={setFormData} />

@@ -61,15 +61,15 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='bg-darkBlue min-h-screen h-full w-full flex flex-col md:flex-row '>
-      <div className='basis-2/3 px-10 py-5 flex items-center justify-center'>
+    <div className='flex h-full min-h-screen w-full flex-col bg-darkBlue md:flex-row '>
+      <div className='flex basis-2/3 items-center justify-center px-10 py-5'>
         <img height={800} width={800} loading='eager' alt='Login Screen Illustration' src={loginPage} />
       </div>
-      <div className='basis-1/3 bg-mediumBlue flex flex-col justify-center items-center p-10'>
-        <div className='px-4 space-y-4 w-full'>
+      <div className='flex basis-1/3 flex-col items-center justify-center bg-mediumBlue p-10'>
+        <div className='w-full space-y-4 px-4'>
           <h1 className='text-2xl'>Welcome to Dashboard! 👋</h1>
-          <h2 className='text-xl text-gray-400 font-thin'>Please sign-in to your account and start the adventure👋</h2>
-          <div>
+          <h2 className='text-xl font-thin text-gray-400'>Please sign-in to your account and start the adventure👋</h2>
+          <div></div>
             <InputWithLabel
               label='Email'
               id='email'
@@ -77,7 +77,7 @@ const LoginPage = () => {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
-            {errors.email && <p className='text-red-500 text-sm'>{errors.email}</p>}
+            {errors.email && <p className='text-sm text-red-500'>{errors.email}</p>}
           </div>
           <div>
             <InputWithLabel
@@ -87,13 +87,13 @@ const LoginPage = () => {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
-            {errors.password && <p className='text-red-500 text-sm'>{errors.pasword}</p>}
+            {errors.password && <p className='text-sm text-red-500'>{errors.pasword}</p>}
           </div>
-          <div className='w-full flex justify-between items-center'>
-            <div className='flex space-x-2 items-center'>
+          <div className='flex w-full items-center justify-between'>
+            <div className='flex items-center space-x-2'>
               <Input
                 id='persist'
-                className={`w-4 h-4 `}
+                className={`h-4 w-4 `}
                 defaultChecked={false}
                 type='checkbox'
                 checked={formData.persist}
@@ -105,7 +105,7 @@ const LoginPage = () => {
               Forgot Password?
             </Link>
           </div>
-          <Button className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white w-full' onClick={handleLogin}>
+          <Button className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400' onClick={handleLogin}>
             Log In
           </Button>
           <div className='text-center'>

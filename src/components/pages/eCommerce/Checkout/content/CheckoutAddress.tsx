@@ -29,12 +29,12 @@ const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
     setFormData({ ...formData, [field]: e.target.value });
   };
   return (
-    <div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg space-y-3'>
+    <div className='relative space-y-3 rounded-lg bg-white p-4 dark:bg-mediumBlue'>
       <h2 className='text-xl font-semibold'>Add New Address</h2>
       <p className='text-gray-500'>Be sure to check "Deliver to this address" when you have finished</p>
       <div className='flex w-full flex-wrap gap-4'>
         {formFields.map((fieldData) => (
-          <div className='basis-1/2 max-w-[45%]' key={fieldData.field}>
+          <div className='max-w-[45%] basis-1/2' key={fieldData.field}>
             <InputWithLabel
               id={fieldData.field}
               value={formData[fieldData.field]}
@@ -42,11 +42,11 @@ const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
               label={fieldData.label}
               type={fieldData.type}
             />
-            {errors[fieldData.field] && <p className='text-red-500 text-sm'>{errors[fieldData.field]}</p>}
+            {errors[fieldData.field] && <p className='text-sm text-red-500'>{errors[fieldData.field]}</p>}
           </div>
         ))}
       </div>
-      <Button className='!bg-violet-500 hover:!bg-violet-400 !text-white' onClick={handleCheckoutAdress}>
+      <Button className='!bg-violet-500 !text-white hover:!bg-violet-400' onClick={handleCheckoutAdress}>
         Save and Deliver here
       </Button>
     </div>

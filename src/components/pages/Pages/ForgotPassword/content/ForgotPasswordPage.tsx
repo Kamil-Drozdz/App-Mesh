@@ -33,8 +33,8 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <div className='bg-darkBlue min-h-screen h-full w-full flex flex-col md:flex-row '>
-      <div className='basis-2/3 px-10 py-5 flex items-center justify-center'>
+    <div className='flex h-full min-h-screen w-full flex-col bg-darkBlue md:flex-row '>
+      <div className='flex basis-2/3 items-center justify-center px-10 py-5'>
         <img
           height={800}
           width={800}
@@ -43,10 +43,10 @@ const ForgotPasswordPage = () => {
           src={forgotPasswordPage}
         />
       </div>
-      <div className='basis-1/3 bg-mediumBlue flex flex-col justify-center items-center p-10'>
-        <div className='px-4 space-y-4 w-full'>
+      <div className='flex basis-1/3 flex-col items-center justify-center bg-mediumBlue p-10'>
+        <div className='w-full space-y-4 px-4'>
           <h1 className='text-2xl'>Forgot Password? 🔒</h1>
-          <h2 className='text-xl text-gray-400 font-thin'>
+          <h2 className='text-xl font-thin text-gray-400'>
             Enter your email and we'll send you instructions to reset your password
           </h2>
           <div>
@@ -57,9 +57,9 @@ const ForgotPasswordPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && <p className='text-red-500 text-sm'>{errors.email}</p>}
+            {errors.email && <p className='text-sm text-red-500'>{errors.email}</p>}
           </div>
-          <Button className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white w-full' onClick={handleResetPassword}>
+          <Button className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400' onClick={handleResetPassword}>
             Send reset link
           </Button>
           <div className='w-full text-center'>

@@ -24,7 +24,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
       <div
         className={`fixed z-[51] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } space-y-4 text-gray-900 dark:text-white transition-transform duration-300 ease-in-out p-6 right-0 max-w-[24rem] h-full w-3/4 dark:bg-mediumBlue bg-white`}
+        } text-gray-900transition-transform right-0 h-full w-3/4 max-w-[24rem] space-y-4 bg-white p-6 duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
       >
         Add Event
         <InputWithLabel
@@ -35,11 +35,11 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
         <Select value={formData.label} onValueChange={(e) => setFormData({ ...formData, label: e as string })}>
-          <SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>
+          <SelectTrigger className='w-full whitespace-nowrap !border-gray-300 !border-opacity-25'>
             <SelectValue placeholder='choose Label' />
           </SelectTrigger>
-          <SelectContent className='border-gray-300 z-[52]'>
-            <SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
+          <SelectContent className='z-[52] border-gray-300'>
+            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
               {labels.slice(1).map((item, index) => (
                 <SelectItem value={item.name} key={index}>
                   <div className='flex items-center space-x-2'>
@@ -58,7 +58,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
               <Button
                 variant={'outline'}
                 className={clsx(
-                  'w-full pl-3 !bg-transparent !border-gray-300 !border-opacity-25 text-left font-normal',
+                  'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
                   !formData.start && 'text-muted-foreground'
                 )}
               >
@@ -67,7 +67,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
               </Button>
             </div>
           </PopoverTrigger>
-          <PopoverContent className='w-auto p-0 z-[52]' align='start'>
+          <PopoverContent className='z-[52] w-auto p-0' align='start'>
             <Calendar
               mode='single'
               initialFocus
@@ -84,7 +84,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
               <Button
                 variant={'outline'}
                 className={clsx(
-                  'w-full pl-3 !bg-transparent !border-gray-300 !border-opacity-25 text-left font-normal',
+                  'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
                   !formData.end && 'text-muted-foreground'
                 )}
               >
@@ -93,7 +93,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
               </Button>
             </div>
           </PopoverTrigger>
-          <PopoverContent className='w-auto p-0 z-[52]' align='start'>
+          <PopoverContent className='z-[52] w-auto p-0' align='start'>
             <Calendar
               mode='single'
               initialFocus
@@ -117,7 +117,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
           value={formData.location}
           onChange={(e) => setFormData({ ...formData, location: e.target.value })}
         />
-        <label htmlFor='message' className='block mb-2 text-sm font-medium '>
+        <label htmlFor='message' className='mb-2 block text-sm font-medium '>
           Your message
         </label>
         <textarea
@@ -125,17 +125,17 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
           rows={4}
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-          className='block p-2.5 w-full text-sm text-gray-900 rounded-lg border bg-transparent border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+          className='block w-full rounded-lg border border-gray-300 bg-transparent p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
           placeholder='Write your thoughts here...'
         ></textarea>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddEvent} className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white'>
+          <Button onClick={handleAddEvent} className='mb-4 !bg-violet-500 !text-white hover:bg-violet-400'>
             Add
           </Button>
           <Button variant='destructive'>Cancel</Button>
         </div>
       </div>
-      {isOpen && <div className='bg-black opacity-50 fixed inset-0 z-50' onClick={() => setIsOpen(false)}></div>}
+      {isOpen && <div className='fixed inset-0 z-50 bg-black opacity-50' onClick={() => setIsOpen(false)}></div>}
     </>
   );
 };

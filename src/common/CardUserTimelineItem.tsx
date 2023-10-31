@@ -3,15 +3,15 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/T
 
 function CardTimelineItem({ title, timestamp, content, images, icon, color }) {
   return (
-    <div className='relative pl-10 pb-4 border-l-[1px] dark:border-gray-600 border-gray-300 '>
+    <div className='relative border-l-[1px] border-gray-300 pl-10 pb-4 dark:border-gray-600 '>
       <DecorativeDot color={color} />
-      <div className='flex justify-between items-center !leading-none'>
+      <div className='flex items-center justify-between !leading-none'>
         <p className='dark:text-white'>{title}</p>
-        <p className='text-gray-400 text-sm !leading-none'>{timestamp}</p>
+        <p className='text-sm !leading-none text-gray-400'>{timestamp}</p>
       </div>
       <p className='my-1'>{content}</p>
       {icon && (
-        <div className='flex justify-start items-center space-x-2'>
+        <div className='flex items-center justify-start space-x-2'>
           {icon} <p>data.json</p>
         </div>
       )}
@@ -24,12 +24,12 @@ function CardTimelineItem({ title, timestamp, content, images, icon, color }) {
                   <img
                     width={32}
                     height={32}
-                    className='cursor-pointer object-contain rounded-full w-8 h-8 hover:scale-105 ring-2 ring-black hover:-translate-y-2 transition-all duration-200 ease'
+                    className='ease h-8 w-8 cursor-pointer rounded-full object-contain ring-2 ring-black transition-all duration-200 hover:-translate-y-2 hover:scale-105'
                     src={item.photo}
                     alt={item.name}
                   />
                 </TooltipTrigger>
-                <TooltipContent className='p-2 bg-black text-white' sideOffset={12} side='bottom'>
+                <TooltipContent className='bg-black p-2 text-white' sideOffset={12} side='bottom'>
                   <p>{item.name}</p>
                 </TooltipContent>
               </Tooltip>

@@ -7,12 +7,12 @@ function Skeleton({ SkeletonLength, className }: { className?: string; SkeletonL
         <div
           key={i}
           role='status'
-          className='animate-pulse m-4 p-2 bg-stone-900 rounded-lg flex justify-start items-start gap-2 flex-wrap'
+          className='m-4 flex animate-pulse flex-wrap items-start justify-start gap-2 rounded-lg bg-stone-900 p-2'
         >
-          <div className='flex items-center w-full'>
-            <div className='flex items-center justify-center w-full p-2 bg-gray-300 rounded dark:bg-gray-700'>
+          <div className='flex w-full items-center'>
+            <div className='flex w-full items-center justify-center rounded bg-gray-300 p-2 dark:bg-gray-700'>
               <svg
-                className='w-full aspect-video text-gray-200 dark:text-gray-600'
+                className='aspect-video w-full text-gray-200 dark:text-gray-600'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 fill='currentColor'
@@ -22,18 +22,18 @@ function Skeleton({ SkeletonLength, className }: { className?: string; SkeletonL
               </svg>
             </div>
           </div>
-          <div className='flex flex-col w-full'>
+          <div className='flex w-full flex-col'>
             <div className='w-full'>
-              <div className='h-2.5 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-1/3 mb-4'></div>
-              <div className='h-2.5 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-1/6 mb-4'></div>
-              <div className='h-2.5 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-full mb-4'></div>
-              <div className='h-2.5 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-24 mb-4'></div>
-              <div className='h-2.5 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-24 mb-4'></div>
+              <div className='mt-4 mb-4 h-2.5 w-1/3 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-2.5 w-1/6 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-2.5 w-full rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-2.5 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-2.5 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
             </div>
-            <div className='flex items-center w-full space-x-2'>
-              <div className='h-8 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-24 mb-4'></div>
-              <div className='h-8 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-24 mb-4'></div>
-              <div className='h-8 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700 w-8 mb-4'></div>
+            <div className='flex w-full items-center space-x-2'>
+              <div className='mt-4 mb-4 h-8 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-8 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-8 w-8 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
             </div>
           </div>
         </div>

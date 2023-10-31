@@ -9,7 +9,7 @@ const CardContainer = ({ children, className }: CardContainerProps) => {
   return (
     <section
       className={clsx(
-        'relative dark:bg-mediumBlue bg-white p-4 rounded-lg space-y-3 shadow-md dark:shadow-black shadow-lightGray',
+        'relative space-y-3 rounded-lg bg-white p-4 shadow-md shadow-lightGray dark:bg-mediumBlue dark:shadow-black',
         className
       )}
     >

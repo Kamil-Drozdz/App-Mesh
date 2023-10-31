@@ -9,14 +9,14 @@ const CardCompany = () => {
 
   return (
     <CardContainer className='max-h-[40vh] overflow-y-auto py-0 '>
-      <ul className='flex md:px-4 sticky top-0 dark:bg-mediumBlue bg-white md:p-4 pt-2 md:pt-0 text-[12px] justify-between md:justify-center md:text-base space-x-2 md:space-x-0'>
+      <ul className='sticky top-0 flex justify-between space-x-2 bg-white pt-2 text-[12px] dark:bg-mediumBlue md:justify-center md:space-x-0 md:p-4 md:px-4 md:pt-0 md:text-base'>
         {labels.map((label, index) => (
           <li className='basis-1/5 text-center ' key={index}>
             {label.toLocaleUpperCase()}
           </li>
         ))}
       </ul>
-      <ul className='flex flex-col text-center overflow-y-auto'>
+      <ul className='flex flex-col overflow-y-auto text-center'>
         {data.map((item, index) => (
           <li key={index}>
             <CardCompanyItem item={item} />

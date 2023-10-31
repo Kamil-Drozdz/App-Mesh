@@ -24,12 +24,12 @@ const CardChart = ({ className, title, data, icon, children, iconColor }: CardDa
   return (
     <CardContainer className={className}>
       {icon && (
-        <div className={`${iconColor} h-12 w-12 rounded-full bg-opacity-25 flex justify-center items-center `}>
+        <div className={`${iconColor} flex h-12 w-12 items-center justify-center rounded-full bg-opacity-25 `}>
           {icon}
         </div>
       )}
-      <div className='dark:text-white text-gray-500'>{title}</div>
-      <h4 className='dark:text-gray-200 text-2xl font-semibold'>{convert(totalValue(data.datasets[0].data))}</h4>
+      <div className='text-gray-500 dark:text-white'>{title}</div>
+      <h4 className='text-2xl font-semibold dark:text-gray-200'>{convert(totalValue(data.datasets[0].data))}</h4>
       {children}
     </CardContainer>
   );

@@ -10,24 +10,24 @@ const PreviewCard = () => {
   const tax = 23;
   const total = (subTotal * (1 + tax / 100)).toFixed(2);
   return (
-    <CardContainer className='print:border-none print:shadow-none print:rounded-none md:max-w-[75%] print:max-w-none print:space-y-3 space-y-8'>
-      <div className='flex flex-col md:flex-row print:flex-row space-y-4 md:space-y-0 justify-between mb-4'>
+    <CardContainer className='space-y-8 print:max-w-none print:space-y-3 print:rounded-none print:border-none print:shadow-none md:max-w-[75%]'>
+      <div className='mb-4 flex flex-col justify-between space-y-4 print:flex-row md:flex-row md:space-y-0'>
         <div className=' pr-8'>
-          <div className='text-xl font-bold mb-4'>Name company</div>
+          <div className='mb-4 text-xl font-bold'>Name company</div>
           <p>Office 149, 450 South Brand Brooklyn</p>
           <p>San Diego County, CA 91905, USA</p>
           <p>+1 (123) 456 7891, +44 (876) 543 2198</p>
         </div>
         <div>
-          <div className='text-2xl font-bold mb-4'>Invoice #342324</div>
+          <div className='mb-4 text-2xl font-bold'>Invoice #342324</div>
           <LabelRow label='Date Issued:' className='space-x-2' value='19 Oct 2019' />
           <LabelRow label='Due Date:' className='space-x-2' value='03 Nov 2019' />
         </div>
       </div>
       <Separator />
-      <div className='flex flex-col md:flex-row print:flex-row space-y-4 md:space-y-0 justify-between my-4'>
+      <div className='my-4 flex flex-col justify-between space-y-4 print:flex-row md:flex-row md:space-y-0'>
         <div className=' pr-8'>
-          <div className='text-2xl font-medium mb-4'>Invoice To:</div>
+          <div className='mb-4 text-2xl font-medium'>Invoice To:</div>
           <p className='font-semibold'>Tony Herrera</p>
           <p>Leonard-Garcia and Sons</p>
           <p>5345 Robert Squares Denmark</p>
@@ -35,7 +35,7 @@ const PreviewCard = () => {
           <p>smithtiffany@powers.com</p>
         </div>
         <div>
-          <div className='text-2xl font-bold mb-4'>Payment Details:</div>
+          <div className='mb-4 text-2xl font-bold'>Payment Details:</div>
           <LabelRow label='Total Due:' className='space-x-2' value={`$ ${total}`} />
           <LabelRow label='Bank name:' className='space-x-2' value='American Bank' />
           <LabelRow label='Country:' className='space-x-2' value='United States' />
@@ -64,13 +64,13 @@ const PreviewCard = () => {
           ))}
         </TableBody>
       </Table>
-      <div className='flex flex-col md:flex-row print:flex-row space-y-4 md:space-y-0 justify-between p-2 mt-6'>
+      <div className='mt-6 flex flex-col justify-between space-y-4 p-2 print:flex-row md:flex-row md:space-y-0'>
         <LabelRow label='Salesperson:' className='space-x-2' value='Kamil Dróżdż' />
         <div>
-          <LabelRow label='SubTotal:' className='space-x-2 w-full justify-between' value={`$ ${subTotal.toFixed(2)}`} />
-          <LabelRow label='Tax:' className='space-x-2 w-full justify-between' value={`${tax}%`} />
+          <LabelRow label='SubTotal:' className='w-full justify-between space-x-2' value={`$ ${subTotal.toFixed(2)}`} />
+          <LabelRow label='Tax:' className='w-full justify-between space-x-2' value={`${tax}%`} />
           <Separator />
-          <LabelRow label='Total:' className='space-x-2 w-full justify-between' value={`$ ${total}`} />
+          <LabelRow label='Total:' className='w-full justify-between space-x-2' value={`$ ${total}`} />
         </div>
       </div>
       <Separator className='my-4' />

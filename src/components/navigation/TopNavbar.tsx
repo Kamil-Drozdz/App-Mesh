@@ -37,12 +37,12 @@ const TopNavbar = () => {
       {currentUser ? (
         <div
           className={`flex ${visible ? 'top-0' : '-top-16'}  ${
-            isFullScreen ? 'opacity-0 !absolute' : 'opacity-100'
-          } print:hidden justify-between sticky top-8 z-[9] dark:bg-mediumBlue dark:text-gray-300 bg-white transition-all duration-300 ease text-gray-800 bg rounded-lg px-4 py-2 shadow-md dark:shadow-black shadow-lightGray`}
+            isFullScreen ? '!absolute opacity-0' : 'opacity-100'
+          } ease bg sticky top-8 z-[9] justify-between rounded-lg bg-white px-4 py-2 text-gray-800 shadow-md shadow-lightGray transition-all duration-300 dark:bg-mediumBlue dark:text-gray-300 dark:shadow-black print:hidden`}
         >
           <ul className='flex items-center space-x-2'>
             {topNavbarIcons.icons.map((icon, index) => (
-              <li className={`${index === 0 ? 'lg:hidden block' : 'md:block hidden'}`} key={index}>
+              <li className={`${index === 0 ? 'block lg:hidden' : 'hidden md:block'}`} key={index}>
                 {index === 0 ? (
                   <Button className='!bg-transparent text-gray-800 dark:!text-gray-300' onClick={toggleMenu}>
                     {icon.icon}
@@ -57,22 +57,22 @@ const TopNavbar = () => {
             <ul className='flex items-center space-x-2'>
               <>
                 <Select onValueChange={(e) => i18n.changeLanguage(String(e))}>
-                  <SelectTrigger className='md:w-[140px] border-darkBlue whitespace-nowrap'>
+                  <SelectTrigger className='whitespace-nowrap border-darkBlue md:w-[140px]'>
                     <SelectValue
                       placeholder={
-                        <div className='flex justify-center items-center space-x-2'>
-                          <img height={16} width={16} className='w-4 h-4' src={EnglandIcon} /> <p>{t('English')}</p>
+                        <div className='flex items-center justify-center space-x-2'>
+                          <img height={16} width={16} className='h-4 w-4' src={EnglandIcon} /> <p>{t('English')}</p>
                         </div>
                       }
                     />
                   </SelectTrigger>
                   <SelectContent className='border-darkBlue'>
-                    <SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
+                    <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
                       <SelectLabel>{t('Choose Language')}</SelectLabel>
                       {languageOptions.map((languageOption, index) => (
                         <SelectItem key={index} value={languageOption.value}>
-                          <div className='flex justify-center items-center space-x-2'>
-                            <img height={16} width={16} className='w-4 h-4' src={languageOption.icon} />
+                          <div className='flex items-center justify-center space-x-2'>
+                            <img height={16} width={16} className='h-4 w-4' src={languageOption.icon} />
                             <p>{t(languageOption.label)}</p>
                           </div>
                         </SelectItem>

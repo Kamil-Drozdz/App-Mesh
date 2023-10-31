@@ -26,7 +26,7 @@ const ShopProducts = () => {
     : [];
 
   if (loading) {
-    return <Skeleton className='grid grid-cols-auto-fill-100 md:grid-cols-3 xl:grid-cols-4 p-4' SkeletonLength={12} />;
+    return <Skeleton className='grid grid-cols-auto-fill-100 p-4 md:grid-cols-3 xl:grid-cols-4' SkeletonLength={12} />;
   }
 
   if (error.message) {
@@ -38,12 +38,10 @@ const ShopProducts = () => {
       <SearchInput />
       {filteredProducts?.length ? (
         <div className='grid grid-cols-auto-fit-100 md:grid-cols-3 xl:grid-cols-4 '>
-          {filteredProducts?.map((product) => (
-            <ShopProduct key={product.id} product={product} />
-          ))}
+          {filteredProducts?.map((product) => <ShopProduct key={product.id} product={product} />)}
         </div>
       ) : (
-        <div className='w-full h-full min-h-[70vh] flex justify-center items-center flex-col space-y-4'>
+        <div className='flex h-full min-h-[70vh] w-full flex-col items-center justify-center space-y-4'>
           <img height={300} width={300} className='max-w-[300px]' src={noData} alt='no data image' />
           <div>Ups we dont have what you looking for check other item names </div>
         </div>

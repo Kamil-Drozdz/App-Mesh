@@ -14,31 +14,31 @@ const CheckoutStepperItem = ({ product }) => {
 
   return (
     <div key={product.id}>
-      <div className='relative dark:bg-mediumBlue bg-white p-4 rounded space-y-3 mb-8 grid grid-cols-1 md:grid-cols-auto-fit-100 items-center justify-center'>
-        <div className=' md:max-w-[90%] p-2 bg-white rounded-lg flex justify-center items-center'>
+      <div className='relative mb-8 grid grid-cols-1 items-center justify-center space-y-3 rounded bg-white p-4 dark:bg-mediumBlue md:grid-cols-auto-fit-100'>
+        <div className=' flex items-center justify-center rounded-lg bg-white p-2 md:max-w-[90%]'>
           <img
             height={400}
             width={400}
-            className='object-contain max-h-[400px] aspect-square'
+            className='aspect-square max-h-[400px] object-contain'
             src={product?.image}
             alt={product?.title}
           />
         </div>
-        <div className=' md:col-span-2 h-full space-y-2'>
+        <div className=' h-full space-y-2 md:col-span-2'>
           <p className='w-full text-left font-semibold hover:text-violet-500 '>{product?.title}</p>
           <div className='flex text-amber-500'>{stars}</div>
           <div className='flex space-x-2'>
             <p>Available -</p>
-            <span className='text-green-500 font-semibold'>{product?.rating?.count}</span>
+            <span className='font-semibold text-green-500'>{product?.rating?.count}</span>
           </div>
-          <p className='truncate w-full break-all'>{product?.description}</p>
+          <p className='w-full truncate break-all'>{product?.description}</p>
           <p className='text-sm text-gray-500'>Delivery by, Wed Apr 25</p>
           <p className='text-sm text-green-500'>17% off 4 offers Available</p>
         </div>
         <Separator orientation='vertical' />
-        <div className='flex flex-col space-y-2 items-center justify-center'>
+        <div className='flex flex-col items-center justify-center space-y-2'>
           <p className=' font-semibold text-violet-500'>${product?.price}</p>
-          <p className='text-green-400 px-2 bg-green-600 bg-opacity-30 w-fit rounded-lg'>Free Shipping</p>
+          <p className='w-fit rounded-lg bg-green-600 bg-opacity-30 px-2 text-green-400'>Free Shipping</p>
           <Button
             onClick={() => {
               if (isProductInWishlist) {
@@ -47,7 +47,7 @@ const CheckoutStepperItem = ({ product }) => {
                 addToWishlist(product);
               }
             }}
-            className='!bg-violet-500 hover:!bg-violet-400 !text-white space-x-2 w-full'
+            className='w-full space-x-2 !bg-violet-500 !text-white hover:!bg-violet-400'
           >
             {isProductInWishlist ? (
               <AiFillHeart size={IconSize.basic} className='text-red-500' />
@@ -58,7 +58,7 @@ const CheckoutStepperItem = ({ product }) => {
           </Button>
           <Button
             variant='ghost'
-            className='space-x-2 w-full'
+            className='w-full space-x-2'
             onClick={() => {
               if (isProductInCart) {
                 removeFromCart(product.id);

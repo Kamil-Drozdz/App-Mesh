@@ -15,7 +15,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
       <div
         className={`fixed z-[51] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } space-y-4 text-gray-900 dark:text-white transition-transform duration-300 ease-in-out p-6 right-0 max-w-[24rem] h-full w-3/4 dark:bg-mediumBlue bg-white`}
+        } right-0 h-full w-3/4 max-w-[24rem] space-y-4 bg-white p-6 text-gray-900 transition-transform duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
       >
         <div className='relative'>
           <Input
@@ -23,22 +23,22 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
             id='location'
             value={newTask.title}
             onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-            className='block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+            className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
             placeholder=' '
           />
           <label
             htmlFor='location'
-            className='absolute text-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-mediumBlue px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'
+            className='absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-mediumBlue peer-focus:dark:text-blue-500'
           >
             Title
           </label>
         </div>
         <Select value={newTask.tag} onValueChange={(e) => setNewTask({ ...newTask, tag: e as string })}>
-          <SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>
+          <SelectTrigger className='w-full whitespace-nowrap !border-gray-300 !border-opacity-25'>
             <SelectValue placeholder='choose tag' />
           </SelectTrigger>
-          <SelectContent className='border-gray-300 z-[52]'>
-            <SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
+          <SelectContent className='z-[52] border-gray-300'>
+            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
               {tags.map((item, index) => (
                 <SelectItem value={item.name} key={index}>
                   <div className='flex items-center space-x-2 '>
@@ -57,7 +57,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
               <Button
                 variant={'outline'}
                 className={clsx(
-                  'w-full pl-3 !bg-transparent !border-gray-300 !border-opacity-25 text-left font-normal',
+                  'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
                   !newTask.date && 'text-muted-foreground'
                 )}
               >
@@ -66,7 +66,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
               </Button>
             </div>
           </PopoverTrigger>
-          <PopoverContent className='w-auto p-0 z-[52]' align='start'>
+          <PopoverContent className='z-[52] w-auto p-0' align='start'>
             <Calendar
               mode='single'
               initialFocus
@@ -81,17 +81,17 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
           rows={4}
           value={newTask.description}
           onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-          className='block p-2.5 w-full text-sm text-gray-900 rounded-lg border bg-transparent border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+          className='block w-full rounded-lg border border-gray-300 bg-transparent p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
           placeholder='Write your thoughts here...'
         ></textarea>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddTodo} className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white'>
+          <Button onClick={handleAddTodo} className='mb-4 !bg-violet-500 !text-white hover:bg-violet-400'>
             Add
           </Button>
           <Button variant='destructive'>Cancel</Button>
         </div>
       </div>
-      {isOpen && <div className='bg-black opacity-50 fixed inset-0 z-50' onClick={() => setIsOpen(false)}></div>}
+      {isOpen && <div className='fixed inset-0 z-50 bg-black opacity-50' onClick={() => setIsOpen(false)}></div>}
     </>
   );
 };

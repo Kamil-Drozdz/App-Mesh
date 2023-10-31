@@ -15,14 +15,14 @@ const ProgressBar = ({ width, className }: ProgressBarProps) => {
   };
 
   return (
-    <div className='w-full dark:bg-gray-400 rounded-lg h-1.5'>
+    <div className='h-1.5 w-full rounded-lg dark:bg-gray-400'>
       <Transition in={true} timeout={300} appear={true}>
         {(state) => (
           <div
             style={{
               ...transitionStyles[state],
             }}
-            className={clsx(`h-1.5 transition-all duration-1000 ease-in rounded-lg`, className)}
+            className={clsx(`h-1.5 rounded-lg transition-all duration-1000 ease-in`, className)}
           ></div>
         )}
       </Transition>

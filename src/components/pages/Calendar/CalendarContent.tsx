@@ -1,5 +1,3 @@
-import { Button } from '@/UI/Button';
-import calendarIllustration from '@/assets/calendar-illustration.webp';
 import CardContainer from '@/common/CardContainer';
 import PageContainer from '@/common/PageContainer';
 import { data, labels } from '@/data/pages/calendar/calendarData';
@@ -9,9 +7,9 @@ import FullCalendar from '@fullcalendar/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './calendar.css';
-import FilterSection from './content/FilterSection';
 import LeftEditSidebar from './content/LeftEditSidebar';
 import { v4 as uuidv4 } from 'uuid';
+import CalendarAddEvent from './content/CalendarAddEvent';
 
 interface CalendarEvent {
   id: string;
@@ -45,6 +43,7 @@ const CalendarContent = () => {
     label: '',
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [isAddEventOpen, setIsAddEventOpen] = useState(false);
   const { i18n } = useTranslation();
 
   const handleAddEvent = () => {
@@ -59,7 +58,6 @@ const CalendarContent = () => {
       } else {
         setEvents([...events, formData]);
       }
-
       setFormData({
         id: uuidv4(),
         title: '',
@@ -116,7 +114,7 @@ const CalendarContent = () => {
     const event = eventInfo.event;
     const color = labels.find((item) => item.name === event._def.extendedProps.label);
     return (
-      <div className={`bg-opacity-[12%] ${color?.color}border-opacity-10 px-2 rounded border font-semibold`}>
+      <div className={`bg-opacity-[12%] ${color?.color}border-opacity-10 rounded border px-2 font-semibold`}>
         {event.title}
       </div>
     );
@@ -133,23 +131,15 @@ const CalendarContent = () => {
       />
       <PageContainer>
         <CardContainer className='flex w-full space-x-8'>
-          <div className='md:flex hidden min-w-[12rem] mt-3 justify-between flex-col'>
-            <div className='h-full'>
-              <Button
-                onClick={() => setIsOpen(true)}
-                className='!bg-violet-500 mb-4 hover:bg-violet-400 w-full !text-white'
-              >
-                Add Event
-              </Button>
-              <FilterSection
-                labels={labels}
-                selectedFilters={selectedFilters}
-                setSelectedFilters={setSelectedFilters}
-              />
-            </div>
-            <img height={200} width={200} src={calendarIllustration} />
-          </div>
-          <div className='w-full h-full'>
+          <CalendarAddEvent
+            setIsAddEventOpen={setIsAddEventOpen}
+            isAddEventOpen={isAddEventOpen}
+            setIsOpen={setIsOpen}
+            labels={labels}
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+          />
+          <div className='h-full w-full'>
             <FullCalendar
               dayMaxEventRows={2}
               locale={i18n.language}
@@ -161,6 +151,19 @@ const CalendarContent = () => {
               eventClick={handleSelectEvent}
               eventContent={renderEventContent}
               select={handleDateSelect}
+              customButtons={{
+                myCustomButton: {
+                  text: '',
+                  click: () => {
+                    setIsAddEventOpen((prev) => !prev);
+                  },
+                },
+              }}
+              headerToolbar={{
+                left: 'myCustomButton',
+                center: 'title',
+                right: 'today prev,next',
+              }}
             />
           </div>
         </CardContainer>

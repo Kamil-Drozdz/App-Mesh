@@ -40,7 +40,7 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
       <div
         className={`fixed z-[51] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } text-gray-900 dark:text-white transition-transform duration-300 space-y-8 ease-in-out p-6 top-0 right-0 max-w-[24rem] h-full w-3/4 dark:bg-mediumBlue bg-white`}
+        } top-0 right-0 h-full w-3/4 max-w-[24rem] space-y-8 bg-white p-6 text-gray-900 transition-transform duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
       >
         New User
         <InputWithLabel
@@ -59,11 +59,11 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
         <Select value={formData.role} onValueChange={(e) => setFormData({ ...formData, role: e as string })}>
-          <SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>
+          <SelectTrigger className='w-full whitespace-nowrap !border-gray-300 !border-opacity-25'>
             {formData.role ? formData.role : 'choose role'}
           </SelectTrigger>
-          <SelectContent className='border-gray-300 z-[52]'>
-            <SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
+          <SelectContent className='z-[52] border-gray-300'>
+            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
               {roles.slice(1).map((role, index) => (
                 <SelectItem value={role} key={index}>
                   <div className='flex items-center '>
@@ -75,11 +75,11 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
           </SelectContent>
         </Select>
         <Select value={formData.plan} onValueChange={(e) => setFormData({ ...formData, plan: e as string })}>
-          <SelectTrigger className='w-full !border-gray-300 !border-opacity-25 whitespace-nowrap'>
+          <SelectTrigger className='w-full whitespace-nowrap !border-gray-300 !border-opacity-25'>
             {formData.plan ? formData.plan : 'choose plan'}
           </SelectTrigger>
-          <SelectContent className='border-gray-300 z-[52]'>
-            <SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
+          <SelectContent className='z-[52] border-gray-300'>
+            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
               {plans.slice(1).map((plan, index) => (
                 <SelectItem value={plan} key={index}>
                   <div className='flex items-center '>
@@ -91,13 +91,13 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
           </SelectContent>
         </Select>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddEvent} className='!bg-violet-500 mb-4 hover:bg-violet-400 !text-white'>
+          <Button onClick={handleAddEvent} className='mb-4 !bg-violet-500 !text-white hover:bg-violet-400'>
             Create
           </Button>
           <Button variant='destructive'>Cancel</Button>
         </div>
       </div>
-      {isOpen && <div className='bg-black opacity-50 !mt-0 fixed inset-0 z-50' onClick={() => setIsOpen(false)}></div>}
+      {isOpen && <div className='fixed inset-0 z-50 !mt-0 bg-black opacity-50' onClick={() => setIsOpen(false)}></div>}
     </>
   );
 };

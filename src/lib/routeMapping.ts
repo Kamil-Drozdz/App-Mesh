@@ -92,7 +92,7 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
   [BasicRoutes.MENU]: [],
 };
 export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, routes]) => {
-  return routes.map(({ subPath, component }:RouteConfig) => ({
+  return routes.map(({ subPath, component }: RouteConfig) => ({
     path: `${basicRoute}${subPath}`,
     component,
   }));

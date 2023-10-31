@@ -6,11 +6,11 @@ const CardGoalOverview = () => {
   const { t } = useTranslation();
   return (
     <CardContainer className=' basis-1/3'>
-      <div className='space-y-3 flex justify-between items-center w-full'>
+      <div className='flex w-full items-center justify-between space-y-3'>
         <div className='dark:text-white'>{t('Goal Overview')}</div>
         <AiOutlineQuestionCircle />
       </div>
-      <div className='flex flex-col items-center justify-center max-w-[260px] md:w-full w-1/2 mx-auto'>
+      <div className='mx-auto flex w-1/2 max-w-[260px] flex-col items-center justify-center md:w-full'>
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 290 290'>
           <circle
             cx='145'
@@ -30,11 +30,11 @@ const CardGoalOverview = () => {
         <div className='flex space-x-4'>
           <div className='w-1/2 p-4'>
             <p className='dark:text-gray-200 md:text-2xl'>{t('Completed')}</p>{' '}
-            <div className='dark:text-gray-400 dark:text-center md:text-lg'>786,617</div>
+            <div className='dark:text-center dark:text-gray-400 md:text-lg'>786,617</div>
           </div>
           <div className='w-1/2 p-4'>
-            <p className='dark:text-gray-200 md:text-2xl whitespace-nowrap'>{t('In Progress')}</p>{' '}
-            <div className='dark:text-gray-400 dark:text-center md:text-lg'>13,561</div>
+            <p className='whitespace-nowrap dark:text-gray-200 md:text-2xl'>{t('In Progress')}</p>{' '}
+            <div className='dark:text-center dark:text-gray-400 md:text-lg'>13,561</div>
           </div>
         </div>
       </div>

@@ -5,9 +5,15 @@ interface FilterSectionProps {
   labels: { name: string; color: string }[];
   selectedFilters: string[];
   setSelectedFilters: (filters: string[]) => void;
+  setIsAddEventOpen(isAddEventOpen: boolean): void;
 }
 
-const FilterSection: React.FC<FilterSectionProps> = ({ labels, selectedFilters, setSelectedFilters }) => {
+const FilterSection: React.FC<FilterSectionProps> = ({
+  setIsAddEventOpen,
+  labels,
+  selectedFilters,
+  setSelectedFilters,
+}) => {
   const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const filterName = event.target.id;
 
@@ -24,15 +30,16 @@ const FilterSection: React.FC<FilterSectionProps> = ({ labels, selectedFilters, 
         setSelectedFilters([...selectedFilters, filterName]);
       }
     }
+    setIsAddEventOpen(false);
   };
   return (
     <>
       <p className='text-gray-400'>FILTER</p>
       {labels.map((item, index) => (
-        <div className='flex space-x-2 items-center' key={index}>
+        <div className='flex items-center space-x-2' key={index}>
           <Input
             id={item.name}
-            className={`w-4 h-4 ${item.color}`}
+            className={`h-4 w-4 ${item.color}`}
             defaultChecked={true}
             type='checkbox'
             checked={selectedFilters.includes(item.name)}

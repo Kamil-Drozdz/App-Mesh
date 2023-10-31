@@ -1,4 +1,4 @@
-import { initializeNewTask } from './CardTodo';
+import { initializeNewTask } from './Todo';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import CompletedStamp from '@/assets/completed-stamp.webp';
@@ -9,8 +9,9 @@ import { useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { AiFillCloseSquare } from 'react-icons/ai';
 import { BiEdit, BiSearch } from 'react-icons/bi';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
-const CardTodoDrag = ({
+const TodoDrag = ({
   tasks,
   setTasks,
   filteredTasks,
@@ -19,6 +20,7 @@ const CardTodoDrag = ({
   setIsOpen,
   setNewTask,
   setIsSorted,
+  setIsAddEventOpen,
 }) => {
   const [search, setSearch] = useState('');
   const filterTasks = useMemo(() => {
@@ -70,9 +72,14 @@ const CardTodoDrag = ({
   return (
     <div className='w-full select-none'>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className='relative mb-2'>
-          <BiSearch size={IconSize.basic} className='absolute -translate-y-1/2 top-1/2 left-2' />{' '}
-          <Input value={search} onChange={handleSearchChange} className='pl-8 w-full h-9' placeholder='Search todo' />
+        <div className='mb-2 flex w-full items-center  space-x-2'>
+          <Button onClick={() => setIsAddEventOpen((prev) => !prev)} className='block !p-2 md:hidden' variant='empty'>
+            <GiHamburgerMenu size={IconSize.basic} />
+          </Button>
+          <div className='relative w-full'>
+            <BiSearch size={IconSize.basic} className='absolute top-1/2 left-2 -translate-y-1/2' />{' '}
+            <Input value={search} onChange={handleSearchChange} className='h-9 w-full pl-8' placeholder='Search todo' />
+          </div>
         </div>
         <Droppable droppableId='todolist'>
           {(provided) => (
@@ -82,7 +89,7 @@ const CardTodoDrag = ({
                   <Draggable key={task.id} draggableId={task.id} index={index}>
                     {(provided) => (
                       <li
-                        className='px-2 py-1 border-[1px] rounded-lg flex items-center justify-between '
+                        className='flex items-center justify-between rounded-lg border-[1px] px-2 py-1 '
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
@@ -90,7 +97,7 @@ const CardTodoDrag = ({
                         <div className=' flex items-center space-x-3 md:space-x-6 '>
                           <Input
                             type='checkbox'
-                            className='w-4 h-4 accent-green-500 cursor-pointer'
+                            className='h-4 w-4 cursor-pointer accent-green-500'
                             checked={task.completed}
                             onChange={() => handleCheckTodo(task.id)}
                           />
@@ -102,20 +109,20 @@ const CardTodoDrag = ({
                           <img
                             height={48}
                             width={48}
-                            className={`w-12 h-12 ${
-                              task.completed ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-                            } md:block hidden transition-all duration-100 ease-in rounded-full object-contain`}
+                            className={`h-12 w-12 ${
+                              task.completed ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                            } hidden rounded-full object-contain transition-all duration-100 ease-in md:block`}
                             src={CompletedStamp}
                           />
                         </div>
-                        <div className='md:space-x-4 flex md:flex-row flex-col items-center justify-center'>
-                          <ul className='flex md:space-x-2 w-full md:w-fit items-center justify-center'>
+                        <div className='flex flex-col items-center justify-center md:flex-row md:space-x-4'>
+                          <ul className='flex w-full items-center justify-center md:w-fit md:space-x-2'>
                             {task.tag &&
                               tags.map(
                                 (tag, tagIndex) =>
                                   tag.name === task.tag && (
                                     <li key={tagIndex}>
-                                      <div className={`px-2 py-0.5 bg-opacity-20 rounded-full ${tag.color}`}>
+                                      <div className={`rounded-full bg-opacity-20 px-2 py-0.5 ${tag.color}`}>
                                         {tag.name}
                                       </div>
                                     </li>
@@ -125,13 +132,13 @@ const CardTodoDrag = ({
                           <div className='text-gray-600'>{format(task.date, 'MMMM d ')}</div>
                           <div className='space-x-1'>
                             <Button
-                              className='w-fit h-fit !p-0 rounded-none border-none !bg-transparent'
+                              className='h-fit w-fit rounded-none border-none !bg-transparent !p-0'
                               onClick={() => handleEditTask(task.id)}
                             >
                               <BiEdit size={IconSize.basic} className='text-orange-500 ' />
                             </Button>
                             <Button
-                              className='w-fit h-fit !p-0 rounded-none border-none !bg-transparent'
+                              className='h-fit w-fit rounded-none border-none !bg-transparent !p-0'
                               onClick={() => handleDeleteTodo(task.id)}
                             >
                               <AiFillCloseSquare size={IconSize.basic} className='text-red-500 ' />
@@ -154,4 +161,4 @@ const CardTodoDrag = ({
   );
 };
 
-export default CardTodoDrag;
+export default TodoDrag;

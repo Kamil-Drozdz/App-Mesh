@@ -79,18 +79,18 @@ const UserList = ({ filters }) => {
       <LeftAddSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <Table>
         <TableCaption className='mb-4 '>
-          <div className=' flex justify-between items-center'>
+          <div className=' flex items-center justify-between'>
             <div className='flex items-center'>
               <p> Show</p>
               <Select onValueChange={(e) => setItemsPerPage(Number(e))}>
-                <SelectTrigger className='md:w-[80px]  whitespace-nowrap mx-2'>
+                <SelectTrigger className='mx-2  whitespace-nowrap md:w-[80px]'>
                   <SelectValue placeholder={numbers[0]} />
                 </SelectTrigger>
                 <SelectContent className='border-darkBlue'>
-                  <SelectGroup className='dark:bg-mediumBlue bg-lightWhite dark:text-gray-200'>
+                  <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
                     {numbers.map((number) => (
                       <SelectItem value={number.toString()} key={number}>
-                        <div className='flex justify-center items-center space-x-2'>
+                        <div className='flex items-center justify-center space-x-2'>
                           <p>{number}</p>
                         </div>
                       </SelectItem>
@@ -105,7 +105,7 @@ const UserList = ({ filters }) => {
               <SearchInput className='min-w-[200px]' />
               <Button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className='!bg-violet-500 hover:bg-violet-400 w-full !text-white h-full'
+                className='h-full w-full !bg-violet-500 !text-white hover:bg-violet-400'
               >
                 Add User
               </Button>

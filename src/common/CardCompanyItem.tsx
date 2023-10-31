@@ -8,11 +8,11 @@ interface CardCompanyItemProps {
 const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
   return (
     <>
-      <dl className='hover:dark:bg-darkBlue transition-colors duration-200 ease-in-out flex items-center justify-center w-full md:px-4 my-1 py-1 space-x-2 text-[12px] md:text-base'>
-        <div className='basis-1/5 flex items-center space-x-2 md:space-x-4 text-left overflow-hidden'>
+      <dl className='my-1 flex w-full items-center justify-center space-x-2 py-1 text-[12px] transition-colors duration-200 ease-in-out hover:dark:bg-darkBlue md:px-4 md:text-base'>
+        <div className='flex basis-1/5 items-center space-x-2 overflow-hidden text-left md:space-x-4'>
           <dt>
             <img
-              className='w-10 h-10 rounded-lg'
+              className='h-10 w-10 rounded-lg'
               width={40}
               height={40}
               src={item.photo}
@@ -21,12 +21,12 @@ const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
           </dt>
           <div className='flex flex-col '>
             <dd>{item.name}</dd>
-            <dd className='text-[10px] md:text-[12px] dark:text-gray-500 text-gray-400'>{item.email}</dd>
+            <dd className='text-[10px] text-gray-400 dark:text-gray-500 md:text-[12px]'>{item.email}</dd>
           </div>
         </div>
-        <dd className='basis-1/5 flex items-center justify-center'>
+        <dd className='flex basis-1/5 items-center justify-center'>
           <div
-            className={`bg-[#28c76f] text-[#28c76f] hidden w-12 h-12 rounded-full bg-opacity-25 md:flex justify-center items-center `}
+            className={`hidden h-12 w-12 items-center justify-center rounded-full bg-[#28c76f] bg-opacity-25 text-[#28c76f] md:flex `}
           >
             {' '}
             {item.icon}
@@ -35,12 +35,12 @@ const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
         </dd>
         <dd className='basis-1/5'>{item.views}</dd>
         <dd className='basis-1/5'>{item.revenue}</dd>
-        <dd className='basis-1/5 flex items-center justify-center '>
+        <dd className='flex basis-1/5 items-center justify-center '>
           {item.sales}
           {parseFloat(item.sales) >= 50 ? (
-            <BiTrendingUp className='text-green-500 ml-2' />
+            <BiTrendingUp className='ml-2 text-green-500' />
           ) : (
-            <BiTrendingDown className='text-red-500 ml-2' />
+            <BiTrendingDown className='ml-2 text-red-500' />
           )}
         </dd>
       </dl>

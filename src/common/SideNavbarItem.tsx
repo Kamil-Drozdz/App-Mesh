@@ -35,11 +35,11 @@ const SideNavbarItem = ({
       {dropdown?.length ? (
         <div
           onClick={() => handleActiveDropdown(name)}
-          className={`${open && 'dark:bg-darkBlue bg-lightWhite bg-opacity-70'} ${
-            isActiveDropdownItem && 'dark:bg-darkBlue bg-lightWhite'
+          className={`${open && 'bg-lightWhite bg-opacity-70 dark:bg-darkBlue'} ${
+            isActiveDropdownItem && 'bg-lightWhite dark:bg-darkBlue'
           } ${
             menuCollapsed ? 'justify-center' : 'justify-between'
-          } flex items-center my-1 px-4 py-2.5 hover:dark:bg-darkBlue focus:dark:bg-darkBlue mx-3 rounded-lg transition-colors duration-150 ease-in-out cursor-pointer`}
+          } my-1 mx-3 flex cursor-pointer items-center rounded-lg px-4 py-2.5 transition-colors duration-150 ease-in-out hover:dark:bg-darkBlue focus:dark:bg-darkBlue`}
         >
           <div className='flex items-center justify-center space-x-2'>
             {icon} <p className={`${menuCollapsed ? 'hidden' : ''} `}>{name}</p>
@@ -57,22 +57,22 @@ const SideNavbarItem = ({
           to={href}
           className={`${isActiveItem && 'dark:bg-darkBlue'} flex items-center ${
             menuCollapsed ? 'justify-center' : 'justify-between'
-          } my-1 px-4 py-2.5 hover:dark:bg-darkBlue focus:dark:bg-darkBlue mx-3 rounded-lg transition-colors duration-150 ease-in-out`}
+          } my-1 mx-3 rounded-lg px-4 py-2.5 transition-colors duration-150 ease-in-out hover:dark:bg-darkBlue focus:dark:bg-darkBlue`}
         >
           <div className='flex items-center space-x-2 '>
             {icon} <p className={`${menuCollapsed ? 'hidden' : ''}`}>{name}</p>
           </div>
         </Link>
       )}
-      <div className={`overflow-hidden transition-all duration-300 ease ${open ? 'max-h-96' : 'max-h-0'}`}>
+      <div className={`ease overflow-hidden transition-all duration-300 ${open ? 'max-h-96' : 'max-h-0'}`}>
         {open
           ? dropdown?.map((item, index) => (
               <Link
                 to={item.href}
                 key={index}
-                className={`${pathname.startsWith(item.href) ? 'dark:bg-darkBlue bg-lightWhite dark:text-white' : ''} ${
+                className={`${pathname.startsWith(item.href) ? 'bg-lightWhite dark:bg-darkBlue dark:text-white' : ''} ${
                   menuCollapsed ? 'hidden' : 'flex'
-                } items-center justify-between m-1 px-4 py-2.5 hover:dark:bg-darkBlue focus:dark:bg-darkBlue mx-5 rounded-lg transition-colors duration-150 ease-in-out`}
+                } m-1 mx-5 items-center justify-between rounded-lg px-4 py-2.5 transition-colors duration-150 ease-in-out hover:dark:bg-darkBlue focus:dark:bg-darkBlue`}
               >
                 <div className='flex items-center space-x-2'>
                   <LiaDotCircle /> <span>{item.name}</span>

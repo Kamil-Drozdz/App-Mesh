@@ -54,12 +54,12 @@ const SocialLoginButtons = ({ setFormData }) => {
 
   return (
     <>
-      <div className='flex w-full justify-center items-center'>
+      <div className='flex w-full items-center justify-center'>
         <Separator className='!shrink' />
         <p className='mx-4 text-gray-600'>or</p>
         <Separator className='!shrink' />
       </div>
-      <div className='flex w-full justify-center items-center'>
+      <div className='flex w-full items-center justify-center'>
         <TooltipProvider>
           {icons.map((item, index) => (
             <Tooltip key={index}>
@@ -69,13 +69,13 @@ const SocialLoginButtons = ({ setFormData }) => {
                   variant='empty'
                   className={`${
                     index !== icons.length - 1 ? 'border-r' : 'border-none'
-                  } border-gray-600 px-3 h-fit !py-0 !rounded-none`}
+                  } h-fit !rounded-none border-gray-600 px-3 !py-0`}
                   onClick={() => handleProviderLogin(item.tooltip.toLowerCase())}
                 >
                   {item.icon}
                 </Button>
               </TooltipTrigger>
-              <TooltipContent className='p-2 bg-black text-white' sideOffset={12} side='bottom'>
+              <TooltipContent className='bg-black p-2 text-white' sideOffset={12} side='bottom'>
                 <p>{item.tooltip}</p>
               </TooltipContent>
             </Tooltip>

@@ -7,35 +7,35 @@ interface CardTransactionItemProps {
 const CardTransactionItem = ({ item }: CardTransactionItemProps) => {
   return (
     <>
-      <dl className='flex items-center justify-center w-full px-4 my-1 py-1 hover:dark:bg-darkBlue hover:bg-lightWhite transition-colors duration-200 ease-in-out'>
-        <dd className='basis-1/4 flex items-center justify-center'>
+      <dl className='my-1 flex w-full items-center justify-center px-4 py-1 transition-colors duration-200 ease-in-out hover:bg-lightWhite hover:dark:bg-darkBlue'>
+        <dd className='flex basis-1/4 items-center justify-center'>
           {parseFloat(item.revenue) >= 499 ? (
             <div
-              className={`bg-[#28c76f] text-[#28c76f] w-12 h-12 rounded-full bg-opacity-25 flex justify-center items-center `}
+              className={`flex h-12 w-12 items-center justify-center rounded-full bg-[#28c76f] bg-opacity-25 text-[#28c76f] `}
             >
               {' '}
               {item.icon}
             </div>
           ) : (
             <div
-              className={`bg-red-500 text-red-500 w-12 h-12 rounded-full bg-opacity-25 flex justify-center items-center `}
+              className={`flex h-12 w-12 items-center justify-center rounded-full bg-red-500 bg-opacity-25 text-red-500 `}
             >
               {' '}
               {item.icon}
             </div>
           )}
         </dd>
-        <div className='basis-1/4 flex space-x-4 text-left'>
+        <div className='flex basis-1/4 space-x-4 text-left'>
           <div className='flex flex-col '>
             <dd>{item.name}</dd>
             <dd className='text-sm text-gray-500'>{item.name}</dd>
           </div>
         </div>
-        <div className='basis-2/4 flex items-center justify-end '>
+        <div className='flex basis-2/4 items-center justify-end '>
           {parseFloat(item.revenue) >= 499 ? (
-            <dt className='text-green-500 ml-2'>+{item.revenue}</dt>
+            <dt className='ml-2 text-green-500'>+{item.revenue}</dt>
           ) : (
-            <dt className='text-red-500 ml-2'>-{item.revenue}</dt>
+            <dt className='ml-2 text-red-500'>-{item.revenue}</dt>
           )}
         </div>
       </dl>

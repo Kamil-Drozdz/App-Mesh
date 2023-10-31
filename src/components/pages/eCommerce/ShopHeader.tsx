@@ -6,9 +6,9 @@ const ShopHeader = () => {
   const pathSegments = location.pathname.split('/').filter((segment) => segment !== '');
 
   return (
-    <div className='flex items-center space-x-2 mb-2'>
+    <div className='mb-2 flex items-center space-x-2'>
       <Link to={`${BasicRoutes.ECOMMERCE}${SubRoutes.SHOP}`}>
-        <h2 className='border-r px-2 border-gray-600'>Shop</h2>
+        <h2 className='border-r border-gray-600 px-2'>Shop</h2>
       </Link>
       {pathSegments.map((segment, index) => {
         if (index === pathSegments.length - 1) {
@@ -22,7 +22,7 @@ const ShopHeader = () => {
           return (
             <Link className='text-violet-500' key={segment} to={`/${segment}`}>
               {segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}
-              <span className='text-white mx-2'>&gt;</span>
+              <span className='mx-2 text-white'>&gt;</span>
             </Link>
           );
         }

@@ -7,10 +7,10 @@ import { BiDotsVertical, BiMenu } from 'react-icons/bi';
 function CardUserTimeline() {
   return (
     <CardContainer className='basis-1/3 !space-y-0'>
-      <div className='flex items-center justify-between mb-4'>
-        <div className='flex justify-center items-start space-x-2 '>
+      <div className='mb-4 flex items-center justify-between'>
+        <div className='flex items-start justify-center space-x-2 '>
           <BiMenu size={IconSize.medium} />
-          <h2 className='dark:text-gray-300 text-2xl'>User Timeline</h2>
+          <h2 className='text-2xl dark:text-gray-300'>User Timeline</h2>
         </div>
         <BiDotsVertical size={IconSize.basic} />
       </div>

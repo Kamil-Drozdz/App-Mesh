@@ -1,4 +1,4 @@
-import CardTodo from './content/CardTodo';
+import CardTodo from './content/Todo';
 
 const TodoContent = () => {
   return <CardTodo />;

@@ -28,7 +28,7 @@ const CheckoutContent = () => {
     <PageContainer>
       <ShopHeader />
       <CheckoutStepperHeader setActiveStep={setActiveStep} activeStep={activeStep} />
-      <div className='grid grid-cols-1 md:grid-cols-3 space-x-0 space-y-6 md:space-y-0 md:space-x-6'>
+      <div className='grid grid-cols-1 space-x-0 space-y-6 md:grid-cols-3 md:space-y-0 md:space-x-6'>
         <CheckoutStepper
           formData={formData}
           setFormData={setFormData}

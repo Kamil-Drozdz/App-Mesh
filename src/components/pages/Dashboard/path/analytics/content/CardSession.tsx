@@ -12,24 +12,24 @@ const CardSession = () => {
 
   return (
     <CardContainer className='md:basis-1/2 '>
-      <div className='flex md:flex-row flex-col space-y-4 md:space-y-0 justify-center items-stretch'>
-        <div className='basis-1/2 flex flex-col justify-between space-y-6'>
+      <div className='flex flex-col items-stretch justify-center space-y-4 md:flex-row md:space-y-0'>
+        <div className='flex basis-1/2 flex-col justify-between space-y-6'>
           <div>
             <h3 className='text-2xl font-semibold dark:text-white'>2.7k</h3>
             <span>Avg Sessions</span>
             <span className='dark:text-green-500'>+5.2%</span> vs last 7 days
           </div>
-          <Button className='!bg-violet-500 hover:dark:!bg-violet-400 !w-full !text-white'>View Details</Button>
+          <Button className='!w-full !bg-violet-500 !text-white hover:dark:!bg-violet-400'>View Details</Button>
         </div>
-        <div className='flex flex-col justify-center items-center basis-1/2'>
-          <h4 className='dark:text-right w-full'>Last 7 days</h4>
+        <div className='flex basis-1/2 flex-col items-center justify-center'>
+          <h4 className='w-full dark:text-right'>Last 7 days</h4>
           <Bar className='md:max-w-[300px]' data={data} options={options} />
         </div>
       </div>
       <Separator />
       <div className='flex flex-wrap dark:text-white'>
         {progressData.map((item, index) => (
-          <div key={index} className='md:basis-1/2 basis-1/2 px-2 my-2 space-y-1'>
+          <div key={index} className='my-2 basis-1/2 space-y-1 px-2 md:basis-1/2'>
             <p>
               {item.name}: {item.value}
               {item.unit}

@@ -37,3 +37,18 @@
 .fc-daygrid-event-harness:hover {
   filter: brightness(1.75);
 }
+
+.fc-myCustomButton-button {
+  background-image: url('/src/assets/hamburger.svg');
+  height: 24px;
+  width: 24px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .fc-myCustomButton-button {
+    display: inline-block !important;
+  }
+}

@@ -10,7 +10,7 @@ const CardSales = () => {
   ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
   return (
     <CardContainer className='basis-1/3 '>
-      <div className='flex justify-between items-start w-full'>
+      <div className='flex w-full items-start justify-between'>
         <div>
           <div className='dark:text-white'>Sales</div>
           <p>Last 6 months</p>

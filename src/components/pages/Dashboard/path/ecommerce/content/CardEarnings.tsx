@@ -10,12 +10,12 @@ const CardEarnings = () => {
   const { data, options } = DataEarnings();
 
   return (
-    <CardContainer className='flex md:flex-row flex-col w-full justify-between '>
+    <CardContainer className='flex w-full flex-col justify-between md:flex-row '>
       <div className='space-y-3'>
-        <div className='dark:text-white text-gray-500 font-semibold'>{t('Earnings')}</div>
+        <div className='font-semibold text-gray-500 dark:text-white'>{t('Earnings')}</div>
         <p className='text-sm dark:text-gray-400'>{t('This month')}</p>
-        <span className='dark:text-white text-gray-500 font-semibold'>$4055.56</span>
-        <p className='text-sm dark:text-gray-600 text-gray-400'>
+        <span className='font-semibold text-gray-500 dark:text-white'>$4055.56</span>
+        <p className='text-sm text-gray-400 dark:text-gray-600'>
           <strong>68.2%</strong> {t('more earnings than last month')}.
         </p>
       </div>

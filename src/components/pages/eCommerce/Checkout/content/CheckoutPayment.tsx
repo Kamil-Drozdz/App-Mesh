@@ -7,12 +7,12 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 
 const CheckoutPayment = () => {
   return (
-    <div className='relative dark:bg-mediumBlue bg-white p-4 rounded-lg space-y-3 h-fit'>
+    <div className='relative h-fit space-y-3 rounded-lg bg-white p-4 dark:bg-mediumBlue'>
       <h2 className='text-lg font-semibold'>Payment options</h2>
       <p className='text-gray-500'> Be sure to click on correct payment option</p>
 
-      <div className='flex justify-between items-center'>
-        <RadioGroup className='flex flex-col space-y-1 w-full '>
+      <div className='flex items-center justify-between'>
+        <RadioGroup className='flex w-full flex-col space-y-1 '>
           <p>John Doe</p>
           <div className='flex items-center space-x-2'>
             <RadioGroupItem className='text-violet-500' value='debet-card' id='debet-card' />

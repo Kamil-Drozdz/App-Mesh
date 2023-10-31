@@ -7,11 +7,11 @@ function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div className='bg-mediumBlue h-full w-full min-h-screen flex justify-center items-center'>
-      <div className='px-6 max-w-[500px] w-full flex flex-col justify-center items-center'>
-        <img width={500} height={500} src={error} className='w-full mb-8' />
+    <div className='flex h-full min-h-screen w-full items-center justify-center bg-mediumBlue'>
+      <div className='flex w-full max-w-[500px] flex-col items-center justify-center px-6'>
+        <img width={500} height={500} src={error} className='mb-8 w-full' />
         <Button
-          className='!bg-violet-500 hover:!bg-violet-400 !text-white'
+          className='!bg-violet-500 !text-white hover:!bg-violet-400'
           onClick={() => navigate(`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`)}
         >
           Return to Home

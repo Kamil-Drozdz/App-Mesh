@@ -1,10 +1,6 @@
 import { z, ZodType } from 'zod';
 
-export const validateField = <T>(
-  schema: ZodType<T>,
-  value: T,
-  setError: (errors) => void
-): boolean => { 
+export const validateField = <T>(schema: ZodType<T>, value: T, setError: (errors) => void): boolean => {
   try {
     schema.parse(value);
     setError({});

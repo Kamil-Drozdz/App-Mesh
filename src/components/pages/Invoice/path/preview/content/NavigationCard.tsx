@@ -3,8 +3,8 @@ import CardContainer from '@/common/CardContainer';
 
 const NavigationCard = ({ handlePrint }) => {
   return (
-    <CardContainer className='h-fit space-y-4 flex-col min-w-[16rem] w-1/4 print:hidden md:flex hidden'>
-      <Button className='!bg-violet-500 hover:!bg-violet-400 w-full !text-white'>Send Invoice</Button>
+    <CardContainer className='hidden h-fit w-1/4 min-w-[16rem] flex-col space-y-4 print:hidden md:flex'>
+      <Button className='w-full !bg-violet-500 !text-white hover:!bg-violet-400'>Send Invoice</Button>
       <Button onClick={handlePrint} variant='ghost' className='border'>
         Download
       </Button>
@@ -14,7 +14,7 @@ const NavigationCard = ({ handlePrint }) => {
       <Button variant='ghost' className='border'>
         Edit
       </Button>
-      <Button className='!bg-green-500 hover:!bg-green-400 w-full !text-white'>Add Payment</Button>
+      <Button className='w-full !bg-green-500 !text-white hover:!bg-green-400'>Add Payment</Button>
     </CardContainer>
   );
 };

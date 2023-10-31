@@ -27,7 +27,7 @@ const TopNavbarPopoverUser = ({ currentUser }) => {
   return (
     <Popover>
       <PopoverTrigger className='flex items-center md:space-x-2'>
-        <div className=' justify-center items-end flex-col md:flex hidden'>
+        <div className=' hidden flex-col items-end justify-center md:flex'>
           {currentUser?.displayName ? <p>{currentUser?.displayName}</p> : <p> User</p>}
           {currentUser?.role ? (
             <span className='text-xs dark:text-gray-400'>{currentUser?.role}</span>
@@ -43,13 +43,13 @@ const TopNavbarPopoverUser = ({ currentUser }) => {
           <img height={40} width={40} className='rounded-full' src={currentUser?.photoURL || defaultUser} />
           <StatusBadge className='absolute bottom-0 right-0 ' status={UserStatuses.Online} />
         </div>
-        <PopoverContent className='w-auto p-0 z-[52] dark:bg-mediumBlue' sideOffset={18} align='center'>
+        <PopoverContent className='z-[52] w-auto p-0 dark:bg-mediumBlue' sideOffset={18} align='center'>
           <div className='min-w-[140px]'>
             {profileOptions.map((item, index) => (
               <div key={index}>
                 {item.href ? (
                   <Link
-                    className='flex items-center space-x-3 p-2 my-1 hover:text-violet-500 hover:bg-violet-500 hover:bg-opacity-20'
+                    className='my-1 flex items-center space-x-3 p-2 hover:bg-violet-500 hover:bg-opacity-20 hover:text-violet-500'
                     to={item.href || ''}
                   >
                     {item.icon}
@@ -58,7 +58,7 @@ const TopNavbarPopoverUser = ({ currentUser }) => {
                 ) : (
                   <Button onClick={handleLogout} className='w-full' variant='destructive'>
                     {item.icon}
-                    <p className='text-lg ml-2'>{item.label}</p>
+                    <p className='ml-2 text-lg'>{item.label}</p>
                   </Button>
                 )}
               </div>

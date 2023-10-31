@@ -15,12 +15,12 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages, currentItems }: P
   const isNextDisabled = currentItems.length === 0 || currentPage === totalPages;
 
   return (
-    <div className='w-full flex items-center justify-center mt-4'>
-      <div className='flex items-center justify-center space-x-3 bg-[#242b3d] px-6 rounded-full'>
+    <div className='mt-4 flex w-full items-center justify-center'>
+      <div className='flex items-center justify-center space-x-3 rounded-full bg-[#242b3d] px-6'>
         <Button variant='empty' onClick={handlePrevPage} disabled={isPrevDisabled}>
           &lt;
         </Button>
-        <span className='w-12 h-12 rounded-full bg-violet-500 text-white flex items-center justify-center'>
+        <span className='flex h-12 w-12 items-center justify-center rounded-full bg-violet-500 text-white'>
           {currentPage}
         </span>
         <Button variant='empty' onClick={handleNextPage} disabled={isNextDisabled}>

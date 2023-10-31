@@ -21,7 +21,7 @@ const TopNavbarTooltipIcons = () => {
   return (
     <TooltipProvider>
       {topNavbarIcons.userToolbar.map((item, index) => (
-        <div className='cursor-pointer flex items-center' key={index}>
+        <div className='flex cursor-pointer items-center' key={index}>
           <Popover>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -42,15 +42,15 @@ const TopNavbarTooltipIcons = () => {
                   </li>
                 )}
               </TooltipTrigger>
-              <TooltipContent className='p-2 bg-black text-white !text-base' sideOffset={12} side='bottom'>
+              <TooltipContent className='bg-black p-2 !text-base text-white' sideOffset={12} side='bottom'>
                 <p>{item.tooltip}</p>
               </TooltipContent>
             </Tooltip>
-            <PopoverContent className='w-auto p-0 z-[52] dark:bg-mediumBlue' sideOffset={22} align='center'>
+            <PopoverContent className='z-[52] w-auto p-0 dark:bg-mediumBlue' sideOffset={22} align='center'>
               {cart.length ? (
                 <CartPopover removeFromCart={removeFromCart} cart={cart} />
               ) : (
-                <div className='min-w-[200px] h-24 text-center'>Your cart is empty</div>
+                <div className='h-24 min-w-[200px] text-center'>Your cart is empty</div>
               )}
             </PopoverContent>
           </Popover>

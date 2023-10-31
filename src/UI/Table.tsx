@@ -4,9 +4,9 @@ import * as React from 'react';
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (
     <div className='relative w-full overflow-auto'>
-      <table ref={ref} className={clsx('w-full caption-bottom text-sm', className)} {...props} />
+      <table ref={ref} className={clsx('caption-bottom w-full text-sm', className)} {...props} />
     </div>
-  ) 
+  )
 );
 Table.displayName = 'Table';
 
@@ -33,7 +33,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
   ({ className, ...props }, ref) => (
     <tr
       ref={ref}
-      className={clsx('border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted', className)}
+      className={clsx('data-[state=selected]:bg-muted border-b transition-colors hover:bg-muted/50', className)}
       {...props}
     />
   )

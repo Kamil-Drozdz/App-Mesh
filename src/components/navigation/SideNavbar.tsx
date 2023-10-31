@@ -27,9 +27,9 @@ const SideNavbar = () => {
   return (
     <>
       <div
-        className={`dark:bg-darkBlue bg-lightWhite w-72 ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} ${
+        className={`w-72 bg-lightWhite dark:bg-darkBlue ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} ${
           isFullScreen ? '!-left-72' : 'left-0 '
-        } top-0 z-[11] right-0 transition-all duration-300 ease-out fixed h-screen`}
+        } fixed top-0 right-0 z-[11] h-screen transition-all duration-300 ease-out`}
       >
         <nav
           onMouseEnter={() => {
@@ -44,14 +44,14 @@ const SideNavbar = () => {
           }}
           className={`${
             menuCollapsed ? 'w-20' : 'w-72'
-          } dark:bg-mediumBlue bg-white transition-all duration-300 ease-out fixed text-gray-500 dark:text-lightGray overflow-y-auto h-full`}
+          } fixed h-full overflow-y-auto bg-white text-gray-500 transition-all duration-300 ease-out dark:bg-mediumBlue dark:text-lightGray`}
         >
           <ul className='my-2'>
             <li className='flex items-center justify-between space-x-4 px-6'>
               {!menuCollapsed ? (
                 <>
                   <Link to={`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`} className='flex items-center '>
-                    <img src={logo} alt='Logo' width={32} height={32} className='w-8 h-8 mr-4' />
+                    <img src={logo} alt='Logo' width={32} height={32} className='mr-4 h-8 w-8' />
                     <span className='text-2xl font-semibold'>Admin</span>
                   </Link>
 
@@ -60,13 +60,13 @@ const SideNavbar = () => {
                   </button>
                 </>
               ) : (
-                <img src={logo} alt='Logo' className='w-8 h-8' />
+                <img src={logo} alt='Logo' className='h-8 w-8' />
               )}
             </li>
           </ul>
           {navItems.map((group, index) => (
             <div key={index} className='p-2'>
-              <p className='text-[#5a6071] mt-6 mb-4 mx-6 text-xs font-semibold truncate'>{group.title}</p>
+              <p className='mx-6 mt-6 mb-4 truncate text-xs font-semibold text-[#5a6071]'>{group.title}</p>
               <ul>
                 {group.items.map((item, indexItem) => (
                   <li key={indexItem}>
@@ -86,7 +86,7 @@ const SideNavbar = () => {
           ))}
         </nav>
       </div>
-      {isMenuOpen && <div className='bg-black opacity-50 fixed inset-0 z-10' onClick={toggleMenu}></div>}
+      {isMenuOpen && <div className='fixed inset-0 z-10 bg-black opacity-50' onClick={toggleMenu}></div>}
     </>
   );
 };

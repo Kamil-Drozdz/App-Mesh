@@ -38,22 +38,22 @@ const UserListTableBody = ({ currentItems }: UserListTableBodyProps) => {
             </TableCell>
             <TableCell className='font-medium'>{user?.plan}</TableCell>
             <TableCell className='font-medium'>
-              <p className='text-red-600 px-2 bg-red-600 bg-opacity-30 w-fit text-center rounded-lg'>
+              <p className='w-fit rounded-lg bg-red-600 bg-opacity-30 px-2 text-center text-red-600'>
                 {user?.emailVerified}
               </p>
             </TableCell>
             <Popover>
-              <PopoverTrigger className='flex items-center md:space-x-2 w-full p-1.5'>
-                <TableCell className='font-medium w-full '>
+              <PopoverTrigger className='flex w-full items-center p-1.5 md:space-x-2'>
+                <TableCell className='w-full font-medium '>
                   <BiDotsVertical className='inline' />
                 </TableCell>
               </PopoverTrigger>
               <PopoverContent
-                className='w-auto  min-w-[120px] p-0 z-[52] bg-lightBlue flex flex-col justify-center items-center shadow-md'
+                className='z-[52]  flex w-auto min-w-[120px] flex-col items-center justify-center bg-lightBlue p-0 shadow-md'
                 align='center'
               >
                 {actions.map((action) => (
-                  <Button className='flex w-full !text-gray-400 !bg-lightBlue space-x-2 my-1 justify-center hover:!text-violet-500 hover:!bg-violet-500 hover:!bg-opacity-20'>
+                  <Button className='my-1 flex w-full justify-center space-x-2 !bg-lightBlue !text-gray-400 hover:!bg-violet-500 hover:!bg-opacity-20 hover:!text-violet-500'>
                     <div>{action.icon}</div>
                     <div className='flex-grow text-center'>
                       <p>{action.label}</p>
