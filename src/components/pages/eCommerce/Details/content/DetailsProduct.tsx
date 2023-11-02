@@ -81,7 +81,7 @@ const DetailsProduct = ({ productID }) => {
             <p>EMI options available</p>
           </div>
           <Separator className='!my-6' />
-          <div className='flex items-center space-x-2'>
+          <div className='flex items-center space-x-1'>
             <Link to={`${BasicRoutes.ECOMMERCE}${SubRoutes.CHECKOUT}`}>
               <Button
                 onClick={() => {
@@ -89,9 +89,9 @@ const DetailsProduct = ({ productID }) => {
                     addToCart(product);
                   }
                 }}
-                className='space-x-2 !bg-violet-500 !text-white hover:!bg-violet-400'
+                className='space-x-2 !bg-violet-500 px-2 md:px-4 !text-white hover:!bg-violet-400'
               >
-                <FiShoppingCart />
+                <FiShoppingCart size={IconSize.basic} />
                 <p> View in Cart</p>
               </Button>
             </Link>
@@ -104,7 +104,7 @@ const DetailsProduct = ({ productID }) => {
                 }
               }}
               variant='ghost'
-              className='space-x-2'
+              className='space-x-2 px-2 md:px-4'
             >
               {isProductInWishlist ? (
                 <AiFillHeart size={IconSize.basic} className='text-red-500' />

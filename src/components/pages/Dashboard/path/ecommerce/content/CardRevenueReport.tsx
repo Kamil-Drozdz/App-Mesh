@@ -5,6 +5,7 @@ import CardContainer from '@/common/CardContainer';
 import { DataRevenueReport } from '@/data/charts/dataRevenueReport';
 import { convert } from '@/lib/convert';
 import { totalValue } from '@/lib/totalValue';
+import useFullScreen from '@/store/FullScreen';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 
 const CardRevenueReport = () => {
   const { options, optionsLine, data } = DataRevenueReport();
+  const { isFullScreen } = useFullScreen();
   const { t } = useTranslation();
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
@@ -30,10 +32,10 @@ const CardRevenueReport = () => {
         <div className='flex items-center justify-between pb-4'>
           <h3 className='dark:text-white'>{t('Revenue Report')}</h3>
         </div>
-        <Bar data={data} options={options} />
+        <Bar className={`${isFullScreen ? '' : 'w-full max-w-[520px]'}`} data={data} options={options} />
       </div>
       <Separator orientation='vertical' className='dark:bg-gray-600' />
-      <div className='flex flex-col items-center justify-start space-y-4 md:w-1/3 '>
+      <div className='flex flex-col items-center justify-start space-y-4 md:w-1/3 px-4'>
         <Select>
           <SelectTrigger className='w-[180px] border-darkBlue'>
             <SelectValue placeholder={t('Choose Year')} />
@@ -53,7 +55,7 @@ const CardRevenueReport = () => {
         <h4 className='dark:text-base dark:text-gray-300'>
           {t('Budget')} {convert(totalValue(data.datasets[0].data))}
         </h4>
-        <Line className='w-full px-4' options={optionsLine} data={data} />
+        <Line className={`${isFullScreen ? '' : 'w-full max-w-[260px]'}`} options={optionsLine} data={data} />
         <Button className='!bg-violet-500 !text-white hover:!bg-violet-400'>{t('Increase Budget')}</Button>
       </div>
     </CardContainer>

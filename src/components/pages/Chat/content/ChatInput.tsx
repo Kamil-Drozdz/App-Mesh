@@ -31,7 +31,12 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
   const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setMessage(file);
+      const allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (allowedImageTypes.includes(file.type)) {
+        setMessage(file);
+      } else {
+        alert('Please upload a valid image file.');
+      }
     }
   };
 

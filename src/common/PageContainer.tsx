@@ -2,10 +2,13 @@ import { Button } from '@/UI/Button';
 import SideNavbar from '@/components/navigation/SideNavbar';
 import TopNavbar from '@/components/navigation/TopNavbar';
 import useFullScreen from '@/store/FullScreen';
+import { useLocation } from 'react-router-dom';
 import { PropsWithChildren } from 'react';
 import { Transition } from 'react-transition-group';
+import { BasicRoutes } from '@/lib/enums/routes';
 
 const PageContainer = ({ children }: PropsWithChildren) => {
+  const { pathname } = useLocation();
   const { isFullScreen, toggleFullScreen } = useFullScreen();
 
   return (
@@ -27,7 +30,12 @@ const PageContainer = ({ children }: PropsWithChildren) => {
           </div>
         )}
       </Transition>
-      <Button onClick={toggleFullScreen} className='fixed right-8 bottom-8 z-[100] hidden md:block'>
+      <Button
+        onClick={toggleFullScreen}
+        className={`fixed right-8 bg-black text-white bottom-8 z-[100] ${
+          pathname === BasicRoutes.UNAUTHORIZED ? 'hidden' : 'hidden md:block'
+        } `}
+      >
         {isFullScreen ? 'Back to dashboard Mode' : ' Try Fullscreen'}
       </Button>
     </main>

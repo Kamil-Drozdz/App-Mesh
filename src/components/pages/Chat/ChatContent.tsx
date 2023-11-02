@@ -4,7 +4,7 @@ import Chat from './content/Chat';
 const ChatContent = () => {
   return (
     <PageContainer>
-      <Chat />{' '}
+      <Chat />
     </PageContainer>
   );
 };

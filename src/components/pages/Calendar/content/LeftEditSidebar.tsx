@@ -22,9 +22,9 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
   return (
     <>
       <div
-        className={`fixed z-[51] ${
+        className={`fixed z-[51] pb-24 md:pb-0 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } text-gray-900transition-transform right-0 h-full w-3/4 max-w-[24rem] space-y-4 bg-white p-6 duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
+        } text-gray-900 transition-transform right-0 h-full max-h-screen overflow-y-auto w-3/4 max-w-[24rem] space-y-4 bg-white p-6 duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
       >
         Add Event
         <InputWithLabel
@@ -62,7 +62,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
                   !formData.start && 'text-muted-foreground'
                 )}
               >
-                {formData.start ? format(formData.start, 'PPP') : <span>Pick a date</span>}{' '}
+                {formData.start ? format(formData.start, 'PPP') : <span>Pick a date</span>}
                 <BiCalendar className='ml-auto h-4 w-4 opacity-50' />
               </Button>
             </div>

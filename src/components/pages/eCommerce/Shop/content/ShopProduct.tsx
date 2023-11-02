@@ -43,8 +43,8 @@ const ShopProduct = ({ product }: ShopProductProps) => {
               addToWishlist(product);
             }
           }}
-          variant='ghost'
-          className='w-full space-x-2 rounded-none !rounded-bl-lg border border-t-0 border-gray-600'
+          variant='empty'
+          className='w-full space-x-2 dark:bg-mediumBlue bg-white hover:bg-gray-200 rounded-bl-md rounded-none dark:hover:bg-lightBlue'
         >
           {isProductInWishlist ? (
             <AiFillHeart size={IconSize.basic} className='text-red-500' />

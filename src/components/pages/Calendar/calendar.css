@@ -43,6 +43,8 @@
   height: 24px;
   width: 24px;
   background-position: 50%;
+  background-color: inherit !important;
+  border: none !important;
   background-repeat: no-repeat;
   display: none !important;
 }

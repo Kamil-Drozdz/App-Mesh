@@ -10,11 +10,11 @@ export const labels = [
 ];
 
 export const data = [
-  { id: uuidv4(), title: 'Meeting', start: new Date('2023-09-06'), label: 'Business' },
-  { id: uuidv4(), title: 'Holiday', start: new Date('2023-09-28'), label: 'Holiday' },
-  { id: uuidv4(), title: 'Personal Appointment', start: new Date('2023-09-30'), label: 'Personal' },
-  { id: uuidv4(), title: 'Family Gathering', start: new Date('2023-10-05'), label: 'Family' },
-  { id: uuidv4(), title: 'Workshop', start: new Date('2023-10-10'), label: 'Business' },
-  { id: uuidv4(), title: 'Birthday Party', start: new Date('2023-10-15'), label: 'Personal' },
-  { id: uuidv4(), title: 'Conference', start: new Date('2023-10-20'), label: 'Business' },
+  { id: uuidv4(), title: 'Meeting', start: new Date('2023-11-06'), label: 'Business' },
+  { id: uuidv4(), title: 'Holiday', start: new Date('2023-11-28'), label: 'Holiday' },
+  { id: uuidv4(), title: 'Personal Appointment', start: new Date('2023-11-30'), label: 'Personal' },
+  { id: uuidv4(), title: 'Family Gathering', start: new Date('2023-11-05'), label: 'Family' },
+  { id: uuidv4(), title: 'Workshop', start: new Date('2023-11-10'), label: 'Business' },
+  { id: uuidv4(), title: 'Birthday Party', start: new Date('2023-11-15'), label: 'Personal' },
+  { id: uuidv4(), title: 'Conference', start: new Date('2023-11-20'), label: 'Business' },
 ];

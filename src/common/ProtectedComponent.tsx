@@ -17,9 +17,11 @@ export const ProtectedComponent = ({ component: Component }) => {
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const foundUser = userData.users.find((u) => u.displayName === user.displayName);
+
           setCurrentUser({
             ...user,
-            role: foundUser.role,
+            role: foundUser?.role || 'User',
+            photoURL: user.photoURL || `https://ui-avatars.com/api/?name=${foundUser?.displayName.slice(0, 1)}`,
           });
         }
       } else {

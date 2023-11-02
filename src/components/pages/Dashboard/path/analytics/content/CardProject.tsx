@@ -46,13 +46,16 @@ const CardProject = () => {
       </div>
       <div className='flex items-center justify-start space-x-4'>
         <div className='rounded bg-gray-200 px-2 py-1 text-center dark:bg-gray-900'>
-          <p className='text-gray-500'>Due Date</p> <span className='font-semibold text-gray-400'>12 Apr, 21</span>
+          <p className='text-gray-500'>Due Date</p>
+          <span className='font-semibold text-gray-400 whitespace-nowrap'>12 Apr, 21</span>
         </div>
         <div className='rounded bg-gray-200 px-2 py-1 text-center dark:bg-gray-900'>
-          <p className='text-gray-500'>Budget</p> <span className='font-semibold text-gray-400'>$49251.91 </span>
+          <p className='text-gray-500'>Budget</p>
+          <span className='font-semibold text-gray-400  whitespace-nowrap'>$49251.91 </span>
         </div>
         <div className='rounded bg-gray-200 px-2 py-1 text-center dark:bg-gray-900'>
-          <p className='text-gray-500'>Cost</p> <span className='font-semibold text-gray-400'>$840.99 </span>
+          <p className='text-gray-500'>Cost</p>
+          <span className='font-semibold text-gray-400  whitespace-nowrap'>$840.99 </span>
         </div>
       </div>
       <Button className='w-full !bg-violet-500 !text-white hover:!bg-violet-400'>Join Team</Button>

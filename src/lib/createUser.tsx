@@ -14,6 +14,7 @@ export const createUser = async (formData) => {
         role: formData.role,
         plan: formData.plan || 'free',
         emailVerified: 'inactive',
+        photoURL: `https://ui-avatars.com/api/?name=${formData?.displayName.slice(0, 1)}`,
       }),
     });
     const user = userCredential.user as User;

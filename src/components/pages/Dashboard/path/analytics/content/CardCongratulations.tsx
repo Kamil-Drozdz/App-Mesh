@@ -10,7 +10,7 @@ const CardCongratulations = () => {
   const { currentUser } = useCurrentUser();
   const { t } = useTranslation();
   return (
-    <CardContainer className='p-0 md:basis-1/2'>
+    <CardContainer className='!p-0 md:basis-1/2'>
       <div className='h-full w-full rounded-lg bg-[#645cd0] text-white'>
         <img height={150} width={150} className='absolute top-0 right-0 max-w-[150px]' src={rightDecore} />
         <img height={150} width={150} className='absolute top-0 left-0 max-w-[150px]' src={leftDecore} />

@@ -2,7 +2,7 @@ import { ProtectedComponent } from './common/ProtectedComponent';
 import { BasicRoutes, SubRoutes } from './lib/enums/routes';
 import { FULL_PATHS, publicPaths } from './lib/routeMapping';
 import React, { Suspense, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageContentSkeleton from './UI/skeleton/PageContentSkeleton';
@@ -11,7 +11,8 @@ import useCurrentUser from './store/CurrentUser';
 const App = () => {
   const navigate = useNavigate();
   const { currentUser } = useCurrentUser();
-  const pathname = window.location.pathname;
+  const { pathname } = useLocation();
+
   useEffect(() => {
     if (pathname === '/') {
       if (currentUser) {

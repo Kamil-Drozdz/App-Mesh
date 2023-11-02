@@ -1,6 +1,7 @@
 import { Button } from '@/UI/Button';
 import InputWithLabel from '@/common/InputWithLabel';
 import { formFields } from '@/data/pages/ecommerce/formFields';
+import { handleEnterDown } from '@/lib/handleEnterDown';
 import { validateField } from '@/lib/validateField';
 import { z } from 'zod';
 
@@ -40,6 +41,7 @@ const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
               value={formData[fieldData.field]}
               onChange={(e) => handleChange(e, fieldData.field)}
               label={fieldData.label}
+              onKeyDown={(e) => handleEnterDown(e, handleCheckoutAdress)}
               type={fieldData.type}
             />
             {errors[fieldData.field] && <p className='text-sm text-red-500'>{errors[fieldData.field]}</p>}

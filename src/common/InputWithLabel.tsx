@@ -1,6 +1,6 @@
 import { Input } from '@/UI/Input';
 import clsx from '@/lib/clsx';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, KeyboardEventHandler } from 'react';
 
 interface InputWithLabelProps {
   value: string;
@@ -9,14 +9,16 @@ interface InputWithLabelProps {
   id: string;
   type: string;
   className?: string;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
 }
-const InputWithLabel = ({ value, onChange, label, id, type, className }: InputWithLabelProps) => {
+const InputWithLabel = ({ onKeyDown, value, onChange, label, id, type, className }: InputWithLabelProps) => {
   return (
     <div className={clsx('relative', className)}>
       <Input
         type={type}
         id={id}
         value={value}
+        onKeyDown={onKeyDown}
         onChange={onChange}
         className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
         placeholder=' '

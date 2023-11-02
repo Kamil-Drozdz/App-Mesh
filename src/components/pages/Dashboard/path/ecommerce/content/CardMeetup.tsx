@@ -10,7 +10,7 @@ const CardMeetup = () => {
   const data: MeetupDataProps[] = generateData(8, generateMeetupData);
 
   return (
-    <CardContainer className='basis-1/3 p-0'>
+    <CardContainer className='basis-1/3 !p-0'>
       <div className=' flex justify-center rounded-t-lg bg-lightBlue'>
         <img height={200} width={300} className=' aspect-video w-full max-w-[300px]' src={organizePhoto} />
       </div>
@@ -43,7 +43,7 @@ const CardMeetup = () => {
             <span className='w-full text-left text-sm text-gray-400'>Manhattan, New york City</span>
           </div>
         </div>
-        <div className='flex items-center py-4'>
+        <div className='flex items-center py-4 ml-2'>
           {data.map((item, index) => (
             <TooltipProvider key={index}>
               <Tooltip>

@@ -114,7 +114,7 @@ const CalendarContent = () => {
     const event = eventInfo.event;
     const color = labels.find((item) => item.name === event._def.extendedProps.label);
     return (
-      <div className={`bg-opacity-[12%] ${color?.color}border-opacity-10 rounded border px-2 font-semibold`}>
+      <div className={`bg-opacity-[12%] ${color?.color} border-opacity-10 rounded border px-2 font-semibold`}>
         {event.title}
       </div>
     );
