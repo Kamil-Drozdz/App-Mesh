@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { Table, TableCaption, TableHead, TableHeader, TableRow } from '@/UI/Table';
 import CardContainer from '@/common/CardContainer';
 import Pagination from '@/common/Pagination';
-import useSearch from '@/hooks/useSearch';
+import { SearchInput } from '@/common/SearchInput';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
@@ -27,7 +27,7 @@ const UserList = ({ filters }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const { search, SearchInput } = useSearch(false);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -102,7 +102,7 @@ const UserList = ({ filters }) => {
             </div>
             <div className='flex items-center'>
               <p>Search:</p>
-              <SearchInput className='min-w-[200px]' />
+              <SearchInput search={search} setSearch={setSearch} isIcon={false} className='min-w-[200px]' />
               <Button
                 onClick={() => setIsOpen((prev) => !prev)}
                 className='h-full w-full !bg-violet-500 !text-white hover:bg-violet-400'

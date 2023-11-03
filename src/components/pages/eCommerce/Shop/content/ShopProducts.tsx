@@ -1,9 +1,10 @@
 import ShopProduct from './ShopProduct';
 import Skeleton from '@/UI/skeleton/Skeleton';
 import noData from '@/assets/no-data.svg';
+import { SearchInput } from '@/common/SearchInput';
 import useFetch from '@/hooks/useFetch';
-import useSearch from '@/hooks/useSearch';
 import { ProductProps } from '@/store/ProductsStore';
+import { useState } from 'react';
 
 interface FetchProps {
   data: ProductProps[] | null;
@@ -11,7 +12,7 @@ interface FetchProps {
   error: { message: string | null };
 }
 const ShopProducts = () => {
-  const { search, SearchInput } = useSearch();
+  const [search, setSearch] = useState('');
   const {
     data: products,
     loading,
@@ -35,7 +36,7 @@ const ShopProducts = () => {
 
   return (
     <>
-      <SearchInput />
+      <SearchInput search={search} setSearch={setSearch} />
       {filteredProducts?.length ? (
         <div className='grid grid-cols-auto-fit-100 md:grid-cols-3 xl:grid-cols-4 '>
           {filteredProducts?.map((product) => <ShopProduct key={product.id} product={product} />)}

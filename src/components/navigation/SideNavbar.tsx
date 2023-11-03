@@ -86,7 +86,9 @@ const SideNavbar = () => {
           ))}
         </nav>
       </div>
-      {isMenuOpen && <div className='fixed inset-0 z-10 bg-black opacity-50' onClick={toggleMenu}></div>}
+      {isMenuOpen && (
+        <div className='fixed inset-0 z-10 block bg-black opacity-50 md:hidden' onClick={toggleMenu}></div>
+      )}
     </>
   );
 };
