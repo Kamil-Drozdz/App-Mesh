@@ -2,6 +2,7 @@ import { BasicRoutes, SubRoutes } from './enums/routes';
 import NotFound from '@/common/NotFound';
 import Unauthorized from '@/common/Unauthorized';
 import EmailContent from '@/components/pages/Email/EmailContent';
+import InvoiceEditContent from '@/components/pages/Invoice/path/edit/content/InvoiceEditCard';
 import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/ForgotPasswordContent';
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
@@ -55,6 +56,10 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
     {
       subPath: SubRoutes.PREVIEW,
       component: InvoicePreviewContent,
+    },
+    {
+      subPath: SubRoutes.EDIT,
+      component: InvoiceEditContent,
     },
   ],
   [BasicRoutes.ECOMMERCE]: [

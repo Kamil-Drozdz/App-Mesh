@@ -1,19 +1,18 @@
+import InvoiceEditCard from './content/InvoiceEditCard';
 import NavigationCard from '../../NavigationCard';
 import PageContainer from '@/common/PageContainer';
-import InvoicePreviewCard from './content/InvoicePreviewCard';
 
-const InvoicePreviewContent = () => {
+const InvoiceEditContent = () => {
   const handlePrint = () => {};
 
   return (
     <PageContainer>
       <div className='flex space-x-6'>
-        <InvoicePreviewCard />
+        <InvoiceEditCard />
         <NavigationCard handlePrint={handlePrint} />
       </div>
-
     </PageContainer>
   );
 };
 
-export default InvoicePreviewContent;
+export default InvoiceEditContent;

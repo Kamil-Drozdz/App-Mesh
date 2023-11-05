@@ -1,5 +1,7 @@
 import { Button } from '@/UI/Button';
 import CardContainer from '@/common/CardContainer';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
+import { Link } from 'react-router-dom';
 
 const NavigationCard = ({ handlePrint }) => {
   return (
@@ -11,9 +13,11 @@ const NavigationCard = ({ handlePrint }) => {
       <Button onClick={() => print()} variant='ghost' className='border'>
         Print
       </Button>
-      <Button variant='ghost' className='border'>
-        Edit
-      </Button>
+      <Link className='w-full' to={`${BasicRoutes.INVOICE}${SubRoutes.EDIT}`}>
+        <Button variant='ghost' className='w-full border'>
+          Edit
+        </Button>
+      </Link>
       <Button className='w-full !bg-green-500 !text-white hover:!bg-green-400'>Add Payment</Button>
     </CardContainer>
   );
