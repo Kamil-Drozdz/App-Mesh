@@ -27,7 +27,7 @@ const SideNavbar = () => {
   return (
     <>
       <div
-        className={`w-72 bg-lightWhite dark:bg-darkBlue ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} ${
+        className={`w-72 bg-lightWhite dark:bg-darkBlue print:hidden ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} ${
           isFullScreen ? '!-left-72' : 'left-0 '
         } fixed top-0 right-0 z-[11] h-screen transition-all duration-300 ease-out`}
       >

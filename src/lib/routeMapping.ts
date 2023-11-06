@@ -2,7 +2,7 @@ import { BasicRoutes, SubRoutes } from './enums/routes';
 import NotFound from '@/common/NotFound';
 import Unauthorized from '@/common/Unauthorized';
 import EmailContent from '@/components/pages/Email/EmailContent';
-import InvoiceEditContent from '@/components/pages/Invoice/path/edit/content/InvoiceEditCard';
+import InvoiceContent from '@/components/pages/Invoice/InvoiceContent';
 import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/ForgotPasswordContent';
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
@@ -18,7 +18,6 @@ const DetailsContent = lazy(() => import('@/components/pages/eCommerce/Details/D
 const CheckoutContent = lazy(() => import('@/components/pages/eCommerce/Checkout/CheckoutContent'));
 const ShopContent = lazy(() => import('@/components/pages/eCommerce/Shop/ShopContent'));
 const UserContent = lazy(() => import('@/components/pages/User/UserContent'));
-const InvoicePreviewContent = lazy(() => import('@/components/pages/Invoice/path/preview/InvoicePreviewContent'));
 
 interface RouteConfig {
   subPath: string;
@@ -55,11 +54,11 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
   [BasicRoutes.INVOICE]: [
     {
       subPath: SubRoutes.PREVIEW,
-      component: InvoicePreviewContent,
+      component: InvoiceContent,
     },
     {
       subPath: SubRoutes.EDIT,
-      component: InvoiceEditContent,
+      component: InvoiceContent,
     },
   ],
   [BasicRoutes.ECOMMERCE]: [

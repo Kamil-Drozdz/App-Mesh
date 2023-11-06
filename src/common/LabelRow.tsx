@@ -7,7 +7,7 @@ interface LabelRowProps {
 }
 const LabelRow = ({ label, value, className }: LabelRowProps) => {
   return (
-    <div className={clsx('flex', className)}>
+    <div className={clsx('flex w-fit whitespace-nowrap', className)}>
       <p>{label}</p>
       <div className='font-semibold'>{value}</div>
     </div>
