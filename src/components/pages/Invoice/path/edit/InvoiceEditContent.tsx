@@ -5,8 +5,13 @@ import { Link } from 'react-router-dom';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import InvoiceTemplate from '../../InvoiceTemplate';
 import { toast } from 'react-toastify';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useInvoice } from '@/store/Invoice';
 
-const InvoiceEdit = ({ invoice, setInvoice, setItem, handleSendInvoice ,isSavedInvoice}) => {
+const InvoiceEditContent = () => {
+  const { invoice } = useInvoice();
+  const { setItem } = useLocalStorage('savedInvoice');
+
   const handleSave = () => {
     try {
       toast.success("You're Invoice has been saved!");
@@ -18,8 +23,8 @@ const InvoiceEdit = ({ invoice, setInvoice, setItem, handleSendInvoice ,isSavedI
   return (
     <PageContainer>
       <div className='flex space-x-6'>
-        <InvoiceTemplate isSavedInvoice={isSavedInvoice} isEditable={true} invoice={invoice} setInvoice={setInvoice} />
-        <NavigationCard handleSendInvoice={handleSendInvoice}>
+        <InvoiceTemplate isEditable={true} />
+        <NavigationCard>
           <Link className='w-full' to={`${BasicRoutes.INVOICE}${SubRoutes.PREVIEW}`}>
             <Button variant='ghost' className='w-full border'>
               Preview
@@ -34,4 +39,4 @@ const InvoiceEdit = ({ invoice, setInvoice, setItem, handleSendInvoice ,isSavedI
   );
 };
 
-export default InvoiceEdit;
+export default InvoiceEditContent;

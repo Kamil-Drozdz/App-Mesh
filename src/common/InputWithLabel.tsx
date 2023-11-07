@@ -3,7 +3,7 @@ import clsx from '@/lib/clsx';
 import { ChangeEventHandler, KeyboardEventHandler } from 'react';
 
 interface InputWithLabelProps {
-  value: string;
+  value: string | number;
   onChange: ChangeEventHandler<HTMLInputElement>;
   label: string;
   id: string;

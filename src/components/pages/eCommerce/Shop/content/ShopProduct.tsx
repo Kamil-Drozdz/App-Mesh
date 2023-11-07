@@ -21,9 +21,15 @@ const ShopProduct = ({ product }: ShopProductProps) => {
       <div className='relative flex flex-col items-center justify-center space-y-3 rounded-t-lg bg-white p-4 dark:bg-mediumBlue'>
         <Link
           to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`}
-          className='h-32 w-32 rounded-lg bg-white p-2'
+          className=' flex items-center justify-center rounded-lg bg-white p-2 md:max-w-[90%]'
         >
-          <img className='aspect-square object-contain' src={product?.image} alt={product?.title} />
+          <img
+            height={400}
+            width={400}
+            className='aspect-square max-h-[400px] object-contain'
+            src={product?.image}
+            alt={product?.title}
+          />
         </Link>
         <div className='flex w-full justify-between'>
           <div className='flex text-amber-500'>{stars}</div>
@@ -44,7 +50,7 @@ const ShopProduct = ({ product }: ShopProductProps) => {
             }
           }}
           variant='empty'
-          className='w-full space-x-2 dark:bg-mediumBlue bg-white hover:bg-gray-200 rounded-bl-md rounded-none dark:hover:bg-lightBlue'
+          className='w-full space-x-2 rounded-none rounded-bl-md bg-white hover:bg-gray-200 dark:bg-mediumBlue dark:hover:bg-lightBlue'
         >
           {isProductInWishlist ? (
             <AiFillHeart size={IconSize.basic} className='text-red-500' />

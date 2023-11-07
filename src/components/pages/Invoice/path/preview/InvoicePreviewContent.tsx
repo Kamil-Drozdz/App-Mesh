@@ -6,13 +6,15 @@ import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import InvoiceTemplate from '../../InvoiceTemplate';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import InvoicePDF from '../../InvoicePDF';
+import { useInvoice } from '@/store/Invoice';
 
-const InvoicePreview = ({ invoice, setInvoice, handleSendInvoice, isSavedInvoice }) => {
+const InvoicePreviewContent = () => {
+  const { invoice } = useInvoice();
   return (
     <PageContainer>
       <div className='flex space-x-6'>
-        <InvoiceTemplate isSavedInvoice={isSavedInvoice} isEditable={false} invoice={invoice} setInvoice={setInvoice} />
-        <NavigationCard handleSendInvoice={handleSendInvoice}>
+        <InvoiceTemplate isEditable={false} />
+        <NavigationCard>
           <Button variant='ghost' className='border'>
             <PDFDownloadLink
               className='h-full w-full'
@@ -37,4 +39,4 @@ const InvoicePreview = ({ invoice, setInvoice, handleSendInvoice, isSavedInvoice
   );
 };
 
-export default InvoicePreview;
+export default InvoicePreviewContent;

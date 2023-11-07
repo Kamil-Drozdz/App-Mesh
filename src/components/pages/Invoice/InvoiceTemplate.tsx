@@ -1,4 +1,3 @@
-import { Input } from '@/UI/Input';
 import { Separator } from '@/UI/Separator';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/UI/Table';
 import CardContainer from '@/common/CardContainer';
@@ -7,68 +6,90 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { totalValue } from '@/lib/totalValue';
 import { Button } from '@/UI/Button';
 import clsx from '@/lib/clsx';
-import { BiCalendar } from 'react-icons/bi';
-import { cloneDeep, set } from 'lodash';
-import { format } from 'date-fns';
+import { BiCalendar, BiPlus } from 'react-icons/bi';
+import { format, parseISO } from 'date-fns';
 import { Calendar } from '@/UI/Calendar';
+import { useState } from 'react';
+import InputWithLabel from '@/common/InputWithLabel';
+import InvoiceTemplateField from './InvoiceTemplateField';
+import { Invoice, InvoiceItem, useInvoice } from '@/store/Invoice';
 
-const InvoiceTemplate = ({ isEditable = false, invoice, setInvoice, isSavedInvoice }) => {
+const InvoiceTemplate = ({ isEditable = false }) => {
+  const { invoice, setInvoice } = useInvoice();
   const subTotal = totalValue(invoice.invoiceItems.map((item) => item.rate * item.hours));
-
+  const [invoiceItem, setInvoiceItem] = useState({ task: '', rate: 0, hours: 0 });
   const total = (subTotal * (1 + invoice.tax / 100)).toFixed(2);
 
-  const parsedDateIssued = isSavedInvoice
-    ? new Date(invoice.invoiceDetails.dateIssued)
-    : invoice.invoiceDetails.dateIssued;
+  const parsedDateIssued =
+    typeof invoice.invoiceDetails.dateIssued === 'string'
+      ? format(parseISO(invoice.invoiceDetails.dateIssued), 'PPP')
+      : format(invoice.invoiceDetails.dateIssued, 'PPP');
 
-  const parsedDateDue = isSavedInvoice ? new Date(invoice.invoiceDetails.dueDate) : invoice.invoiceDetails.dueDate;
+  const parsedDateDue =
+    typeof invoice.invoiceDetails.dueDate === 'string'
+      ? format(parseISO(invoice.invoiceDetails.dueDate), 'PPP')
+      : format(invoice.invoiceDetails.dueDate, 'PPP');
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setInvoice((prevInvoice) => {
-      const newInvoice = cloneDeep(prevInvoice);
-      set(newInvoice, name, value);
-      return newInvoice;
-    });
+  const addInvoiceItem = () => {
+    const newItem: InvoiceItem = {
+      task: invoiceItem.task,
+      rate: invoiceItem.rate,
+      hours: invoiceItem.hours,
+    };
+
+    setInvoice((prevInvoice: Invoice) => ({
+      ...prevInvoice,
+      invoiceItems: [...prevInvoice.invoiceItems, newItem],
+    }));
+
+    setInvoiceItem({ task: '', rate: 0, hours: 0 });
   };
 
-  const renderField = (value, name, isHighlighted = false, className = '', additionalText = '', type = 'text') =>
-    isEditable ? (
-      <Input
-        className={clsx('my-2', className)}
-        name={name}
-        placeholder={value}
-        onChange={handleInputChange}
-        id={`input-${value}`}
-        type={type}
-      />
-    ) : isHighlighted ? (
-      <div className='mb-4 text-xl font-bold'>
-        {additionalText}
-        {value}
-      </div>
-    ) : (
-      <div>
-        {additionalText}
-        {value}
-      </div>
-    );
+  const removeInvoiceItem = (index) => {
+    setInvoice((prevInvoice) => ({
+      ...prevInvoice,
+      invoiceItems: prevInvoice.invoiceItems.filter((_, i) => i !== index),
+    }));
+  };
 
   return (
     <CardContainer className='w-3/4 space-y-8 print:w-full print:space-y-3 print:rounded-none print:border-none print:shadow-none '>
       <div className='mb-4 flex flex-col items-start justify-between space-y-4 print:flex-row print:space-y-0 md:flex-row md:space-y-0'>
         <div>
-          {renderField(invoice.companyInfo.name, 'companyInfo.name', true)}
-          {renderField(invoice.companyInfo.address.part1, 'companyInfo.address.part1')}
-          {renderField(invoice.companyInfo.address.part2, 'companyInfo.address.part2')}
-          {renderField(invoice.companyInfo.contacts, 'companyInfo.contacts')}
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.companyInfo.name}
+            name='companyInfo.name'
+            isHighlighted={true}
+          />
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.companyInfo.address.part1}
+            name='companyInfo.address.part1'
+          />
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.companyInfo.address.part2}
+            name='companyInfo.address.part2'
+          />
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.companyInfo.contacts}
+            name='companyInfo.contacts'
+          />
         </div>
         <div className='self-stretch'>
-          {renderField(invoice.invoiceDetails.number, 'invoiceDetails.number', true, '', 'Invoice #')}
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.invoiceDetails.number}
+            name='invoiceDetails.number'
+            isHighlighted={true}
+            additionalText='Invoice #'
+          />
           {!isEditable && (
             <>
-              <div> {parsedDateIssued ? format(parsedDateIssued, 'PPP') : 'Date not picked'}</div>
-              <div> {parsedDateDue ? format(parsedDateDue, 'PPP') : 'Date not picked'}</div>
+              <div> {parsedDateIssued ? parsedDateIssued : 'Date not picked'}</div>
+              <div> {parsedDateDue ? parsedDateDue : 'Date not picked'}</div>
             </>
           )}
           {isEditable && (
@@ -82,7 +103,7 @@ const InvoiceTemplate = ({ isEditable = false, invoice, setInvoice, isSavedInvoi
                       !parsedDateIssued && 'text-muted-foreground'
                     )}
                   >
-                    {invoice.invoiceDetails.dateIssued ? format(parsedDateIssued, 'PPP') : <span>Pick a date</span>}
+                    {invoice.invoiceDetails.dateIssued ? parsedDateIssued : <span>Pick a date</span>}
                     <BiCalendar className='ml-auto h-4 w-4 opacity-50' />
                   </Button>
                 </PopoverTrigger>
@@ -90,13 +111,13 @@ const InvoiceTemplate = ({ isEditable = false, invoice, setInvoice, isSavedInvoi
                   <Calendar
                     mode='single'
                     initialFocus
-                    selected={parsedDateIssued}
+                    selected={invoice.invoiceDetails.dateIssued || new Date()}
                     onSelect={(date) =>
                       setInvoice({
                         ...invoice,
                         invoiceDetails: {
                           ...invoice.invoiceDetails,
-                          dateIssued: date,
+                          dateIssued: date || new Date(),
                         },
                       })
                     }
@@ -114,7 +135,7 @@ const InvoiceTemplate = ({ isEditable = false, invoice, setInvoice, isSavedInvoi
                         !parsedDateDue && 'text-muted-foreground'
                       )}
                     >
-                      {invoice.invoiceDetails.dueDate ? format(parsedDateDue, 'PPP') : <span>Pick a date</span>}
+                      {invoice.invoiceDetails.dueDate ? parsedDateDue : <span>Pick a date</span>}
                       <BiCalendar className='ml-auto h-4 w-4 opacity-50' />
                     </Button>
                   </div>
@@ -123,13 +144,13 @@ const InvoiceTemplate = ({ isEditable = false, invoice, setInvoice, isSavedInvoi
                   <Calendar
                     mode='single'
                     initialFocus
-                    selected={parsedDateDue}
+                    selected={invoice.invoiceDetails.dueDate || new Date()}
                     onSelect={(date) =>
                       setInvoice({
                         ...invoice,
                         invoiceDetails: {
                           ...invoice.invoiceDetails,
-                          dueDate: date,
+                          dueDate: date || new Date(),
                         },
                       })
                     }
@@ -144,18 +165,38 @@ const InvoiceTemplate = ({ isEditable = false, invoice, setInvoice, isSavedInvoi
       <Separator />
       <div className='my-4 flex flex-col items-start justify-between space-y-4 print:flex-row print:space-y-0 md:flex-row md:space-y-0'>
         <div className='pr-8'>
-          <div className='mb-4 text-2xl font-bold'>Invoice To:</div>
-          {renderField(invoice.clientDetails.name, 'clientDetails.name')}
-          {renderField(invoice.clientDetails.address, 'clientDetails.address')}
-          {renderField(invoice.clientDetails.phone, 'clientDetails.phone')}
-          {renderField(invoice.clientDetails.email, 'clientDetails.email')}
+          <div className='mb-4 text-xl font-bold'>Invoice To:</div>
+
+          <InvoiceTemplateField isEditable={isEditable} value={invoice.clientDetails.name} name='clientDetails.name' />
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.clientDetails.address}
+            name='clientDetails.address'
+          />
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.clientDetails.phone}
+            name='clientDetails.phone'
+          />
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.clientDetails.email}
+            name='clientDetails.email'
+          />
         </div>
         <div>
-          <div className='mb-4 text-2xl font-bold'>Payment Details:</div>
+          <div className='mb-4 text-xl font-bold'>Payment Details:</div>
           <LabelRow label='Total Due:' value={`$ ${total}`} />
-
-          {renderField(`Method: ${invoice.paymentDetails.method}`, 'paymentDetails.method')}
-          {renderField(`Transaction ID: ${invoice.paymentDetails.transactionId}`, 'paymentDetails.transactionId')}
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={`Method: ${invoice.paymentDetails.method}`}
+            name='paymentDetails.method'
+          />
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={`Transaction ID: ${invoice.paymentDetails.transactionId}`}
+            name='paymentDetails.transactionId'
+          />
         </div>
       </div>
       <Separator />
@@ -169,31 +210,99 @@ const InvoiceTemplate = ({ isEditable = false, invoice, setInvoice, isSavedInvoi
             <TableHead className='text-right'>TOTAL</TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {invoice.invoiceItems.map((item, index) => (
-            <TableRow key={index}>
+            <TableRow className='relative' key={index}>
               <TableCell className='font-medium'>{item.task}</TableCell>
               <TableCell>{item.rate}$</TableCell>
               <TableCell>{item.hours}</TableCell>
               <TableCell className='text-right'>{item.rate * item.hours}$</TableCell>
+              {isEditable && (
+                <TableCell>
+                  <Button
+                    className='relative h-fit px-2 py-0.5'
+                    variant='destructive'
+                    onClick={() => removeInvoiceItem(index)}
+                  >
+                    Remove
+                  </Button>
+                </TableCell>
+              )}
             </TableRow>
           ))}
+          {isEditable && (
+            <>
+              <div className='mt-4 text-sm text-muted-foreground'>add a new invoice to the invoice list </div>
+              <tr className='w-full'>
+                <TableCell>
+                  <InputWithLabel
+                    label='Task'
+                    id='task'
+                    type='text'
+                    value={invoiceItem.task}
+                    onChange={(e) => setInvoiceItem({ ...invoiceItem, task: e.target.value })}
+                  />
+                </TableCell>
+                <TableCell>
+                  <InputWithLabel
+                    label='Rate'
+                    id='rate'
+                    type='number'
+                    value={invoiceItem.rate}
+                    onChange={(e) => setInvoiceItem({ ...invoiceItem, rate: Number(e.target.value) })}
+                  />
+                </TableCell>
+                <TableCell>
+                  <InputWithLabel
+                    label='Hours'
+                    id='hours'
+                    type='number'
+                    value={invoiceItem.hours}
+                    onChange={(e) => setInvoiceItem({ ...invoiceItem, hours: Number(e.target.value) })}
+                  />
+                </TableCell>
+              </tr>
+              <Button
+                disabled={invoiceItem.task === '' || invoiceItem.rate === 0 || invoiceItem.hours === 0}
+                className='mt-3'
+                variant='secondary'
+                onClick={addInvoiceItem}
+              >
+                <BiPlus className='mr-2' /> Add Item
+              </Button>
+            </>
+          )}
         </TableBody>
       </Table>
 
       <div className='mt-6 flex flex-col justify-between space-y-4 p-2 print:flex-row md:flex-row md:space-y-0'>
         <div className='flex h-auto w-full items-end justify-start'>
-          {renderField(invoice.salesperson, 'salesperson', false, 'h-fit min-w-[200px]')}
+          <InvoiceTemplateField
+            isEditable={isEditable}
+            value={invoice.salesperson}
+            name='salesperson'
+            className='h-fit min-w-[200px]'
+          />
         </div>
         <div>
           <LabelRow label='SubTotal:' value={` $ ${subTotal.toFixed(2)}`} />
-          {renderField(invoice.tax, 'tax', false, 'my-2', 'Tax % ')}
+          <div className='flex items-center text-muted-foreground'>
+            <InvoiceTemplateField
+              isEditable={isEditable}
+              value={invoice.tax}
+              name='tax'
+              className='my-2 mr-2 w-12'
+              additionalText='Tax'
+            />
+            %
+          </div>
           <Separator />
           <LabelRow label='Total:' value={`$ ${total}`} />
         </div>
       </div>
       <Separator className='my-4' />
-      {renderField(invoice.note, 'note', false, 'w-full')}
+      <InvoiceTemplateField isEditable={isEditable} value={invoice.note} name='note' className='w-full' />
     </CardContainer>
   );
 };

@@ -1,4 +1,6 @@
+import { totalValue } from '@/lib/totalValue';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { format, parseISO } from 'date-fns';
 
 const styles = StyleSheet.create({
   page: {
@@ -70,9 +72,19 @@ const styles = StyleSheet.create({
 });
 
 const InvoicePDF = ({ invoice }) => {
-  const subTotal = invoice.invoiceItems.reduce((acc, item) => acc + item.rate * item.hours, 0);
+  const subTotal = totalValue(invoice.invoiceItems.map((item) => item.rate * item.hours));
   const taxAmount = subTotal * (invoice.tax / 100);
   const total = subTotal + taxAmount;
+
+  const parsedDateIssued =
+    typeof invoice.invoiceDetails.dateIssued === 'string'
+      ? format(parseISO(invoice.invoiceDetails.dateIssued), 'PPP')
+      : format(invoice.invoiceDetails.dateIssued, 'PPP');
+
+  const parsedDateDue =
+    typeof invoice.invoiceDetails.dueDate === 'string'
+      ? format(parseISO(invoice.invoiceDetails.dueDate), 'PPP')
+      : format(invoice.invoiceDetails.dueDate, 'PPP');
 
   return (
     <Document>
@@ -86,8 +98,8 @@ const InvoicePDF = ({ invoice }) => {
           </View>
           <View>
             <Text style={styles.title}>Invoice #{invoice.invoiceDetails.number}</Text>
-            <Text style={styles.text}>Date Issued: {invoice.invoiceDetails.dateIssued}</Text>
-            <Text style={styles.text}>Due Date: {invoice.invoiceDetails.dueDate}</Text>
+            <Text style={styles.text}>Date Issued: {parsedDateIssued}</Text>
+            <Text style={styles.text}>Due Date: {parsedDateDue}</Text>
           </View>
         </View>
         <View style={styles.header}>

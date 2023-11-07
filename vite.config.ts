@@ -63,7 +63,7 @@ export default defineConfig({
             'firebase/firestore',
             'firebase/performance',
             'i18next',
-            'jspdf',
+            '@react-pdf/renderer',
           ],
           'faker-chunk': ['faker', '@faker-js/faker'],
         },
