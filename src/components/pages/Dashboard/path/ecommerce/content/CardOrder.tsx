@@ -1,4 +1,4 @@
-import CardChart from '@/common/CardChart';
+import CardChart from '@/components/pages/Dashboard/CardChart';
 import { DataOrder } from '@/data/charts/dataOrder';
 import { Chart as ChartJS, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { Bar } from 'react-chartjs-2';

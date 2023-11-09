@@ -1,5 +1,5 @@
 import CardContainer from '@/common/CardContainer';
-import CardTimelineItem from '@/common/CardUserTimelineItem';
+import CardTimelineItem from '@/components/pages/Dashboard/path/analytics/content/CardUserTimelineItem';
 import { data } from '@/data/pages/analytics/dataUserTimeline';
 import { IconSize } from '@/lib/enums/iconSize';
 import { BiDotsVertical, BiMenu } from 'react-icons/bi';

@@ -13,14 +13,12 @@ const CardTransactionItem = ({ item }: CardTransactionItemProps) => {
             <div
               className={`flex h-12 w-12 items-center justify-center rounded-full bg-[#28c76f] bg-opacity-25 text-[#28c76f] `}
             >
-              {' '}
               {item.icon}
             </div>
           ) : (
             <div
               className={`flex h-12 w-12 items-center justify-center rounded-full bg-red-500 bg-opacity-25 text-red-500 `}
             >
-              {' '}
               {item.icon}
             </div>
           )}

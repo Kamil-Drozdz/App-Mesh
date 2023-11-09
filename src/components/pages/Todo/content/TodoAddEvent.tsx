@@ -1,5 +1,5 @@
 import { Button } from '@/UI/Button';
-import { tags } from '@/data/pages/todo/todoData';
+import { tags } from '@/data/pages/todo/tags';
 
 const TodoAddEvent = ({ isAddEventOpen, handleOpenSideBar, activeTag, filterByTag }) => {
   return (
@@ -14,13 +14,12 @@ const TodoAddEvent = ({ isAddEventOpen, handleOpenSideBar, activeTag, filterByTa
       <p className='text-gray-400'>Tags</p>
       <ul className='mt-2 space-y-2'>
         {tags.map((item, index) => (
-          <li>
+          <li key={index}>
             <button
               onClick={() => filterByTag(item.name)}
               className={`${
                 activeTag === item.name ? `${item.color} ` : 'border-transparent'
               } flex cursor-pointer items-center space-x-2 border-l-[1px] !bg-transparent p-2`}
-              key={index}
             >
               <div className={`h-3 w-3 rounded-full ${item.color} `}></div>
               <p> {item.name}</p>

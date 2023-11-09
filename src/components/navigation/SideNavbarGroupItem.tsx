@@ -8,7 +8,7 @@ interface DropdownItem {
   href: string;
 }
 
-interface SideNavbarItemProps {
+interface SideNavbarGroupItemProps {
   icon: JSX.Element;
   handleActiveDropdown: (name: string) => void;
   activeDropdown: string | null;
@@ -17,7 +17,7 @@ interface SideNavbarItemProps {
   dropdown?: DropdownItem[];
   menuCollapsed: boolean;
 }
-const SideNavbarItem = ({
+const SideNavbarGroupItem = ({
   icon,
   handleActiveDropdown,
   activeDropdown,
@@ -25,7 +25,7 @@ const SideNavbarItem = ({
   href,
   dropdown,
   menuCollapsed,
-}: SideNavbarItemProps) => {
+}: SideNavbarGroupItemProps) => {
   const open = name === activeDropdown;
   const { toggleMenu } = useMenu();
   const { pathname } = useLocation();
@@ -33,7 +33,7 @@ const SideNavbarItem = ({
   const isActiveDropdownItem = dropdown?.some((item) => pathname.startsWith(item.href));
 
   return (
-    <>
+    <li>
       {dropdown?.length ? (
         <div
           onClick={() => handleActiveDropdown(name)}
@@ -85,8 +85,8 @@ const SideNavbarItem = ({
             ))
           : null}
       </div>
-    </>
+    </li>
   );
 };
 
-export default SideNavbarItem;
+export default SideNavbarGroupItem;

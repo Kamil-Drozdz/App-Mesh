@@ -3,25 +3,75 @@ import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import defaultUser from '@/assets/default-user.webp';
 import CardContainer from '@/common/CardContainer';
+import { ErrorComponent } from '@/common/ErrrorComponent';
+import Loader from '@/common/Loader';
 import { SearchInput } from '@/common/SearchInput';
 import StatusBadge from '@/common/StatusBadge';
-import { generateChatData, generateContact } from '@/data/pages/chat/chatData';
+import useFirebaseData from '@/hooks/useFirebaseData';
 import { IconSize } from '@/lib/enums/iconSize';
 import { UserStatuses } from '@/lib/enums/user';
-import { generateData } from '@/lib/generateData';
 import useCurrentUser from '@/store/CurrentUser';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
+export type BaseUser = {
+  id: string;
+  photo: string;
+  name: string;
+  status: UserStatuses;
+};
+
+export type ChatData = BaseUser & {
+  messages: Message[];
+};
+
+export type Contact = BaseUser & {
+  messages: Message[];
+};
+
+export type Message = {
+  sender: string | undefined;
+  content: string | File;
+  timestamp: Date | string;
+  photo: string;
+};
+
+export const collectionPathChats = 'chats';
+export const docIdChats = 'lEFHCaKnPUzcoGY1iSwe';
+const collectionPathContacts = 'contatcs';
+const docIdContacts = 'qQ5RBDGRrJ0d4CvalQEL';
+
 const Chat = () => {
   const { currentUser } = useCurrentUser();
-  const chatsData = useMemo(() => generateData(2, () => generateChatData(currentUser?.displayName)), [currentUser]);
+  const {
+    data: dataChats,
+    loading: loadingChats,
+    error: errorChats,
+  } = useFirebaseData<ChatData[]>(collectionPathChats, docIdChats);
+  const {
+    data: dataContacts,
+    loading: loadingContats,
+    error: errorContats,
+  } = useFirebaseData<Contact[]>(collectionPathContacts, docIdContacts);
   const [isOpen, setIsOpen] = useState(false);
-  const [chats, setChats] = useState(chatsData);
-  const contacts = useMemo(() => generateData(5, generateContact), []);
-  const [activeChat, setActiveChat] = useState(chatsData[0]);
+  const [chats, setChats] = useState<ChatData[]>([]);
+  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [activeChat, setActiveChat] = useState<ChatData | null>(null);
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    if (dataChats && dataChats.length > 0) {
+      setChats(dataChats);
+      if (activeChat === null) setActiveChat(dataChats[0]);
+    }
+  }, [dataChats]);
+
+  useEffect(() => {
+    if (dataContacts) {
+      setContacts(dataContacts);
+    }
+  }, [dataContacts]);
 
   function handleUserClick(selectedUser) {
     setActiveChat(selectedUser);
@@ -30,6 +80,14 @@ const Chat = () => {
 
   const filteredChats = chats.filter((chat) => chat.name.toLowerCase().includes(search.toLowerCase()));
   const filteredContact = contacts.filter((contact) => contact.name.toLowerCase().includes(search.toLowerCase()));
+
+  if (loadingChats || loadingContats) {
+    return <Loader />;
+  }
+
+  if (errorChats || errorContats) {
+    return <ErrorComponent error={errorChats || errorContats} />;
+  }
 
   return (
     <CardContainer className='flex space-y-0 !p-0'>
@@ -52,7 +110,7 @@ const Chat = () => {
             />
             <StatusBadge className='absolute bottom-0 right-0' status={UserStatuses.Online} />
           </div>
-          <SearchInput search={search} setSearch={setSearch}  className='m-0 w-full' />
+          <SearchInput search={search} setSearch={setSearch} className='m-0 w-full' />
           <Button onClick={() => setIsOpen((prev) => !prev)} className='block !p-2 md:hidden' variant='empty'>
             <AiFillCloseCircle className='hover:text-red-500' size={IconSize.basic} />
           </Button>
@@ -69,7 +127,7 @@ const Chat = () => {
                       key={chat.id}
                       onClick={() => handleUserClick(chat)}
                       className={`flex items-center space-x-3 rounded p-2 ${
-                        chat.id === activeChat.id && 'bg-gradient-to-r from-[#7367f0] to-[#9e95f5] text-white'
+                        chat.id === activeChat?.id && 'bg-gradient-to-r from-[#7367f0] to-[#9e95f5] text-white'
                       } cursor-pointer  hover:bg-gray-100 dark:hover:bg-darkBlue`}
                     >
                       <div className='relative flex h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white'>
@@ -131,11 +189,11 @@ const Chat = () => {
                 height={40}
                 width={40}
                 className='rounded-full ring-2 ring-black'
-                src={activeChat.photo || undefined}
+                src={activeChat?.photo || undefined}
               />
-              <StatusBadge className='absolute bottom-0 right-0 ' status={activeChat.status} />
+              <StatusBadge className='absolute bottom-0 right-0 ' status={activeChat?.status as UserStatuses} />
             </div>
-            <h1 className='font-bold'>{activeChat.name}</h1>
+            <h1 className='font-bold'>{activeChat?.name}</h1>
           </div>
         </div>
         <ChatMessages currentUser={currentUser} activeChat={activeChat} setChats={setChats} chats={chats} />

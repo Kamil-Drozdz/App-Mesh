@@ -1,4 +1,3 @@
-import SideNavbarItem from '../../common/SideNavbarItem';
 import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
@@ -7,22 +6,14 @@ import useMenu from '@/store/Menu';
 import { useState } from 'react';
 import { FaRegCircle, FaRegDotCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import SideNavbarItem from './SideNavbarItem';
 
 const SideNavbar = () => {
   const { isFullScreen } = useFullScreen();
   const { isMenuOpen, toggleMenu } = useMenu();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
   const navItems = NavItems();
-
-  const handleActiveDropdown = (name) => {
-    if (activeDropdown === name) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(name);
-    }
-  };
 
   return (
     <>
@@ -65,24 +56,7 @@ const SideNavbar = () => {
             </li>
           </ul>
           {navItems.map((group, index) => (
-            <div key={index} className='p-2'>
-              <p className='mx-6 mt-6 mb-4 truncate text-xs font-semibold text-[#5a6071]'>{group.title}</p>
-              <ul>
-                {group.items.map((item, indexItem) => (
-                  <li key={indexItem}>
-                    <SideNavbarItem
-                      handleActiveDropdown={handleActiveDropdown}
-                      activeDropdown={activeDropdown}
-                      icon={item.icon}
-                      name={item.name}
-                      href={item.href || ''}
-                      dropdown={item.dropdown}
-                      menuCollapsed={menuCollapsed}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <SideNavbarItem key={index} menuCollapsed={menuCollapsed} group={group} />
           ))}
         </nav>
       </div>

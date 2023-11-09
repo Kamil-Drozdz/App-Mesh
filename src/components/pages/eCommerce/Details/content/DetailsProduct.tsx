@@ -13,11 +13,6 @@ import { FiDollarSign, FiShare2, FiShoppingCart } from 'react-icons/fi';
 import { PiMedalBold } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
-interface FetchProps {
-  data: ProductProps | null;
-  loading: boolean;
-  error: { message: string | null };
-}
 const DetailsProduct = ({ productID }) => {
   if (typeof productID === 'undefined') {
     productID = 2;
@@ -28,7 +23,7 @@ const DetailsProduct = ({ productID }) => {
     data: product,
     loading,
     error,
-  }: FetchProps = useFetch(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products/${productID}`) as FetchProps;
+  } = useFetch<ProductProps>(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products/${productID}`);
   const stars = product ? starRating(product?.rating?.rate) : null;
   const { addToWishlist, cart, addToCart, removeFromWishlist, wishlist } = useProductsStore();
   const isProductInWishlist = wishlist.some((item) => item.id === product?.id);
@@ -89,7 +84,7 @@ const DetailsProduct = ({ productID }) => {
                     addToCart(product);
                   }
                 }}
-                className='space-x-2 !bg-violet-500 px-2 md:px-4 !text-white hover:!bg-violet-400'
+                className='space-x-2 !bg-violet-500 px-2 !text-white hover:!bg-violet-400 md:px-4'
               >
                 <FiShoppingCart size={IconSize.basic} />
                 <p> View in Cart</p>

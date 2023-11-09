@@ -2,7 +2,7 @@ import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import registerPage from '@/assets/register-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
-import SocialLoginButtons from '@/common/SocialLoginButtons';
+import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
 import { createUser } from '@/lib/createUser';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';

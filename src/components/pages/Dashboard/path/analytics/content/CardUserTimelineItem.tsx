@@ -1,4 +1,4 @@
-import DecorativeDot from './DecorativeDot';
+import DecorativeDot from '../../../../../../common/DecorativeDot';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 
 function CardTimelineItem({ title, timestamp, content, images, icon, color }) {

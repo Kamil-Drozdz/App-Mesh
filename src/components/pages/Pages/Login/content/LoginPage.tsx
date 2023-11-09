@@ -3,7 +3,7 @@ import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import loginPage from '@/assets/login-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
-import SocialLoginButtons from '@/common/SocialLoginButtons';
+import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
 import {

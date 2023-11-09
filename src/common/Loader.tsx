@@ -11,9 +11,6 @@ const Loader = () => {
         wrapperClass=''
         visible={true}
         ariaLabel='three-circles-rotating'
-        outerCircleColor=''
-        innerCircleColor=''
-        middleCircleColor=''
       />
       <h1 className='text-center text-2xl font-bold text-gray-300'>Loading...</h1>
     </div>

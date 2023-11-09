@@ -1,4 +1,4 @@
-import CardCompanyItem from '@/common/CardCompanyItem';
+import CardCompanyItem from '@/components/pages/Dashboard/path/ecommerce/content/CardCompanyItem';
 import CardContainer from '@/common/CardContainer';
 import { CompanyData, DataCompany, generateCompanyData } from '@/data/pages/ecommerce/dataCompany';
 import { generateData } from '@/lib/generateData';

@@ -1,5 +1,5 @@
 import CardContainer from '@/common/CardContainer';
-import CardTransactionItem from '@/common/CardTransactionItem';
+import CardTransactionItem from '@/components/pages/Dashboard/path/ecommerce/content/CardTransactionItem';
 import { TransactionData, generateTransactionData } from '@/data/pages/ecommerce/dataTransaction';
 import { IconSize } from '@/lib/enums/iconSize';
 import { generateData } from '@/lib/generateData';

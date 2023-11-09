@@ -1,4 +1,4 @@
-import CardContainer from './CardContainer';
+import CardContainer from '../../../common/CardContainer';
 import { convert } from '@/lib/convert';
 import { totalValue } from '@/lib/totalValue';
 import { ReactNode } from 'react';

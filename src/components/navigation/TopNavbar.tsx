@@ -1,6 +1,5 @@
 import TopNavbarPopoverUser from './TopNavbarPopoverUser';
 import TopNavbarTooltipIcons from './TopNavbarTooltipIcons';
-import { Button } from '@/UI/Button';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/UI/Select';
 import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
 import { languageOptions, topNavbarIcons } from '@/data/navigation/topNavbarItems';
@@ -9,6 +8,7 @@ import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import TopNavbarItem from './TopNavbarItem';
 
 const TopNavbar = () => {
   const { t, i18n } = useTranslation();
@@ -42,15 +42,7 @@ const TopNavbar = () => {
         >
           <ul className='flex items-center space-x-2'>
             {topNavbarIcons.icons.map((icon, index) => (
-              <li className={`${index === 0 ? 'block lg:hidden' : 'hidden md:block'}`} key={index}>
-                {index === 0 ? (
-                  <Button className='!bg-transparent text-gray-800 dark:!text-gray-300' onClick={toggleMenu}>
-                    {icon.icon}
-                  </Button>
-                ) : (
-                  <a href={icon.href}>{icon.icon}</a>
-                )}
-              </li>
+              <TopNavbarItem index={index} icon={icon} toggleMenu={toggleMenu} />
             ))}
           </ul>
           <div className='flex items-center space-x-6'>

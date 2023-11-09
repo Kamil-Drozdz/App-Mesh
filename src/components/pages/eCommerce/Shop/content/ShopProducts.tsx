@@ -6,20 +6,15 @@ import useFetch from '@/hooks/useFetch';
 import { ProductProps } from '@/store/ProductsStore';
 import { useState } from 'react';
 
-interface FetchProps {
-  data: ProductProps[] | null;
-  loading: boolean;
-  error: { message: string | null };
-}
 const ShopProducts = () => {
   const [search, setSearch] = useState('');
   const {
     data: products,
     loading,
     error,
-  }: FetchProps = useFetch(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products`);
+  } = useFetch<ProductProps[]>(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products`);
   const filteredProducts = products
-    ? (products as ProductProps[]).filter(
+    ? products.filter(
         (product) =>
           product.title.toLowerCase().includes(search.toLowerCase()) ||
           product.description.toLowerCase().includes(search.toLowerCase())

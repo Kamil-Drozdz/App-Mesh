@@ -3,10 +3,11 @@ import { Input } from '@/UI/Input';
 import defaultUser from '@/assets/default-user.webp';
 import { IconSize } from '@/lib/enums/iconSize';
 import { handleEnterDown } from '@/lib/handleEnterDown';
+import { synchronizeEntireCollection } from '@/lib/synchronizeEntireCollection';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiImageAdd, BiMicrophone } from 'react-icons/bi';
-
+import { collectionPathChats, docIdChats } from './Chat';
 const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) => {
   const { i18n } = useTranslation();
   const [message, setMessage] = useState<File | string>('');
@@ -67,6 +68,14 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
     if (newMessage) {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
     }
+    //added only to one line updated new chat and messages
+    const updatedActiveChat = {
+      ...activeChat,
+      messages: [...activeChat.messages, newMessage],
+    };
+
+    const updatedChats = chats.map((chat) => (chat.id === activeChat.id ? updatedActiveChat : chat));
+    synchronizeEntireCollection(collectionPathChats, docIdChats, updatedChats);
     setMessage('');
   }
 

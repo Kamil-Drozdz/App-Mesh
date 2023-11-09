@@ -2,7 +2,7 @@ import { initializeNewTask } from './Todo';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import CompletedStamp from '@/assets/completed-stamp.webp';
-import { tags } from '@/data/pages/todo/todoData';
+import { tags } from '@/data/pages/todo/tags';
 import { IconSize } from '@/lib/enums/iconSize';
 import { format } from 'date-fns';
 import { useMemo, useState } from 'react';
@@ -21,6 +21,7 @@ const TodoDrag = ({
   setNewTask,
   setIsSorted,
   setIsAddEventOpen,
+  synchronizeTasks,
 }) => {
   const [search, setSearch] = useState('');
   const filterTasks = useMemo(() => {
@@ -48,7 +49,9 @@ const TodoDrag = ({
   };
 
   const handleCheckTodo = (id) => {
-    setTasks(tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)));
+    const checkedTodo = tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task));
+    setTasks(checkedTodo);
+    synchronizeTasks(checkedTodo);
   };
 
   const handleEditTask = (id) => {
@@ -66,7 +69,9 @@ const TodoDrag = ({
   };
 
   const handleDeleteTodo = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    const deletedTodo = tasks.filter((task) => task.id !== id);
+    setTasks(deletedTodo);
+    synchronizeTasks(deletedTodo);
   };
 
   return (

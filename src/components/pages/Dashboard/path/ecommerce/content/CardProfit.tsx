@@ -1,4 +1,4 @@
-import CardChart from '@/common/CardChart';
+import CardChart from '@/components/pages/Dashboard/CardChart';
 import { DataProfit } from '@/data/charts/dataProfit';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';

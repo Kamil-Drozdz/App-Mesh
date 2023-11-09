@@ -1,4 +1,4 @@
-import CardChart from '@/common/CardChart';
+import CardChart from '@/components/pages/Dashboard/CardChart';
 import { DataOrder } from '@/data/charts/dataOrder';
 import {
   Chart as ChartJS,

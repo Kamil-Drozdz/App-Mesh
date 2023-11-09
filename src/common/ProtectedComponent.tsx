@@ -20,8 +20,8 @@ export const ProtectedComponent = ({ component: Component }) => {
 
           setCurrentUser({
             ...user,
-            role: foundUser?.role || 'User',
-            photoURL: user.photoURL || `https://ui-avatars.com/api/?name=${foundUser?.displayName.slice(0, 1)}`,
+            role: foundUser?.role,
+            photoURL: user.photoURL,
           });
         }
       } else {

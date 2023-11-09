@@ -1,27 +1,27 @@
 import ChatInput from './ChatInput';
 import beginChat from '@/assets/begin-chat.svg';
 import defaultUser from '@/assets/default-user.webp';
-import { ChatData } from '@/data/pages/chat/chatData';
 import { CustomUser } from '@/store/CurrentUser';
 import { useState, useEffect, useRef } from 'react';
 import ChatZoomImage from './ChatZoomImage';
 import { createPortal } from 'react-dom';
+import { ChatData, Message } from './Chat';
 
 interface Messages {
-  activeChat: ChatData;
+  activeChat: ChatData | null;
   currentUser: CustomUser | null;
   chats: ChatData[];
   setChats: React.Dispatch<React.SetStateAction<ChatData[]>>;
 }
 
 const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) => {
-  const [messages, setMessages] = useState(activeChat.messages);
+  const [messages, setMessages] = useState<Message[]>(activeChat?.messages || []);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [zoomImage, setZoomImage] = useState<null | File>(null);
 
   useEffect(() => {
-    setMessages(activeChat.messages);
-  }, [activeChat.messages]);
+    if (activeChat !== null) setMessages(activeChat?.messages);
+  }, [activeChat?.messages]);
 
   useEffect(() => {
     scrollToBottom();
@@ -86,7 +86,7 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
                     src={message.photo}
                   />
                   {typeof message.content === 'string' ? (
-                    <p className='ml-2 w-full break-all rounded-r-lg rounded-tl-lg bg-gray-300  dark:bg-lightBlue p-2'>
+                    <p className='ml-2 w-full break-all rounded-r-lg rounded-tl-lg bg-gray-300  p-2 dark:bg-lightBlue'>
                       {message.content}
                     </p>
                   ) : message.content instanceof File ? (
