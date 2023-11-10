@@ -7,7 +7,7 @@ interface CardTransactionItemProps {
 const CardTransactionItem = ({ item }: CardTransactionItemProps) => {
   return (
     <>
-      <dl className='my-1 flex w-full items-center justify-center px-4 py-1 transition-colors duration-200 ease-in-out hover:bg-lightWhite hover:dark:bg-darkBlue'>
+      <dl className='my-1 flex w-full items-center justify-center px-4 py-1 transition-colors duration-200 ease-in-out hover:bg-lightWhite hover:dark:bg-secondary'>
         <dd className='flex basis-1/4 items-center justify-center'>
           {parseFloat(item.revenue) >= 499 ? (
             <div

@@ -30,7 +30,7 @@ const CardProject = () => {
                 <img
                   height={32}
                   width={32}
-                  className='ease -ml-2 h-8 w-8 cursor-pointer rounded-full object-contain ring-2 ring-black transition-all duration-200 hover:-translate-y-2 hover:scale-105'
+                  className='ease -ml-2 h-8 w-8 cursor-pointer rounded-full object-contain ring-2 ring-secondary transition-all duration-200 hover:-translate-y-2 hover:scale-105'
                   src={item.photo}
                   alt={item.name}
                 />
@@ -47,18 +47,18 @@ const CardProject = () => {
       <div className='flex items-center justify-start space-x-4'>
         <div className='rounded bg-gray-200 px-2 py-1 text-center dark:bg-gray-900'>
           <p className='text-gray-500'>Due Date</p>
-          <span className='font-semibold text-gray-400 whitespace-nowrap'>12 Apr, 21</span>
+          <span className='whitespace-nowrap font-semibold text-gray-400'>12 Apr, 21</span>
         </div>
         <div className='rounded bg-gray-200 px-2 py-1 text-center dark:bg-gray-900'>
           <p className='text-gray-500'>Budget</p>
-          <span className='font-semibold text-gray-400  whitespace-nowrap'>$49251.91 </span>
+          <span className='whitespace-nowrap font-semibold  text-gray-400'>$49251.91 </span>
         </div>
         <div className='rounded bg-gray-200 px-2 py-1 text-center dark:bg-gray-900'>
           <p className='text-gray-500'>Cost</p>
-          <span className='font-semibold text-gray-400  whitespace-nowrap'>$840.99 </span>
+          <span className='whitespace-nowrap font-semibold  text-gray-400'>$840.99 </span>
         </div>
       </div>
-      <Button className='w-full !bg-violet-500 !text-white hover:!bg-violet-400'>Join Team</Button>
+      <Button className='!bg-buttonPrimary w-full !text-white hover:brightness-110'>Join Team</Button>
     </CardContainer>
   );
 };

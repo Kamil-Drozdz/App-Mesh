@@ -59,10 +59,10 @@ const UserList = ({ filters }) => {
                 <SelectTrigger className='mx-2  whitespace-nowrap md:w-[80px]'>
                   <SelectValue placeholder={numbers[0]} />
                 </SelectTrigger>
-                <SelectContent className='border-darkBlue'>
-                  <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+                <SelectContent className='border-secondary'>
+                  <SelectGroup className='bg-secondary'>
                     {numbers.map((number) => (
-                      <SelectItem value={number.toString()} key={number}>
+                      <SelectItem className='hover:bg-primary-foreground' value={number.toString()} key={number}>
                         <div className='flex items-center justify-center space-x-2'>
                           <p>{number}</p>
                         </div>
@@ -78,7 +78,7 @@ const UserList = ({ filters }) => {
               <SearchInput search={search} setSearch={setSearch} isIcon={false} className='min-w-[200px]' />
               <Button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className='h-full w-full !bg-violet-500 !text-white hover:bg-violet-400'
+                className='!bg-buttonPrimary h-full w-full !text-white hover:brightness-110'
               >
                 Add User
               </Button>

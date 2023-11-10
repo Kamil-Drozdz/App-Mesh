@@ -52,7 +52,7 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
                     },
                   })
                 }
-                className='rounded-md border bg-white dark:bg-mediumBlue'
+                className='rounded-md border'
               />
             </PopoverContent>
           </Popover>
@@ -85,7 +85,7 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
                     },
                   })
                 }
-                className='rounded-md border bg-white dark:bg-mediumBlue'
+                className='rounded-md border '
               />
             </PopoverContent>
           </Popover>

@@ -19,11 +19,11 @@ const UserFilter = ({ filters, setFilters }) => {
               }
             />
           </SelectTrigger>
-          <SelectContent className='border-darkBlue'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+          <SelectContent className='border-secondary'>
+            <SelectGroup className='bg-secondary'>
               {roles.map((role) => (
-                <SelectItem value={role} key={role}>
-                  <div className='flex items-center justify-center space-x-2'>
+                <SelectItem className='hover:bg-primary-foreground' value={role} key={role}>
+                  <div className='flex items-center justify-center space-x-2 '>
                     <p>{role}</p>
                   </div>
                 </SelectItem>
@@ -41,10 +41,10 @@ const UserFilter = ({ filters, setFilters }) => {
               }
             />
           </SelectTrigger>
-          <SelectContent className='border-darkBlue'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+          <SelectContent className='border-secondary'>
+            <SelectGroup className='bg-secondary'>
               {plans.map((plan) => (
-                <SelectItem value={plan} key={plan}>
+                <SelectItem className='hover:bg-primary-foreground' value={plan} key={plan}>
                   <div className='flex items-center justify-center space-x-2'>
                     <p>{plan}</p>
                   </div>
@@ -63,10 +63,10 @@ const UserFilter = ({ filters, setFilters }) => {
               }
             />
           </SelectTrigger>
-          <SelectContent className='border-darkBlue'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+          <SelectContent className='border-secondary'>
+            <SelectGroup className='bg-secondary'>
               {statuses.map((status) => (
-                <SelectItem value={status} key={status}>
+                <SelectItem className='hover:bg-primary-foreground' value={status} key={status}>
                   <div className='flex items-center justify-center space-x-2'>
                     <p>{status}</p>
                   </div>

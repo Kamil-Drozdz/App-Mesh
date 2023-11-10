@@ -38,7 +38,7 @@ const TopNavbar = () => {
         <div
           className={`flex ${visible ? 'top-0' : '-top-16'}  ${
             isFullScreen ? '!absolute opacity-0' : 'opacity-100'
-          } ease bg sticky top-8 z-[9] justify-between rounded-lg bg-white px-4 py-2 text-gray-800 shadow-md shadow-lightGray transition-all duration-300 dark:bg-mediumBlue dark:text-gray-300 dark:shadow-black print:hidden`}
+          } ease sticky top-8 z-[9] justify-between rounded-lg bg-secondary px-4 py-2 text-secondary-foreground shadow-md shadow-lightGray transition-all duration-300 dark:shadow-black print:hidden`}
         >
           <ul className='flex items-center space-x-2'>
             {topNavbarIcons.icons.map((icon, index) => (
@@ -49,7 +49,7 @@ const TopNavbar = () => {
             <ul className='flex items-center space-x-2'>
               <>
                 <Select onValueChange={(e) => i18n.changeLanguage(String(e))}>
-                  <SelectTrigger className='whitespace-nowrap border-darkBlue md:w-[140px]'>
+                  <SelectTrigger className='whitespace-nowrap border-secondary md:w-[140px]'>
                     <SelectValue
                       placeholder={
                         <div className='flex items-center justify-center space-x-2'>
@@ -58,8 +58,8 @@ const TopNavbar = () => {
                       }
                     />
                   </SelectTrigger>
-                  <SelectContent className='border-darkBlue'>
-                    <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+                  <SelectContent className='border-secondary'>
+                    <SelectGroup className='bg-secondary text-secondary-foreground'>
                       <SelectLabel>{t('Choose Language')}</SelectLabel>
                       {languageOptions.map((languageOption, index) => (
                         <SelectItem key={index} value={languageOption.value}>

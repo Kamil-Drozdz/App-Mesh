@@ -75,7 +75,7 @@ const SocialLoginButtons = ({ setFormData }) => {
                   {item.icon}
                 </Button>
               </TooltipTrigger>
-              <TooltipContent className='bg-black p-2 text-white' sideOffset={12} side='bottom'>
+              <TooltipContent className='bg-secondary p-2 text-primary' sideOffset={12} side='bottom'>
                 <p>{item.tooltip}</p>
               </TooltipContent>
             </Tooltip>

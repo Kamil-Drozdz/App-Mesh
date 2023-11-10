@@ -52,14 +52,14 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className='flex h-full min-h-screen w-full flex-col bg-darkBlue md:flex-row '>
+    <div className='flex h-full min-h-screen w-full flex-col bg-secondary text-primary  md:flex-row '>
       <div className='flex basis-2/3 items-center justify-center px-10 py-5'>
         <img height={800} width={800} loading='eager' alt='Registration Screen Illustration' src={registerPage} />
       </div>
-      <div className='flex basis-1/3 flex-col items-center justify-center bg-mediumBlue p-10'>
+      <div className='flex basis-1/3 flex-col items-center justify-center p-10'>
         <div className='w-full space-y-4 px-4'>
           <h1 className='text-2xl'>Adventure starts here 🚀 👋</h1>
-          <h2 className='text-xl font-thin text-gray-400'>Make your app management easy and fun!</h2>
+          <h2 className='text-xl font-thin text-muted-foreground'>Make your app management easy and fun!</h2>
           <div>
             <InputWithLabel
               label='Username'
@@ -103,7 +103,7 @@ const RegisterPage = () => {
                 />
                 <label htmlFor='terms'>
                   I agree to
-                  <Link to={'/terms'} className='ml-1 text-violet-500'>
+                  <Link to={'/terms'} className='text-buttonPrimary ml-1'>
                     privacy policy & terms
                   </Link>
                 </label>
@@ -113,11 +113,11 @@ const RegisterPage = () => {
           </div>
           <div className='text-center'>
             <span> Already have an account? </span>
-            <Link to={BasicRoutes.LOGIN} className='inline text-violet-500'>
+            <Link to={BasicRoutes.LOGIN} className='text-buttonPrimary inline'>
               Sign in instead
             </Link>
           </div>
-          <Button className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400' onClick={handleLogin}>
+          <Button className='!bg-buttonPrimary mb-4 w-full !text-white hover:brightness-110' onClick={handleLogin}>
             Register
           </Button>
           <SocialLoginButtons setFormData={setFormData} />

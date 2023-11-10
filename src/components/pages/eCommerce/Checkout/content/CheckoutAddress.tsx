@@ -30,7 +30,7 @@ const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
     setFormData({ ...formData, [field]: e.target.value });
   };
   return (
-    <div className='relative space-y-3 rounded-lg bg-white p-4 dark:bg-mediumBlue'>
+    <div className='relative space-y-3 rounded-lg bg-secondary  p-4 '>
       <h2 className='text-xl font-semibold'>Add New Address</h2>
       <p className='text-gray-500'>Be sure to check "Deliver to this address" when you have finished</p>
       <div className='flex w-full flex-wrap gap-4'>
@@ -48,7 +48,7 @@ const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
           </div>
         ))}
       </div>
-      <Button className='!bg-violet-500 !text-white hover:!bg-violet-400' onClick={handleCheckoutAdress}>
+      <Button className='!bg-buttonPrimary !text-white hover:brightness-110' onClick={handleCheckoutAdress}>
         Save and Deliver here
       </Button>
     </div>

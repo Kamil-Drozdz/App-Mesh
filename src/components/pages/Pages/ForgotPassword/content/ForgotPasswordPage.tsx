@@ -33,7 +33,7 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <div className='flex h-full min-h-screen w-full flex-col bg-darkBlue md:flex-row '>
+    <div className='flex h-full min-h-screen w-full flex-col bg-secondary text-primary md:flex-row '>
       <div className='flex basis-2/3 items-center justify-center px-10 py-5'>
         <img
           height={800}
@@ -43,10 +43,10 @@ const ForgotPasswordPage = () => {
           src={forgotPasswordPage}
         />
       </div>
-      <div className='flex basis-1/3 flex-col items-center justify-center bg-mediumBlue p-10'>
+      <div className='flex basis-1/3 flex-col items-center justify-center p-10'>
         <div className='w-full space-y-4 px-4'>
           <h1 className='text-2xl'>Forgot Password? 🔒</h1>
-          <h2 className='text-xl font-thin text-gray-400'>
+          <h2 className='text-xl font-thin text-muted-foreground'>
             Enter your email and we'll send you instructions to reset your password
           </h2>
           <div>
@@ -59,11 +59,14 @@ const ForgotPasswordPage = () => {
             />
             {errors.email && <p className='text-sm text-red-500'>{errors.email}</p>}
           </div>
-          <Button className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400' onClick={handleResetPassword}>
+          <Button
+            className='!bg-buttonPrimary mb-4 w-full !text-white hover:brightness-110'
+            onClick={handleResetPassword}
+          >
             Send reset link
           </Button>
           <div className='w-full text-center'>
-            <Link to={BasicRoutes.LOGIN} className='  text-violet-500 '>
+            <Link to={BasicRoutes.LOGIN} className='  text-buttonPrimary '>
               &lt; Back to Login
             </Link>
           </div>

@@ -40,7 +40,7 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
       <div
         className={`fixed z-[51] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } top-0 right-0 h-full w-3/4 max-w-[24rem] space-y-8 bg-white p-6 text-gray-900 transition-transform duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
+        } top-0 right-0 h-full w-3/4 max-w-[24rem] space-y-8  bg-secondary p-6 text-primary transition-transform duration-300 ease-in-out`}
       >
         New User
         <InputWithLabel
@@ -63,9 +63,9 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
             {formData.role ? formData.role : 'choose role'}
           </SelectTrigger>
           <SelectContent className='z-[52] border-gray-300'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+            <SelectGroup className='bg-secondary text-secondary-foreground'>
               {roles.slice(1).map((role, index) => (
-                <SelectItem value={role} key={index}>
+                <SelectItem className='hover:bg-primary-foreground' value={role} key={index}>
                   <div className='flex items-center '>
                     <div> {role}</div>
                   </div>
@@ -79,9 +79,9 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
             {formData.plan ? formData.plan : 'choose plan'}
           </SelectTrigger>
           <SelectContent className='z-[52] border-gray-300'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+            <SelectGroup className='bg-secondary text-secondary-foreground'>
               {plans.slice(1).map((plan, index) => (
-                <SelectItem value={plan} key={index}>
+                <SelectItem className='hover:bg-primary-foreground' value={plan} key={index}>
                   <div className='flex items-center '>
                     <div> {plan}</div>
                   </div>
@@ -91,7 +91,7 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
           </SelectContent>
         </Select>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddEvent} className='mb-4 !bg-violet-500 !text-white hover:bg-violet-400'>
+          <Button onClick={handleAddEvent} className='!bg-buttonPrimary mb-4 !text-white hover:brightness-110'>
             Create
           </Button>
           <Button variant='destructive'>Cancel</Button>

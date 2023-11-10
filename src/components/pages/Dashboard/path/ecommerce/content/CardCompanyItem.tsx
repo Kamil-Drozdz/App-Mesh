@@ -8,7 +8,7 @@ interface CardCompanyItemProps {
 const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
   return (
     <>
-      <dl className='my-1 flex w-full items-center justify-center space-x-2 py-1 text-[12px] transition-colors duration-200 ease-in-out hover:dark:bg-darkBlue md:px-4 md:text-base'>
+      <dl className='my-1 flex w-full items-center justify-center space-x-2 py-1 text-[12px] transition-colors duration-200 ease-in-out hover:dark:bg-secondary md:px-4 md:text-base'>
         <div className='flex basis-1/5 items-center space-x-2 overflow-hidden text-left md:space-x-4'>
           <dt>
             <img

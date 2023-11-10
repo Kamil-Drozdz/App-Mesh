@@ -3,38 +3,38 @@ import { Separator } from '@/UI/Separator';
 
 const CheckoutCartOption = ({ amount, discount, tax, totalAmount, setActiveStep }) => {
   return (
-    <div className='relative col-span-1 h-fit space-y-3 rounded-lg bg-white p-4 dark:bg-mediumBlue'>
+    <div className='relative col-span-1 h-fit space-y-3 rounded-lg bg-secondary p-4'>
       <p className='text-sm font-semibold text-gray-600'>OPTIONS</p>
       <div className='flex w-full items-center justify-between'>
-        <p className='text-gray-400'>Coupons</p>
-        <span className='text-violet-500'>Apply</span>
+        <p className='text-muted-foreground'>Coupons</p>
+        <span className='text-buttonPrimary'>Apply</span>
       </div>
       <Separator />
-      <p className='text-gray-400'>Price Details</p>
+      <p className='text-muted-foreground'>Price Details</p>
       <div className='flex w-full items-center justify-between'>
-        <p className='text-gray-400'>Total MRP</p>
+        <p className='text-muted-foreground'>Total MRP</p>
         <span>${amount.toFixed(2)}</span>
       </div>
       <div className='flex w-full items-center justify-between'>
-        <p className='text-gray-400'>Bag discount</p>
+        <p className='text-muted-foreground'>Bag discount</p>
         <span className='text-green-500'>-{discount}$</span>
       </div>
       <div className='flex w-full items-center justify-between'>
-        <p className='text-gray-400'>Tax</p>
+        <p className='text-muted-foreground'>Tax</p>
         <span>${tax}</span>
       </div>
       <div className='flex w-full items-center justify-between'>
-        <p className='text-gray-400'>EMI Egibility</p>
-        <span className='text-violet-500'>Details</span>
+        <p className='text-muted-foreground'>EMI Egibility</p>
+        <span className='text-buttonPrimary'>Details</span>
       </div>
       <Separator />
       <div className='flex w-full items-center justify-between'>
-        <p className='font-semibold text-gray-400'>Total</p>
-        <span className='text-violet-500'>${totalAmount}</span>
+        <p className='font-semibold text-muted-foreground'>Total</p>
+        <span className='text-buttonPrimary'>${totalAmount}</span>
       </div>
       <Button
         onClick={() => setActiveStep('Address')}
-        className='w-full !bg-violet-500 !text-white hover:!bg-violet-400'
+        className='!bg-buttonPrimary w-full !text-white hover:brightness-110'
       >
         Place Order
       </Button>

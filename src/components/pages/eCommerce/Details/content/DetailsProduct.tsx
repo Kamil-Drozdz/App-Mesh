@@ -43,7 +43,7 @@ const DetailsProduct = ({ productID }) => {
 
   return (
     <>
-      <div className='relative m-4 flex flex-col items-start rounded-lg bg-white p-4 shadow-md shadow-lightGray dark:bg-mediumBlue dark:shadow-black md:flex-row'>
+      <div className='relative m-4 flex flex-col items-start rounded-lg bg-secondary p-4 shadow-md dark:shadow-black md:flex-row'>
         <div className='flex h-full items-center justify-center md:w-1/2'>
           <div className='flex h-full items-center justify-center rounded-lg bg-white p-2 text-center'>
             <img
@@ -56,9 +56,9 @@ const DetailsProduct = ({ productID }) => {
           </div>
         </div>
         <div className='space-y-3 py-6 md:ml-4 md:w-1/2'>
-          <p className='w-full text-left font-semibold hover:text-violet-500 '>{product?.title}</p>
+          <p className='hover:text-buttonPrimary w-full text-left font-semibold '>{product?.title}</p>
           <div className='flex items-center space-x-2'>
-            <p className=' font-semibold text-violet-500'>${product?.price}</p>
+            <p className=' text-buttonPrimary font-semibold'>${product?.price}</p>
             <Separator orientation='vertical' className=' h-full min-h-[1rem]' />
             <div className='flex text-amber-500'>{stars}</div>
           </div>
@@ -67,12 +67,12 @@ const DetailsProduct = ({ productID }) => {
             <span className='font-semibold text-green-500'>{product?.rating?.count}</span>
           </div>
           <p className=' w-full break-all'>{product?.description}</p>
-          <div className='flex items-center space-x-2 font-semibold'>
-            <FiShoppingCart size={IconSize.basic} />
+          <div className='flex items-center space-x-2 font-semibold text-muted-foreground'>
+            <FiShoppingCart className='text-primary' size={IconSize.basic} />
             <p>Free Shipping</p>
           </div>
-          <div className='flex items-center space-x-2 font-semibold'>
-            <FiDollarSign size={IconSize.basic} />
+          <div className='flex items-center space-x-2 font-semibold text-muted-foreground'>
+            <FiDollarSign className='text-green-500' size={IconSize.basic} />
             <p>EMI options available</p>
           </div>
           <Separator className='!my-6' />
@@ -84,7 +84,7 @@ const DetailsProduct = ({ productID }) => {
                     addToCart(product);
                   }
                 }}
-                className='space-x-2 !bg-violet-500 px-2 !text-white hover:!bg-violet-400 md:px-4'
+                className='!bg-buttonPrimary space-x-2 px-2 !text-white hover:brightness-110 md:px-4'
               >
                 <FiShoppingCart size={IconSize.basic} />
                 <p> View in Cart</p>
@@ -116,25 +116,21 @@ const DetailsProduct = ({ productID }) => {
       </div>
       <div className='flex py-16'>
         <div className='flex w-full flex-col space-y-3 text-center'>
-          <PiMedalBold size={IconSize.medium} className='w-full text-violet-500 ' />
+          <PiMedalBold size={IconSize.medium} className='text-buttonPrimary w-full ' />
           <p className='text-2xl font-semibold'>100% Orginal</p>
-          <span className='text-sm text-gray-400'>
-            Chocolate bar candy canes ice cream toffee. Croissant pie cookie halvah.
-          </span>
+          <span className='text-sm text-muted-foreground'>Products are from authorized suppliers only.</span>
         </div>
         <div className='flex w-full flex-col space-y-3 text-center'>
-          <BiTimeFive size={IconSize.medium} className='w-full text-violet-500' />
+          <BiTimeFive size={IconSize.medium} className='text-buttonPrimary w-full' />
           <p className='text-2xl font-semibold'>10 Day Replacement</p>
-          <span className='text-sm text-gray-400'>
-            Marshmallow biscuit donut dragée fruitcake. Jujubes wafer cupcake.
+          <span className='text-sm text-muted-foreground'>
+            You can return the item within 10 days without giving any reasons!
           </span>
         </div>
         <div className='flex w-full flex-col space-y-3 text-center'>
-          <BsShield size={IconSize.medium} className='w-full text-violet-500' />
+          <BsShield size={IconSize.medium} className='text-buttonPrimary w-full' />
           <p className='text-2xl font-semibold'>1 Year Warranty</p>
-          <span className='text-sm text-gray-400'>
-            Cotton candy gingerbread cake I love sugar plum I love sweet croissant.
-          </span>
+          <span className='text-sm text-muted-foreground'>You have a one-year warranty on items purchased from us</span>
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@ import { Separator } from '@/UI/Separator';
 
 const CheckoutPaymentOption = ({ totalAmount, cart }) => {
   return (
-    <div className='relative h-fit space-y-3 rounded-lg bg-white p-4 dark:bg-mediumBlue'>
+    <div className='relative h-fit space-y-3 rounded-lg bg-secondary p-4'>
       <div>
         <h2 className='text-lg font-semibold'>Price Details</h2>
         <div className='w-full space-y-2 text-gray-400'>

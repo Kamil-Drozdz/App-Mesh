@@ -8,7 +8,7 @@ const TodoAddEvent = ({ isAddEventOpen, handleOpenSideBar, activeTag, filterByTa
         isAddEventOpen ? 'translate-x-0' : '-translate-x-[130%]'
       } ease transition-transform duration-300 md:translate-x-0`}
     >
-      <Button onClick={handleOpenSideBar} className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400'>
+      <Button onClick={handleOpenSideBar} className='!bg-buttonPrimary mb-4 w-full !text-white hover:brightness-110'>
         Add Event
       </Button>
       <p className='text-gray-400'>Tags</p>

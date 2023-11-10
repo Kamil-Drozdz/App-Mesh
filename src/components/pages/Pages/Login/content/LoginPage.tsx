@@ -61,14 +61,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='flex h-full min-h-screen w-full flex-col bg-darkBlue md:flex-row '>
+    <div className='flex h-full min-h-screen w-full flex-col bg-secondary text-primary md:flex-row'>
       <div className='flex basis-2/3 items-center justify-center px-10 py-5'>
         <img height={800} width={800} loading='eager' alt='Login Screen Illustration' src={loginPage} />
       </div>
-      <div className='flex basis-1/3 flex-col items-center justify-center bg-mediumBlue p-10'>
+      <div className='flex basis-1/3 flex-col items-center justify-center p-10'>
         <div className='w-full space-y-4 px-4'>
           <h1 className='text-2xl'>Welcome to Dashboard! 👋</h1>
-          <h2 className='text-xl font-thin text-gray-400'>Please sign-in to your account and start the adventure👋</h2>
+          <h2 className='text-xl font-thin text-muted-foreground'>
+            Please sign-in to your account and start the adventure👋
+          </h2>
           <div>
             <InputWithLabel
               label='Email'
@@ -101,16 +103,16 @@ const LoginPage = () => {
               />
               <label htmlFor='persist'>Remember me</label>
             </div>
-            <Link to={BasicRoutes.FORGOT} className=' text-violet-500'>
+            <Link to={BasicRoutes.FORGOT} className=' text-buttonPrimary'>
               Forgot Password?
             </Link>
           </div>
-          <Button className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400' onClick={handleLogin}>
+          <Button className='!bg-buttonPrimary mb-4  w-full !text-white hover:brightness-110' onClick={handleLogin}>
             Log In
           </Button>
           <div className='text-center'>
             <span> New on our platform? </span>
-            <Link to={BasicRoutes.REGISTER} className='inline text-violet-500'>
+            <Link to={BasicRoutes.REGISTER} className='text-buttonPrimary inline'>
               Create an account
             </Link>
           </div>

@@ -14,7 +14,7 @@ const CheckoutStepperItem = ({ product }) => {
 
   return (
     <div key={product.id}>
-      <div className='relative mb-8 grid grid-cols-1 items-center justify-center space-y-3 rounded bg-white p-4 dark:bg-mediumBlue md:grid-cols-auto-fit-100'>
+      <div className='relative mb-8 grid grid-cols-1 items-center justify-center space-y-3 rounded bg-secondary p-4 md:grid-cols-auto-fit-100'>
         <div className=' flex items-center justify-center rounded-lg bg-white p-2 md:max-w-[90%]'>
           <img
             height={400}
@@ -25,7 +25,7 @@ const CheckoutStepperItem = ({ product }) => {
           />
         </div>
         <div className=' h-full space-y-2 md:col-span-2'>
-          <p className='w-full text-left font-semibold hover:text-violet-500 '>{product?.title}</p>
+          <p className='hover:text-buttonPrimary w-full text-left font-semibold '>{product?.title}</p>
           <div className='flex text-amber-500'>{stars}</div>
           <div className='flex space-x-2'>
             <p>Available -</p>
@@ -37,7 +37,7 @@ const CheckoutStepperItem = ({ product }) => {
         </div>
         <Separator orientation='vertical' />
         <div className='flex flex-col items-center justify-center space-y-2'>
-          <p className=' font-semibold text-violet-500'>${product?.price}</p>
+          <p className=' text-buttonPrimary font-semibold'>${product?.price}</p>
           <p className='w-fit rounded-lg bg-green-600 bg-opacity-30 px-2 text-green-400'>Free Shipping</p>
           <Button
             onClick={() => {
@@ -47,7 +47,7 @@ const CheckoutStepperItem = ({ product }) => {
                 addToWishlist(product);
               }
             }}
-            className='w-full space-x-2 !bg-violet-500 !text-white hover:!bg-violet-400'
+            className='!bg-buttonPrimary w-full space-x-2 !text-white hover:brightness-110'
           >
             {isProductInWishlist ? (
               <AiFillHeart size={IconSize.basic} className='text-red-500' />

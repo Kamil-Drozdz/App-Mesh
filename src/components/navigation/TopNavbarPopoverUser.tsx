@@ -30,26 +30,26 @@ const TopNavbarPopoverUser = ({ currentUser }) => {
         <div className=' hidden flex-col items-end justify-center md:flex'>
           {currentUser?.displayName ? <p>{currentUser?.displayName}</p> : <p> User</p>}
           {currentUser?.role ? (
-            <span className='text-xs dark:text-gray-400'>{currentUser?.role}</span>
+            <span className='text-xs  text-muted-foreground'>{currentUser?.role}</span>
           ) : (
-            <span className='text-xs dark:text-gray-400'>User</span>
+            <span className='text-xs dark:text-gray-400'>user</span>
           )}
         </div>
         <div
-          className={`relative flex h-10 w-10 items-center justify-center rounded-full dark:text-white ${
-            currentUser?.photoURL || 'bg-lightBlue'
+          className={`relative flex h-10 w-10 items-center justify-center rounded-full ${
+            currentUser?.photoURL || 'bg-secondary'
           }`}
         >
           <img height={40} width={40} className='rounded-full' src={currentUser?.photoURL || defaultUser} />
           <StatusBadge className='absolute bottom-0 right-0 ' status={UserStatuses.Online} />
         </div>
-        <PopoverContent className='z-[52] w-auto p-0 dark:bg-mediumBlue' sideOffset={18} align='center'>
+        <PopoverContent className='z-[52] w-auto !bg-secondary p-0' sideOffset={18} align='center'>
           <div className='min-w-[140px]'>
             {profileOptions.map((item, index) => (
               <div key={index}>
                 {item.href ? (
                   <Link
-                    className='my-1 flex items-center space-x-3 p-2 hover:bg-violet-500 hover:bg-opacity-20 hover:text-violet-500'
+                    className=' hover:text-buttonPrimary my-1 flex items-center space-x-3 p-2 hover:bg-violet-500 hover:bg-opacity-20'
                     to={item.href || ''}
                   >
                     {item.icon}

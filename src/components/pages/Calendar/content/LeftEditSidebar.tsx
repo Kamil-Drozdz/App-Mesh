@@ -34,7 +34,7 @@ const LeftEditSidebar = ({
       <div
         className={`fixed z-[51] pb-24 md:pb-0 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } right-0 h-full max-h-screen w-3/4 max-w-[24rem] space-y-4 overflow-y-auto bg-white p-6 text-gray-900 transition-transform duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
+        } right-0 h-full max-h-screen w-3/4 max-w-[24rem] space-y-4 overflow-y-auto bg-secondary p-6 text-primary transition-transform duration-300 ease-in-out`}
       >
         Add Event
         <InputWithLabel
@@ -49,9 +49,9 @@ const LeftEditSidebar = ({
             <SelectValue placeholder='choose Label' />
           </SelectTrigger>
           <SelectContent className='z-[52] border-gray-300'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+            <SelectGroup className='bg-secondary text-secondary-foreground'>
               {labels.slice(1).map((item, index) => (
-                <SelectItem value={item.name} key={index}>
+                <SelectItem className='hover:bg-primary-foreground' value={item.name} key={index}>
                   <div className='flex items-center space-x-2'>
                     <GoDotFill size={8} className={clsx('rounded-full', item.color)} />
                     <div> {item.name}</div>
@@ -83,7 +83,7 @@ const LeftEditSidebar = ({
               initialFocus
               selected={formData.start}
               onSelect={(date) => setFormData({ ...formData, start: date })}
-              className='rounded-md border bg-white dark:bg-mediumBlue'
+              className='rounded-md border'
             />
           </PopoverContent>
         </Popover>
@@ -109,7 +109,7 @@ const LeftEditSidebar = ({
               initialFocus
               selected={formData.end}
               onSelect={(date) => setFormData({ ...formData, end: date })}
-              className='rounded-md border bg-white dark:bg-mediumBlue'
+              className='rounded-md border'
             />
           </PopoverContent>
         </Popover>
@@ -139,7 +139,7 @@ const LeftEditSidebar = ({
           placeholder='Write your thoughts here...'
         ></textarea>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddEvent} className='mb-4 !bg-violet-500 !text-white hover:bg-violet-400'>
+          <Button onClick={handleAddEvent} className='!bg-buttonPrimary mb-4 !text-white hover:brightness-110'>
             Add
           </Button>
           {existingEventIndex !== -1 ? (

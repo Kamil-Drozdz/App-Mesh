@@ -13,16 +13,13 @@ module.exports = {
     },
     extend: {
       colors: {
-        lightBlue: '#31375a',
-        mediumBlue: '#283046',
-        darkBlue: '#161d31',
-        lightGray: '#babbbe',
-        lightWhite: '#f3f3f4',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        hover: 'hsl(var(--hover))',
+        buttonPrimary: 'hsl(var(--button-primary))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

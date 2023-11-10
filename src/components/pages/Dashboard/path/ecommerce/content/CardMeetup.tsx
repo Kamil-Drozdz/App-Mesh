@@ -11,11 +11,11 @@ const CardMeetup = () => {
 
   return (
     <CardContainer className='basis-1/3 !p-0'>
-      <div className=' flex justify-center rounded-t-lg bg-lightBlue'>
+      <div className=' flex justify-center rounded-t-lg'>
         <img height={200} width={300} className=' aspect-video w-full max-w-[300px]' src={organizePhoto} />
       </div>
       <div className='space-y-4 px-4'>
-        <div className='flex space-x-4 dark:bg-mediumBlue'>
+        <div className='flex space-x-4 '>
           <div className='flex flex-col items-center justify-center border-r border-gray-700 pr-4'>
             <p>THU</p>
             <span className='text-lg font-bold'>24</span>
@@ -43,7 +43,7 @@ const CardMeetup = () => {
             <span className='w-full text-left text-sm text-gray-400'>Manhattan, New york City</span>
           </div>
         </div>
-        <div className='flex items-center py-4 ml-2'>
+        <div className='ml-2 flex items-center py-4'>
           {data.map((item, index) => (
             <TooltipProvider key={index}>
               <Tooltip>
@@ -51,7 +51,7 @@ const CardMeetup = () => {
                   <img
                     height={32}
                     width={32}
-                    className='ease -ml-2 h-8 w-8 cursor-pointer rounded-full object-contain ring-2 ring-black transition-all duration-200 hover:-translate-y-2 hover:scale-105'
+                    className='ease -ml-2 h-8 w-8 cursor-pointer rounded-full object-contain ring-2 ring-secondary transition-all duration-200 hover:-translate-y-2 hover:scale-105'
                     src={item.photo}
                     alt={item.name}
                   />

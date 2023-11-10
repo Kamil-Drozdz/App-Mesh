@@ -20,7 +20,7 @@ const ShopHeader = () => {
           }
         } else {
           return (
-            <Link className='text-violet-500' key={segment} to={`/${segment}`}>
+            <Link className='text-buttonPrimary' key={segment} to={`/${segment}`}>
               {segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}
               <span className='mx-2 text-white'>&gt;</span>
             </Link>

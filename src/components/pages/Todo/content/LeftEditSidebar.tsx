@@ -15,7 +15,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
       <div
         className={`fixed z-[51] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } right-0 h-full w-3/4 max-w-[24rem] space-y-4 bg-white p-6 text-gray-900 transition-transform duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
+        } right-0 h-full w-3/4 max-w-[24rem] space-y-4 bg-secondary p-6 text-primary transition-transform duration-300 ease-in-out`}
       >
         <div className='relative'>
           <Input
@@ -28,7 +28,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
           />
           <label
             htmlFor='location'
-            className='absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-mediumBlue peer-focus:dark:text-blue-500'
+            className='absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform bg-secondary px-2 text-sm duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500'
           >
             Title
           </label>
@@ -37,10 +37,10 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
           <SelectTrigger className='w-full whitespace-nowrap !border-gray-300 !border-opacity-25'>
             <SelectValue placeholder='choose tag' />
           </SelectTrigger>
-          <SelectContent className='z-[52] border-gray-300'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+          <SelectContent className='z-[52] border-gray-300 bg-secondary-foreground'>
+            <SelectGroup className='bg-secondary'>
               {tags.map((item, index) => (
-                <SelectItem value={item.name} key={index}>
+                <SelectItem className='hover:bg-primary-foreground' value={item.name} key={index}>
                   <div className='flex items-center space-x-2 '>
                     <GoDotFill size={8} className={clsx('rounded-full', item.color)} />
                     <div> {item.name}</div>
@@ -61,7 +61,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
                   !newTask.date && 'text-muted-foreground'
                 )}
               >
-                {newTask.date ? format(newTask.date, 'PPP') : <span>Pick a date</span>}{' '}
+                {newTask.date ? format(newTask.date, 'PPP') : <span>Pick a date</span>}
                 <BiCalendar className='ml-auto h-4 w-4 opacity-50' />
               </Button>
             </div>
@@ -72,7 +72,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
               initialFocus
               selected={newTask.date}
               onSelect={(date) => setNewTask({ ...newTask, date })}
-              className='rounded-md border bg-white dark:bg-mediumBlue'
+              className='rounded-md border'
             />
           </PopoverContent>
         </Popover>
@@ -85,10 +85,12 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
           placeholder='Write your thoughts here...'
         ></textarea>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddTodo} className='mb-4 !bg-violet-500 !text-white hover:bg-violet-400'>
+          <Button onClick={handleAddTodo} className='!bg-buttonPrimary mb-4 !text-white hover:brightness-110'>
             Add
           </Button>
-          <Button variant='destructive'>Cancel</Button>
+          <Button onClick={() => setIsOpen(false)} variant='destructive'>
+            Cancel
+          </Button>
         </div>
       </div>
       {isOpen && <div className='fixed inset-0 z-50 bg-black opacity-50' onClick={() => setIsOpen(false)}></div>}

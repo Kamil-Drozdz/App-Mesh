@@ -177,7 +177,7 @@ const CalendarContent = () => {
             </div>
           </TooltipTrigger>
           <TooltipContent className=' !bg-black !p-0' side='left'>
-            <div className='!z-[9999999999999] min-w-[200px] bg-lightWhite px-6 text-base text-gray-800 dark:bg-darkBlue dark:text-gray-300'>
+            <div className='!z-[9999999999999] min-w-[200px] bg-lightWhite px-6 text-base text-gray-800 dark:bg-secondary dark:text-gray-300'>
               <div className='flex items-center justify-start space-x-2'>
                 <span className='font-semibold'>eventURL: </span>
                 <a

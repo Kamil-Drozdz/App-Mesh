@@ -78,13 +78,13 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
                   )}
                   <div
                     className={`relative flex  h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white ${
-                      currentUser?.photoURL || 'bg-lightBlue'
+                      currentUser?.photoURL || 'bg-secondary'
                     }`}
                   >
                     <img
                       height={40}
                       width={40}
-                      className='rounded-full ring-2 ring-black'
+                      className='rounded-full ring-2 ring-secondary'
                       src={currentUser?.photoURL || defaultUser}
                     />
                   </div>
@@ -97,13 +97,13 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
                   <img
                     height={40}
                     width={40}
-                    className='min-w-[40px] rounded-full ring-2 ring-black'
+                    className='min-w-[40px] rounded-full ring-2 ring-secondary'
                     src={message.photo}
                   />
                   {typeof message.content === 'string' && message.content.startsWith(storageBaseURL) ? (
                     <img className='ml-2 max-w-[200px]' src={message.content} alt='Uploaded file' />
                   ) : (
-                    <p className='ml-2 w-full break-all rounded-r-lg rounded-tl-lg bg-gray-300  p-2 dark:bg-lightBlue'>
+                    <p className='ml-2 w-full break-all rounded-r-lg rounded-tl-lg bg-muted-foreground p-2 text-primary'>
                       {message.content}
                     </p>
                   )}

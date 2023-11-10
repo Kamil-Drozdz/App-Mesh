@@ -42,11 +42,15 @@ const TopNavbarTooltipIcons = () => {
                   </li>
                 )}
               </TooltipTrigger>
-              <TooltipContent className='bg-black p-2 !text-base text-white' sideOffset={12} side='bottom'>
+              <TooltipContent
+                className='bg-primary p-2 !text-base text-primary-foreground'
+                sideOffset={12}
+                side='bottom'
+              >
                 <p>{item.tooltip}</p>
               </TooltipContent>
             </Tooltip>
-            <PopoverContent className='z-[52] w-auto p-0 dark:bg-mediumBlue' sideOffset={22} align='center'>
+            <PopoverContent className='z-[52] w-auto bg-secondary p-0' sideOffset={22} align='center'>
               {cart.length ? (
                 <CartPopover removeFromCart={removeFromCart} cart={cart} />
               ) : (

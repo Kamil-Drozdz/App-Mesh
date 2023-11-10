@@ -20,7 +20,7 @@ const NavigationCard = ({ children }) => {
   };
   return (
     <CardContainer className='hidden h-fit w-1/4 min-w-[16rem] flex-col space-y-4 print:hidden md:flex'>
-      <Button onClick={handleSendInvoice} className='w-full !bg-violet-500 !text-white hover:!bg-violet-400'>
+      <Button onClick={handleSendInvoice} className='!bg-buttonPrimary w-full !text-white hover:brightness-110'>
         Send Invoice
       </Button>
       {children}

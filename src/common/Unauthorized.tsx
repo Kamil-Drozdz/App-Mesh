@@ -13,10 +13,10 @@ const Unauthorized = () => {
         src={unauthorizedPhoto}
         alt='named you shall not pass'
       />
-      <h2 className='text:sm flex flex-col items-center justify-center text-gray-300 md:text-2xl'>
+      <h2 className='text:sm flex flex-col items-center justify-center text-secondary-foreground md:text-2xl'>
         You Shall not pass!
         <Link to='/login'>
-          <Button className=' mx-2 mt-4 rounded-lg bg-orange-600 p-2 font-semibold text-black'>Log In</Button>
+          <Button className=' mx-2 mt-4 rounded-lg bg-orange-600 p-2 font-semibold text-primary'>Log In</Button>
         </Link>
       </h2>
     </PageContainer>

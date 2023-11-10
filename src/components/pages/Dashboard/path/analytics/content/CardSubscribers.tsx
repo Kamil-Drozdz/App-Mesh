@@ -22,7 +22,7 @@ const CardSubscribers = () => {
       className='md:basis-1/2'
       title='Subscribers Gained'
       data={data}
-      iconColor='bg-violet-500 text-violet-500'
+      iconColor='bg-buttonPrimary text-buttonPrimary'
       icon={<FiUsers size={21} />}
     >
       <Line options={options} data={data} />

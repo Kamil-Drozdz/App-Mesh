@@ -24,7 +24,7 @@ function CardTimelineItem({ title, timestamp, content, images, icon, color }) {
                   <img
                     width={32}
                     height={32}
-                    className='ease h-8 w-8 cursor-pointer rounded-full object-contain ring-2 ring-black transition-all duration-200 hover:-translate-y-2 hover:scale-105'
+                    className='ease h-8 w-8 cursor-pointer rounded-full object-contain ring-2 ring-secondary transition-all duration-200 hover:-translate-y-2 hover:scale-105'
                     src={item.photo}
                     alt={item.name}
                   />

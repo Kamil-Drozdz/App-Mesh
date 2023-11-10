@@ -13,7 +13,7 @@ const PageContainer = ({ children }: PropsWithChildren) => {
 
   return (
     <main
-      className={` ease  h-full min-h-screen space-y-6 bg-lightWhite px-6 text-gray-800 transition-all duration-300 dark:bg-darkBlue dark:text-gray-300  ${
+      className={` ease h-full min-h-screen space-y-6 bg-background px-6 text-foreground transition-all duration-300 ${
         isFullScreen ? 'ml-0 max-w-full pt-2 pb-8' : 'max-w-[1756px] py-8 lg:ml-72'
       }`}
     >
@@ -32,7 +32,7 @@ const PageContainer = ({ children }: PropsWithChildren) => {
       </Transition>
       <Button
         onClick={toggleFullScreen}
-        className={`fixed right-8 bg-black text-white bottom-8 z-[100] ${
+        className={`fixed right-8 bottom-8 z-[100] bg-black text-white ${
           pathname === BasicRoutes.UNAUTHORIZED ? 'hidden' : 'hidden md:block'
         } `}
       >

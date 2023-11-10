@@ -100,18 +100,18 @@ const Chat = () => {
       <div
         className={`${
           isOpen ? 'translate-x-0' : '-translate-x-[110%]'
-        } ease border-r-none absolute z-[1] h-full w-full rounded-r-lg rounded-l-lg border-r-gray-300 bg-white text-gray-900  transition-transform duration-300 dark:border-r-gray-600 dark:bg-mediumBlue  dark:text-white md:relative md:h-auto md:w-1/4 md:min-w-[300px] md:translate-x-0 md:rounded-r-none md:border-r-[1px]`}
+        } ease border-r-none absolute z-[1] h-full w-full rounded-r-lg rounded-l-lg border-r-gray-300 transition-transform duration-300 dark:border-r-gray-600 md:relative md:h-auto md:w-1/4 md:min-w-[300px] md:translate-x-0 md:rounded-r-none md:border-r-[1px]`}
       >
         <div className='flex w-full items-center justify-center space-x-2 p-4'>
           <div
             className={`relative flex h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white ${
-              currentUser?.photoURL || 'bg-darkBlue'
+              currentUser?.photoURL || 'bg-secondary'
             }`}
           >
             <img
               height={40}
               width={40}
-              className='rounded-full ring-2 ring-black'
+              className='rounded-full ring-2 ring-secondary'
               src={currentUser?.photoURL || defaultUser}
             />
             <StatusBadge className='absolute bottom-0 right-0' status={UserStatuses.Online} />
@@ -123,7 +123,7 @@ const Chat = () => {
         </div>
         <Separator />
         <div className='p-4'>
-          <h2 className='my-3 text-lg font-semibold !text-violet-500'>Chats</h2>
+          <h2 className='!text-buttonPrimary my-3 text-lg font-semibold'>Chats</h2>
           <div className=' max-h-[300px] overflow-y-auto'>
             {filteredChats.length ? (
               <>
@@ -135,7 +135,7 @@ const Chat = () => {
               <div>Chat not found</div>
             )}
           </div>
-          <h2 className='my-3 text-lg font-semibold !text-violet-500'>Contacts</h2>
+          <h2 className='!text-buttonPrimary my-3 text-lg font-semibold'>Contacts</h2>
           <div className='mt-4 max-h-[300px] overflow-y-auto'>
             {filteredContact.length ? (
               <>
@@ -149,7 +149,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
-      <div className='w-full rounded-lg bg-white text-gray-900 dark:bg-mediumBlue dark:text-white  md:w-3/4 '>
+      <div className='w-full rounded-lg  md:w-3/4 '>
         <div className='rounded-t-lg border-b-[1px] border-b-gray-300 p-4 dark:border-b-gray-600 md:rounded-t-none md:rounded-tr-lg'>
           <div className='flex items-center space-x-4'>
             <Button onClick={() => setIsOpen((prev) => !prev)} className='block !p-2 md:hidden' variant='empty'>
@@ -159,7 +159,7 @@ const Chat = () => {
               <img
                 height={40}
                 width={40}
-                className='rounded-full ring-2 ring-black'
+                className='rounded-full ring-2 ring-secondary'
                 src={activeChat?.photo || undefined}
               />
               <StatusBadge className='absolute bottom-0 right-0 ' status={activeChat?.status as UserStatuses} />

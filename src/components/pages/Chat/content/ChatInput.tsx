@@ -96,7 +96,7 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
       <Input type='file' accept='image/*' onChange={handleImageInput} className='hidden' id='imageInput' />
       <Button
         onClick={() => handleSendMessage(currentUser?.displayName, message)}
-        className='!bg-violet-500 !text-white hover:!bg-violet-400'
+        className='!bg-buttonPrimary !text-white hover:brightness-110'
       >
         Send
       </Button>

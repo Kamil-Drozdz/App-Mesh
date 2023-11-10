@@ -35,13 +35,13 @@ const CardRevenueReport = () => {
         <Bar className={`${isFullScreen ? '' : 'w-full max-w-[520px]'}`} data={data} options={options} />
       </div>
       <Separator orientation='vertical' className='dark:bg-gray-600' />
-      <div className='flex flex-col items-center justify-start space-y-4 md:w-1/3 px-4'>
+      <div className='flex flex-col items-center justify-start space-y-4 px-4 md:w-1/3'>
         <Select>
-          <SelectTrigger className='w-[180px] border-darkBlue'>
+          <SelectTrigger className='w-[180px] border-secondary'>
             <SelectValue placeholder={t('Choose Year')} />
           </SelectTrigger>
-          <SelectContent className='border-darkBlue'>
-            <SelectGroup className='bg-lightWhite dark:bg-mediumBlue dark:text-gray-200'>
+          <SelectContent className='border-secondary'>
+            <SelectGroup>
               <SelectLabel>{t('Choose Year')}</SelectLabel>
               <SelectItem value='2023'>2023</SelectItem>
               <SelectItem value='2022'>2022</SelectItem>
@@ -56,7 +56,7 @@ const CardRevenueReport = () => {
           {t('Budget')} {convert(totalValue(data.datasets[0].data))}
         </h4>
         <Line className={`${isFullScreen ? '' : 'w-full max-w-[260px]'}`} options={optionsLine} data={data} />
-        <Button className='!bg-violet-500 !text-white hover:!bg-violet-400'>{t('Increase Budget')}</Button>
+        <Button className='!bg-buttonPrimary !text-white hover:brightness-110'>{t('Increase Budget')}</Button>
       </div>
     </CardContainer>
   );

@@ -12,7 +12,7 @@ function CartPopover({ cart, removeFromCart }) {
     <div className='w-[300px]'>
       <div className='my-2 flex w-full items-center justify-between p-2'>
         <h2 className='font-semibold'>My Cart</h2>
-        <p className='rounded-full bg-violet-500 bg-opacity-20 py-1 px-2.5 text-violet-500'>{cart.length} New</p>
+        <p className='bg-buttonPrimary text-buttonPrimary rounded-full bg-opacity-20 py-1 px-2.5'>{cart.length} New</p>
       </div>
       <Separator />
       <div className='max-h-40 overflow-y-auto'>
@@ -25,7 +25,7 @@ function CartPopover({ cart, removeFromCart }) {
             </div>
             <Separator />
             <AiOutlineClose
-              className='absolute right-2 top-2  hidden cursor-pointer hover:text-violet-500 group-hover:block'
+              className='hover:text-buttonPrimary absolute right-2  top-2 hidden cursor-pointer group-hover:block'
               onClick={() => removeFromCart(item.id)}
               size={IconSize.basic}
             />
@@ -38,7 +38,7 @@ function CartPopover({ cart, removeFromCart }) {
         <p className='text-black dark:text-white'>{totalAmount.toFixed(2)}$</p>
       </div>
       <div className='px-4 pb-2'>
-        <Button className='w-full !bg-violet-500 !text-white'>
+        <Button className='!bg-buttonPrimary w-full !text-white'>
           <Link to={`${BasicRoutes.ECOMMERCE}${SubRoutes.CHECKOUT}`}>Checkout</Link>
         </Button>
       </div>

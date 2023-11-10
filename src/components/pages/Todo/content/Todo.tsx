@@ -98,7 +98,7 @@ const Todo = () => {
   if (error) {
     return <ErrorComponent error={error} />;
   }
-  
+
   return (
     <>
       <LeftEditSidebar
@@ -109,7 +109,7 @@ const Todo = () => {
         handleAddTodo={handleAddTodo}
       />
       <PageContainer>
-        <CardContainer className='flex w-full space-y-0 text-gray-700 dark:text-gray-300 md:space-x-4'>
+        <CardContainer className='flex w-full space-y-0 md:space-x-4'>
           <TodoAddEvent
             filterByTag={filterByTag}
             activeTag={activeTag}

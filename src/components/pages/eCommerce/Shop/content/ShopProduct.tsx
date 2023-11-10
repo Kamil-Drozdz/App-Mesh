@@ -18,10 +18,10 @@ const ShopProduct = ({ product }: ShopProductProps) => {
   const isProductInCart = cart.some((item) => item.id === product.id);
   return (
     <div className='m-4'>
-      <div className='relative flex flex-col items-center justify-center space-y-3 rounded-t-lg bg-white p-4 dark:bg-mediumBlue'>
+      <div className='relative flex flex-col items-center justify-center space-y-3 rounded-t-lg bg-secondary p-4'>
         <Link
           to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`}
-          className=' flex items-center justify-center rounded-lg bg-white p-2 md:max-w-[90%]'
+          className=' flex items-center justify-center rounded-lg !bg-white p-2 md:max-w-[90%]'
         >
           <img
             height={400}
@@ -33,10 +33,10 @@ const ShopProduct = ({ product }: ShopProductProps) => {
         </Link>
         <div className='flex w-full justify-between'>
           <div className='flex text-amber-500'>{stars}</div>
-          <p className=' font-semibold text-gray-400'>${product.price}</p>
+          <p className='font-semibold text-muted-foreground'>${product.price}</p>
         </div>
         <Link className='w-full' to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`}>
-          <p className='min-h-[100px] w-full text-left font-semibold hover:text-violet-500 '>{product?.title}</p>
+          <p className='hover:text-buttonPrimary min-h-[100px] w-full text-left font-semibold '>{product?.title}</p>
         </Link>
         <p className='w-full truncate break-all'>{product?.description}</p>
       </div>
@@ -50,7 +50,7 @@ const ShopProduct = ({ product }: ShopProductProps) => {
             }
           }}
           variant='empty'
-          className='w-full space-x-2 rounded-none rounded-bl-md bg-white hover:bg-gray-200 dark:bg-mediumBlue dark:hover:bg-lightBlue'
+          className='w-full space-x-2 rounded-none rounded-bl-md bg-secondary hover:bg-secondary/30 '
         >
           {isProductInWishlist ? (
             <AiFillHeart size={IconSize.basic} className='text-red-500' />
@@ -67,7 +67,7 @@ const ShopProduct = ({ product }: ShopProductProps) => {
               addToCart(product);
             }
           }}
-          className='w-full space-x-2 rounded-none !rounded-br-lg !bg-violet-500 !text-white hover:!bg-violet-400'
+          className='!bg-buttonPrimary w-full space-x-2 rounded-none !rounded-br-lg !text-white hover:brightness-110'
         >
           <FiShoppingCart size={IconSize.basic} />
           <p> {isProductInCart ? 'Remove from Cart' : 'Add to Cart'}</p>

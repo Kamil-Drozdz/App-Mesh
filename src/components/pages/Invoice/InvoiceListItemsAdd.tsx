@@ -63,8 +63,7 @@ const InvoiceListItemsAdd = ({ isEditable }: { isEditable: boolean }) => {
         </tr>
         <Button
           disabled={invoiceItem.task === '' || invoiceItem.rate === 0 || invoiceItem.hours === 0}
-          className='mt-3'
-          variant='secondary'
+          className='mt-3 !bg-green-500 !text-white hover:!bg-green-400'
           onClick={addInvoiceItem}
         >
           <BiPlus className='mr-2' /> Add Item

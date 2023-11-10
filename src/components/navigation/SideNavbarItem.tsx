@@ -13,7 +13,7 @@ const SideNavbarItem = ({ menuCollapsed, group }) => {
 
   return (
     <div className='p-2'>
-      <p className='mx-6 mt-6 mb-4 truncate text-xs font-semibold text-[#5a6071]'>{group.title}</p>
+      <p className='mx-6 mt-6 mb-4 truncate text-xs font-semibold text-muted-foreground'>{group.title}</p>
       <ul>
         {group.items.map((item, indexItem) => (
           <SideNavbarGroupItem

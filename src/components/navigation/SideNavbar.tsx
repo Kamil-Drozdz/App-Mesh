@@ -18,7 +18,7 @@ const SideNavbar = () => {
   return (
     <>
       <div
-        className={`w-72 bg-lightWhite dark:bg-darkBlue print:hidden ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} ${
+        className={`w-72 bg-background text-foreground  print:hidden ${isMenuOpen ? 'left-0' : '-left-72 lg:left-0'} ${
           isFullScreen ? '!-left-72' : 'left-0 '
         } fixed top-0 right-0 z-[11] h-screen transition-all duration-300 ease-out`}
       >
@@ -35,7 +35,7 @@ const SideNavbar = () => {
           }}
           className={`${
             menuCollapsed ? 'w-20' : 'w-72'
-          } fixed h-full overflow-y-auto bg-white text-gray-500 transition-all duration-300 ease-out dark:bg-mediumBlue dark:text-lightGray`}
+          } fixed h-full overflow-y-auto transition-all duration-300 ease-out`}
         >
           <ul className='my-2'>
             <li className='flex items-center justify-between space-x-4 px-6'>
@@ -43,7 +43,7 @@ const SideNavbar = () => {
                 <>
                   <Link to={`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`} className='flex items-center '>
                     <img src={logo} alt='Logo' width={32} height={32} className='mr-4 h-8 w-8' />
-                    <span className='text-2xl font-semibold'>Admin</span>
+                    <span className='text-2xl font-semibold'>App Mesh</span>
                   </Link>
 
                   <button aria-label='collaps menu button' onClick={() => setIsCollapsed((prev) => !prev)}>

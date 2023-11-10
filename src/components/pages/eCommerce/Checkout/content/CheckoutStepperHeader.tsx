@@ -13,7 +13,7 @@ const CheckoutStepperHeader = ({ setActiveStep, activeStep }) => {
           <div className='flex items-center space-x-4'>
             <div
               className={`${
-                activeStep === item.name ? 'bg-violet-500 ' : 'dark:bg-gray-800 bg-gray-300'
+                activeStep === item.name ? 'bg-buttonPrimary ' : 'bg-gray-300 dark:bg-gray-800'
               } rounded p-2 transition-colors duration-200 ease-in`}
             >
               {item.icon}
@@ -21,7 +21,7 @@ const CheckoutStepperHeader = ({ setActiveStep, activeStep }) => {
             <div className='flex flex-col justify-center leading-none'>
               <p
                 className={`${
-                  activeStep === item.name ? 'text-violet-500' : 'dark:text-white'
+                  activeStep === item.name ? 'text-buttonPrimary' : 'dark:text-white'
                 } transition-colors duration-200 ease-in `}
               >
                 {item.name}

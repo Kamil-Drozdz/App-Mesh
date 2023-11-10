@@ -2,7 +2,7 @@ import { Button } from '@/UI/Button';
 
 const CheckoutAdressOption = ({ formData, setActiveStep, errors }) => {
   return (
-    <div className='relative h-fit space-y-3 rounded-lg bg-white p-4 dark:bg-mediumBlue'>
+    <div className='relative h-fit space-y-3 rounded-lg bg-secondary p-4'>
       <div>
         <h2 className='text-lg font-semibold'>{formData.fullName}</h2>
         <div className='space-y-2 text-gray-400'>
@@ -16,7 +16,7 @@ const CheckoutAdressOption = ({ formData, setActiveStep, errors }) => {
       <Button
         disabled={!!Object.keys(errors).length}
         onClick={() => setActiveStep('Payment')}
-        className='w-full space-x-2 !bg-violet-500 !text-white hover:!bg-violet-400 disabled:opacity-20'
+        className='!bg-buttonPrimary w-full space-x-2 !text-white hover:brightness-110 disabled:opacity-20'
       >
         Deliver to this Adress
       </Button>

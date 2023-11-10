@@ -22,7 +22,7 @@ const CalendarAddEvent = ({
             setIsAddEventOpen(false);
             setIsOpen(true);
           }}
-          className='mb-4 w-full !bg-violet-500 !text-white hover:bg-violet-400'
+          className='!bg-buttonPrimary mb-4 w-full !text-white hover:brightness-110'
         >
           Add Event
         </Button>
