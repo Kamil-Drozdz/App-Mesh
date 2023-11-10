@@ -43,7 +43,7 @@ const SideNavbar = () => {
                 <>
                   <Link to={`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`} className='flex items-center '>
                     <img src={logo} alt='Logo' width={32} height={32} className='mr-4 h-8 w-8' />
-                    <span className='text-2xl font-semibold'>App Mesh</span>
+                    <span className='whitespace-nowrap text-2xl font-semibold'>App Mesh</span>
                   </Link>
 
                   <button aria-label='collaps menu button' onClick={() => setIsCollapsed((prev) => !prev)}>

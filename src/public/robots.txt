@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /unauthorized/
 Allow: /public/
-Sitemap:https://admin-dashboard-two-gray.vercel.app/sitemap.xml
+Sitemap:https://app-mesh.vercel.app/sitemap.xml
