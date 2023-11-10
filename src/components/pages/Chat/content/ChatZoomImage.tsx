@@ -4,7 +4,7 @@ const ChatZoomImage = ({ zoomImage, setZoomImage }) => {
       onClick={() => setZoomImage(null)}
       className='absolute inset-0 z-[50] flex items-center justify-center bg-black bg-opacity-70'
     >
-      <img src={URL.createObjectURL(zoomImage)} className='md:w-1/2 max-w-[600px] px-6 aspect-square object-contain' />
+      <img src={zoomImage} className='aspect-square max-w-[600px] object-contain px-6 md:w-1/2' />
     </div>
   );
 };

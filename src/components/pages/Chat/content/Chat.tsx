@@ -14,6 +14,8 @@ import useCurrentUser from '@/store/CurrentUser';
 import { useEffect, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import ChatContactItem from './ChatContactItem';
+import ChatItem from './ChatItem';
 
 export type BaseUser = {
   id: string;
@@ -32,7 +34,7 @@ export type Contact = BaseUser & {
 
 export type Message = {
   sender: string | undefined;
-  content: string | File;
+  content: string;
   timestamp: Date | string;
   photo: string;
 };
@@ -74,7 +76,11 @@ const Chat = () => {
   }, [dataContacts]);
 
   function handleUserClick(selectedUser) {
-    setActiveChat(selectedUser);
+    const existChat = chats.find((chat) => chat.id === selectedUser.id);
+    if (existChat) setActiveChat(existChat);
+    else {
+      setActiveChat(selectedUser);
+    }
     setIsOpen(false);
   }
 
@@ -122,27 +128,7 @@ const Chat = () => {
             {filteredChats.length ? (
               <>
                 {filteredChats.map((chat) => (
-                  <>
-                    <div
-                      key={chat.id}
-                      onClick={() => handleUserClick(chat)}
-                      className={`flex items-center space-x-3 rounded p-2 ${
-                        chat.id === activeChat?.id && 'bg-gradient-to-r from-[#7367f0] to-[#9e95f5] text-white'
-                      } cursor-pointer  hover:bg-gray-100 dark:hover:bg-darkBlue`}
-                    >
-                      <div className='relative flex h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white'>
-                        <img
-                          height={40}
-                          width={40}
-                          className='rounded-full ring-2 ring-black'
-                          src={chat.photo || undefined}
-                        />
-                        <StatusBadge className='absolute bottom-0 right-0 ' status={chat.status} />
-                      </div>
-                      <p>{chat.name}</p>
-                    </div>
-                    <Separator />
-                  </>
+                  <ChatItem key={chat.id} chat={chat} activeChat={activeChat} handleUserClick={handleUserClick} />
                 ))}
               </>
             ) : (
@@ -154,22 +140,7 @@ const Chat = () => {
             {filteredContact.length ? (
               <>
                 {filteredContact.map((contact) => (
-                  <>
-                    <div
-                      key={contact.id}
-                      onClick={() => handleUserClick(contact)}
-                      className='flex cursor-pointer items-center space-x-3 rounded p-2 hover:bg-gray-100 dark:hover:bg-darkBlue'
-                    >
-                      <img
-                        height={40}
-                        width={40}
-                        className='rounded-full ring-2 ring-black'
-                        src={contact.photo || undefined}
-                      />
-                      <p>{contact.name}</p>
-                    </div>
-                    <Separator />
-                  </>
+                  <ChatContactItem key={contact.id} handleUserClick={handleUserClick} contact={contact} />
                 ))}
               </>
             ) : (

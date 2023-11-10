@@ -8,9 +8,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiImageAdd, BiMicrophone } from 'react-icons/bi';
 import { collectionPathChats, docIdChats } from './Chat';
+import { uploadImageAndGetURL } from '@/lib/uploadImageAndGetURL';
 const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) => {
   const { i18n } = useTranslation();
-  const [message, setMessage] = useState<File | string>('');
+  const [message, setMessage] = useState<string>('');
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const handleVoiceInput = () => {
@@ -29,37 +30,29 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
     recognition.start();
   };
 
-  const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
       if (allowedImageTypes.includes(file.type)) {
-        setMessage(file);
+        const imageUrl = await uploadImageAndGetURL(file);
+        //adding file to storage and returning image url
+        if (imageUrl !== null) setMessage(imageUrl);
       } else {
         alert('Please upload a valid image file.');
       }
     }
   };
 
-  function handleSendMessage(sender, content) {
+  async function handleSendMessage(sender, content) {
     if (typeof content === 'string' && content.trim() === '') return;
-    let newMessage;
 
-    if (content instanceof File) {
-      newMessage = {
-        photo: currentUser?.photoURL || defaultUser,
-        sender: sender,
-        content: content,
-        timestamp: new Date().toISOString(),
-      };
-    } else {
-      newMessage = {
-        photo: currentUser?.photoURL || defaultUser,
-        sender: sender,
-        content: content,
-        timestamp: new Date().toISOString(),
-      };
-    }
+    const newMessage = {
+      photo: currentUser?.photoURL || defaultUser,
+      sender: sender,
+      content: content,
+      timestamp: new Date().toISOString(),
+    };
 
     if (!chats.find((chat) => chat.id === activeChat.id)) {
       setChats((prevChats) => [activeChat, ...prevChats]);
@@ -68,13 +61,19 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
     if (newMessage) {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
     }
-    //added only to one line updated new chat and messages
+    //added only to updated new chat and messages to firebase
     const updatedActiveChat = {
       ...activeChat,
       messages: [...activeChat.messages, newMessage],
     };
 
     const updatedChats = chats.map((chat) => (chat.id === activeChat.id ? updatedActiveChat : chat));
+    const activeChatIncluded = updatedChats.some((chat) => chat.id === activeChat.id);
+
+    if (!activeChatIncluded) {
+      updatedChats.unshift(updatedActiveChat);
+    }
+
     synchronizeEntireCollection(collectionPathChats, docIdChats, updatedChats);
     setMessage('');
   }
@@ -93,7 +92,6 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
       />
       <label className='absolute right-24 top-1/2 flex cursor-pointer' htmlFor='imageInput'>
         <BiImageAdd size={IconSize.basic} />
-        {message instanceof File && <span className='ml-2 text-xs'>{message.name}</span>}
       </label>
       <Input type='file' accept='image/*' onChange={handleImageInput} className='hidden' id='imageInput' />
       <Button

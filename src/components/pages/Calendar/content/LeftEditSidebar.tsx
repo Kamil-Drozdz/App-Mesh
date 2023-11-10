@@ -1,4 +1,3 @@
-import { FormDataProps } from '../CalendarContent';
 import { Button } from '@/UI/Button';
 import { Calendar } from '@/UI/Calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
@@ -9,22 +8,33 @@ import clsx from '@/lib/clsx';
 import { format } from 'date-fns';
 import { BiCalendar } from 'react-icons/bi';
 import { GoDotFill } from 'react-icons/go';
+import { CalendarEvent } from '../CalendarContent';
 
 interface LeftEditSidebarProps {
   isOpen: boolean;
-  formData: FormDataProps;
+  formData: CalendarEvent;
   handleAddEvent: () => void;
-  setFormData: (formData: FormDataProps) => void;
+  handleDeleteEvent: (id: string) => void;
+  setFormData: (formData: CalendarEvent) => void;
+  existingEventIndex: number;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEvent }: LeftEditSidebarProps) => {
+const LeftEditSidebar = ({
+  isOpen,
+  setIsOpen,
+  setFormData,
+  formData,
+  handleAddEvent,
+  existingEventIndex,
+  handleDeleteEvent,
+}: LeftEditSidebarProps) => {
   return (
     <>
       <div
         className={`fixed z-[51] pb-24 md:pb-0 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } text-gray-900 transition-transform right-0 h-full max-h-screen overflow-y-auto w-3/4 max-w-[24rem] space-y-4 bg-white p-6 duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
+        } right-0 h-full max-h-screen w-3/4 max-w-[24rem] space-y-4 overflow-y-auto bg-white p-6 text-gray-900 transition-transform duration-300 ease-in-out dark:bg-mediumBlue dark:text-white`}
       >
         Add Event
         <InputWithLabel
@@ -111,11 +121,11 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
           onChange={(e) => setFormData({ ...formData, eventUrl: e.target.value })}
         />
         <InputWithLabel
-          label='Location'
+          label='place'
           type='text'
-          id='location'
-          value={formData.location}
-          onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+          id='place'
+          value={formData.place}
+          onChange={(e) => setFormData({ ...formData, place: e.target.value })}
         />
         <label htmlFor='message' className='mb-2 block text-sm font-medium '>
           Your message
@@ -132,7 +142,15 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, setFormData, formData, handleAddEv
           <Button onClick={handleAddEvent} className='mb-4 !bg-violet-500 !text-white hover:bg-violet-400'>
             Add
           </Button>
-          <Button variant='destructive'>Cancel</Button>
+          {existingEventIndex !== -1 ? (
+            <Button onClick={() => handleDeleteEvent(formData?.id)} variant='destructive'>
+              Delete
+            </Button>
+          ) : (
+            <Button onClick={() => setIsOpen(false)} variant='destructive'>
+              Cancel
+            </Button>
+          )}
         </div>
       </div>
       {isOpen && <div className='fixed inset-0 z-50 bg-black opacity-50' onClick={() => setIsOpen(false)}></div>}

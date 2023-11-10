@@ -17,7 +17,6 @@ const InvoiceTemplateField = ({
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setInvoice((prevInvoice) => {
-      console.log(prevInvoice);
       const newInvoice = cloneDeep(prevInvoice);
       set(newInvoice, name, value);
       return newInvoice;

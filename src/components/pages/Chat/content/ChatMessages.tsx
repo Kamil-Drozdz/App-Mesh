@@ -17,7 +17,12 @@ interface Messages {
 const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) => {
   const [messages, setMessages] = useState<Message[]>(activeChat?.messages || []);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
-  const [zoomImage, setZoomImage] = useState<null | File>(null);
+  const [zoomImage, setZoomImage] = useState<null | string>(null);
+  const [infoImage, setInfoImage] = useState({});
+
+  const storageBaseURL = `https://firebasestorage.googleapis.com/v0/b/${
+    import.meta.env.VITE_APP_FIREBASE_STORAGE_BUCKET
+  }`;
 
   useEffect(() => {
     if (activeChat !== null) setMessages(activeChat?.messages);
@@ -26,6 +31,13 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const handleImageError = (index) => {
+    setInfoImage((prevState) => ({
+      ...prevState,
+      [index]: true,
+    }));
+  };
 
   const scrollToBottom = () => {
     setTimeout(() => {
@@ -45,21 +57,24 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
           messages.map((message, index) =>
             message.sender === currentUser?.displayName ? (
               <div ref={chatContainerRef} key={index} className='flex w-full justify-end px-3 md:px-6'>
-                <div className=' group flex w-fit  items-start py-1'>
-                  {typeof message.content === 'string' ? (
+                <div className=' group flex w-fit items-start justify-center py-1'>
+                  {typeof message.content === 'string' && message.content.startsWith(storageBaseURL) ? (
+                    infoImage[index] ? (
+                      <span className='mr-2  self-center'>image was deleted.</span>
+                    ) : (
+                      <div onClick={() => setZoomImage(message.content)}>
+                        <img
+                          className='mr-2 max-w-[200px] cursor-zoom-in'
+                          src={message.content}
+                          alt='Uploaded file'
+                          onError={() => handleImageError(index)}
+                        />
+                      </div>
+                    )
+                  ) : (
                     <p className='mr-2 w-full break-all rounded-l-lg rounded-tr-lg  bg-gradient-to-r from-[#7367f0] to-[#9e95f5] p-2'>
                       {message.content}
                     </p>
-                  ) : message.content instanceof File ? (
-                    <div onClick={() => message.content instanceof File && setZoomImage(message.content)}>
-                      <img
-                        className='mr-2 max-w-[200px] cursor-zoom-in'
-                        src={URL.createObjectURL(message.content)}
-                        alt='Uploaded file'
-                      />
-                    </div>
-                  ) : (
-                    <div>Invalid content type</div>
                   )}
                   <div
                     className={`relative flex  h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white ${
@@ -85,18 +100,12 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
                     className='min-w-[40px] rounded-full ring-2 ring-black'
                     src={message.photo}
                   />
-                  {typeof message.content === 'string' ? (
+                  {typeof message.content === 'string' && message.content.startsWith(storageBaseURL) ? (
+                    <img className='ml-2 max-w-[200px]' src={message.content} alt='Uploaded file' />
+                  ) : (
                     <p className='ml-2 w-full break-all rounded-r-lg rounded-tl-lg bg-gray-300  p-2 dark:bg-lightBlue'>
                       {message.content}
                     </p>
-                  ) : message.content instanceof File ? (
-                    <img
-                      className='ml-2 max-w-[200px]'
-                      src={URL.createObjectURL(message.content)}
-                      alt='Uploaded file'
-                    />
-                  ) : (
-                    <div>Invalid content type</div>
                   )}
                 </div>
                 <div className='text- absolute hidden group-hover:block'>

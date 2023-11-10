@@ -1,62 +1,83 @@
 import CardContainer from '@/common/CardContainer';
 import PageContainer from '@/common/PageContainer';
-import { data, labels } from '@/data/pages/calendar/calendarData';
+import { labels } from '@/data/pages/calendar/calendarData';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './calendar.css';
 import LeftEditSidebar from './content/LeftEditSidebar';
 import { v4 as uuidv4 } from 'uuid';
 import CalendarAddEvent from './content/CalendarAddEvent';
+import { synchronizeEntireCollection } from '@/lib/synchronizeEntireCollection';
+import useFirebaseData from '@/hooks/useFirebaseData';
+import Loader from '@/common/Loader';
+import { ErrorComponent } from '@/common/ErrrorComponent';
+import { Timestamp } from 'firebase/firestore';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 
-interface CalendarEvent {
+export interface CalendarEvent {
   id: string;
   title: string;
   start?: Date;
-  label: string | null;
-}
-export interface FormDataProps {
-  id: string;
-  title: string;
-  start?: Date;
-  label: string;
   end?: Date;
+  label: string;
   eventUrl: string;
-  location: string;
+  place: string;
   description: string;
 }
 
+const collectionPathCalendar = 'calendar';
+const docIdCalendar = 'BPwogAjahGSlbPJ8KTdX';
 const CalendarContent = () => {
   const today = new Date();
-  const [events, setEvents] = useState<CalendarEvent[]>(data);
+
+  const { data, loading, error } = useFirebaseData<CalendarEvent[]>(collectionPathCalendar, docIdCalendar);
+
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>(labels.map((item) => item.name));
-  const [formData, setFormData] = useState<FormDataProps>({
+
+  const [formData, setFormData] = useState<CalendarEvent>({
     id: uuidv4(),
     title: '',
     start: today,
     end: today,
     eventUrl: '',
-    location: '',
+    place: '',
     description: '',
     label: '',
   });
+
   const [isOpen, setIsOpen] = useState(false);
   const [isAddEventOpen, setIsAddEventOpen] = useState(false);
   const { i18n } = useTranslation();
 
+  useEffect(() => {
+    if (data) {
+      const convertedCalendar = data.map((calendar) => ({
+        ...calendar,
+        start: calendar.start instanceof Timestamp ? calendar.start.toDate() : calendar.start,
+        end: calendar.end instanceof Timestamp ? calendar.end.toDate() : calendar.end,
+      }));
+      setEvents(convertedCalendar);
+    }
+  }, [data]);
+
+  const existingEventIndex = events.findIndex((event) => event.id === formData.id);
+
   const handleAddEvent = () => {
     if (formData.title && formData.start && formData.end && formData.label) {
       setIsOpen(false);
-      const existingEventIndex = events.findIndex((event) => event.id === formData.id);
 
       if (existingEventIndex !== -1) {
         const updatedEvents = [...events];
         updatedEvents[existingEventIndex] = formData;
         setEvents(updatedEvents);
+        synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, updatedEvents);
       } else {
         setEvents([...events, formData]);
+        synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, [...events, formData]);
       }
       setFormData({
         id: uuidv4(),
@@ -64,13 +85,34 @@ const CalendarContent = () => {
         start: today,
         end: today,
         eventUrl: '',
-        location: '',
+        place: '',
         description: '',
         label: '',
       });
     } else {
       alert('Please fill in all required fields (Title, Start Date, End Date,label).');
     }
+  };
+
+  const handleDeleteEvent = (eventId) => {
+    const updatedEvents = events.filter((item) => item.id !== eventId);
+    setEvents(updatedEvents);
+    synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, updatedEvents);
+    setIsOpen(false);
+  };
+  const handleEventDrop = (info) => {
+    const updatedEvents = events.map((event) => {
+      if (event.id === info.event._def.publicId) {
+        return {
+          ...event,
+          start: info.event._instance.range.start,
+          end: info.event._instance.range.end,
+        };
+      }
+      return event;
+    });
+    setEvents(updatedEvents);
+    synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, updatedEvents);
   };
 
   const handleSelectEvent = (info) => {
@@ -81,7 +123,7 @@ const CalendarContent = () => {
       start: info.event._instance.range.start,
       end: info.event._instance.range.end,
       eventUrl: info.event._def.extendedProps.eventUrl,
-      location: info.event._def.extendedProps.location,
+      place: info.event._def.extendedProps.place,
       description: info.event._def.extendedProps.description,
       label: info.event._def.extendedProps.label,
     });
@@ -104,18 +146,61 @@ const CalendarContent = () => {
       start: info.start,
       end: info.end,
       eventUrl: '',
-      location: '',
+      place: '',
       description: '',
       label: '',
     });
   };
 
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorComponent error={error} />;
+  }
+
   const renderEventContent = (eventInfo) => {
     const event = eventInfo.event;
     const color = labels.find((item) => item.name === event._def.extendedProps.label);
+
+    const handleLinkClick = (e) => {
+      e.stopPropagation();
+    };
+
     return (
-      <div className={`bg-opacity-[12%] ${color?.color} border-opacity-10 rounded border px-2 font-semibold`}>
-        {event.title}
+      <div>
+        <Tooltip>
+          <TooltipTrigger>
+            <div className={`bg-opacity-[12%] ${color?.color} z-1 rounded border border-opacity-10 px-2 font-semibold`}>
+              {event.title}
+            </div>
+          </TooltipTrigger>
+          <TooltipContent className=' !bg-black !p-0' side='left'>
+            <div className='!z-[9999999999999] min-w-[200px] bg-lightWhite px-6 text-base text-gray-800 dark:bg-darkBlue dark:text-gray-300'>
+              <div className='flex items-center justify-start space-x-2'>
+                <span className='font-semibold'>eventURL: </span>
+                <a
+                  target='_blank'
+                  rel='noreferrer'
+                  className='!text-blue-500'
+                  href={event._def.extendedProps.eventUrl}
+                  onClick={handleLinkClick}
+                >
+                  {event._def.extendedProps.eventUrl}
+                </a>
+              </div>
+              <div className='flex items-center justify-start space-x-2'>
+                <span className='font-semibold'>Place: </span>
+                <p>{event._def.extendedProps.place}</p>
+              </div>
+              <div className='flex items-center justify-start space-x-2'>
+                <span className='font-semibold'>Description: </span>
+                <p>{event._def.extendedProps.description}</p>
+              </div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
       </div>
     );
   };
@@ -128,6 +213,8 @@ const CalendarContent = () => {
         handleAddEvent={handleAddEvent}
         setFormData={setFormData}
         setIsOpen={setIsOpen}
+        existingEventIndex={existingEventIndex}
+        handleDeleteEvent={handleDeleteEvent}
       />
       <PageContainer>
         <CardContainer className='flex w-full space-x-8'>
@@ -139,33 +226,36 @@ const CalendarContent = () => {
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
           />
-          <div className='h-full w-full'>
-            <FullCalendar
-              dayMaxEventRows={2}
-              locale={i18n.language}
-              plugins={[dayGridPlugin, interactionPlugin]}
-              initialView='dayGridMonth'
-              editable={true}
-              selectable={true}
-              events={filteredEvents}
-              eventClick={handleSelectEvent}
-              eventContent={renderEventContent}
-              select={handleDateSelect}
-              customButtons={{
-                myCustomButton: {
-                  text: '',
-                  click: () => {
-                    setIsAddEventOpen((prev) => !prev);
+          <TooltipProvider>
+            <div className='h-full w-full'>
+              <FullCalendar
+                dayMaxEventRows={2}
+                locale={i18n.language}
+                plugins={[dayGridPlugin, interactionPlugin]}
+                initialView='dayGridMonth'
+                editable={true}
+                selectable={true}
+                eventDrop={handleEventDrop}
+                events={filteredEvents}
+                eventClick={handleSelectEvent}
+                eventContent={renderEventContent}
+                select={handleDateSelect}
+                customButtons={{
+                  myCustomButton: {
+                    text: '',
+                    click: () => {
+                      setIsAddEventOpen((prev) => !prev);
+                    },
                   },
-                },
-              }}
-              headerToolbar={{
-                left: 'myCustomButton',
-                center: 'title',
-                right: 'today prev,next',
-              }}
-            />
-          </div>
+                }}
+                headerToolbar={{
+                  left: 'myCustomButton',
+                  center: 'title',
+                  right: 'today prev,next',
+                }}
+              />
+            </div>
+          </TooltipProvider>
         </CardContainer>
       </PageContainer>
     </>

@@ -5,6 +5,7 @@ import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 export const createUser = async (formData) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+
     const docRef = doc(db, 'users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
     await updateDoc(docRef, {
       users: arrayUnion({
