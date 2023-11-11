@@ -11,7 +11,7 @@ import { HiOutlineChatBubbleLeft, HiOutlineEnvelope } from 'react-icons/hi2';
 
 export const topNavbarIcons = {
   icons: [
-    { icon: <GiHamburgerMenu size={IconSize.basic} /> },
+    { icon: <GiHamburgerMenu className='text-primary' size={IconSize.basic} /> },
     { icon: <HiOutlineEnvelope size={IconSize.basic} />, href: '/email' },
     { icon: <HiOutlineChatBubbleLeft size={IconSize.basic} />, href: '/chat' },
     { icon: <BsCheck2Square size={IconSize.basic} />, href: '/todo/all' },

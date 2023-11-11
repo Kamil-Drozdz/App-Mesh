@@ -78,7 +78,7 @@ const UserList = ({ filters }) => {
               <SearchInput search={search} setSearch={setSearch} isIcon={false} className='min-w-[200px]' />
               <Button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className='!bg-buttonPrimary h-full w-full !text-white hover:brightness-110'
+                className='h-full w-full !bg-buttonPrimary !text-white hover:brightness-110'
               >
                 Add User
               </Button>

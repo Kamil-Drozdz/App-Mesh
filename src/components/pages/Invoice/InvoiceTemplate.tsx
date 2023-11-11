@@ -32,7 +32,7 @@ const InvoiceTemplate = ({ isEditable = false }) => {
       : format(invoice.invoiceDetails.dueDate, 'PPP');
 
   return (
-    <CardContainer className='w-3/4 space-y-8 print:w-full print:space-y-3 print:rounded-none print:border-none print:shadow-none '>
+    <CardContainer className='space-y-8 print:w-full print:space-y-3 print:rounded-none print:border-none print:shadow-none md:w-3/4 '>
       <div className='mb-4 flex flex-col items-start justify-between space-y-4 print:flex-row print:space-y-0 md:flex-row md:space-y-0'>
         <InvoiceCompanyInfo isEditable={isEditable} />
         <InvoiceDetails isEditable={isEditable} parsedDateIssued={parsedDateIssued} parsedDateDue={parsedDateDue} />

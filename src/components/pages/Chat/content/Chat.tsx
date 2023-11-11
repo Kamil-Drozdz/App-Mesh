@@ -100,7 +100,7 @@ const Chat = () => {
       <div
         className={`${
           isOpen ? 'translate-x-0' : '-translate-x-[110%]'
-        } ease border-r-none absolute z-[1] h-full w-full rounded-r-lg rounded-l-lg border-r-gray-300 transition-transform duration-300 dark:border-r-gray-600 md:relative md:h-auto md:w-1/4 md:min-w-[300px] md:translate-x-0 md:rounded-r-none md:border-r-[1px]`}
+        } ease border-r-none absolute z-[1] h-full w-full rounded-r-lg rounded-l-lg border-r-gray-300 bg-secondary transition-transform duration-300 dark:border-r-gray-600 md:relative md:h-auto md:w-1/4 md:min-w-[300px] md:translate-x-0 md:rounded-r-none md:border-r-[1px]`}
       >
         <div className='flex w-full items-center justify-center space-x-2 p-4'>
           <div
@@ -123,7 +123,7 @@ const Chat = () => {
         </div>
         <Separator />
         <div className='p-4'>
-          <h2 className='!text-buttonPrimary my-3 text-lg font-semibold'>Chats</h2>
+          <h2 className='my-3 text-lg font-semibold !text-buttonPrimary'>Chats</h2>
           <div className=' max-h-[300px] overflow-y-auto'>
             {filteredChats.length ? (
               <>
@@ -135,7 +135,7 @@ const Chat = () => {
               <div>Chat not found</div>
             )}
           </div>
-          <h2 className='!text-buttonPrimary my-3 text-lg font-semibold'>Contacts</h2>
+          <h2 className='my-3 text-lg font-semibold !text-buttonPrimary'>Contacts</h2>
           <div className='mt-4 max-h-[300px] overflow-y-auto'>
             {filteredContact.length ? (
               <>

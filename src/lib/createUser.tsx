@@ -1,10 +1,16 @@
 import { auth, db } from '@/../firebaseConfig';
-import { createUserWithEmailAndPassword, updateProfile, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile, User } from 'firebase/auth';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 export const createUser = async (formData) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+    const user = userCredential.user as User;
+
+    await sendEmailVerification(user)
+      .then(() => toast.success('confirm your email, the link has been sent to your mailbox'))
+      .catch(() => toast.error('email confirmation link has not been sent'));
 
     const docRef = doc(db, 'users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
     await updateDoc(docRef, {
@@ -14,11 +20,10 @@ export const createUser = async (formData) => {
         email: formData.email,
         role: formData.role,
         plan: formData.plan || 'free',
-        emailVerified: 'inactive',
         photoURL: `https://ui-avatars.com/api/?name=${formData?.displayName.slice(0, 1)}`,
       }),
     });
-    const user = userCredential.user as User;
+
     const profile = {
       displayName: formData.displayName,
       role: formData.role,

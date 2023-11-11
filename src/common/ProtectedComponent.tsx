@@ -17,7 +17,6 @@ export const ProtectedComponent = ({ component: Component }) => {
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const foundUser = userData.users.find((u) => u.displayName === user.displayName);
-
           setCurrentUser({
             ...user,
             role: foundUser?.role,
@@ -31,7 +30,7 @@ export const ProtectedComponent = ({ component: Component }) => {
     });
     return unsubscribe;
   }, [setCurrentUser]);
-
+  console.log(currentUser);
   if (loading) {
     return <Loader />;
   }

@@ -43,13 +43,13 @@ const TopNavbarPopoverUser = ({ currentUser }) => {
           <img height={40} width={40} className='rounded-full' src={currentUser?.photoURL || defaultUser} />
           <StatusBadge className='absolute bottom-0 right-0 ' status={UserStatuses.Online} />
         </div>
-        <PopoverContent className='z-[52] w-auto !bg-secondary p-0' sideOffset={18} align='center'>
+        <PopoverContent className='z-[52] w-auto !bg-secondary !p-0' sideOffset={18} align='center'>
           <div className='min-w-[140px]'>
             {profileOptions.map((item, index) => (
               <div key={index}>
                 {item.href ? (
                   <Link
-                    className=' hover:text-buttonPrimary my-1 flex items-center space-x-3 p-2 hover:bg-violet-500 hover:bg-opacity-20'
+                    className=' my-1 flex items-center space-x-3 p-2 hover:bg-violet-500 hover:bg-opacity-20 hover:text-buttonPrimary'
                     to={item.href || ''}
                   >
                     {item.icon}

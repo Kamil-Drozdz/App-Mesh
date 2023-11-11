@@ -13,7 +13,6 @@ interface FormDataProps {
   email: string;
   role: string;
   plan: string;
-  emailVerified: string;
 }
 
 const initialState = {
@@ -22,7 +21,6 @@ const initialState = {
   email: '',
   role: '',
   plan: '',
-  emailVerified: 'inactive',
 };
 const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState<FormDataProps>(initialState);
@@ -91,7 +89,7 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
           </SelectContent>
         </Select>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddEvent} className='!bg-buttonPrimary mb-4 !text-white hover:brightness-110'>
+          <Button onClick={handleAddEvent} className='mb-4 !bg-buttonPrimary !text-white hover:brightness-110'>
             Create
           </Button>
           <Button variant='destructive'>Cancel</Button>

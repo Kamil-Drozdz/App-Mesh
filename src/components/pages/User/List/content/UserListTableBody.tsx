@@ -24,7 +24,7 @@ const UserListTableBody = ({ currentItems }: UserListTableBodyProps) => {
       {currentItems.length > 0 ? (
         currentItems.map((user, index) => (
           <TableRow key={index}>
-            <TableCell className=' text-buttonPrimary font-medium'>{user?.displayName}</TableCell>
+            <TableCell className=' font-medium text-buttonPrimary'>{user?.displayName}</TableCell>
             <TableCell className='font-medium text-gray-400'>{user?.email}</TableCell>
             <TableCell className='font-medium  '>
               <div className='flex items-center space-x-2 '>
@@ -38,9 +38,11 @@ const UserListTableBody = ({ currentItems }: UserListTableBodyProps) => {
             </TableCell>
             <TableCell className='font-medium'>{user?.plan}</TableCell>
             <TableCell className='font-medium'>
-              <p className='w-fit rounded-lg bg-red-600 bg-opacity-30 px-2 text-center text-red-600'>
-                {user?.emailVerified}
-              </p>
+              {user?.emailVerified ? (
+                <p className='w-fit rounded-lg bg-green-600 bg-opacity-30 px-2 text-center text-green-600'>active</p>
+              ) : (
+                <p className='w-fit rounded-lg bg-red-600 bg-opacity-30 px-2 text-center text-red-600'>inactive</p>
+              )}
             </TableCell>
             <Popover>
               <PopoverTrigger className='flex w-full items-center p-1.5 md:space-x-2'>
@@ -49,11 +51,11 @@ const UserListTableBody = ({ currentItems }: UserListTableBodyProps) => {
                 </TableCell>
               </PopoverTrigger>
               <PopoverContent
-                className='z-[52] flex w-auto min-w-[120px] flex-col items-center justify-center !bg-secondary p-0 shadow-md'
+                className='z-[52] flex w-auto min-w-[120px] flex-col items-center justify-center !bg-secondary !p-0 shadow-md'
                 align='center'
               >
                 {actions.map((action) => (
-                  <Button className='hover:!text-buttonPrimary my-1 flex w-full justify-center space-x-2 !bg-secondary !text-gray-400 hover:!bg-violet-500 hover:!bg-opacity-20'>
+                  <Button className='my-1 flex w-full justify-center space-x-2 !bg-secondary !text-gray-400 hover:!bg-violet-500 hover:!bg-opacity-20 hover:!text-buttonPrimary'>
                     <div>{action.icon}</div>
                     <div className='flex-grow text-center'>
                       <p>{action.label}</p>
