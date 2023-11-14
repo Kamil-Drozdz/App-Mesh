@@ -139,7 +139,7 @@ const LeftEditSidebar = ({
           placeholder='Write your thoughts here...'
         ></textarea>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddEvent} className='!bg-buttonPrimary mb-4 !text-white hover:brightness-110'>
+          <Button onClick={handleAddEvent} className='mb-4 !bg-buttonPrimary !text-white hover:brightness-110'>
             Add
           </Button>
           {existingEventIndex !== -1 ? (

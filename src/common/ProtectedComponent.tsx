@@ -30,7 +30,7 @@ export const ProtectedComponent = ({ component: Component }) => {
     });
     return unsubscribe;
   }, [setCurrentUser]);
-  console.log(currentUser);
+
   if (loading) {
     return <Loader />;
   }

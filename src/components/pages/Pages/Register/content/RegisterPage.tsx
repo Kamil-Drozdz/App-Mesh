@@ -3,7 +3,7 @@ import { Input } from '@/UI/Input';
 import registerPage from '@/assets/register-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
 import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
-import { createUser } from '@/lib/createUser';
+import { createUser } from '@/lib/firebaseHelpers/createUser';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
 import { useState } from 'react';
@@ -103,7 +103,7 @@ const RegisterPage = () => {
                 />
                 <label htmlFor='terms'>
                   I agree to
-                  <Link to={'/terms'} className='text-buttonPrimary ml-1'>
+                  <Link to={'/terms'} className='ml-1 text-buttonPrimary'>
                     privacy policy & terms
                   </Link>
                 </label>
@@ -113,11 +113,11 @@ const RegisterPage = () => {
           </div>
           <div className='text-center'>
             <span> Already have an account? </span>
-            <Link to={BasicRoutes.LOGIN} className='text-buttonPrimary inline'>
+            <Link to={BasicRoutes.LOGIN} className='inline text-buttonPrimary'>
               Sign in instead
             </Link>
           </div>
-          <Button className='!bg-buttonPrimary mb-4 w-full !text-white hover:brightness-110' onClick={handleLogin}>
+          <Button className='mb-4 w-full !bg-buttonPrimary !text-white hover:brightness-110' onClick={handleLogin}>
             Register
           </Button>
           <SocialLoginButtons setFormData={setFormData} />

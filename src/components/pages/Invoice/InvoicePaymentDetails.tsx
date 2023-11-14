@@ -7,15 +7,19 @@ const InvoicePaymentDetails = ({ isEditable, total }) => {
   return (
     <div>
       <div className='mb-4 text-xl font-bold'>Payment Details:</div>
-      <LabelRow label='Total Due:' value={`$ ${total}`} />
+      <LabelRow label='Total Due :' value={`$ ${total}`} />
       <InvoiceTemplateField
         isEditable={isEditable}
-        value={`Method: ${invoice.paymentDetails.method}`}
+        value={invoice.paymentDetails.method}
+        label='Payment Method'
         name='paymentDetails.method'
       />
+
+      <div>Transaction ID :</div>
       <InvoiceTemplateField
         isEditable={isEditable}
-        value={`Transaction ID: ${invoice.paymentDetails.transactionId}`}
+        value={invoice.paymentDetails.transactionId}
+        label='Transaction ID'
         name='paymentDetails.transactionId'
       />
     </div>

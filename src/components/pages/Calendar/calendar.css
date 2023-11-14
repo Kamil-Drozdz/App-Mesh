@@ -26,14 +26,18 @@
 .fc .fc-daygrid-day-top {
   flex-direction: row;
 }
+.fc .fc-daygrid-event {
+  z-index: -1 !important;
+}
+.fc .fc-daygrid-day-top {
+  z-index: 0 !important;
+}
 
 .fc-daygrid-event-dot,
 .fc-event-time {
   display: none;
 }
-/* .fc-daygrid-event-harness {
-	width: fit-content;
-} */
+
 .fc-daygrid-event-harness:hover {
   filter: brightness(1.75);
 }

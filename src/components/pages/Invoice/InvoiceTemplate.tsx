@@ -17,7 +17,9 @@ import InvoiceSalesperson from './InvoiceSalesperson';
 
 const InvoiceTemplate = ({ isEditable = false }) => {
   const { invoice } = useInvoice();
-  const subTotal = totalValue(invoice.invoiceItems.map((item) => item.rate * item.hours));
+  const subTotal = totalValue(
+    invoice.invoiceItems.map((item) => (item.rate !== null && item.hours !== null ? item.rate * item.hours : 0))
+  );
 
   const total = (subTotal * (1 + invoice.tax / 100)).toFixed(2);
 
@@ -70,7 +72,7 @@ const InvoiceTemplate = ({ isEditable = false }) => {
         </div>
       </div>
       <Separator className='my-4' />
-      <InvoiceTemplateField isEditable={isEditable} value={invoice.note} name='note' className='w-full' />
+      <InvoiceTemplateField isEditable={isEditable} label='Note' value={invoice.note} name='note' className='w-full' />
     </CardContainer>
   );
 };

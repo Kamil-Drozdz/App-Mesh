@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
 import { db } from '@/../firebaseConfig';
 import { doc, onSnapshot, DocumentData } from 'firebase/firestore';
+import useCurrentUser from '@/store/CurrentUser';
 
-function useFirebaseData<T extends DocumentData>(collectionPath: string, docId: string) {
+function useFirebaseData<T extends DocumentData>(arrayName: string, docId?: string, collectionPath: string = 'users') {
+  const { currentUser } = useCurrentUser();
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const docIdentifier = docId || currentUser?.uid || '';
   useEffect(() => {
     setLoading(true);
-    const docRef = doc(db, collectionPath, docId);
+    const docRef = doc(db, collectionPath, docIdentifier);
 
     const unsubscribeSnapshot = onSnapshot(
       docRef,
       (docSnap) => {
         setLoading(false);
         if (docSnap.exists()) {
-          setData(docSnap.data()[collectionPath] as T);
+          setData(docSnap.data()[arrayName] as T);
         } else {
           setError('Document does not exist');
         }
@@ -29,7 +31,7 @@ function useFirebaseData<T extends DocumentData>(collectionPath: string, docId: 
     return () => {
       unsubscribeSnapshot();
     };
-  }, [collectionPath, docId]);
+  }, [collectionPath, docIdentifier]);
 
   return { data, loading, error };
 }

@@ -1,6 +1,6 @@
 import { auth, db } from '@/../firebaseConfig';
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile, User } from 'firebase/auth';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { arrayUnion, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
 export const createUser = async (formData) => {
@@ -13,6 +13,9 @@ export const createUser = async (formData) => {
       .catch(() => toast.error('email confirmation link has not been sent'));
 
     const docRef = doc(db, 'users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
+    const userDocRef = doc(db, 'users', user.uid);
+    // set invidual user empty slice  for  data
+    await setDoc(userDocRef, {});
     await updateDoc(docRef, {
       users: arrayUnion({
         id: userCredential.user.uid,

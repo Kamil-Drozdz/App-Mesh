@@ -1,4 +1,3 @@
-import { initialInvoice } from '@/data/pages/invoice/invoiceData';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { create } from 'zustand';
 
@@ -33,8 +32,8 @@ interface PaymentDetails {
 
 export interface InvoiceItem {
   task: string;
-  rate: number;
-  hours: number;
+  rate: number | null;
+  hours: number | null;
 }
 
 export interface Invoice {
@@ -54,8 +53,46 @@ interface InvoiceState {
 
 const { getItem } = useLocalStorage('savedInvoice');
 
+export const emptyTemplateInvoice = {
+  companyInfo: {
+    name: '',
+    address: {
+      part1: '',
+      part2: '',
+    },
+    contacts: '',
+  },
+  invoiceDetails: {
+    number: 'INV-0001',
+    dateIssued: new Date(),
+    dueDate: new Date(),
+  },
+  clientDetails: {
+    name: '',
+    address: '',
+    phone: '',
+    email: '',
+  },
+  paymentDetails: { method: '', transactionId: 'xxxx-xxxx-xxxx-1234' },
+  invoiceItems: [
+    {
+      task: 'App Development',
+      rate: 50,
+      hours: 200,
+    },
+    {
+      task: 'UI Kit Design',
+      rate: 60,
+      hours: 150,
+    },
+  ],
+  salesperson: '',
+  tax: 20,
+  note: '',
+};
+
 export const useInvoice = create<InvoiceState>()((set) => ({
-  invoice: getItem() || initialInvoice,
+  invoice: getItem() || emptyTemplateInvoice,
   setInvoice: (updater) => {
     if (typeof updater === 'function') {
       set((state) => ({ invoice: updater(state.invoice) }));

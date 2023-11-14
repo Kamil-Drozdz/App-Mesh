@@ -14,29 +14,37 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
         isEditable={isEditable}
         value={invoice.invoiceDetails.number}
         name='invoiceDetails.number'
+        readOnly
         isHighlighted={true}
-        additionalText='Invoice #'
+        label='Invoice Number'
       />
       {!isEditable && (
         <>
-          <div> {parsedDateIssued ? parsedDateIssued : 'Date not picked'}</div>
-          <div> {parsedDateDue ? parsedDateDue : 'Date not picked'}</div>
+          <div className='flex items-center'>
+            <p className='w-1/4'>Date:</p> <div> {parsedDateIssued ? parsedDateIssued : 'Date not picked'}</div>
+          </div>
+          <div className='flex items-center'>
+            <p className='w-1/4'>Due Date:</p> <div> {parsedDateDue ? parsedDateDue : 'Date not picked'}</div>
+          </div>
         </>
       )}
       {isEditable && (
         <div className='space-y-2'>
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant={'outline'}
-                className={clsx(
-                  'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
-                  !parsedDateIssued && 'text-muted-foreground'
-                )}
-              >
-                {invoice.invoiceDetails.dateIssued ? parsedDateIssued : <span>Pick a date</span>}
-                <BiCalendar className='ml-auto h-4 w-4 opacity-50' />
-              </Button>
+              <div className='flex items-center space-x-2'>
+                <p className='w-1/4'>Date:</p>
+                <Button
+                  variant={'outline'}
+                  className={clsx(
+                    'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
+                    !parsedDateIssued && 'text-muted-foreground'
+                  )}
+                >
+                  {invoice.invoiceDetails.dateIssued ? parsedDateIssued : <span>Pick a date</span>}
+                  <BiCalendar className='ml-auto h-4 w-4 opacity-50' />
+                </Button>
+              </div>
             </PopoverTrigger>
             <PopoverContent className='z-[52] w-auto p-0' align='start'>
               <Calendar
@@ -58,7 +66,8 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
           </Popover>
           <Popover>
             <PopoverTrigger asChild>
-              <div>
+              <div className='flex items-center space-x-2'>
+                <p className='w-1/4'>Due Date:</p>
                 <Button
                   variant={'outline'}
                   className={clsx(

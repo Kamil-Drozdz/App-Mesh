@@ -3,12 +3,15 @@ import { Input } from '@/UI/Input';
 import defaultUser from '@/assets/default-user.webp';
 import { IconSize } from '@/lib/enums/iconSize';
 import { handleEnterDown } from '@/lib/handleEnterDown';
-import { synchronizeEntireCollection } from '@/lib/synchronizeEntireCollection';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiImageAdd, BiMicrophone } from 'react-icons/bi';
-import { collectionPathChats, docIdChats } from './Chat';
-import { uploadImageAndGetURL } from '@/lib/uploadImageAndGetURL';
+import { uploadImageAndGetURL } from '@/lib/firebaseHelpers/uploadImageAndGetURL';
+import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
+import { collectionNameChats, docId } from './Chat';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/../firebaseConfig';
+
 const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) => {
   const { i18n } = useTranslation();
   const [message, setMessage] = useState<string>('');
@@ -46,7 +49,6 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
 
   async function handleSendMessage(sender, content) {
     if (typeof content === 'string' && content.trim() === '') return;
-
     const newMessage = {
       photo: currentUser?.photoURL || defaultUser,
       sender: sender,
@@ -66,15 +68,22 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
       ...activeChat,
       messages: [...activeChat.messages, newMessage],
     };
+    const docRef = doc(db, 'users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
+    const docSnap = await getDoc(docRef);
 
-    const updatedChats = chats.map((chat) => (chat.id === activeChat.id ? updatedActiveChat : chat));
-    const activeChatIncluded = updatedChats.some((chat) => chat.id === activeChat.id);
+    if (docSnap.exists()) {
+      const usersArray = docSnap.data().users;
+      const foundUser = usersArray.find((user) => user.displayName === 'Kamil Dr');
 
-    if (!activeChatIncluded) {
-      updatedChats.unshift(updatedActiveChat);
+      const updatedChats = chats.map((chat) => (chat.id === activeChat.id ? updatedActiveChat : chat));
+      const activeChatIncluded = updatedChats.some((chat) => chat.id === activeChat.id);
+
+      if (!activeChatIncluded) {
+        updatedChats.unshift(updatedActiveChat);
+      }
+      if (chats.members.includes(docId)) updateItemsFirebase(collectionNameChats, docId, updatedChats);
+      if (chats.members.includes(foundUser.id)) updateItemsFirebase(collectionNameChats, foundUser.id, content);
     }
-
-    synchronizeEntireCollection(collectionPathChats, docIdChats, updatedChats);
     setMessage('');
   }
 
@@ -84,7 +93,7 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
         <BiMicrophone className={isSpeaking ? 'animate-pulse text-red-500' : ''} size={IconSize.basic} />
       </Button>
       <Input
-        className='bottom-2 w-full pl-10'
+        className='bottom-2 w-full pl-14 placeholder:w-36 md:pl-10 md:placeholder:w-auto'
         value={typeof message === 'string' ? message : ''}
         onKeyDown={(e) => handleEnterDown(e, () => handleSendMessage(currentUser?.displayName, message))}
         onChange={(e) => setMessage(e.target.value)}

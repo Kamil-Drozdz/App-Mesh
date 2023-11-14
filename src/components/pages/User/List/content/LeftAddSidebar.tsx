@@ -2,7 +2,7 @@ import { plans, roles } from './UserFilter';
 import { Button } from '@/UI/Button';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from '@/UI/Select';
 import InputWithLabel from '@/common/InputWithLabel';
-import { createUser } from '@/lib/createUser';
+import { createUser } from '@/lib/firebaseHelpers/createUser';
 import { generateRandomPassword } from '@/lib/generateRandomPassowrd';
 import { useState } from 'react';
 import { toast } from 'react-toastify';

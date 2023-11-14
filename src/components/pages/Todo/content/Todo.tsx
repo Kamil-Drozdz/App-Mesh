@@ -7,9 +7,11 @@ import TodoAddEvent from './TodoAddEvent';
 import TodoDrag from './TodoDrag';
 import useFirebaseData from '@/hooks/useFirebaseData';
 import { Timestamp } from 'firebase/firestore';
-import { synchronizeEntireCollection } from '@/lib/synchronizeEntireCollection';
 import Loader from '@/common/Loader';
 import { ErrorComponent } from '@/common/ErrrorComponent';
+import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
+import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
+import useCurrentUser from '@/store/CurrentUser';
 
 interface Task {
   id: string;
@@ -28,8 +30,13 @@ export const initializeNewTask = {
   date: new Date(),
 };
 
+export const collectionName = 'todos';
+export let docId;
+
 const Todo = () => {
-  const { data, loading, error } = useFirebaseData<Task[]>('todos', 'RJlXZ22kh2KiGWfR3x3q');
+  const { currentUser } = useCurrentUser();
+  docId = currentUser?.uid || '';
+  const { data, loading, error } = useFirebaseData<Task[]>(collectionName);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isAddEventOpen, setIsAddEventOpen] = useState(false);
@@ -49,11 +56,6 @@ const Todo = () => {
     }
   }, [data]);
 
-  //updating firestore with new task or user interaction
-  const synchronizeTasks = async (tasks) => {
-    if (tasks.length !== 0) await synchronizeEntireCollection('todos', 'RJlXZ22kh2KiGWfR3x3q', tasks);
-  };
-
   const handleAddTodo = () => {
     if (newTask.title === '' || newTask.description === '') {
       return;
@@ -62,12 +64,12 @@ const Todo = () => {
     if (existingTask) {
       const changedTask = tasks.map((task) => (task.id === newTask.id ? newTask : task));
       setTasks(changedTask);
-      synchronizeTasks(changedTask);
+      updateItemsFirebase(collectionName, docId, changedTask);
     } else {
       newTask.id = uuidv4();
       newTask.completed = false;
       setTasks([...tasks, newTask]);
-      synchronizeTasks([...tasks, newTask]);
+      addItemFirebase(collectionName, docId, newTask);
     }
     setNewTask({ id: '', title: '', completed: false, description: '', tag: '', date: new Date() });
     setIsOpen(false);
@@ -117,7 +119,6 @@ const Todo = () => {
             isAddEventOpen={isAddEventOpen}
           />
           <TodoDrag
-            synchronizeTasks={synchronizeTasks}
             setIsAddEventOpen={setIsAddEventOpen}
             tasks={tasks}
             setTasks={setTasks}

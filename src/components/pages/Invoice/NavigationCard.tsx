@@ -1,26 +1,35 @@
 import { Button } from '@/UI/Button';
 import CardContainer from '@/common/CardContainer';
-import { initialInvoice } from '@/data/pages/invoice/invoiceData';
+
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { useInvoice } from '@/store/Invoice';
+import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
+import useCurrentUser from '@/store/CurrentUser';
+import { emptyTemplateInvoice, useInvoice } from '@/store/Invoice';
 import { toast } from 'react-toastify';
 
 const NavigationCard = ({ children }) => {
-  const { setInvoice } = useInvoice();
+  const { invoice, setInvoice } = useInvoice();
   const { removeItem } = useLocalStorage('savedInvoice');
+  const { currentUser } = useCurrentUser();
+  const docId = currentUser?.uid || '';
 
   const handleSendInvoice = () => {
     try {
-      toast.success("You're Invoice has been send succesfully!");
-      removeItem();
-      setInvoice(initialInvoice);
+      addItemFirebase('invoice', docId, invoice)
+        .then(() => {
+          toast.success("You're Invoice has been send succesfully!");
+          removeItem();
+        })
+        .catch(() => toast.error('Sorry we have problem with send Invoice please try again'));
+
+      setInvoice(emptyTemplateInvoice);
     } catch {
-      toast.error('Sorry we have problem with send Invoice please try again');
+      console.log('error');
     }
   };
   return (
     <CardContainer className='hidden h-fit w-1/4 min-w-[16rem] flex-col space-y-4 print:hidden md:flex'>
-      <Button onClick={handleSendInvoice} className='!bg-buttonPrimary w-full !text-white hover:brightness-110'>
+      <Button onClick={handleSendInvoice} className='w-full !bg-buttonPrimary !text-white hover:brightness-110'>
         Send Invoice
       </Button>
       {children}

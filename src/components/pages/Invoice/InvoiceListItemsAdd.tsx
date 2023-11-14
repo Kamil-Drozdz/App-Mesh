@@ -7,11 +7,11 @@ import { BiPlus } from 'react-icons/bi';
 
 interface InvoiceItemProps {
   task: string;
-  rate: number;
-  hours: number;
+  rate: number | null;
+  hours: number | null;
 }
 const InvoiceListItemsAdd = ({ isEditable }: { isEditable: boolean }) => {
-  const [invoiceItem, setInvoiceItem] = useState<InvoiceItemProps>({ task: '', rate: 0, hours: 0 });
+  const [invoiceItem, setInvoiceItem] = useState<InvoiceItemProps>({ task: '', rate: null, hours: null });
   const { setInvoice } = useInvoice();
 
   const addInvoiceItem = () => {
@@ -25,7 +25,7 @@ const InvoiceListItemsAdd = ({ isEditable }: { isEditable: boolean }) => {
       invoiceItems: [...prevInvoice.invoiceItems, newItem],
     }));
 
-    setInvoiceItem({ task: '', rate: 0, hours: 0 });
+    setInvoiceItem({ task: '', rate: null, hours: null });
   };
 
   return (
@@ -47,7 +47,7 @@ const InvoiceListItemsAdd = ({ isEditable }: { isEditable: boolean }) => {
               label='Rate'
               id='rate'
               type='number'
-              value={invoiceItem.rate}
+              value={invoiceItem.rate || ''}
               onChange={(e) => setInvoiceItem({ ...invoiceItem, rate: Number(e.target.value) })}
             />
           </TableCell>
@@ -56,13 +56,13 @@ const InvoiceListItemsAdd = ({ isEditable }: { isEditable: boolean }) => {
               label='Hours'
               id='hours'
               type='number'
-              value={invoiceItem.hours}
+              value={invoiceItem.hours || ''}
               onChange={(e) => setInvoiceItem({ ...invoiceItem, hours: Number(e.target.value) })}
             />
           </TableCell>
         </tr>
         <Button
-          disabled={invoiceItem.task === '' || invoiceItem.rate === 0 || invoiceItem.hours === 0}
+          disabled={invoiceItem.task === '' || invoiceItem.rate === null || invoiceItem.hours === null}
           className='mt-3 !bg-green-500 !text-white hover:!bg-green-400'
           onClick={addInvoiceItem}
         >

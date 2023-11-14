@@ -1,7 +1,6 @@
 import TopNavbarPopoverUser from './TopNavbarPopoverUser';
 import TopNavbarTooltipIcons from './TopNavbarTooltipIcons';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/UI/Select';
-import EnglandIcon from '@/assets/united-kingdom-flag-icon.svg';
 import { languageOptions, topNavbarIcons } from '@/data/navigation/topNavbarItems';
 import useCurrentUser from '@/store/CurrentUser';
 import useFullScreen from '@/store/FullScreen';
@@ -38,7 +37,7 @@ const TopNavbar = () => {
         <div
           className={`flex ${visible ? 'top-0' : '-top-16'}  ${
             isFullScreen ? '!absolute opacity-0' : 'opacity-100'
-          } ease sticky top-8 z-[9] justify-between rounded-lg bg-secondary px-4 py-2 text-secondary-foreground shadow-md shadow-lightGray transition-all duration-300 dark:shadow-black print:hidden`}
+          } ease shadow-lightGray sticky top-8 z-[9] justify-between rounded-lg bg-secondary px-4 py-2 text-secondary-foreground shadow-md transition-all duration-300 dark:shadow-black print:hidden`}
         >
           <ul className='flex items-center space-x-2'>
             {topNavbarIcons.icons.map((icon, index) => (
@@ -51,11 +50,20 @@ const TopNavbar = () => {
                 <Select onValueChange={(e) => i18n.changeLanguage(String(e))}>
                   <SelectTrigger className='whitespace-nowrap border-secondary md:w-[140px]'>
                     <SelectValue
-                      placeholder={
-                        <div className='flex items-center justify-center space-x-2'>
-                          <img height={16} width={16} className='h-4 w-4' src={EnglandIcon} /> <p>{t('English')}</p>
-                        </div>
-                      }
+                      placeholder={languageOptions
+                        .filter((languageOption) => languageOption.value === i18n.language)
+                        .map((languageOption) => (
+                          <div className='flex items-center justify-center space-x-2'>
+                            <img
+                              height={16}
+                              width={16}
+                              className='h-4 w-4'
+                              src={languageOption.icon}
+                              alt={`Flag of ${languageOption.label}`}
+                            />
+                            <p>{t(languageOption.label)}</p>
+                          </div>
+                        ))}
                     />
                   </SelectTrigger>
                   <SelectContent className='border-secondary'>

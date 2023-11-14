@@ -3,21 +3,35 @@ import clsx from '@/lib/clsx';
 import { ChangeEventHandler, KeyboardEventHandler } from 'react';
 
 interface InputWithLabelProps {
-  value: string | number;
+  value: string | number | null;
   onChange: ChangeEventHandler<HTMLInputElement>;
   label: string;
   id: string;
   type: string;
+  name?: string;
+  readOnly?: boolean;
   className?: string;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
 }
-const InputWithLabel = ({ onKeyDown, value, onChange, label, id, type, className }: InputWithLabelProps) => {
+const InputWithLabel = ({
+  onKeyDown,
+  value,
+  name,
+  onChange,
+  readOnly,
+  label,
+  id,
+  type,
+  className,
+}: InputWithLabelProps) => {
   return (
     <div className={clsx('relative', className)}>
       <Input
         type={type}
         id={id}
-        value={value}
+        name={name}
+        value={value || ''}
+        readOnly={readOnly}
         onKeyDown={onKeyDown}
         onChange={onChange}
         className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-secondary-foreground focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-muted-foreground dark:focus:border-blue-500'

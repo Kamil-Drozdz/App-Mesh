@@ -10,12 +10,15 @@ import './calendar.css';
 import LeftEditSidebar from './content/LeftEditSidebar';
 import { v4 as uuidv4 } from 'uuid';
 import CalendarAddEvent from './content/CalendarAddEvent';
-import { synchronizeEntireCollection } from '@/lib/synchronizeEntireCollection';
 import useFirebaseData from '@/hooks/useFirebaseData';
 import Loader from '@/common/Loader';
 import { ErrorComponent } from '@/common/ErrrorComponent';
 import { Timestamp } from 'firebase/firestore';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
+import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
+import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
+import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';
+import useCurrentUser from '@/store/CurrentUser';
 
 export interface CalendarEvent {
   id: string;
@@ -28,12 +31,14 @@ export interface CalendarEvent {
   description: string;
 }
 
-const collectionPathCalendar = 'calendar';
-const docIdCalendar = 'BPwogAjahGSlbPJ8KTdX';
-const CalendarContent = () => {
-  const today = new Date();
+export const collectionName = 'calendar';
+export let docId;
 
-  const { data, loading, error } = useFirebaseData<CalendarEvent[]>(collectionPathCalendar, docIdCalendar);
+const CalendarContent = () => {
+  const { currentUser } = useCurrentUser();
+  docId = currentUser?.uid || '';
+  const today = new Date();
+  const { data, loading, error } = useFirebaseData<CalendarEvent[]>(collectionName);
 
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>(labels.map((item) => item.name));
@@ -74,10 +79,10 @@ const CalendarContent = () => {
         const updatedEvents = [...events];
         updatedEvents[existingEventIndex] = formData;
         setEvents(updatedEvents);
-        synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, updatedEvents);
+        updateItemsFirebase(collectionName, docId, updatedEvents);
       } else {
         setEvents([...events, formData]);
-        synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, [...events, formData]);
+        addItemFirebase(collectionName, docId, formData);
       }
       setFormData({
         id: uuidv4(),
@@ -97,8 +102,10 @@ const CalendarContent = () => {
   const handleDeleteEvent = (eventId) => {
     const updatedEvents = events.filter((item) => item.id !== eventId);
     setEvents(updatedEvents);
-    synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, updatedEvents);
     setIsOpen(false);
+    //just for firebase one item to delete
+    const removeItem = events.find((item) => item.id === eventId) as CalendarEvent;
+    removeItemFirebase<CalendarEvent>(collectionName, docId, removeItem);
   };
   const handleEventDrop = (info) => {
     const updatedEvents = events.map((event) => {
@@ -112,7 +119,7 @@ const CalendarContent = () => {
       return event;
     });
     setEvents(updatedEvents);
-    synchronizeEntireCollection(collectionPathCalendar, docIdCalendar, updatedEvents);
+    updateItemsFirebase(collectionName, docId, updatedEvents);
   };
 
   const handleSelectEvent = (info) => {
@@ -177,7 +184,7 @@ const CalendarContent = () => {
             </div>
           </TooltipTrigger>
           <TooltipContent className=' !bg-black !p-0' side='left'>
-            <div className='!z-[9999999999999] min-w-[200px] bg-lightWhite px-6 text-base text-gray-800 dark:bg-secondary dark:text-gray-300'>
+            <div className=' bg-lightWhite min-w-[200px] px-6 text-base text-gray-800 dark:bg-secondary dark:text-gray-300'>
               <div className='flex items-center justify-start space-x-2'>
                 <span className='font-semibold'>eventURL: </span>
                 <a

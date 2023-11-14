@@ -1,4 +1,4 @@
-import { initializeNewTask } from './Todo';
+import { collectionName, docId, initializeNewTask } from './Todo';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import CompletedStamp from '@/assets/completed-stamp.webp';
@@ -9,7 +9,11 @@ import { useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { AiFillCloseSquare } from 'react-icons/ai';
 import { BiEdit, BiSearch } from 'react-icons/bi';
+import { RiDraggable } from 'react-icons/ri';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
+import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
+import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';
 
 const TodoDrag = ({
   tasks,
@@ -21,7 +25,6 @@ const TodoDrag = ({
   setNewTask,
   setIsSorted,
   setIsAddEventOpen,
-  synchronizeTasks,
 }) => {
   const [search, setSearch] = useState('');
   const filterTasks = useMemo(() => {
@@ -51,7 +54,7 @@ const TodoDrag = ({
   const handleCheckTodo = (id) => {
     const checkedTodo = tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task));
     setTasks(checkedTodo);
-    synchronizeTasks(checkedTodo);
+    updateItemsFirebase(collectionName, docId, checkedTodo);
   };
 
   const handleEditTask = (id) => {
@@ -71,7 +74,9 @@ const TodoDrag = ({
   const handleDeleteTodo = (id) => {
     const deletedTodo = tasks.filter((task) => task.id !== id);
     setTasks(deletedTodo);
-    synchronizeTasks(deletedTodo);
+    // just usecase for firebase
+    const deleteItem = tasks.find((task) => task.id === id);
+    removeItemFirebase(collectionName,docId, deleteItem);
   };
 
   return (
@@ -82,7 +87,7 @@ const TodoDrag = ({
             <GiHamburgerMenu size={IconSize.basic} />
           </Button>
           <div className='relative w-full'>
-            <BiSearch size={IconSize.basic} className='absolute top-1/2 left-2 -translate-y-1/2' />{' '}
+            <BiSearch size={IconSize.basic} className='absolute top-1/2 left-2 -translate-y-1/2' />
             <Input value={search} onChange={handleSearchChange} className='h-9 w-full pl-8' placeholder='Search todo' />
           </div>
         </div>
@@ -94,31 +99,46 @@ const TodoDrag = ({
                   <Draggable key={task.id} draggableId={task.id} index={index}>
                     {(provided) => (
                       <li
-                        className='flex items-center justify-between rounded-lg border-[1px] px-2 py-1 '
+                        className='group flex items-center justify-between rounded-lg border-[1px] px-2 py-1'
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                       >
-                        <div className=' flex items-center space-x-3 md:space-x-6 '>
-                          <Input
-                            type='checkbox'
-                            className='h-4 w-4 cursor-pointer accent-green-500'
-                            checked={task.completed}
-                            onChange={() => handleCheckTodo(task.id)}
+                        <div className='flex items-center space-x-3 '>
+                          <RiDraggable
+                            className='opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100'
+                            size={IconSize.basic}
                           />
-                          <div className={`${task.completed ? 'text-green-500' : ''} space-y-2`}>
-                            <p className='break-all'>
-                              {task.title.charAt(0).toLocaleUpperCase() + task.title.slice(1)}
-                            </p>
-                          </div>
-                          <img
-                            height={48}
-                            width={48}
-                            className={`h-12 w-12 ${
-                              task.completed ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                            } hidden rounded-full object-contain transition-all duration-100 ease-in md:block`}
-                            src={CompletedStamp}
-                          />
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <div className='flex items-center space-x-3 md:space-x-6 '>
+                                  <Input
+                                    type='checkbox'
+                                    className='h-4 w-4 cursor-pointer accent-green-500'
+                                    checked={task.completed}
+                                    onChange={() => handleCheckTodo(task.id)}
+                                  />
+                                  <div className={`${task.completed ? 'text-green-500' : ''} space-y-2`}>
+                                    <p className='break-all'>
+                                      {task.title.charAt(0).toLocaleUpperCase() + task.title.slice(1)}
+                                    </p>
+                                  </div>
+                                  <img
+                                    height={48}
+                                    width={48}
+                                    className={`h-12 w-12 ${
+                                      task.completed ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                                    } hidden rounded-full object-contain transition-all duration-100 ease-in md:block`}
+                                    src={CompletedStamp}
+                                  />
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent className='!bg-primary p-4 !text-secondary' side='bottom' sideOffset={10}>
+                                {task.description}
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </div>
                         <div className='flex flex-col items-center justify-center md:flex-row md:space-x-4'>
                           <ul className='flex w-full items-center justify-center md:w-fit md:space-x-2'>

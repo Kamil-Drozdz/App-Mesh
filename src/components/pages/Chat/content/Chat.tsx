@@ -39,23 +39,24 @@ export type Message = {
   photo: string;
 };
 
-export const collectionPathChats = 'chats';
-export const docIdChats = 'lEFHCaKnPUzcoGY1iSwe';
-const collectionPathContacts = 'contatcs';
-const docIdContacts = 'qQ5RBDGRrJ0d4CvalQEL';
+export let docId;
+export const collectionNameChats = 'chats';
+export const collectionNameContacts = 'contacts';
 
 const Chat = () => {
   const { currentUser } = useCurrentUser();
+  docId = currentUser?.uid || '';
   const {
     data: dataChats,
     loading: loadingChats,
     error: errorChats,
-  } = useFirebaseData<ChatData[]>(collectionPathChats, docIdChats);
+  } = useFirebaseData<ChatData[]>(collectionNameChats);
   const {
     data: dataContacts,
     loading: loadingContats,
     error: errorContats,
-  } = useFirebaseData<Contact[]>(collectionPathContacts, docIdContacts);
+  } = useFirebaseData<Contact[]>(collectionNameContacts);
+
   const [isOpen, setIsOpen] = useState(false);
   const [chats, setChats] = useState<ChatData[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
