@@ -6,16 +6,17 @@ import { useState, useEffect, useRef } from 'react';
 import ChatZoomImage from './ChatZoomImage';
 import { createPortal } from 'react-dom';
 import { ChatData, Message } from './Chat';
+import ReactMarkdown from 'react-markdown';
 
 interface Messages {
-  activeChat: ChatData | null;
+  selectedUser: ChatData | null;
   currentUser: CustomUser | null;
   chats: ChatData[];
   setChats: React.Dispatch<React.SetStateAction<ChatData[]>>;
 }
 
-const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) => {
-  const [messages, setMessages] = useState<Message[]>(activeChat?.messages || []);
+const ChatMessages = ({ selectedUser, currentUser, chats, setChats }: Messages) => {
+  const [messages, setMessages] = useState<Message[]>([]);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [zoomImage, setZoomImage] = useState<null | string>(null);
   const [infoImage, setInfoImage] = useState({});
@@ -24,9 +25,10 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
     import.meta.env.VITE_APP_FIREBASE_STORAGE_BUCKET
   }`;
 
+  const chatExist = chats.find((chat) => chat?.members.includes(selectedUser?.id || ''));
   useEffect(() => {
-    if (activeChat !== null) setMessages(activeChat?.messages);
-  }, [activeChat?.messages]);
+    if (selectedUser !== null) setMessages(chatExist?.messages as Message[]);
+  }, [selectedUser, chatExist?.messages]);
 
   useEffect(() => {
     scrollToBottom();
@@ -53,8 +55,8 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
   return (
     <>
       <div className='relative mt-4 h-[70vh] w-full space-y-2 overflow-y-auto'>
-        {messages.length ? (
-          messages.map((message, index) =>
+        {messages?.length ? (
+          messages?.map((message, index) =>
             message.sender === currentUser?.displayName ? (
               <div ref={chatContainerRef} key={index} className='flex w-full justify-end px-3 md:px-6'>
                 <div className=' group flex w-fit items-start justify-center py-1'>
@@ -73,7 +75,7 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
                     )
                   ) : (
                     <p className='mr-2 w-full break-all rounded-l-lg rounded-tr-lg  bg-gradient-to-r from-[#7367f0] to-[#9e95f5] p-2'>
-                      {message.content}
+                      <ReactMarkdown>{message.content}</ReactMarkdown>
                     </p>
                   )}
                   <div
@@ -98,13 +100,13 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
                     height={40}
                     width={40}
                     className='min-w-[40px] rounded-full ring-2 ring-secondary'
-                    src={message.photo}
+                    src={message.photoURL}
                   />
                   {typeof message.content === 'string' && message.content.startsWith(storageBaseURL) ? (
                     <img className='ml-2 max-w-[200px]' src={message.content} alt='Uploaded file' />
                   ) : (
                     <p className='ml-2 w-full break-all rounded-r-lg rounded-tl-lg bg-muted-foreground p-2 text-primary'>
-                      {message.content}
+                      <ReactMarkdown>{message.content}</ReactMarkdown>
                     </p>
                   )}
                 </div>
@@ -121,13 +123,7 @@ const ChatMessages = ({ activeChat, currentUser, chats, setChats }: Messages) =>
           </div>
         )}
       </div>
-      <ChatInput
-        currentUser={currentUser}
-        chats={chats}
-        setChats={setChats}
-        setMessages={setMessages}
-        activeChat={activeChat}
-      />
+      <ChatInput currentUser={currentUser} chats={chats} setChats={setChats} selectedUser={selectedUser} />
       {zoomImage && createPortal(<ChatZoomImage setZoomImage={setZoomImage} zoomImage={zoomImage} />, document.body)}
     </>
   );

@@ -1,0 +1,14 @@
+.EmojiPickerReact {
+  background-color: inherit !important;
+  border-color: inherit !important;
+}
+
+.epr-emoji-category-label {
+  background-color: inherit !important;
+}
+input.epr-search {
+  background-color: white !important;
+}
+.dark input.epr-search {
+  background-color: rgb(28, 39, 65) !important;
+}

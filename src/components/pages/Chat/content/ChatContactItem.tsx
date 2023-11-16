@@ -8,8 +8,13 @@ const ChatContactItem = ({ handleUserClick, contact }) => {
         onClick={() => handleUserClick(contact)}
         className='flex cursor-pointer items-center space-x-3 rounded p-2 hover:bg-hover'
       >
-        <img height={40} width={40} className='rounded-full ring-2 ring-secondary' src={contact.photo || undefined} />
-        <p>{contact.name}</p>
+        <img
+          height={40}
+          width={40}
+          className='rounded-full ring-2 ring-secondary'
+          src={contact.photoURL || undefined}
+        />
+        <p>{contact.displayName}</p>
       </div>
       <Separator />
     </>

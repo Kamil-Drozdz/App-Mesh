@@ -23,7 +23,8 @@ export const createUser = async (formData) => {
         email: formData.email,
         role: formData.role,
         plan: formData.plan || 'free',
-        photoURL: `https://ui-avatars.com/api/?name=${formData?.displayName.slice(0, 1)}`,
+        photoURL:
+          userCredential.user.photoURL || `https://ui-avatars.com/api/?name=${formData?.displayName.slice(0, 1)}`,
       }),
     });
 

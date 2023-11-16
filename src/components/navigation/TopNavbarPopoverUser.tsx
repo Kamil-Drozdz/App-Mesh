@@ -1,7 +1,6 @@
 import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
-import defaultUser from '@/assets/default-user.webp';
 import StatusBadge from '@/common/StatusBadge';
 import { profileOptions } from '@/data/navigation/topNavbarItems';
 import { BasicRoutes } from '@/lib/enums/routes';
@@ -40,7 +39,7 @@ const TopNavbarPopoverUser = ({ currentUser }) => {
             currentUser?.photoURL || 'bg-secondary'
           }`}
         >
-          <img height={40} width={40} className='rounded-full' src={currentUser?.photoURL || defaultUser} />
+          <img height={40} width={40} className='rounded-full' src={currentUser?.photoURL} />
           <StatusBadge className='absolute bottom-0 right-0 ' status={UserStatuses.Online} />
         </div>
         <PopoverContent className='z-[52] w-auto !bg-secondary !p-0' sideOffset={18} align='center'>

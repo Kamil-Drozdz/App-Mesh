@@ -1,21 +1,24 @@
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
-import defaultUser from '@/assets/default-user.webp';
 import { IconSize } from '@/lib/enums/iconSize';
 import { handleEnterDown } from '@/lib/handleEnterDown';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BiImageAdd, BiMicrophone } from 'react-icons/bi';
+import { BiImageAdd, BiMicrophone, BiSolidSmile } from 'react-icons/bi';
 import { uploadImageAndGetURL } from '@/lib/firebaseHelpers/uploadImageAndGetURL';
 import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
-import { collectionNameChats, docId } from './Chat';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/../firebaseConfig';
+import { v4 as uuidv4 } from 'uuid';
+import { collectionNameChats } from './Chat';
+import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
+import EmojiPicker from 'emoji-picker-react';
+import './emojiPicker.css';
 
-const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
   const { i18n } = useTranslation();
   const [message, setMessage] = useState<string>('');
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [showEmoji, setShowEmoji] = useState(false);
 
   const handleVoiceInput = () => {
     const recognition = new window.webkitSpeechRecognition();
@@ -48,56 +51,73 @@ const ChatInput = ({ currentUser, setMessages, activeChat, chats, setChats }) =>
   };
 
   async function handleSendMessage(sender, content) {
-    if (typeof content === 'string' && content.trim() === '') return;
+    if (!content.trim()) return;
+
     const newMessage = {
-      photo: currentUser?.photoURL || defaultUser,
+      photoURL: currentUser?.photoURL,
       sender: sender,
       content: content,
       timestamp: new Date().toISOString(),
     };
 
-    if (!chats.find((chat) => chat.id === activeChat.id)) {
-      setChats((prevChats) => [activeChat, ...prevChats]);
+    const chatExist = chats.find((chat) => chat?.members.includes(selectedUser?.id));
+    if (chatExist) {
+      const updatedChats = chats.map((chat) => {
+        if (chat.id === chatExist.id) {
+          return {
+            ...chat,
+            messages: [...chat.messages, newMessage],
+          };
+        }
+        return chat;
+      });
+
+      await updateItemsFirebase(collectionNameChats, currentUser.uid, updatedChats);
+      await updateItemsFirebase(collectionNameChats, selectedUser?.id, updatedChats);
+    } else {
+      const newChat = {
+        id: uuidv4(),
+        members: [currentUser.uid, selectedUser?.id],
+        messages: [newMessage],
+        displayName: currentUser.displayName,
+        photoURL: currentUser.photoURL,
+      };
+
+      await addItemFirebase(collectionNameChats, selectedUser?.id, newChat);
+      await updateItemsFirebase(collectionNameChats, currentUser.uid, [...chats, newChat]);
+
+      setChats([
+        ...chats,
+        {
+          ...newChat,
+          displayName: selectedUser?.displayName,
+          photoURL: selectedUser?.photoURL,
+        },
+      ]);
     }
 
-    if (newMessage) {
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-    }
-    //added only to updated new chat and messages to firebase
-    const updatedActiveChat = {
-      ...activeChat,
-      messages: [...activeChat.messages, newMessage],
-    };
-    const docRef = doc(db, 'users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      const usersArray = docSnap.data().users;
-      const foundUser = usersArray.find((user) => user.displayName === 'Kamil Dr');
-
-      const updatedChats = chats.map((chat) => (chat.id === activeChat.id ? updatedActiveChat : chat));
-      const activeChatIncluded = updatedChats.some((chat) => chat.id === activeChat.id);
-
-      if (!activeChatIncluded) {
-        updatedChats.unshift(updatedActiveChat);
-      }
-      if (chats.members.includes(docId)) updateItemsFirebase(collectionNameChats, docId, updatedChats);
-      if (chats.members.includes(foundUser.id)) updateItemsFirebase(collectionNameChats, foundUser.id, content);
-    }
     setMessage('');
   }
 
   return (
     <div className='relative flex w-full space-x-2 rounded-br px-2 pt-6 pb-2 md:px-4'>
-      <Button variant='empty' onClick={handleVoiceInput} className='absolute left-6 px-2'>
+      <Button variant='empty' onClick={handleVoiceInput} className='absolute left-8 px-1'>
         <BiMicrophone className={isSpeaking ? 'animate-pulse text-red-500' : ''} size={IconSize.basic} />
       </Button>
+      <Button variant='empty' onClick={() => setShowEmoji((prev) => !prev)} className='absolute left-14 px-1'>
+        <BiSolidSmile size={IconSize.basic} />
+      </Button>
+      {showEmoji && (
+        <div className='absolute bottom-12 bg-secondary'>
+          <EmojiPicker onEmojiClick={(icon) => setMessage((prev) => `${prev}${icon.emoji}`)} />
+        </div>
+      )}
+
       <Input
-        className='bottom-2 w-full pl-14 placeholder:w-36 md:pl-10 md:placeholder:w-auto'
+        className='bottom-2 w-full pl-20'
         value={typeof message === 'string' ? message : ''}
         onKeyDown={(e) => handleEnterDown(e, () => handleSendMessage(currentUser?.displayName, message))}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder='Type your message or use speech to text'
       />
       <label className='absolute right-24 top-1/2 flex cursor-pointer' htmlFor='imageInput'>
         <BiImageAdd size={IconSize.basic} />

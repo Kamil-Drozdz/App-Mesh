@@ -9,6 +9,7 @@ function useFirebaseData<T extends DocumentData>(arrayName: string, docId?: stri
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const docIdentifier = docId || currentUser?.uid || '';
+
   useEffect(() => {
     setLoading(true);
     const docRef = doc(db, collectionPath, docIdentifier);

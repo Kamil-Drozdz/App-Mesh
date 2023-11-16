@@ -20,7 +20,7 @@ export const ProtectedComponent = ({ component: Component }) => {
           setCurrentUser({
             ...user,
             role: foundUser?.role,
-            photoURL: currentUser?.photoURL || foundUser?.photoURL,
+            photoURL: user?.photoURL || foundUser?.photoURL,
           });
         }
       } else {

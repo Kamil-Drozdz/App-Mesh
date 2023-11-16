@@ -20,8 +20,11 @@ import ChatItem from './ChatItem';
 export type BaseUser = {
   id: string;
   photo: string;
-  name: string;
+  userId: string;
+  displayName: string;
   status: UserStatuses;
+  photoURL: string;
+  members: string[];
 };
 
 export type ChatData = BaseUser & {
@@ -36,7 +39,7 @@ export type Message = {
   sender: string | undefined;
   content: string;
   timestamp: Date | string;
-  photo: string;
+  photoURL: string;
 };
 
 export let docId;
@@ -55,38 +58,50 @@ const Chat = () => {
     data: dataContacts,
     loading: loadingContats,
     error: errorContats,
-  } = useFirebaseData<Contact[]>(collectionNameContacts);
+  } = useFirebaseData<Contact[]>('users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
 
   const [isOpen, setIsOpen] = useState(false);
   const [chats, setChats] = useState<ChatData[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
-  const [activeChat, setActiveChat] = useState<ChatData | null>(null);
+  const [selectedUser, setSelectedUser] = useState<ChatData | null>(null);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
     if (dataChats && dataChats.length > 0) {
       setChats(dataChats);
-      if (activeChat === null) setActiveChat(dataChats[0]);
     }
   }, [dataChats]);
 
   useEffect(() => {
-    if (dataContacts) {
-      setContacts(dataContacts);
+    if (dataContacts && currentUser !== null) {
+      const testUsers = dataContacts.filter((contact) => currentUser.uid !== contact.id);
+      setContacts(testUsers);
     }
   }, [dataContacts]);
 
-  function handleUserClick(selectedUser) {
-    const existChat = chats.find((chat) => chat.id === selectedUser.id);
-    if (existChat) setActiveChat(existChat);
-    else {
-      setActiveChat(selectedUser);
+  function handleUserClick(selected) {
+    try {
+      if (selected.members && Array.isArray(selected.members)) {
+        const memberId = selected.members.find((memberId) => memberId !== currentUser?.uid);
+        const member = contacts.find((user) => user.id === memberId);
+        if (member) setSelectedUser(member);
+      } else {
+        if (selectedUser?.id !== selected.id) {
+          setSelectedUser(selected);
+        }
+      }
+    } catch (error) {
+      console.log('error', error);
     }
+
     setIsOpen(false);
   }
 
-  const filteredChats = chats.filter((chat) => chat.name.toLowerCase().includes(search.toLowerCase()));
-  const filteredContact = contacts.filter((contact) => contact.name.toLowerCase().includes(search.toLowerCase()));
+  const filteredChats = chats.filter((chat) => chat?.displayName.toLowerCase().includes(search.toLowerCase()));
+
+  const filteredContact = contacts.filter((contact) =>
+    contact.displayName.toLowerCase().includes(search.toLowerCase())
+  );
 
   if (loadingChats || loadingContats) {
     return <Loader />;
@@ -129,7 +144,7 @@ const Chat = () => {
             {filteredChats.length ? (
               <>
                 {filteredChats.map((chat) => (
-                  <ChatItem key={chat.id} chat={chat} activeChat={activeChat} handleUserClick={handleUserClick} />
+                  <ChatItem key={chat.id} chat={chat} selectedUser={selectedUser} handleUserClick={handleUserClick} />
                 ))}
               </>
             ) : (
@@ -151,24 +166,27 @@ const Chat = () => {
         </div>
       </div>
       <div className='w-full rounded-lg  md:w-3/4 '>
-        <div className='rounded-t-lg border-b-[1px] border-b-gray-300 p-4 dark:border-b-gray-600 md:rounded-t-none md:rounded-tr-lg'>
+        <div
+          className={`  ${
+            !selectedUser && 'md:hidden'
+          } rounded-t-lg border-b-[1px] border-b-gray-300 p-4 dark:border-b-gray-600 md:rounded-t-none md:rounded-tr-lg`}
+        >
           <div className='flex items-center space-x-4'>
             <Button onClick={() => setIsOpen((prev) => !prev)} className='block !p-2 md:hidden' variant='empty'>
               <GiHamburgerMenu size={IconSize.basic} />
             </Button>
-            <div className='relative flex h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white'>
-              <img
-                height={40}
-                width={40}
-                className='rounded-full ring-2 ring-secondary'
-                src={activeChat?.photo || undefined}
-              />
-              <StatusBadge className='absolute bottom-0 right-0 ' status={activeChat?.status as UserStatuses} />
+            <div
+              className={`   ${
+                !selectedUser && 'hidden'
+              } relative flex h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white`}
+            >
+              <img height={40} width={40} className='rounded-full ring-2 ring-secondary' src={selectedUser?.photoURL} />
+              <StatusBadge className='absolute bottom-0 right-0 ' status={selectedUser?.status as UserStatuses} />
             </div>
-            <h1 className='font-bold'>{activeChat?.name}</h1>
+            <h1 className='font-bold'>{selectedUser?.displayName}</h1>
           </div>
         </div>
-        <ChatMessages currentUser={currentUser} activeChat={activeChat} setChats={setChats} chats={chats} />
+        <ChatMessages currentUser={currentUser} selectedUser={selectedUser} setChats={setChats} chats={chats} />
       </div>
     </CardContainer>
   );
