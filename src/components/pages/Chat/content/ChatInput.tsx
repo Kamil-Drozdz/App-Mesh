@@ -62,18 +62,34 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
 
     const chatExist = chats.find((chat) => chat?.members.includes(selectedUser?.id));
     if (chatExist) {
-      const updatedChats = chats.map((chat) => {
-        if (chat.id === chatExist.id) {
-          return {
-            ...chat,
-            messages: [...chat.messages, newMessage],
-          };
-        }
-        return chat;
-      });
+      if (chatExist) {
+        const updatedChatsCurrentUser = chats.map((chat) => {
+          if (chat.id === chatExist.id) {
+            return {
+              ...chat,
+              messages: [...chat.messages, newMessage],
+              displayName: selectedUser.displayName,
+              photoURL: selectedUser.photoURL,
+            };
+          }
+          return chat;
+        });
 
-      await updateItemsFirebase(collectionNameChats, currentUser.uid, updatedChats);
-      await updateItemsFirebase(collectionNameChats, selectedUser?.id, updatedChats);
+        const updatedChatsSelectedUser = chats.map((chat) => {
+          if (chat.id === chatExist.id) {
+            return {
+              ...chat,
+              messages: [...chat.messages, newMessage],
+              displayName: currentUser.displayName,
+              photoURL: currentUser.photoURL,
+            };
+          }
+          return chat;
+        });
+
+        await updateItemsFirebase(collectionNameChats, currentUser.uid, updatedChatsCurrentUser);
+        await updateItemsFirebase(collectionNameChats, selectedUser?.id, updatedChatsSelectedUser);
+      }
     } else {
       const newChat = {
         id: uuidv4(),
@@ -84,7 +100,14 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
       };
 
       await addItemFirebase(collectionNameChats, selectedUser?.id, newChat);
-      await updateItemsFirebase(collectionNameChats, currentUser.uid, [...chats, newChat]);
+      await updateItemsFirebase(collectionNameChats, currentUser.uid, [
+        ...chats,
+        {
+          ...newChat,
+          displayName: selectedUser?.displayName,
+          photoURL: selectedUser?.photoURL,
+        },
+      ]);
 
       setChats([
         ...chats,
