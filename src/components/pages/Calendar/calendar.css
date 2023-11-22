@@ -57,4 +57,13 @@
   .fc-myCustomButton-button {
     display: inline-block !important;
   }
+  .fc-toolbar-chunk:not(:first-child) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 15px;
+    justify-content: center;
+    align-items: center;
+  }
 }

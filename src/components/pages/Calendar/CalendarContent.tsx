@@ -107,6 +107,7 @@ const CalendarContent = () => {
     const removeItem = events.find((item) => item.id === eventId) as CalendarEvent;
     removeItemFirebase<CalendarEvent>(collectionName, docId, removeItem);
   };
+
   const handleEventDrop = (info) => {
     const updatedEvents = events.map((event) => {
       if (event.id === info.event._def.publicId) {
@@ -224,7 +225,7 @@ const CalendarContent = () => {
         handleDeleteEvent={handleDeleteEvent}
       />
       <PageContainer>
-        <CardContainer className='flex w-full space-x-8'>
+        <CardContainer className='flex w-full space-x-0  md:space-x-8'>
           <CalendarAddEvent
             setIsAddEventOpen={setIsAddEventOpen}
             isAddEventOpen={isAddEventOpen}
