@@ -20,14 +20,14 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
         <div className='relative'>
           <Input
             type='text'
-            id='location'
+            id='title'
             value={newTask.title}
             onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
             className='border-1 peer block w-full appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
             placeholder=' '
           />
           <label
-            htmlFor='location'
+            htmlFor='title'
             className='absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform bg-secondary px-2 text-sm duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500'
           >
             Title
@@ -85,7 +85,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
           placeholder='Write your thoughts here...'
         ></textarea>
         <div className='flex space-x-4'>
-          <Button onClick={handleAddTodo} className='!bg-buttonPrimary mb-4 !text-white hover:brightness-110'>
+          <Button onClick={handleAddTodo} className='mb-4 !bg-buttonPrimary !text-white hover:brightness-110'>
             Add
           </Button>
           <Button onClick={() => setIsOpen(false)} variant='destructive'>

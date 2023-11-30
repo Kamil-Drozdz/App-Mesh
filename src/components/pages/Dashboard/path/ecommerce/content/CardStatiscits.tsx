@@ -19,7 +19,6 @@ const CardStatiscits = () => {
             className='flex w-full grow basis-1/4 justify-between space-x-2 px-2 py-2 md:justify-center md:space-x-5'
           >
             <div className={`${item.color} flex h-12 w-12 items-center justify-center rounded-full bg-opacity-25 `}>
-              {' '}
               {item.icon}
             </div>
             <div className='basis-1 text-end md:basis-2/3 md:text-left'>

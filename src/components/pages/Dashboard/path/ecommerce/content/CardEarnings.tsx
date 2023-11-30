@@ -20,7 +20,7 @@ const CardEarnings = () => {
         </p>
       </div>
       <div>
-        <Pie className='md:h-48' options={options} data={data} />
+        <Pie data-testid='earnings-chart' className='md:h-48' options={options} data={data} />
       </div>
     </CardContainer>
   );

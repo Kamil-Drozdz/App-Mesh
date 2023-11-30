@@ -76,7 +76,7 @@ const TodoDrag = ({
     setTasks(deletedTodo);
     // just usecase for firebase
     const deleteItem = tasks.find((task) => task.id === id);
-    removeItemFirebase(collectionName,docId, deleteItem);
+    removeItemFirebase(collectionName, docId, deleteItem);
   };
 
   return (
@@ -157,12 +157,14 @@ const TodoDrag = ({
                           <div className='text-gray-600'>{format(task.date, 'MMMM d ')}</div>
                           <div className='space-x-1'>
                             <Button
+                              data-testid='edit-todo'
                               className='h-fit w-fit rounded-none border-none !bg-transparent !p-0'
                               onClick={() => handleEditTask(task.id)}
                             >
                               <BiEdit size={IconSize.basic} className='text-orange-500 ' />
                             </Button>
                             <Button
+                              data-testid='delete-todo'
                               className='h-fit w-fit rounded-none border-none !bg-transparent !p-0'
                               onClick={() => handleDeleteTodo(task.id)}
                             >

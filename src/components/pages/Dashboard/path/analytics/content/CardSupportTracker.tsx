@@ -18,7 +18,12 @@ const CardSupportTracker = () => {
             <p className='text-lg font-thin'>Tickets</p>
           </div>
           <div className='mx-auto flex w-2/3 items-center justify-center'>
-            <Doughnut className='max-h-[250px] max-w-[250px]' data={data} options={options} />
+            <Doughnut
+              data-testid='support-tracker-chart'
+              className='max-h-[250px] max-w-[250px]'
+              data={data}
+              options={options}
+            />
           </div>
         </div>
         <div className='flex items-center justify-between dark:text-center'>

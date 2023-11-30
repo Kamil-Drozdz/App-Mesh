@@ -11,7 +11,7 @@ const CardProfit = () => {
 
   return (
     <CardChart className='basis-1/6' title={t('Profit')} data={data}>
-      <Line className='md:max-w-[300px] ' data={data} />
+      <Line data-testid='profit-chart' className='md:max-w-[300px] ' data={data} />
     </CardChart>
   );
 };

@@ -36,9 +36,11 @@ const ShopProduct = ({ product }: ShopProductProps) => {
           <p className='font-semibold text-muted-foreground'>${product.price}</p>
         </div>
         <Link className='w-full' to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`}>
-          <p className='hover:text-buttonPrimary min-h-[100px] w-full text-left font-semibold '>{product?.title}</p>
+          <p data-testid='item-title' className='min-h-[100px] w-full text-left font-semibold hover:text-buttonPrimary '>{product?.title}</p>
         </Link>
-        <p className='w-full truncate break-all'>{product?.description}</p>
+        <p  className='w-full truncate break-all'>
+          {product?.description}
+        </p>
       </div>
       <div className=' flex w-full'>
         <Button
@@ -67,7 +69,7 @@ const ShopProduct = ({ product }: ShopProductProps) => {
               addToCart(product);
             }
           }}
-          className='!bg-buttonPrimary w-full space-x-2 rounded-none !rounded-br-lg !text-white hover:brightness-110'
+          className='w-full space-x-2 rounded-none !rounded-br-lg !bg-buttonPrimary !text-white hover:brightness-110'
         >
           <FiShoppingCart size={IconSize.basic} />
           <p> {isProductInCart ? 'Remove from Cart' : 'Add to Cart'}</p>

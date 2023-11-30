@@ -25,7 +25,7 @@ const CardOrders = () => {
       iconColor='bg-orange-500 text-orange-500'
       icon={<BsBox size={21} />}
     >
-      <Line options={options} data={data} />
+      <Line data-testid='orders-chart' options={options} data={data} />
     </CardChart>
   );
 };

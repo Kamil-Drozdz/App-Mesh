@@ -11,7 +11,7 @@ const CardOrder = () => {
 
   return (
     <CardChart className='basis-1/6' title={t('Orders')} data={data}>
-      <Bar data={data} options={options} />
+      <Bar data-testid='order-chart' data={data} options={options} />
     </CardChart>
   );
 };

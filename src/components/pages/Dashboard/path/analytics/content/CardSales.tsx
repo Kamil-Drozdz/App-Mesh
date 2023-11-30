@@ -17,7 +17,7 @@ const CardSales = () => {
         </div>
         <BiDotsVertical size={IconSize.basic} />
       </div>
-      <Radar className='max-h-[350px]' data={data} options={options} />
+      <Radar data-testid='sales-chart' className='max-h-[350px]' data={data} options={options} />
     </CardContainer>
   );
 };

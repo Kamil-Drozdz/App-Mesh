@@ -33,7 +33,7 @@ const ShopProducts = () => {
     <>
       <SearchInput search={search} setSearch={setSearch} />
       {filteredProducts?.length ? (
-        <div className='grid grid-cols-auto-fit-100 md:grid-cols-3 xl:grid-cols-4 '>
+        <div data-testid='shop-items' className='grid grid-cols-auto-fit-100 md:grid-cols-3 xl:grid-cols-4 '>
           {filteredProducts?.map((product) => <ShopProduct key={product.id} product={product} />)}
         </div>
       ) : (

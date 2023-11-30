@@ -26,7 +26,7 @@
 .fc .fc-daygrid-day-top {
   flex-direction: row;
 }
-.fc .fc-daygrid-event {
+.fc .fc-daygrid-event:hover {
   z-index: -1 !important;
 }
 .fc .fc-daygrid-day-top {

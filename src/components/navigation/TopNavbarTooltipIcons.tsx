@@ -28,7 +28,7 @@ const TopNavbarTooltipIcons = () => {
                 {index === 2 ? (
                   <PopoverTrigger>
                     <>
-                      <li>{item.icon}</li>
+                      <li data-testid='cart-icon'>{item.icon}</li>
                       <div className='relative'>
                         <BorderedBadge count={cart.length} />
                       </div>

@@ -25,7 +25,7 @@ const CardSubscribers = () => {
       iconColor='bg-buttonPrimary text-buttonPrimary'
       icon={<FiUsers size={21} />}
     >
-      <Line options={options} data={data} />
+      <Line data-testid='subscribers-chart' options={options} data={data} />
     </CardChart>
   );
 };

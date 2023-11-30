@@ -25,7 +25,7 @@ const CheckoutStepperItem = ({ product }) => {
           />
         </div>
         <div className=' h-full space-y-2 md:col-span-2'>
-          <p className='hover:text-buttonPrimary w-full text-left font-semibold '>{product?.title}</p>
+          <p className='w-full text-left font-semibold hover:text-buttonPrimary '>{product?.title}</p>
           <div className='flex text-amber-500'>{stars}</div>
           <div className='flex space-x-2'>
             <p>Available -</p>
@@ -37,7 +37,7 @@ const CheckoutStepperItem = ({ product }) => {
         </div>
         <Separator orientation='vertical' />
         <div className='flex flex-col items-center justify-center space-y-2'>
-          <p className=' text-buttonPrimary font-semibold'>${product?.price}</p>
+          <p className=' font-semibold text-buttonPrimary'>${product?.price}</p>
           <p className='w-fit rounded-lg bg-green-600 bg-opacity-30 px-2 text-green-400'>Free Shipping</p>
           <Button
             onClick={() => {
@@ -47,7 +47,7 @@ const CheckoutStepperItem = ({ product }) => {
                 addToWishlist(product);
               }
             }}
-            className='!bg-buttonPrimary w-full space-x-2 !text-white hover:brightness-110'
+            className='w-full space-x-2 !bg-buttonPrimary !text-white hover:brightness-110'
           >
             {isProductInWishlist ? (
               <AiFillHeart size={IconSize.basic} className='text-red-500' />

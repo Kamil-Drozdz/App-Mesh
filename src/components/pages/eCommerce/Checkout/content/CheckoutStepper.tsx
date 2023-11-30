@@ -10,7 +10,7 @@ const CheckoutStepper = ({ activeStep, setFormData, formData, errors, setErrors 
   return (
     <>
       {cart.length ? (
-        <div className=' col-span-2'>
+        <div data-testid='checkout-items' className=' col-span-2'>
           {activeStep === 'Cart' && (
             <>
               {cart.map((product) => (
