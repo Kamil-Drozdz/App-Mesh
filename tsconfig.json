@@ -6,8 +6,9 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "allowJs": false,
-    "skipLibCheck": false,
+    "allowJs": false, 
+    // at this moment we have to skip libCheck becouse we have problem with types on cypress and lodash 
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,

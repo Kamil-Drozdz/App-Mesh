@@ -22,7 +22,7 @@ interface CardDataProps {
   iconColor?: string;
 }
 const CardChart = ({ className, title, data, icon, children, iconColor }: CardDataProps) => {
-  console.log(test);
+
   return (
     <CardContainer className={className}>
       {icon && (
