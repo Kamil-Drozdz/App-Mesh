@@ -1,10 +1,11 @@
+import { useLocation } from 'react-router-dom';
+import { PropsWithChildren } from 'react';
+import { Transition } from 'react-transition-group';
+
 import { Button } from '@/UI/Button';
 import SideNavbar from '@/components/navigation/SideNavbar';
 import TopNavbar from '@/components/navigation/TopNavbar';
 import useFullScreen from '@/store/FullScreen';
-import { useLocation } from 'react-router-dom';
-import { PropsWithChildren } from 'react';
-import { Transition } from 'react-transition-group';
 import { BasicRoutes } from '@/lib/enums/routes';
 
 const PageContainer = ({ children }: PropsWithChildren) => {

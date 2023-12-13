@@ -1,5 +1,3 @@
-import CardChart from '@/components/pages/Dashboard/CardChart';
-import { DataSubscribers } from '@/data/charts/dataSubscribers';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +11,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { FiUsers } from 'react-icons/fi';
+
+import CardChart from '@/components/pages/Dashboard/CardChart';
+import { DataSubscribers } from '@/data/charts/dataSubscribers';
 
 const CardSubscribers = () => {
   const { data, options } = DataSubscribers();

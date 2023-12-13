@@ -1,3 +1,8 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { z } from 'zod';
+
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import registerPage from '@/assets/register-page.svg';
@@ -6,10 +11,6 @@ import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
 import { createUser } from '@/lib/firebaseHelpers/createUser';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { z } from 'zod';
 
 interface FormDataProps {
   displayName: string;

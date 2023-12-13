@@ -1,5 +1,6 @@
-import { stepperHeader } from '@/data/pages/ecommerce/dataCheckout';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+
+import { stepperHeader } from '@/data/pages/ecommerce/dataCheckout';
 
 const CheckoutStepperHeader = ({ setActiveStep, activeStep }) => {
   return (

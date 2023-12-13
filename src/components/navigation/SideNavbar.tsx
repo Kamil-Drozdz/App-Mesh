@@ -1,11 +1,12 @@
+import { useState } from 'react';
+import { FaRegCircle, FaRegDotCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 import logo from '@/assets/logo.webp';
 import { NavItems } from '@/data/navigation/navItems';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
-import { useState } from 'react';
-import { FaRegCircle, FaRegDotCircle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import SideNavbarItem from './SideNavbarItem';
 
 const SideNavbar = () => {

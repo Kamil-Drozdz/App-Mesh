@@ -1,11 +1,3 @@
-import { auth } from '@/../firebaseConfig';
-import { Button } from '@/UI/Button';
-import { Input } from '@/UI/Input';
-import loginPage from '@/assets/login-page.svg';
-import InputWithLabel from '@/common/InputWithLabel';
-import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
-import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
-import { validateField } from '@/lib/validateField';
 import {
   browserLocalPersistence,
   browserSessionPersistence,
@@ -16,6 +8,15 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
+
+import { auth } from '@/../firebaseConfig';
+import { Button } from '@/UI/Button';
+import { Input } from '@/UI/Input';
+import loginPage from '@/assets/login-page.svg';
+import InputWithLabel from '@/common/InputWithLabel';
+import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
+import { validateField } from '@/lib/validateField';
 
 interface FormDataProps {
   email: string;
@@ -107,12 +108,12 @@ const LoginPage = () => {
               Forgot Password?
             </Link>
           </div>
-          <Button className='!bg-buttonPrimary mb-4  w-full !text-white hover:brightness-110' onClick={handleLogin}>
+          <Button className='mb-4 w-full  !bg-buttonPrimary !text-white hover:brightness-110' onClick={handleLogin}>
             Log In
           </Button>
           <div className='text-center'>
             <span> New on our platform? </span>
-            <Link to={BasicRoutes.REGISTER} className='text-buttonPrimary inline'>
+            <Link to={BasicRoutes.REGISTER} className='inline text-buttonPrimary'>
               Create an account
             </Link>
           </div>

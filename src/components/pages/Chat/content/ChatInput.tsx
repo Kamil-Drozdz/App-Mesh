@@ -1,19 +1,20 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BiImageAdd, BiMicrophone, BiSolidSmile } from 'react-icons/bi';
+import { v4 as uuidv4 } from 'uuid';
+import EmojiPicker from 'emoji-picker-react';
+import './emojiPicker.css';
+
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import { IconSize } from '@/lib/enums/iconSize';
 import { handleEnterDown } from '@/lib/handleEnterDown';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { BiImageAdd, BiMicrophone, BiSolidSmile } from 'react-icons/bi';
 import { uploadImageAndGetURL } from '@/lib/firebaseHelpers/uploadImageAndGetURL';
 import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
-import { v4 as uuidv4 } from 'uuid';
 import { collectionNameChats } from './Chat';
 import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
-import EmojiPicker from 'emoji-picker-react';
-import './emojiPicker.css';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
   const { i18n } = useTranslation();
   const [message, setMessage] = useState<string>('');

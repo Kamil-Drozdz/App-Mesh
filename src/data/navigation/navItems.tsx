@@ -1,5 +1,3 @@
-import { IconSize } from '@/lib/enums/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { useTranslation } from 'react-i18next';
 import {
   AiFillCheckCircle,
@@ -21,6 +19,9 @@ import { HiOutlineChatBubbleLeft, HiOutlineEnvelope, HiOutlineServerStack } from
 import { IoDocumentTextOutline } from 'react-icons/io5';
 import { PiCodesandboxLogoLight, PiSquaresFour, PiTextTThin } from 'react-icons/pi';
 import { TbCircleTriangle } from 'react-icons/tb';
+
+import { IconSize } from '@/lib/enums/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 
 export const NavItems = () => {
   const { t } = useTranslation();

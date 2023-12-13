@@ -1,3 +1,7 @@
+import { format } from 'date-fns';
+import { BiCalendar } from 'react-icons/bi';
+import { GoDotFill } from 'react-icons/go';
+
 import { Button } from '@/UI/Button';
 import { Calendar } from '@/UI/Calendar';
 import { Input } from '@/UI/Input';
@@ -5,9 +9,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/UI/Select';
 import { tags } from '@/data/pages/todo/tags';
 import clsx from '@/lib/clsx';
-import { format } from 'date-fns';
-import { BiCalendar } from 'react-icons/bi';
-import { GoDotFill } from 'react-icons/go';
 
 const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo }) => {
   return (

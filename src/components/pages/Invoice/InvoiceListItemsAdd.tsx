@@ -1,9 +1,10 @@
+import { useState } from 'react';
+import { BiPlus } from 'react-icons/bi';
+
 import { Button } from '@/UI/Button';
 import { TableCell } from '@/UI/Table';
 import InputWithLabel from '@/common/InputWithLabel';
 import { Invoice, InvoiceItem, useInvoice } from '@/store/Invoice';
-import { useState } from 'react';
-import { BiPlus } from 'react-icons/bi';
 
 interface InvoiceItemProps {
   task: string;

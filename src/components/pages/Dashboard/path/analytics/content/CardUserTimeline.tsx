@@ -1,8 +1,9 @@
+import { BiDotsVertical, BiMenu } from 'react-icons/bi';
+
 import CardContainer from '@/common/CardContainer';
 import CardTimelineItem from '@/components/pages/Dashboard/path/analytics/content/CardUserTimelineItem';
 import { data } from '@/data/pages/analytics/dataUserTimeline';
 import { IconSize } from '@/lib/enums/iconSize';
-import { BiDotsVertical, BiMenu } from 'react-icons/bi';
 
 function CardUserTimeline() {
   return (

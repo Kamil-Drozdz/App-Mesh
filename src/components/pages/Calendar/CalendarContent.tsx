@@ -1,25 +1,25 @@
-import CardContainer from '@/common/CardContainer';
-import PageContainer from '@/common/PageContainer';
-import { labels } from '@/data/pages/calendar/calendarData';
+import { Timestamp } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import './calendar.css';
-import LeftEditSidebar from './content/LeftEditSidebar';
 import { v4 as uuidv4 } from 'uuid';
+
+import CardContainer from '@/common/CardContainer';
+import PageContainer from '@/common/PageContainer';
+import { labels } from '@/data/pages/calendar/calendarData';
+import LeftEditSidebar from './content/LeftEditSidebar';
 import CalendarAddEvent from './content/CalendarAddEvent';
 import useFirebaseData from '@/hooks/useFirebaseData';
 import Loader from '@/common/Loader';
 import { ErrorComponent } from '@/common/ErrrorComponent';
-import { Timestamp } from 'firebase/firestore';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
 import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
 import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';
 import useCurrentUser from '@/store/CurrentUser';
-
+import './calendar.css';
 export interface CalendarEvent {
   id: string;
   title: string;

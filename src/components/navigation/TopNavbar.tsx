@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import TopNavbarPopoverUser from './TopNavbarPopoverUser';
 import TopNavbarTooltipIcons from './TopNavbarTooltipIcons';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/UI/Select';
@@ -5,8 +8,6 @@ import { languageOptions, topNavbarIcons } from '@/data/navigation/topNavbarItem
 import useCurrentUser from '@/store/CurrentUser';
 import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import TopNavbarItem from './TopNavbarItem';
 
 const TopNavbar = () => {

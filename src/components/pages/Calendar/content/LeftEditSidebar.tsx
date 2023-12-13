@@ -1,3 +1,7 @@
+import { format } from 'date-fns';
+import { BiCalendar } from 'react-icons/bi';
+import { GoDotFill } from 'react-icons/go';
+
 import { Button } from '@/UI/Button';
 import { Calendar } from '@/UI/Calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
@@ -5,9 +9,6 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import InputWithLabel from '@/common/InputWithLabel';
 import { labels } from '@/data/pages/calendar/calendarData';
 import clsx from '@/lib/clsx';
-import { format } from 'date-fns';
-import { BiCalendar } from 'react-icons/bi';
-import { GoDotFill } from 'react-icons/go';
 import { CalendarEvent } from '../CalendarContent';
 
 interface LeftEditSidebarProps {

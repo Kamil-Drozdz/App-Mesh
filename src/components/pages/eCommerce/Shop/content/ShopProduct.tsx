@@ -1,12 +1,13 @@
+import { AiFillHeart } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+import { FiShoppingCart } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+
 import { Button } from '@/UI/Button';
 import { IconSize } from '@/lib/enums/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/ProductsStore';
-import { AiFillHeart } from 'react-icons/ai';
-import { BiHeart } from 'react-icons/bi';
-import { FiShoppingCart } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 
 interface ShopProductProps {
   product: ProductProps;
@@ -36,11 +37,14 @@ const ShopProduct = ({ product }: ShopProductProps) => {
           <p className='font-semibold text-muted-foreground'>${product.price}</p>
         </div>
         <Link className='w-full' to={`${BasicRoutes.ECOMMERCE}${SubRoutes.DETAILS}/${product.id}`}>
-          <p data-testid='item-title' className='min-h-[100px] w-full text-left font-semibold hover:text-buttonPrimary '>{product?.title}</p>
+          <p
+            data-testid='item-title'
+            className='min-h-[100px] w-full text-left font-semibold hover:text-buttonPrimary '
+          >
+            {product?.title}
+          </p>
         </Link>
-        <p  className='w-full truncate break-all'>
-          {product?.description}
-        </p>
+        <p className='w-full truncate break-all'>{product?.description}</p>
       </div>
       <div className=' flex w-full'>
         <Button

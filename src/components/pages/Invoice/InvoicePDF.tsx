@@ -1,6 +1,7 @@
-import { totalValue } from '@/lib/totalValue';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import { format, parseISO } from 'date-fns';
+
+import { totalValue } from '@/lib/totalValue';
 
 const styles = StyleSheet.create({
   page: {

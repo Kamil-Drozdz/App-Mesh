@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { BsMoon, BsSun } from 'react-icons/bs';
+
 import CartPopover from '../pages/eCommerce/CartPopover';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
@@ -5,8 +8,6 @@ import BorderedBadge from '@/common/BorderedBadge';
 import { topNavbarIcons } from '@/data/navigation/topNavbarItems';
 import { IconSize } from '@/lib/enums/iconSize';
 import useProductsStore from '@/store/ProductsStore';
-import { useState } from 'react';
-import { BsMoon, BsSun } from 'react-icons/bs';
 
 const TopNavbarTooltipIcons = () => {
   const htmlElement = document.documentElement;

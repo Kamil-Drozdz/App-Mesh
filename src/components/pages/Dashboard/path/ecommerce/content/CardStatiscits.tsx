@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
 import CardContainer from '@/common/CardContainer';
 import { DataStatistic } from '@/data/pages/ecommerce/dataStatistic';
-import { useTranslation } from 'react-i18next';
 
 const CardStatiscits = () => {
   const { t } = useTranslation();

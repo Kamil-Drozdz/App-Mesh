@@ -1,6 +1,7 @@
+import { Transition } from 'react-transition-group';
+
 import clsx from '../lib/clsx';
 import { getRandomHexColor } from '@/lib/generateRandomColor';
-import { Transition } from 'react-transition-group';
 
 interface ProgressBarProps {
   className?: string;

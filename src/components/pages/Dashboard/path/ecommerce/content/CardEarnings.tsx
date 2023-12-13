@@ -1,8 +1,9 @@
-import CardContainer from '@/common/CardContainer';
-import { DataEarnings } from '@/data/charts/dataEarnings';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
+
+import CardContainer from '@/common/CardContainer';
+import { DataEarnings } from '@/data/charts/dataEarnings';
 
 const CardEarnings = () => {
   ChartJS.register(ArcElement, Tooltip, Legend);

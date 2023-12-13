@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
+
 import CardContainer from '../../../common/CardContainer';
 import { convert } from '@/lib/convert';
 import { totalValue } from '@/lib/totalValue';
-import { ReactNode } from 'react';
 
 interface CardDataProps {
   className?: string;
@@ -21,6 +22,7 @@ interface CardDataProps {
   iconColor?: string;
 }
 const CardChart = ({ className, title, data, icon, children, iconColor }: CardDataProps) => {
+  console.log(test);
   return (
     <CardContainer className={className}>
       {icon && (

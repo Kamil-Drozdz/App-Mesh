@@ -1,10 +1,11 @@
+import { useTranslation } from 'react-i18next';
+import { PiMedal } from 'react-icons/pi';
+
 import leftDecore from '@/assets/decore-left.webp';
 import rightDecore from '@/assets/decore-right.webp';
 import CardContainer from '@/common/CardContainer';
 import { IconSize } from '@/lib/enums/iconSize';
 import useCurrentUser from '@/store/CurrentUser';
-import { useTranslation } from 'react-i18next';
-import { PiMedal } from 'react-icons/pi';
 
 const CardCongratulations = () => {
   const { currentUser } = useCurrentUser();

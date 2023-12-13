@@ -1,10 +1,11 @@
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { PiMapPinBold } from 'react-icons/pi';
+
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import organizePhoto from '@/assets/organize.svg';
 import CardContainer from '@/common/CardContainer';
 import { generateData } from '@/lib/generateData';
 import { MeetupDataProps, generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
-import { AiOutlineCalendar } from 'react-icons/ai';
-import { PiMapPinBold } from 'react-icons/pi';
 
 const CardMeetup = () => {
   const data: MeetupDataProps[] = generateData(8, generateMeetupData);

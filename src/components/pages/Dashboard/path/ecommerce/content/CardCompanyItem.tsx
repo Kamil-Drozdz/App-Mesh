@@ -1,6 +1,7 @@
+import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
+
 import { Separator } from '@/UI/Separator';
 import { CompanyData } from '@/data/pages/ecommerce/dataCompany';
-import { BiTrendingDown, BiTrendingUp } from 'react-icons/bi';
 
 interface CardCompanyItemProps {
   item: CompanyData;

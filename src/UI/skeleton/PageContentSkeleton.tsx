@@ -1,6 +1,7 @@
+import { InfinitySpin } from 'react-loader-spinner';
+
 import SideNavbar from '@/components/navigation/SideNavbar';
 import TopNavbar from '@/components/navigation/TopNavbar';
-import { InfinitySpin } from 'react-loader-spinner';
 
 const PageContentSkeleton = () => {
   return (

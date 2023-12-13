@@ -1,9 +1,10 @@
+import { useState } from 'react';
+
 import ShopHeader from '../ShopHeader';
 import CheckoutOptions from './content/CheckoutOptions';
 import CheckoutStepper from './content/CheckoutStepper';
 import CheckoutStepperHeader from './content/CheckoutStepperHeader';
 import PageContainer from '@/common/PageContainer';
-import { useState } from 'react';
 
 interface FormData {
   fullName: string;

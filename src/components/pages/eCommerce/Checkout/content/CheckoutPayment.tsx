@@ -1,9 +1,10 @@
+import { AiFillPlusCircle } from 'react-icons/ai';
+
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import { RadioGroup, RadioGroupItem } from '@/UI/RadioGroup';
 import { Separator } from '@/UI/Separator';
 import { IconSize } from '@/lib/enums/iconSize';
-import { AiFillPlusCircle } from 'react-icons/ai';
 
 const CheckoutPayment = () => {
   return (

@@ -1,4 +1,5 @@
 import { DocumentData, arrayRemove, doc, updateDoc } from 'firebase/firestore';
+
 import { db } from '@/../firebaseConfig';
 
 export async function removeItemFirebase<T extends DocumentData>(

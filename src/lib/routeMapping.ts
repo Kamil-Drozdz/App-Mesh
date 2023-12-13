@@ -1,12 +1,12 @@
+import { lazy } from 'react';
+
 import { BasicRoutes, SubRoutes } from './enums/routes';
 import NotFound from '@/common/NotFound';
 import Unauthorized from '@/common/Unauthorized';
 import EmailContent from '@/components/pages/Email/EmailContent';
-
 import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/ForgotPasswordContent';
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
-import { lazy } from 'react';
 
 const CalendarContent = lazy(() => import('@/components/pages/Calendar/CalendarContent'));
 const ChatContent = lazy(() => import('@/components/pages/Chat/ChatContent'));

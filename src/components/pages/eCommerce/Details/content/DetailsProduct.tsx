@@ -1,3 +1,10 @@
+import { AiFillHeart } from 'react-icons/ai';
+import { BiHeart, BiTimeFive } from 'react-icons/bi';
+import { BsShield } from 'react-icons/bs';
+import { FiDollarSign, FiShare2, FiShoppingCart } from 'react-icons/fi';
+import { PiMedalBold } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
+
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import Skeleton from '@/UI/skeleton/Skeleton';
@@ -6,12 +13,6 @@ import { IconSize } from '@/lib/enums/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/ProductsStore';
-import { AiFillHeart } from 'react-icons/ai';
-import { BiHeart, BiTimeFive } from 'react-icons/bi';
-import { BsShield } from 'react-icons/bs';
-import { FiDollarSign, FiShare2, FiShoppingCart } from 'react-icons/fi';
-import { PiMedalBold } from 'react-icons/pi';
-import { Link } from 'react-router-dom';
 
 const DetailsProduct = ({ productID }) => {
   if (typeof productID === 'undefined') {
@@ -56,9 +57,9 @@ const DetailsProduct = ({ productID }) => {
           </div>
         </div>
         <div className='space-y-3 py-6 md:ml-4 md:w-1/2'>
-          <p className='hover:text-buttonPrimary w-full text-left font-semibold '>{product?.title}</p>
+          <p className='w-full text-left font-semibold hover:text-buttonPrimary '>{product?.title}</p>
           <div className='flex items-center space-x-2'>
-            <p className=' text-buttonPrimary font-semibold'>${product?.price}</p>
+            <p className=' font-semibold text-buttonPrimary'>${product?.price}</p>
             <Separator orientation='vertical' className=' h-full min-h-[1rem]' />
             <div className='flex text-amber-500'>{stars}</div>
           </div>
@@ -84,7 +85,7 @@ const DetailsProduct = ({ productID }) => {
                     addToCart(product);
                   }
                 }}
-                className='!bg-buttonPrimary space-x-2 px-2 !text-white hover:brightness-110 md:px-4'
+                className='space-x-2 !bg-buttonPrimary px-2 !text-white hover:brightness-110 md:px-4'
               >
                 <FiShoppingCart size={IconSize.basic} />
                 <p> View in Cart</p>
@@ -116,19 +117,19 @@ const DetailsProduct = ({ productID }) => {
       </div>
       <div className='flex py-16'>
         <div className='flex w-full flex-col space-y-3 text-center'>
-          <PiMedalBold size={IconSize.medium} className='text-buttonPrimary w-full ' />
+          <PiMedalBold size={IconSize.medium} className='w-full text-buttonPrimary ' />
           <p className='text-2xl font-semibold'>100% Orginal</p>
           <span className='text-sm text-muted-foreground'>Products are from authorized suppliers only.</span>
         </div>
         <div className='flex w-full flex-col space-y-3 text-center'>
-          <BiTimeFive size={IconSize.medium} className='text-buttonPrimary w-full' />
+          <BiTimeFive size={IconSize.medium} className='w-full text-buttonPrimary' />
           <p className='text-2xl font-semibold'>10 Day Replacement</p>
           <span className='text-sm text-muted-foreground'>
             You can return the item within 10 days without giving any reasons!
           </span>
         </div>
         <div className='flex w-full flex-col space-y-3 text-center'>
-          <BsShield size={IconSize.medium} className='text-buttonPrimary w-full' />
+          <BsShield size={IconSize.medium} className='w-full text-buttonPrimary' />
           <p className='text-2xl font-semibold'>1 Year Warranty</p>
           <span className='text-sm text-muted-foreground'>You have a one-year warranty on items purchased from us</span>
         </div>

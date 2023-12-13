@@ -1,11 +1,11 @@
+import { toast } from 'react-toastify';
+
 import { Button } from '@/UI/Button';
 import CardContainer from '@/common/CardContainer';
-
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
 import useCurrentUser from '@/store/CurrentUser';
 import { emptyTemplateInvoice, useInvoice } from '@/store/Invoice';
-import { toast } from 'react-toastify';
 
 const NavigationCard = ({ children }) => {
   const { invoice, setInvoice } = useInvoice();

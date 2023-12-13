@@ -1,12 +1,13 @@
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import ReactMarkdown from 'react-markdown';
+
 import ChatInput from './ChatInput';
 import beginChat from '@/assets/begin-chat.svg';
 import defaultUser from '@/assets/default-user.webp';
 import { CustomUser } from '@/store/CurrentUser';
-import { useState, useEffect, useRef } from 'react';
 import ChatZoomImage from './ChatZoomImage';
-import { createPortal } from 'react-dom';
 import { ChatData, Message } from './Chat';
-import ReactMarkdown from 'react-markdown';
 
 interface Messages {
   selectedUser: ChatData | null;

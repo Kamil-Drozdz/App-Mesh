@@ -1,14 +1,15 @@
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { z } from 'zod';
+
 import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
 import forgotPasswordPage from '@/assets/forgot-password-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { z } from 'zod';
 
 const forgotPasswordSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -60,7 +61,7 @@ const ForgotPasswordPage = () => {
             {errors.email && <p className='text-sm text-red-500'>{errors.email}</p>}
           </div>
           <Button
-            className='!bg-buttonPrimary mb-4 w-full !text-white hover:brightness-110'
+            className='mb-4 w-full !bg-buttonPrimary !text-white hover:brightness-110'
             onClick={handleResetPassword}
           >
             Send reset link

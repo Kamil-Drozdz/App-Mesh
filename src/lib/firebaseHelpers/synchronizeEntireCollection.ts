@@ -1,4 +1,5 @@
 import { doc, setDoc } from 'firebase/firestore';
+
 import { db } from '@/../firebaseConfig';
 
 export const synchronizeEntireCollection = async (collectionPath, docId, newData) => {

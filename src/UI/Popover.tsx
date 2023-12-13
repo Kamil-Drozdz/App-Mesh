@@ -1,6 +1,7 @@
-import clsx from '@/lib/clsx';
-import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as React from 'react';
+import * as PopoverPrimitive from '@radix-ui/react-popover';
+
+import clsx from '@/lib/clsx';
 
 const Popover = PopoverPrimitive.Root;
 

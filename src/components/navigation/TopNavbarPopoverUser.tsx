@@ -1,3 +1,7 @@
+import { signOut } from 'firebase/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
@@ -5,9 +9,6 @@ import StatusBadge from '@/common/StatusBadge';
 import { profileOptions } from '@/data/navigation/topNavbarItems';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { UserStatuses } from '@/lib/enums/user';
-import { signOut } from 'firebase/auth';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const TopNavbarPopoverUser = ({ currentUser }) => {
   const navigate = useNavigate();

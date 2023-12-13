@@ -1,5 +1,6 @@
-import { generateRandomIcon } from './dataCompany';
 import { faker } from '@faker-js/faker';
+
+import { generateRandomIcon } from './dataCompany';
 
 export interface TransactionData {
   icon: JSX.Element;

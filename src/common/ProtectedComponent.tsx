@@ -1,10 +1,11 @@
+import { doc, getDoc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+
 import Loader from './Loader';
 import { auth, db } from '@/../firebaseConfig';
 import { BasicRoutes } from '@/lib/enums/routes';
 import useCurrentUser from '@/store/CurrentUser';
-import { doc, getDoc } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 
 export const ProtectedComponent = ({ component: Component }) => {
   const [loading, setLoading] = useState(true);

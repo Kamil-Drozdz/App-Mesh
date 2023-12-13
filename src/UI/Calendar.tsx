@@ -1,8 +1,9 @@
-import { buttonVariants } from '@/UI/Button';
-import clsx from '@/lib/clsx';
 import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
+
+import { buttonVariants } from '@/UI/Button';
+import clsx from '@/lib/clsx';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 

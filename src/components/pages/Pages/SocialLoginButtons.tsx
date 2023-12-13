@@ -1,9 +1,3 @@
-import { auth } from '@/../firebaseConfig';
-import { Button } from '@/UI/Button';
-import { Separator } from '@/UI/Separator';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
-import { IconSize } from '@/lib/enums/iconSize';
-import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import {
   FacebookAuthProvider,
   GithubAuthProvider,
@@ -13,6 +7,13 @@ import {
 } from 'firebase/auth';
 import { AiFillFacebook, AiFillTwitterSquare, AiFillGoogleSquare, AiOutlineGithub } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+
+import { auth } from '@/../firebaseConfig';
+import { Button } from '@/UI/Button';
+import { Separator } from '@/UI/Separator';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
+import { IconSize } from '@/lib/enums/iconSize';
+import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 
 const icons = [
   { icon: <AiFillGoogleSquare className='' size={IconSize.medium} />, tooltip: 'Google' },

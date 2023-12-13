@@ -1,9 +1,10 @@
+import { BiCalendar } from 'react-icons/bi';
+
 import InvoiceTemplateField from './InvoiceTemplateField';
 import { useInvoice } from '@/store/Invoice';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { Button } from '@/UI/Button';
 import clsx from '@/lib/clsx';
-import { BiCalendar } from 'react-icons/bi';
 import { Calendar } from '@/UI/Calendar';
 const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
   const { invoice, setInvoice } = useInvoice();

@@ -1,7 +1,8 @@
-import CardContainer from '@/common/CardContainer';
-import { data, options } from '@/data/charts/dataSupportTracker';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+
+import CardContainer from '@/common/CardContainer';
+import { data, options } from '@/data/charts/dataSupportTracker';
 
 const CardSupportTracker = () => {
   ChartJS.register(ArcElement, Tooltip, Legend);

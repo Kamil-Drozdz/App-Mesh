@@ -1,8 +1,9 @@
-import CardChart from '@/components/pages/Dashboard/CardChart';
-import { DataProfit } from '@/data/charts/dataProfit';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
+
+import CardChart from '@/components/pages/Dashboard/CardChart';
+import { DataProfit } from '@/data/charts/dataProfit';
 
 const CardProfit = () => {
   const data = DataProfit();

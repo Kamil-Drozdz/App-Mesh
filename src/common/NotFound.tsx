@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@/UI/Button';
 import error from '@/assets/error-404.svg';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
-import { useNavigate } from 'react-router-dom';
 
 function NotFound() {
   const navigate = useNavigate();

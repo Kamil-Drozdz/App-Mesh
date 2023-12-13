@@ -1,5 +1,6 @@
-import { Input } from '@/UI/Input';
 import { ChangeEvent } from 'react';
+
+import { Input } from '@/UI/Input';
 
 interface FilterSectionProps {
   labels: { name: string; color: string }[];

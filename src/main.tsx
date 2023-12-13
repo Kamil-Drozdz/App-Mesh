@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import './index.css';
 import './data/translations/i18n';
 import App from './app';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 const rootElement = document.getElementById('root');
 

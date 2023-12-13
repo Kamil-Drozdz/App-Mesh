@@ -1,7 +1,9 @@
-import { auth, db } from '@/../firebaseConfig';
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile, User } from 'firebase/auth';
 import { arrayUnion, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+
+import { auth, db } from '@/../firebaseConfig';
+
 
 export const createUser = async (formData) => {
   try {

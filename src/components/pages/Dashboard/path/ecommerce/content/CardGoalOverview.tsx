@@ -1,6 +1,7 @@
-import CardContainer from '@/common/CardContainer';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
+
+import CardContainer from '@/common/CardContainer';
 
 const CardGoalOverview = () => {
   const { t } = useTranslation();

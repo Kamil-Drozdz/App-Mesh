@@ -1,5 +1,6 @@
-import clsx from '@/lib/clsx';
 import * as React from 'react';
+
+import clsx from '@/lib/clsx';
 
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (

@@ -1,10 +1,11 @@
+import { useState } from 'react';
+
 import ShopProduct from './ShopProduct';
 import Skeleton from '@/UI/skeleton/Skeleton';
 import noData from '@/assets/no-data.svg';
 import { SearchInput } from '@/common/SearchInput';
 import useFetch from '@/hooks/useFetch';
 import { ProductProps } from '@/store/ProductsStore';
-import { useState } from 'react';
 
 const ShopProducts = () => {
   const [search, setSearch] = useState('');

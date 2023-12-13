@@ -1,9 +1,9 @@
-import { IconSize } from '@/lib/enums/iconSize';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiDollar, BiTrendingUp } from 'react-icons/bi';
 import { BsBox } from 'react-icons/bs';
 import { HiUser } from 'react-icons/hi2';
+
+import { IconSize } from '@/lib/enums/iconSize';
 
 export const DataStatistic = () => {
   const { t } = useTranslation();

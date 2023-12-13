@@ -1,6 +1,7 @@
+import { ChangeEventHandler, KeyboardEventHandler } from 'react';
+
 import { Input } from '@/UI/Input';
 import clsx from '@/lib/clsx';
-import { ChangeEventHandler, KeyboardEventHandler } from 'react';
 
 interface InputWithLabelProps {
   value: string | number | null;

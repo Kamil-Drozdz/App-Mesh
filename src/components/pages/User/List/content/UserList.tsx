@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import LeftAddSidebar from './LeftAddSidebar';
 import UserListTableBody from './UserListTableBody';
 import { Button } from '@/UI/Button';
@@ -8,7 +10,6 @@ import { ErrorComponent } from '@/common/ErrrorComponent';
 import Pagination from '@/common/Pagination';
 import { SearchInput } from '@/common/SearchInput';
 import useFirebaseData from '@/hooks/useFirebaseData';
-import { useState } from 'react';
 
 export interface UserProps {
   displayName: string;
@@ -48,7 +49,7 @@ const UserList = ({ filters }) => {
   if (error) {
     return <ErrorComponent error={error} />;
   }
-  
+
   return (
     <CardContainer>
       <LeftAddSidebar isOpen={isOpen} setIsOpen={setIsOpen} />

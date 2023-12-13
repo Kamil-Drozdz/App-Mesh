@@ -1,5 +1,6 @@
-import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { create } from 'zustand';
+
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 interface Address {
   part1: string;

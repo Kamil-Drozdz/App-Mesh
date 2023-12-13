@@ -1,7 +1,8 @@
-import clsx from '@/lib/clsx';
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import * as React from 'react';
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { BsCircleFill } from 'react-icons/bs';
+
+import clsx from '@/lib/clsx';
 
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,

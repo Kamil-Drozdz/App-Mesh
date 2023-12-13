@@ -1,5 +1,3 @@
-import { IconSize } from '@/lib/enums/iconSize';
-import { getRandomHexColor } from '@/lib/generateRandomColor';
 import { faker } from '@faker-js/faker';
 import { useTranslation } from 'react-i18next';
 import {
@@ -9,6 +7,9 @@ import {
   AiOutlineShoppingCart,
   AiOutlineCode,
 } from 'react-icons/ai';
+
+import { IconSize } from '@/lib/enums/iconSize';
+import { getRandomHexColor } from '@/lib/generateRandomColor';
 
 export const DataCompany = () => {
   const { t } = useTranslation();

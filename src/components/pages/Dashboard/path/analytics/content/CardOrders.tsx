@@ -1,5 +1,3 @@
-import CardChart from '@/components/pages/Dashboard/CardChart';
-import { DataOrder } from '@/data/charts/dataOrder';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +11,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { BsBox } from 'react-icons/bs';
+
+import CardChart from '@/components/pages/Dashboard/CardChart';
+import { DataOrder } from '@/data/charts/dataOrder';
 
 const CardOrders = () => {
   const { data, options } = DataOrder();

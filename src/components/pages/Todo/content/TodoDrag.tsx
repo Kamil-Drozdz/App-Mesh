@@ -1,9 +1,3 @@
-import { collectionName, docId, initializeNewTask } from './Todo';
-import { Button } from '@/UI/Button';
-import { Input } from '@/UI/Input';
-import CompletedStamp from '@/assets/completed-stamp.webp';
-import { tags } from '@/data/pages/todo/tags';
-import { IconSize } from '@/lib/enums/iconSize';
 import { format } from 'date-fns';
 import { useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
@@ -11,6 +5,13 @@ import { AiFillCloseSquare } from 'react-icons/ai';
 import { BiEdit, BiSearch } from 'react-icons/bi';
 import { RiDraggable } from 'react-icons/ri';
 import { GiHamburgerMenu } from 'react-icons/gi';
+
+import { collectionName, docId, initializeNewTask } from './Todo';
+import { Button } from '@/UI/Button';
+import { Input } from '@/UI/Input';
+import CompletedStamp from '@/assets/completed-stamp.webp';
+import { tags } from '@/data/pages/todo/tags';
+import { IconSize } from '@/lib/enums/iconSize';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
 import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';

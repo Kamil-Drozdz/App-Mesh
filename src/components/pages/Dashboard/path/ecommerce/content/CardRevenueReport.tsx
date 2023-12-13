@@ -1,11 +1,3 @@
-import { Button } from '@/UI/Button';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/UI/Select';
-import { Separator } from '@/UI/Separator';
-import CardContainer from '@/common/CardContainer';
-import { DataRevenueReport } from '@/data/charts/dataRevenueReport';
-import { convert } from '@/lib/convert';
-import { totalValue } from '@/lib/totalValue';
-import useFullScreen from '@/store/FullScreen';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,6 +12,15 @@ import {
 import { Bar, Line } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
 
+import { Button } from '@/UI/Button';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/UI/Select';
+import { Separator } from '@/UI/Separator';
+import CardContainer from '@/common/CardContainer';
+import { DataRevenueReport } from '@/data/charts/dataRevenueReport';
+import { convert } from '@/lib/convert';
+import { totalValue } from '@/lib/totalValue';
+import useFullScreen from '@/store/FullScreen';
+
 const CardRevenueReport = () => {
   const { options, optionsLine, data } = DataRevenueReport();
   const { isFullScreen } = useFullScreen();
@@ -32,7 +33,12 @@ const CardRevenueReport = () => {
         <div className='flex items-center justify-between pb-4'>
           <h3 className='dark:text-white'>{t('Revenue Report')}</h3>
         </div>
-        <Bar data-testid='revenue-report-chart' className={`${isFullScreen ? '' : 'w-full max-w-[520px]'}`} data={data} options={options} />
+        <Bar
+          data-testid='revenue-report-chart'
+          className={`${isFullScreen ? '' : 'w-full max-w-[520px]'}`}
+          data={data}
+          options={options}
+        />
       </div>
       <Separator orientation='vertical' className='dark:bg-gray-600' />
       <div className='flex flex-col items-center justify-start space-y-4 px-4 md:w-1/3'>
@@ -55,7 +61,12 @@ const CardRevenueReport = () => {
         <h4 className='dark:text-base dark:text-gray-300'>
           {t('Budget')} {convert(totalValue(data.datasets[0].data))}
         </h4>
-        <Line data-testid='budget-chart' className={`${isFullScreen ? '' : 'w-full max-w-[260px]'}`} options={optionsLine} data={data} />
+        <Line
+          data-testid='budget-chart'
+          className={`${isFullScreen ? '' : 'w-full max-w-[260px]'}`}
+          options={optionsLine}
+          data={data}
+        />
         <Button className='!bg-buttonPrimary !text-white hover:brightness-110'>{t('Increase Budget')}</Button>
       </div>
     </CardContainer>

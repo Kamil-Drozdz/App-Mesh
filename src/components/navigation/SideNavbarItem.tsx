@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import SideNavbarGroupItem from './SideNavbarGroupItem';
 
 const SideNavbarItem = ({ menuCollapsed, group }) => {

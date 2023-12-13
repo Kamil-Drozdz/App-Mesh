@@ -1,13 +1,14 @@
+import { BiSearch } from 'react-icons/bi';
+
 import { Input } from '@/UI/Input';
 import clsx from '@/lib/clsx';
 import { IconSize } from '@/lib/enums/iconSize';
-import { BiSearch } from 'react-icons/bi';
 
 interface SearchInputProps {
   className?: string;
-  isIcon?:boolean,
-  search:string,
-  setSearch:(search:string) => void 
+  isIcon?: boolean;
+  search: string;
+  setSearch: (search: string) => void;
 }
 export const SearchInput = ({ className, isIcon = true, search, setSearch, ...props }: SearchInputProps) => (
   <div className={clsx('relative m-4', className)}>

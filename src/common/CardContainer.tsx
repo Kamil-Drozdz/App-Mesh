@@ -1,5 +1,6 @@
-import clsx from '@/lib/clsx';
 import { ReactNode } from 'react';
+
+import clsx from '@/lib/clsx';
 
 interface CardContainerProps {
   children: ReactNode;
@@ -9,7 +10,7 @@ const CardContainer = ({ children, className }: CardContainerProps) => {
   return (
     <section
       className={clsx(
-        'relative space-y-3 rounded-lg bg-secondary p-4 shadow-md shadow-lightGray dark:shadow-black',
+        'shadow-lightGray relative space-y-3 rounded-lg bg-secondary p-4 shadow-md dark:shadow-black',
         className
       )}
     >

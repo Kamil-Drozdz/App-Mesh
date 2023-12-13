@@ -1,9 +1,10 @@
+import { z } from 'zod';
+
 import { Button } from '@/UI/Button';
 import InputWithLabel from '@/common/InputWithLabel';
 import { formFields } from '@/data/pages/ecommerce/formFields';
 import { handleEnterDown } from '@/lib/handleEnterDown';
 import { validateField } from '@/lib/validateField';
-import { z } from 'zod';
 
 const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
   const addressSchema = z.object({

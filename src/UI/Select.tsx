@@ -1,8 +1,9 @@
-import clsx from '@/lib/clsx';
-import * as SelectPrimitive from '@radix-ui/react-select';
 import * as React from 'react';
+import * as SelectPrimitive from '@radix-ui/react-select';
 import { PiCheckCircleDuotone } from 'react-icons/pi';
 import { RxCaretSort } from 'react-icons/rx';
+
+import clsx from '@/lib/clsx';
 
 const Select = SelectPrimitive.Root;
 

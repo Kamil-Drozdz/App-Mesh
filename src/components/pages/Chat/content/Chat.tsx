@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { GiHamburgerMenu } from 'react-icons/gi';
+
 import ChatMessages from './ChatMessages';
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
@@ -11,9 +15,6 @@ import useFirebaseData from '@/hooks/useFirebaseData';
 import { IconSize } from '@/lib/enums/iconSize';
 import { UserStatuses } from '@/lib/enums/user';
 import useCurrentUser from '@/store/CurrentUser';
-import { useEffect, useState } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import ChatContactItem from './ChatContactItem';
 import ChatItem from './ChatItem';
 

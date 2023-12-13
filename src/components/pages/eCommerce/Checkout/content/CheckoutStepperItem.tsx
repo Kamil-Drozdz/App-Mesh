@@ -1,10 +1,11 @@
+import { AiFillHeart, AiOutlineClose } from 'react-icons/ai';
+import { BiHeart } from 'react-icons/bi';
+
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import { IconSize } from '@/lib/enums/iconSize';
 import { starRating } from '@/lib/starRating';
 import useProductsStore from '@/store/ProductsStore';
-import { AiFillHeart, AiOutlineClose } from 'react-icons/ai';
-import { BiHeart } from 'react-icons/bi';
 
 const CheckoutStepperItem = ({ product }) => {
   const { cart, wishlist, addToWishlist, removeFromWishlist, removeFromCart } = useProductsStore();

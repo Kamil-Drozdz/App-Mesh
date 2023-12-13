@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import UserFilter from './UserFilter';
 import UserList from './UserList';
-import { useState } from 'react';
 
 const ListContent = () => {
   const [filters, setFilters] = useState({ role: 'All', plan: 'All', status: 'All' });

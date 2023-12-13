@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { db } from '@/../firebaseConfig';
 import { doc, onSnapshot, DocumentData } from 'firebase/firestore';
+
+import { db } from '@/../firebaseConfig';
 import useCurrentUser from '@/store/CurrentUser';
 
 function useFirebaseData<T extends DocumentData>(arrayName: string, docId?: string, collectionPath: string = 'users') {

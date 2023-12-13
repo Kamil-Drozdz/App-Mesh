@@ -1,4 +1,5 @@
 import { DocumentData, doc, setDoc } from 'firebase/firestore';
+
 import { db } from '@/../firebaseConfig';
 
 export async function updateItemsFirebase<T extends DocumentData>(

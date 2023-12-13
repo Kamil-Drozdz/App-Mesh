@@ -1,10 +1,11 @@
+import { Chart as ChartJS, BarElement, CategoryScale, Legend, LinearScale, Title, Tooltip } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import CardContainer from '@/common/CardContainer';
 import ProgressBar from '@/common/ProgressBar';
 import { DataSession } from '@/data/charts/dataSession';
-import { Chart as ChartJS, BarElement, CategoryScale, Legend, LinearScale, Title, Tooltip } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 
 const CardSession = () => {
   const { data, options, progressData } = DataSession();
@@ -19,7 +20,7 @@ const CardSession = () => {
             <span>Avg Sessions</span>
             <span className='dark:text-green-500'>+5.2%</span> vs last 7 days
           </div>
-          <Button className='!bg-buttonPrimary !w-full !text-white hover:dark:!brightness-110'>View Details</Button>
+          <Button className='!w-full !bg-buttonPrimary !text-white hover:dark:!brightness-110'>View Details</Button>
         </div>
         <div className='flex basis-1/2 flex-col items-center justify-center'>
           <h4 className='w-full dark:text-right'>Last 7 days</h4>
