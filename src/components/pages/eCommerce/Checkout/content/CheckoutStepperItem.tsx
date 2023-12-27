@@ -1,14 +1,17 @@
 import { AiFillHeart, AiOutlineClose } from 'react-icons/ai';
-import { BiHeart } from 'react-icons/bi';
+import { BiHeart, BiSolidMinusSquare, BiSolidPlusSquare } from 'react-icons/bi';
 
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import { IconSize } from '@/lib/enums/iconSize';
 import { starRating } from '@/lib/starRating';
 import useProductsStore from '@/store/ProductsStore';
+import { Input } from '@/UI/Input';
 
 const CheckoutStepperItem = ({ product }) => {
-  const { cart, wishlist, addToWishlist, removeFromWishlist, removeFromCart } = useProductsStore();
+  const { cart, wishlist, setUserQuantity, addToWishlist, removeFromWishlist, removeFromCart } = useProductsStore();
+  const cartItem = cart.find((item) => item.id === product.id);
+  const userQuantity = cartItem ? cartItem.userQuantity : 1;
   const stars = starRating(product.rating.rate);
   const isProductInWishlist = wishlist.some((item) => item.id === product.id);
   const isProductInCart = cart.some((item) => item.id === product.id);
@@ -30,15 +33,49 @@ const CheckoutStepperItem = ({ product }) => {
           <div className='flex text-amber-500'>{stars}</div>
           <div className='flex space-x-2'>
             <p>Available -</p>
-            <span className='font-semibold text-green-500'>{product?.rating?.count}</span>
+            <span className='font-semibold text-green-500'>{product?.quantity}</span>
           </div>
           <p className='w-full truncate break-all'>{product?.description}</p>
+
           <p className='text-sm text-gray-500'>Delivery by, Wed Apr 25</p>
+          <div className='relative w-min '>
+            <Button
+              variant='empty'
+              disabled={userQuantity === 1}
+              className=' absolute top-1 left-2 !m-0 h-fit !p-0 disabled:opacity-40'
+              onClick={() => {
+                setUserQuantity(product.id, userQuantity - 1);
+              }}
+            >
+              <BiSolidMinusSquare className='text-violet-500' size={IconSize.basic} />
+            </Button>
+            <Input
+              type='number'
+              className='w-24 text-center'
+              min={1}
+              max={product?.quantity}
+              value={userQuantity}
+              onChange={(e) => {
+                const value = parseFloat(e.target.value);
+                if (!isNaN(value) && value <= product?.quantity && value >= 1) {
+                  setUserQuantity(product.id, value);
+                }
+              }}
+            />
+            <Button
+              variant='empty'
+              className='absolute top-1 right-2 !m-0  h-fit !p-0 disabled:opacity-40'
+              disabled={userQuantity === product?.quantity}
+              onClick={() => setUserQuantity(product.id, userQuantity + 1)}
+            >
+              <BiSolidPlusSquare className='text-violet-500' size={IconSize.basic} />
+            </Button>
+          </div>
           <p className='text-sm text-green-500'>17% off 4 offers Available</p>
         </div>
         <Separator orientation='vertical' />
         <div className='flex flex-col items-center justify-center space-y-2'>
-          <p className=' font-semibold text-buttonPrimary'>${product?.price}</p>
+          <p className=' font-semibold text-buttonPrimary'>${product?.price * userQuantity}</p>
           <p className='w-fit rounded-lg bg-green-600 bg-opacity-30 px-2 text-green-400'>Free Shipping</p>
           <Button
             onClick={() => {

@@ -6,7 +6,7 @@ import CheckoutStepper from './content/CheckoutStepper';
 import CheckoutStepperHeader from './content/CheckoutStepperHeader';
 import PageContainer from '@/common/PageContainer';
 
-interface FormData {
+export interface FormData {
   fullName: string;
   address: string;
   city: string;
@@ -14,8 +14,9 @@ interface FormData {
   zipCode: string;
   phone: string;
 }
+
 const CheckoutContent = () => {
-  const [activeStep, setActiveStep] = useState('Cart');
+  const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     address: '',
@@ -25,6 +26,7 @@ const CheckoutContent = () => {
     phone: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({ test: '' });
+
   return (
     <PageContainer>
       <ShopHeader />

@@ -29,6 +29,7 @@ export enum BasicRoutes {
 
 export enum SubRoutes {
   ANALYTICS = '/analitics',
+  SUCCESS = '/success',
   ECOMMERCE = '/ecommerce',
   ALL = '/all',
   AUTHENTICATION = '/authentication',

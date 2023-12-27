@@ -3,11 +3,12 @@ import { Separator } from '@/UI/Separator';
 import { IconSize } from '@/lib/enums/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { totalValue } from '@/lib/totalValue';
+
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 function CartPopover({ cart, removeFromCart }) {
-  const totalAmount = totalValue(cart.map((product) => product.price));
+  const totalAmount = totalValue(cart.map((product) => product.price * product.userQuantity));
   return (
     <div className='w-[300px]'>
       <div className='my-2 flex w-full items-center justify-between p-2'>
@@ -21,7 +22,7 @@ function CartPopover({ cart, removeFromCart }) {
             <div className='flex items-center justify-between space-x-4 p-4 '>
               <img height={48} width={48} className='h-12 w-12' src={item.image} />
               <p className='w-1/2 truncate'>{item.title}</p>
-              <p className='text-black dark:text-white'>{item.price}$</p>
+              <p className='text-black dark:text-white'>{item.price * item.userQuantity}$</p>
             </div>
             <Separator />
             <AiOutlineClose

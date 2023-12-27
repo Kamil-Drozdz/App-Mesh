@@ -6,6 +6,8 @@ export interface ProductProps {
   price: number;
   image: string;
   description: string;
+  quantity: number;
+  userQuantity: number;
   rating: {
     rate: number;
     count: number;
@@ -20,6 +22,7 @@ interface ProdusctsStoreProps {
   addToCart: (product: ProductProps) => void;
   removeFromWishlist: (productId: number) => void;
   removeFromCart: (productId: number) => void;
+  setUserQuantity: (productId: number, quantity: number) => void;
 }
 
 const useProductsStore = create<ProdusctsStoreProps>()((set) => ({
@@ -32,10 +35,26 @@ const useProductsStore = create<ProdusctsStoreProps>()((set) => ({
     set((state) => ({
       wishlist: state.wishlist.filter((product) => product.id !== productId),
     })),
-  addToCart: (product) => set((state) => ({ cart: [...state.cart, product] })),
+  addToCart: (product) =>
+    set((state) => {
+      const cartItem = state.cart.find((item) => item.id === product.id);
+      if (cartItem) {
+        return {
+          cart: state.cart.map((item) =>
+            item.id === product.id ? { ...item, userQuantity: item.userQuantity + 1 } : item
+          ),
+        };
+      } else {
+        return { cart: [...state.cart, { ...product, userQuantity: 1 }] };
+      }
+    }),
   removeFromCart: (productId) =>
     set((state) => ({
       cart: state.cart.filter((product) => product.id !== productId),
+    })),
+  setUserQuantity: (productId, quantity) =>
+    set((state) => ({
+      cart: state.cart.map((item) => (item.id === productId ? { ...item, userQuantity: quantity } : item)),
     })),
 }));
 

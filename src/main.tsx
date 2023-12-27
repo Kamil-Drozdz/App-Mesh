@@ -1,19 +1,22 @@
 import { FC } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css';
 import './data/translations/i18n';
 import App from './app';
 
 const rootElement = document.getElementById('root');
+const queryClient = new QueryClient();
 
 if (rootElement) {
   const Root: FC = () => {
     return (
-      <Router>
-        <App />
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <App />
+        </Router>
+      </QueryClientProvider>
     );
   };
 

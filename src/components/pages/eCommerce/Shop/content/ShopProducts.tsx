@@ -4,16 +4,16 @@ import ShopProduct from './ShopProduct';
 import Skeleton from '@/UI/skeleton/Skeleton';
 import noData from '@/assets/no-data.svg';
 import { SearchInput } from '@/common/SearchInput';
-import useFetch from '@/hooks/useFetch';
 import { ProductProps } from '@/store/ProductsStore';
+import useFirebaseData from '@/hooks/useFirebaseData';
+import { ErrorComponent } from '@/common/ErrrorComponent';
 
 const ShopProducts = () => {
+  const collectionName = 'products';
   const [search, setSearch] = useState('');
-  const {
-    data: products,
-    loading,
-    error,
-  } = useFetch<ProductProps[]>(`${import.meta.env.VITE_BASE_FAKESTOREAPI_URL}/products`);
+
+  const { data: products, loading, error } = useFirebaseData<ProductProps[]>(collectionName);
+
   const filteredProducts = products
     ? products.filter(
         (product) =>
@@ -26,10 +26,9 @@ const ShopProducts = () => {
     return <Skeleton className='grid grid-cols-auto-fill-100 p-4 md:grid-cols-3 xl:grid-cols-4' SkeletonLength={12} />;
   }
 
-  if (error.message) {
-    return <div>Error: {error.message}</div>;
+  if (error) {
+    return <ErrorComponent error={error} />;
   }
-
   return (
     <>
       <SearchInput search={search} setSearch={setSearch} />

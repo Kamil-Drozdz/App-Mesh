@@ -23,19 +23,12 @@ const CheckoutCartOption = ({ amount, discount, tax, totalAmount, setActiveStep 
         <p className='text-muted-foreground'>Tax</p>
         <span>${tax}</span>
       </div>
-      <div className='flex w-full items-center justify-between'>
-        <p className='text-muted-foreground'>EMI Egibility</p>
-        <span className='text-buttonPrimary'>Details</span>
-      </div>
       <Separator />
       <div className='flex w-full items-center justify-between'>
         <p className='font-semibold text-muted-foreground'>Total</p>
         <span className='text-buttonPrimary'>${totalAmount}</span>
       </div>
-      <Button
-        onClick={() => setActiveStep('Address')}
-        className='!bg-buttonPrimary w-full !text-white hover:brightness-110'
-      >
+      <Button onClick={() => setActiveStep(2)} className='w-full !bg-buttonPrimary !text-white hover:brightness-110'>
         Place Order
       </Button>
     </div>

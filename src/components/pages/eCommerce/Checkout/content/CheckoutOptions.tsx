@@ -6,7 +6,7 @@ import useProductsStore from '@/store/ProductsStore';
 
 const CheckoutOptions = ({ activeStep, setActiveStep, errors, formData }) => {
   const { cart } = useProductsStore();
-  const amount = totalValue(cart.map((product) => product.price));
+  const amount = totalValue(cart.map((product) => product.price * product.userQuantity));
   const discount = 10;
   const tax = 1.3;
   const totalAmount = (amount - discount + tax).toFixed(2);
@@ -14,7 +14,7 @@ const CheckoutOptions = ({ activeStep, setActiveStep, errors, formData }) => {
     <>
       {cart.length ? (
         <>
-          {activeStep === 'Cart' ? (
+          {activeStep === 1 ? (
             <CheckoutCartOption
               amount={amount}
               discount={discount}
@@ -23,10 +23,10 @@ const CheckoutOptions = ({ activeStep, setActiveStep, errors, formData }) => {
               setActiveStep={setActiveStep}
             />
           ) : null}
-          {activeStep === 'Address' && Object.keys(errors).length === 0 && (
+          {activeStep === 2 && Object.keys(errors).length === 0 && (
             <CheckoutAdressOption formData={formData} setActiveStep={setActiveStep} errors={errors} />
           )}
-          {activeStep === 'Payment' ? <CheckoutPaymentOption totalAmount={totalAmount} cart={cart} /> : null}
+          {activeStep === 3 ? <CheckoutPaymentOption totalAmount={totalAmount} cart={cart} /> : null}
         </>
       ) : null}
     </>

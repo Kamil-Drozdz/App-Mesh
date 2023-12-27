@@ -7,6 +7,7 @@ import EmailContent from '@/components/pages/Email/EmailContent';
 import ForgotPasswordContent from '@/components/pages/Pages/ForgotPassword/ForgotPasswordContent';
 import LoginContent from '@/components/pages/Pages/Login/LoginContent';
 import RegisterContent from '@/components/pages/Pages/Register/RegisterContent';
+import CheckoutSuccess from '@/components/pages/eCommerce/CheckoutSuccess';
 
 const CalendarContent = lazy(() => import('@/components/pages/Calendar/CalendarContent'));
 const ChatContent = lazy(() => import('@/components/pages/Chat/ChatContent'));
@@ -80,6 +81,10 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
     {
       subPath: `${SubRoutes.CHECKOUT}`,
       component: CheckoutContent,
+    },
+    {
+      subPath: `${SubRoutes.SUCCESS}`,
+      component: CheckoutSuccess,
     },
   ],
   [BasicRoutes.FORGOT]: [{ subPath: '', component: ForgotPasswordContent }],
