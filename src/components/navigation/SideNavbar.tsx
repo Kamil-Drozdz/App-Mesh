@@ -8,14 +8,16 @@ import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
 import SideNavbarItem from './SideNavbarItem';
+import useConfig from '@/store/Config';
 
 const SideNavbar = () => {
+  const { config } = useConfig();
   const { isFullScreen } = useFullScreen();
   const { isMenuOpen, toggleMenu } = useMenu();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const navItems = NavItems();
-
+  console.log(config);
   return (
     <>
       <div
@@ -43,8 +45,8 @@ const SideNavbar = () => {
               {!menuCollapsed ? (
                 <>
                   <Link to={`${BasicRoutes.DASHBOARD}${SubRoutes.ECOMMERCE}`} className='flex items-center '>
-                    <img src={logo} alt='Logo' width={32} height={32} className='mr-4 h-8 w-8' />
-                    <span className='whitespace-nowrap text-2xl font-semibold'>App Mesh</span>
+                    <img src={config?.logoApp || logo} alt='Logo' width={32} height={32} className='mr-4 h-8 w-8' />
+                    <span className='whitespace-nowrap text-2xl font-semibold'>{config?.nameApp || 'App Mesh'}</span>
                   </Link>
 
                   <button aria-label='collaps menu button' onClick={() => setIsCollapsed((prev) => !prev)}>

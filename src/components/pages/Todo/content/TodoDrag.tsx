@@ -13,7 +13,7 @@ import CompletedStamp from '@/assets/completed-stamp.webp';
 import { tags } from '@/data/pages/todo/tags';
 import { IconSize } from '@/lib/enums/iconSize';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
-import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
+import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
 import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';
 
 const TodoDrag = ({
@@ -55,7 +55,7 @@ const TodoDrag = ({
   const handleCheckTodo = (id) => {
     const checkedTodo = tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task));
     setTasks(checkedTodo);
-    updateItemsFirebase(collectionName, docId, checkedTodo);
+    updateDocumentFirebase(collectionName, docId, checkedTodo);
   };
 
   const handleEditTask = (id) => {

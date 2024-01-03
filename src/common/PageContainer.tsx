@@ -7,9 +7,12 @@ import SideNavbar from '@/components/navigation/SideNavbar';
 import TopNavbar from '@/components/navigation/TopNavbar';
 import useFullScreen from '@/store/FullScreen';
 import { BasicRoutes } from '@/lib/enums/routes';
+import useCurrentUser from '@/store/CurrentUser';
+import MultiConfigForm from '@/components/config/MultiConfigForm';
 
 const PageContainer = ({ children }: PropsWithChildren) => {
   const { pathname } = useLocation();
+  const { currentUser } = useCurrentUser();
   const { isFullScreen, toggleFullScreen } = useFullScreen();
 
   return (
@@ -39,6 +42,7 @@ const PageContainer = ({ children }: PropsWithChildren) => {
       >
         {isFullScreen ? 'Back to dashboard Mode' : ' Try Fullscreen'}
       </Button>
+      {currentUser && <MultiConfigForm />}
     </main>
   );
 };

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { z } from 'zod';
 
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
@@ -11,6 +10,7 @@ import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
 import { createUser } from '@/lib/firebaseHelpers/createUser';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
+import { registerSchema } from '@/schema/registerSchema';
 
 interface FormDataProps {
   displayName: string;
@@ -19,13 +19,6 @@ interface FormDataProps {
   role: string;
   terms: boolean;
 }
-
-const registerSchema = z.object({
-  displayName: z.string().nonempty({ message: "Display Name can't be empty" }),
-  email: z.string().email({ message: 'Invalid email address' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-  terms: z.boolean().refine((value) => value === true, { message: 'You must agree to the terms' }),
-});
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState<FormDataProps>({

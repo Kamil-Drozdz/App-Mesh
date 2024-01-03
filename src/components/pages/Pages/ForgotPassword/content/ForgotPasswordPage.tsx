@@ -2,7 +2,6 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { z } from 'zod';
 
 import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
@@ -10,10 +9,9 @@ import forgotPasswordPage from '@/assets/forgot-password-page.svg';
 import InputWithLabel from '@/common/InputWithLabel';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
+import { forgotPasswordSchema } from '@/schema/forgotPasswordSchema';
 
-const forgotPasswordSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address' }),
-});
+
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({ email: '' });

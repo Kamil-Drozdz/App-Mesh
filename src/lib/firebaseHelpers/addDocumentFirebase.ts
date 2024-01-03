@@ -2,7 +2,7 @@ import { DocumentData, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 import { db } from '@/../firebaseConfig';
 
-export async function addItemFirebase<T extends DocumentData>(
+export async function addDocumentFirebase<T extends DocumentData>(
   key: string,
   docId: string,
   newItem: T,

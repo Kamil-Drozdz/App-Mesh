@@ -15,8 +15,8 @@ import useFirebaseData from '@/hooks/useFirebaseData';
 import Loader from '@/common/Loader';
 import { ErrorComponent } from '@/common/ErrrorComponent';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
-import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
-import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
+import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
+import { addDocumentFirebase } from '@/lib/firebaseHelpers/addDocumentFirebase';
 import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';
 import useCurrentUser from '@/store/CurrentUser';
 import './calendar.css';
@@ -79,10 +79,10 @@ const CalendarContent = () => {
         const updatedEvents = [...events];
         updatedEvents[existingEventIndex] = formData;
         setEvents(updatedEvents);
-        updateItemsFirebase(collectionName, docId, updatedEvents);
+        updateDocumentFirebase(collectionName, docId, updatedEvents);
       } else {
         setEvents([...events, formData]);
-        addItemFirebase(collectionName, docId, formData);
+        addDocumentFirebase(collectionName, docId, formData);
       }
       setFormData({
         id: uuidv4(),
@@ -120,7 +120,7 @@ const CalendarContent = () => {
       return event;
     });
     setEvents(updatedEvents);
-    updateItemsFirebase(collectionName, docId, updatedEvents);
+    updateDocumentFirebase(collectionName, docId, updatedEvents);
   };
 
   const handleSelectEvent = (info) => {

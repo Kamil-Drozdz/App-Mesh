@@ -12,6 +12,7 @@ interface InputWithLabelProps {
   name?: string;
   readOnly?: boolean;
   className?: string;
+  bgColor?: string;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
 }
 const InputWithLabel = ({
@@ -24,6 +25,7 @@ const InputWithLabel = ({
   id,
   type,
   className,
+  bgColor = 'bg-secondary',
 }: InputWithLabelProps) => {
   return (
     <div className={clsx('relative', className)}>
@@ -40,7 +42,7 @@ const InputWithLabel = ({
       />
       <label
         htmlFor={id}
-        className='absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform bg-secondary px-2 text-sm text-primary duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500'
+        className={`absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform ${bgColor}  px-2 text-sm text-primary duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500`}
       >
         {label}
       </label>

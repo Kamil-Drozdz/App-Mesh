@@ -10,10 +10,9 @@ import { Input } from '@/UI/Input';
 import { IconSize } from '@/lib/enums/iconSize';
 import { handleEnterDown } from '@/lib/handleEnterDown';
 import { uploadImageAndGetURL } from '@/lib/firebaseHelpers/uploadImageAndGetURL';
-import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
+import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
 import { collectionNameChats } from './Chat';
-import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
-
+import { addDocumentFirebase } from '@/lib/firebaseHelpers/addDocumentFirebase';
 
 const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
   const { i18n } = useTranslation();
@@ -88,8 +87,8 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
           return chat;
         });
 
-        await updateItemsFirebase(collectionNameChats, currentUser.uid, updatedChatsCurrentUser);
-        await updateItemsFirebase(collectionNameChats, selectedUser?.id, updatedChatsSelectedUser);
+        await updateDocumentFirebase(collectionNameChats, currentUser.uid, updatedChatsCurrentUser);
+        await updateDocumentFirebase(collectionNameChats, selectedUser?.id, updatedChatsSelectedUser);
       }
     } else {
       const newChat = {
@@ -100,8 +99,8 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
         photoURL: currentUser.photoURL,
       };
 
-      await addItemFirebase(collectionNameChats, selectedUser?.id, newChat);
-      await updateItemsFirebase(collectionNameChats, currentUser.uid, [
+      await addDocumentFirebase(collectionNameChats, selectedUser?.id, newChat);
+      await updateDocumentFirebase(collectionNameChats, currentUser.uid, [
         ...chats,
         {
           ...newChat,

@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { Button } from '@/UI/Button';
 import CardContainer from '@/common/CardContainer';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
+import { addDocumentFirebase } from '@/lib/firebaseHelpers/addDocumentFirebase';
 import useCurrentUser from '@/store/CurrentUser';
 import { emptyTemplateInvoice, useInvoice } from '@/store/Invoice';
 
@@ -15,7 +15,7 @@ const NavigationCard = ({ children }) => {
 
   const handleSendInvoice = () => {
     try {
-      addItemFirebase('invoice', docId, invoice)
+      addDocumentFirebase('invoice', docId, invoice)
         .then(() => {
           toast.success("You're Invoice has been send succesfully!");
           removeItem();

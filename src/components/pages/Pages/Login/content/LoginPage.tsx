@@ -7,7 +7,6 @@ import {
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { z } from 'zod';
 
 import { auth } from '@/../firebaseConfig';
 import { Button } from '@/UI/Button';
@@ -17,17 +16,13 @@ import InputWithLabel from '@/common/InputWithLabel';
 import SocialLoginButtons from '@/components/pages/Pages/SocialLoginButtons';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
+import { loginSchema } from '@/schema/loginSchema';
 
 interface FormDataProps {
   email: string;
   password: string;
   persist: boolean;
 }
-
-const loginSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-});
 
 const LoginPage = () => {
   const [formData, setFormData] = useState<FormDataProps>({

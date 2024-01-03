@@ -10,8 +10,8 @@ import TodoDrag from './TodoDrag';
 import useFirebaseData from '@/hooks/useFirebaseData';
 import Loader from '@/common/Loader';
 import { ErrorComponent } from '@/common/ErrrorComponent';
-import { updateItemsFirebase } from '@/lib/firebaseHelpers/updateItemsFirebase';
-import { addItemFirebase } from '@/lib/firebaseHelpers/addItemFirebase';
+import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
+import { addDocumentFirebase } from '@/lib/firebaseHelpers/addDocumentFirebase';
 import useCurrentUser from '@/store/CurrentUser';
 
 interface Task {
@@ -65,12 +65,12 @@ const Todo = () => {
     if (existingTask) {
       const changedTask = tasks.map((task) => (task.id === newTask.id ? newTask : task));
       setTasks(changedTask);
-      updateItemsFirebase(collectionName, docId, changedTask);
+      updateDocumentFirebase(collectionName, docId, changedTask);
     } else {
       newTask.id = uuidv4();
       newTask.completed = false;
       setTasks([...tasks, newTask]);
-      addItemFirebase(collectionName, docId, newTask);
+      addDocumentFirebase(collectionName, docId, newTask);
     }
     setNewTask({ id: '', title: '', completed: false, description: '', tag: '', date: new Date() });
     setIsOpen(false);
