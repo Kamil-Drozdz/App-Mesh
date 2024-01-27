@@ -3,6 +3,7 @@ import { UserStatuses } from '../lib/enums/user';
 
 interface StatusBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   status: UserStatuses;
+  className?:string,
 }
 
 export default function StatusBadge({ status, className, ...props }: StatusBadgeProps) {

@@ -8,6 +8,7 @@ import { IconSize } from '@/lib/enums/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/ProductsStore';
+import useWishlist from '@/hooks/useWishList';
 
 interface ShopProductProps {
   product: ProductProps;
@@ -15,8 +16,20 @@ interface ShopProductProps {
 const ShopProduct = ({ product }: ShopProductProps) => {
   const stars = starRating(product.rating.rate);
   const { addToWishlist, cart, addToCart, removeFromCart, removeFromWishlist, wishlist } = useProductsStore();
-  const isProductInWishlist = wishlist.some((item) => item.id === product.id);
+  const { isProductInWishlist, toggleWishlist } = useWishlist(wishlist, {
+    add: addToWishlist,
+    remove: removeFromWishlist,
+  });
   const isProductInCart = cart.some((item) => item.id === product.id);
+
+  const handleToogleShopCart = () => {
+    if (isProductInCart) {
+      removeFromCart(product.id);
+    } else {
+      addToCart(product);
+    }
+  };
+
   return (
     <div className='m-4'>
       <div className='relative flex flex-col items-center justify-center space-y-3 rounded-t-lg bg-secondary p-4'>
@@ -48,17 +61,11 @@ const ShopProduct = ({ product }: ShopProductProps) => {
       </div>
       <div className=' flex w-full'>
         <Button
-          onClick={() => {
-            if (isProductInWishlist) {
-              removeFromWishlist(product.id);
-            } else {
-              addToWishlist(product);
-            }
-          }}
+          onClick={() => toggleWishlist(product)}
           variant='empty'
           className='w-full space-x-2 rounded-none rounded-bl-md bg-secondary hover:bg-secondary/30 '
         >
-          {isProductInWishlist ? (
+          {isProductInWishlist(product) ? (
             <AiFillHeart size={IconSize.basic} className='text-red-500' />
           ) : (
             <BiHeart size={IconSize.basic} />
@@ -66,13 +73,7 @@ const ShopProduct = ({ product }: ShopProductProps) => {
           <p> Add to Wishlist</p>
         </Button>
         <Button
-          onClick={() => {
-            if (isProductInCart) {
-              removeFromCart(product.id);
-            } else {
-              addToCart(product);
-            }
-          }}
+          onClick={() => handleToogleShopCart()}
           className='w-full space-x-2 rounded-none !rounded-br-lg !bg-buttonPrimary !text-white hover:brightness-110'
         >
           <FiShoppingCart size={IconSize.basic} />

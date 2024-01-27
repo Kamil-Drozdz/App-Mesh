@@ -9,14 +9,14 @@ import { CustomUser } from '@/store/CurrentUser';
 import ChatZoomImage from './ChatZoomImage';
 import { ChatData, Message } from './Chat';
 
-interface Messages {
+export interface ChatsProps {
   selectedUser: ChatData | null;
   currentUser: CustomUser | null;
   chats: ChatData[];
   setChats: React.Dispatch<React.SetStateAction<ChatData[]>>;
 }
 
-const ChatMessages = ({ selectedUser, currentUser, chats, setChats }: Messages) => {
+const ChatMessages = ({ selectedUser, currentUser, chats, setChats }: ChatsProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [zoomImage, setZoomImage] = useState<null | string>(null);

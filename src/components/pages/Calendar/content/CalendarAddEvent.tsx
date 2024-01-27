@@ -10,6 +10,11 @@ const CalendarAddEvent = ({
   selectedFilters,
   setSelectedFilters,
 }) => {
+  const handleAddEvent = () => {
+    setIsAddEventOpen(false);
+    setIsOpen(true);
+  };
+
   return (
     <div
       className={`absolute top-0 left-0 z-[2] h-full rounded-l-lg border bg-inherit p-4 md:relative md:mt-3 md:h-auto md:rounded-l-none md:border-none md:p-2   ${
@@ -18,11 +23,8 @@ const CalendarAddEvent = ({
     >
       <div className='md:h-full'>
         <Button
-          onClick={() => {
-            setIsAddEventOpen(false);
-            setIsOpen(true);
-          }}
-          className='!bg-buttonPrimary mb-4 w-full !text-white hover:brightness-110'
+          onClick={() => handleAddEvent()}
+          className='mb-4 w-full !bg-buttonPrimary !text-white hover:brightness-110'
         >
           Add Event
         </Button>

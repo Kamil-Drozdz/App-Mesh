@@ -7,14 +7,31 @@ import { IconSize } from '@/lib/enums/iconSize';
 import { starRating } from '@/lib/starRating';
 import useProductsStore from '@/store/ProductsStore';
 import { Input } from '@/UI/Input';
+import useWishlist from '@/hooks/useWishList';
 
 const CheckoutStepperItem = ({ product }) => {
   const { cart, wishlist, setUserQuantity, addToWishlist, removeFromWishlist, removeFromCart } = useProductsStore();
   const cartItem = cart.find((item) => item.id === product.id);
   const userQuantity = cartItem ? cartItem.userQuantity : 1;
   const stars = starRating(product.rating.rate);
-  const isProductInWishlist = wishlist.some((item) => item.id === product.id);
+  const { isProductInWishlist, toggleWishlist } = useWishlist(wishlist, {
+    add: addToWishlist,
+    remove: removeFromWishlist,
+  });
   const isProductInCart = cart.some((item) => item.id === product.id);
+
+  const handleQuantityChange = (e) => {
+    const value = parseFloat(e.target.value);
+    if (!isNaN(value) && value <= product?.quantity && value >= 1) {
+      setUserQuantity(product.id, value);
+    }
+  };
+
+  const handleRemoveProductFromCart = () => {
+    if (isProductInCart) {
+      removeFromCart(product.id);
+    }
+  };
 
   return (
     <div key={product.id}>
@@ -43,9 +60,7 @@ const CheckoutStepperItem = ({ product }) => {
               variant='empty'
               disabled={userQuantity === 1}
               className=' absolute top-1 left-2 !m-0 h-fit !p-0 disabled:opacity-40'
-              onClick={() => {
-                setUserQuantity(product.id, userQuantity - 1);
-              }}
+              onClick={() => setUserQuantity(product.id, userQuantity - 1)}
             >
               <BiSolidMinusSquare className='text-violet-500' size={IconSize.basic} />
             </Button>
@@ -55,12 +70,7 @@ const CheckoutStepperItem = ({ product }) => {
               min={1}
               max={product?.quantity}
               value={userQuantity}
-              onChange={(e) => {
-                const value = parseFloat(e.target.value);
-                if (!isNaN(value) && value <= product?.quantity && value >= 1) {
-                  setUserQuantity(product.id, value);
-                }
-              }}
+              onChange={handleQuantityChange}
             />
             <Button
               variant='empty'
@@ -78,31 +88,17 @@ const CheckoutStepperItem = ({ product }) => {
           <p className=' font-semibold text-buttonPrimary'>${product?.price * userQuantity}</p>
           <p className='w-fit rounded-lg bg-green-600 bg-opacity-30 px-2 text-green-400'>Free Shipping</p>
           <Button
-            onClick={() => {
-              if (isProductInWishlist) {
-                removeFromWishlist(product.id);
-              } else {
-                addToWishlist(product);
-              }
-            }}
+            onClick={toggleWishlist}
             className='w-full space-x-2 !bg-buttonPrimary !text-white hover:brightness-110'
           >
-            {isProductInWishlist ? (
+            {isProductInWishlist(product) ? (
               <AiFillHeart size={IconSize.basic} className='text-red-500' />
             ) : (
               <BiHeart size={IconSize.basic} />
             )}
             <p> Add to Wishlist</p>
           </Button>
-          <Button
-            variant='ghost'
-            className='w-full space-x-2'
-            onClick={() => {
-              if (isProductInCart) {
-                removeFromCart(product.id);
-              }
-            }}
-          >
+          <Button variant='ghost' className='w-full space-x-2' onClick={handleRemoveProductFromCart}>
             <AiOutlineClose size={IconSize.basic} />
             <p> Remove from Cart </p>
           </Button>

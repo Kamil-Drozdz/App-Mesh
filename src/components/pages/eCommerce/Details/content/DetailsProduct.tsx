@@ -15,6 +15,7 @@ import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/ProductsStore';
 import useFirebaseData from '@/hooks/useFirebaseData';
+import useWishlist from '@/hooks/useWishList';
 
 const DetailsProduct = ({ productID }) => {
   if (typeof productID === 'undefined') {
@@ -25,8 +26,11 @@ const DetailsProduct = ({ productID }) => {
   const [product, setProduct] = useState<ProductProps | null>(null);
   const [isCopiedToClipboard, setIsCopiedToClipboard] = useState(false);
   const { addToWishlist, cart, addToCart, removeFromWishlist, wishlist } = useProductsStore();
+  const { isProductInWishlist, toggleWishlist } = useWishlist(wishlist, {
+    add: addToWishlist,
+    remove: removeFromWishlist,
+  });
 
-  const isProductInWishlist = wishlist.some((item) => item.id === product?.id);
   const isProductInCart = cart.some((item) => item.id === product?.id);
   const stars = product ? starRating(product?.rating?.rate) : null;
 
@@ -45,6 +49,11 @@ const DetailsProduct = ({ productID }) => {
     toast.info('Product URL copied to clipboard');
     navigator.clipboard.writeText(window.location.href);
     setIsCopiedToClipboard(true);
+  };
+  const handleAddToCart = (product) => {
+    if (!isProductInCart) {
+      addToCart(product);
+    }
   };
 
   if (loading) {
@@ -93,29 +102,15 @@ const DetailsProduct = ({ productID }) => {
           <div className='flex items-center space-x-2'>
             <Link to={`${BasicRoutes.ECOMMERCE}${SubRoutes.CHECKOUT}`}>
               <Button
-                onClick={() => {
-                  if (!isProductInCart) {
-                    addToCart(product);
-                  }
-                }}
+                onClick={() => handleAddToCart(product)}
                 className='space-x-2 !bg-buttonPrimary px-2 !text-white hover:brightness-110 md:px-4'
               >
                 <FiShoppingCart size={IconSize.basic} />
                 <p> View in Cart</p>
               </Button>
             </Link>
-            <Button
-              onClick={() => {
-                if (isProductInWishlist) {
-                  removeFromWishlist(product?.id);
-                } else {
-                  addToWishlist(product);
-                }
-              }}
-              variant='ghost'
-              className='space-x-2 px-2 md:px-4'
-            >
-              {isProductInWishlist ? (
+            <Button onClick={() => toggleWishlist(product)} variant='ghost' className='space-x-2 px-2 md:px-4'>
+              {isProductInWishlist(product) ? (
                 <AiFillHeart size={IconSize.basic} className='text-red-500' />
               ) : (
                 <BiHeart size={IconSize.basic} />

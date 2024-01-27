@@ -17,7 +17,18 @@ const SideNavbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const navItems = NavItems();
-  console.log(config);
+
+  const onMouseEnter = () => {
+    if (isCollapsed) {
+      setMenuCollapsed(false);
+    }
+  };
+  const onMouseLeave = () => {
+    if (!menuCollapsed && isCollapsed) {
+      setMenuCollapsed(true);
+    }
+  };
+
   return (
     <>
       <div
@@ -26,16 +37,8 @@ const SideNavbar = () => {
         } fixed top-0 right-0 z-[11] h-screen transition-all duration-300 ease-in-out`}
       >
         <nav
-          onMouseEnter={() => {
-            if (isCollapsed) {
-              setMenuCollapsed(false);
-            }
-          }}
-          onMouseLeave={() => {
-            if (!menuCollapsed && isCollapsed) {
-              setMenuCollapsed(true);
-            }
-          }}
+          onMouseEnter={() => onMouseEnter()}
+          onMouseLeave={() => onMouseLeave()}
           className={`${
             menuCollapsed ? 'w-20' : 'w-72'
           } fixed h-full overflow-y-auto transition-all duration-300 ease-out`}
