@@ -16,7 +16,7 @@ import InvoicePaymentDetails from './InvoicePaymentDetails';
 import InvoiceTax from './InvoiceTax';
 import InvoiceSalesperson from './InvoiceSalesperson';
 
-const InvoiceTemplate = ({ isEditable = false }) => {
+function InvoiceTemplate({ isEditable = false }) {
   const { invoice } = useInvoice();
   const subTotal = totalValue(
     invoice.invoiceItems.map((item) => (item.rate !== null && item.hours !== null ? item.rate * item.hours : 0))
@@ -76,6 +76,6 @@ const InvoiceTemplate = ({ isEditable = false }) => {
       <InvoiceTemplateField isEditable={isEditable} label='Note' value={invoice.note} name='note' className='w-full' />
     </CardContainer>
   );
-};
+}
 
 export default InvoiceTemplate;

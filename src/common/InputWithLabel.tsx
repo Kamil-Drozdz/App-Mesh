@@ -15,7 +15,7 @@ interface InputWithLabelProps {
   bgColor?: string;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
 }
-const InputWithLabel = ({
+function InputWithLabel({
   onKeyDown,
   value,
   name,
@@ -26,7 +26,7 @@ const InputWithLabel = ({
   type,
   className,
   bgColor = 'bg-secondary',
-}: InputWithLabelProps) => {
+}: InputWithLabelProps) {
   return (
     <div className={clsx('relative', className)}>
       <Input
@@ -48,6 +48,6 @@ const InputWithLabel = ({
       </label>
     </div>
   );
-};
+}
 
 export default InputWithLabel;

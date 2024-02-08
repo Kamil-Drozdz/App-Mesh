@@ -1,11 +1,11 @@
 import RegisterPage from './content/RegisterPage';
 
-const RegisterContent = () => {
+function RegisterContent() {
   return (
     <div>
       <RegisterPage />
     </div>
   );
-};
+}
 
 export default RegisterContent;

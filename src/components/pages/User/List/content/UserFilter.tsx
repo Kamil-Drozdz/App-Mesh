@@ -4,7 +4,7 @@ import CardContainer from '@/common/CardContainer';
 export const roles = ['All', 'Author', 'Editor', 'Admin', 'Subscriber'];
 export const plans = ['All', 'Basic', 'Company', 'Enterprise', 'Team'];
 export const statuses = ['All', 'Pending', 'Inactive', 'Active'];
-const UserFilter = ({ filters, setFilters }) => {
+function UserFilter({ filters, setFilters }) {
   return (
     <CardContainer>
       <p>Search Filter</p>
@@ -78,6 +78,6 @@ const UserFilter = ({ filters, setFilters }) => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default UserFilter;

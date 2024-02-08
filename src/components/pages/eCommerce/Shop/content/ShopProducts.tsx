@@ -5,14 +5,14 @@ import Skeleton from '@/UI/skeleton/Skeleton';
 import noData from '@/assets/no-data.svg';
 import { SearchInput } from '@/common/SearchInput';
 import { ProductProps } from '@/store/ProductsStore';
-import useFirebaseData from '@/hooks/useFirebaseData';
 import { ErrorComponent } from '@/common/ErrrorComponent';
+import useFirebaseCachedData from '@/hooks/useFirebaseCachedData';
+import { Collections } from '@/lib/enums/collections';
 
-const ShopProducts = () => {
-  const collectionName = 'products';
+function ShopProducts() {
   const [search, setSearch] = useState('');
 
-  const { data: products, loading, error } = useFirebaseData<ProductProps[]>(collectionName);
+  const { data: products, loading, error } = useFirebaseCachedData<ProductProps[]>(Collections.products);
 
   const filteredProducts = products
     ? products.filter(
@@ -44,6 +44,6 @@ const ShopProducts = () => {
       )}
     </>
   );
-};
+}
 
 export default ShopProducts;

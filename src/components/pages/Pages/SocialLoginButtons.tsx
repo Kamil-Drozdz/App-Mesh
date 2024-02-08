@@ -21,7 +21,7 @@ const icons = [
   { icon: <AiFillTwitterSquare className='text-[#55acee]' size={IconSize.medium} />, tooltip: 'Twitter' },
   { icon: <AiOutlineGithub className='text-[#fffff]' size={IconSize.medium} />, tooltip: 'Github' },
 ];
-const SocialLoginButtons = ({ setFormData }) => {
+function SocialLoginButtons({ setFormData }) {
   const navigate = useNavigate();
   const handleProviderLogin = async (provider: string) => {
     try {
@@ -85,6 +85,6 @@ const SocialLoginButtons = ({ setFormData }) => {
       </div>
     </>
   );
-};
+}
 
 export default SocialLoginButtons;

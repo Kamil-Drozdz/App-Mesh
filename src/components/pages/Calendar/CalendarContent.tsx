@@ -1,10 +1,11 @@
 import { Timestamp } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
 
 import CardContainer from '@/common/CardContainer';
 import PageContainer from '@/common/PageContainer';
@@ -14,12 +15,16 @@ import CalendarAddEvent from './content/CalendarAddEvent';
 import useFirebaseData from '@/hooks/useFirebaseData';
 import Loader from '@/common/Loader';
 import { ErrorComponent } from '@/common/ErrrorComponent';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
+import { TooltipProvider } from '@/UI/Tooltip';
 import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
 import { addDocumentFirebase } from '@/lib/firebaseHelpers/addDocumentFirebase';
-import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';
+import { removeDocumentFirebase } from '@/lib/firebaseHelpers/removeDocumentFirebase';
 import useCurrentUser from '@/store/CurrentUser';
 import './calendar.css';
+import { FilterTypesCalendar } from '@/lib/enums/filterTypesCalendar';
+import { renderEventContent } from './content/renderEventContent';
+import { Collections } from '@/lib/enums/collections';
+
 export interface CalendarEvent {
   id: string;
   title: string;
@@ -31,14 +36,14 @@ export interface CalendarEvent {
   description: string;
 }
 
-export const collectionName = 'calendar';
+
 export let docId;
 
-const CalendarContent = () => {
+function CalendarContent() {
   const { currentUser } = useCurrentUser();
   docId = currentUser?.uid || '';
   const today = new Date();
-  const { data, loading, error } = useFirebaseData<CalendarEvent[]>(collectionName);
+  const { data, loading, error } = useFirebaseData<CalendarEvent[]>(Collections.calendar);
 
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>(labels.map((item) => item.name));
@@ -71,7 +76,7 @@ const CalendarContent = () => {
 
   const existingEventIndex = events.findIndex((event) => event.id === formData.id);
 
-  const handleAddEvent = () => {
+  const handleAddEvent = useCallback(() => {
     if (formData.title && formData.start && formData.end && formData.label) {
       setIsOpen(false);
 
@@ -79,10 +84,12 @@ const CalendarContent = () => {
         const updatedEvents = [...events];
         updatedEvents[existingEventIndex] = formData;
         setEvents(updatedEvents);
-        updateDocumentFirebase(collectionName, docId, updatedEvents);
+        updateDocumentFirebase(Collections.calendar, docId, updatedEvents).then(() =>
+          toast.success('Event updated successfully!')
+        );
       } else {
         setEvents([...events, formData]);
-        addDocumentFirebase(collectionName, docId, formData);
+        addDocumentFirebase(Collections.calendar, docId, formData).then(() => toast.success('Event added successfully!'));
       }
       setFormData({
         id: uuidv4(),
@@ -97,16 +104,21 @@ const CalendarContent = () => {
     } else {
       alert('Please fill in all required fields (Title, Start Date, End Date,label).');
     }
-  };
+  }, [formData, events, existingEventIndex, today, Collections.calendar, docId]);
 
-  const handleDeleteEvent = (eventId) => {
-    const updatedEvents = events.filter((item) => item.id !== eventId);
-    setEvents(updatedEvents);
-    setIsOpen(false);
-    //just for firebase one item to delete
-    const removeItem = events.find((item) => item.id === eventId) as CalendarEvent;
-    removeItemFirebase<CalendarEvent>(collectionName, docId, removeItem);
-  };
+  const handleDeleteEvent = useCallback(
+    (eventId) => {
+      const updatedEvents = events.filter((item) => item.id !== eventId);
+      setEvents(updatedEvents);
+      setIsOpen(false);
+      // just for firebase one item to delete
+      const removeItem = events.find((item) => item.id === eventId) as CalendarEvent;
+      removeDocumentFirebase<CalendarEvent>(Collections.calendar, docId, removeItem).then(() =>
+        toast.success('Event deleted successfully!')
+      );
+    },
+    [events, Collections.calendar, docId]
+  );
 
   const handleEventDrop = (info) => {
     const updatedEvents = events.map((event) => {
@@ -120,7 +132,9 @@ const CalendarContent = () => {
       return event;
     });
     setEvents(updatedEvents);
-    updateDocumentFirebase(collectionName, docId, updatedEvents);
+    updateDocumentFirebase(Collections.calendar, docId, updatedEvents).then(() =>
+      toast.success('Event updated successfully!')
+    );
   };
 
   const handleSelectEvent = (info) => {
@@ -138,7 +152,7 @@ const CalendarContent = () => {
   };
 
   const filteredEvents = events.filter((event) => {
-    if (selectedFilters.includes('View All')) {
+    if (selectedFilters.includes(FilterTypesCalendar.all)) {
       return true;
     }
     if (event.label !== null) {
@@ -168,51 +182,6 @@ const CalendarContent = () => {
     return <ErrorComponent error={error} />;
   }
 
-  const renderEventContent = (eventInfo) => {
-    const event = eventInfo.event;
-    const color = labels.find((item) => item.name === event._def.extendedProps.label);
-
-    const handleLinkClick = (e) => {
-      e.stopPropagation();
-    };
-
-    return (
-      <div>
-        <Tooltip>
-          <TooltipTrigger>
-            <div className={`bg-opacity-[12%] ${color?.color} z-1 rounded border border-opacity-10 px-2 font-semibold`}>
-              {event.title}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent className=' !bg-black !p-0' side='left'>
-            <div className=' bg-lightWhite min-w-[200px] px-6 text-base text-gray-800 dark:bg-secondary dark:text-gray-300'>
-              <div className='flex items-center justify-start space-x-2'>
-                <span className='font-semibold'>eventURL: </span>
-                <a
-                  target='_blank'
-                  rel='noreferrer'
-                  className='!text-blue-500'
-                  href={event._def.extendedProps.eventUrl}
-                  onClick={handleLinkClick}
-                >
-                  {event._def.extendedProps.eventUrl}
-                </a>
-              </div>
-              <div className='flex items-center justify-start space-x-2'>
-                <span className='font-semibold'>Place: </span>
-                <p>{event._def.extendedProps.place}</p>
-              </div>
-              <div className='flex items-center justify-start space-x-2'>
-                <span className='font-semibold'>Description: </span>
-                <p>{event._def.extendedProps.description}</p>
-              </div>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      </div>
-    );
-  };
-
   return (
     <>
       <LeftEditSidebar
@@ -241,8 +210,8 @@ const CalendarContent = () => {
                 locale={i18n.language}
                 plugins={[dayGridPlugin, interactionPlugin]}
                 initialView='dayGridMonth'
-                editable={true}
-                selectable={true}
+                editable
+                selectable
                 eventDrop={handleEventDrop}
                 events={filteredEvents}
                 eventClick={handleSelectEvent}
@@ -268,6 +237,6 @@ const CalendarContent = () => {
       </PageContainer>
     </>
   );
-};
+}
 
 export default CalendarContent;

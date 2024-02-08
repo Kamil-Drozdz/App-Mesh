@@ -9,26 +9,27 @@ import useCurrentUser from '@/store/CurrentUser';
 import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
 import TopNavbarItem from './TopNavbarItem';
+import TopNavbarLanguagePlaceholder from './TopNavbarLanguagePlaceholder';
 
-const TopNavbar = () => {
+function TopNavbar() {
   const { t, i18n } = useTranslation();
   const { isFullScreen } = useFullScreen();
   const { currentUser } = useCurrentUser();
   const { toggleMenu } = useMenu();
-  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [prevScrollPos, setPrevScrollPos] = useState(pageYOffset);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
+      const currentScrollPos = pageYOffset;
       setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 50);
       setPrevScrollPos(currentScrollPos);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      removeEventListener('scroll', handleScroll);
     };
   }, [prevScrollPos]);
 
@@ -47,42 +48,27 @@ const TopNavbar = () => {
           </ul>
           <div className='flex items-center space-x-6'>
             <ul className='flex items-center space-x-2'>
-              <>
-                <Select onValueChange={(e) => i18n.changeLanguage(String(e))}>
-                  <SelectTrigger className='whitespace-nowrap border-secondary md:w-[140px]'>
-                    <SelectValue
-                      placeholder={languageOptions
-                        .filter((languageOption) => languageOption.value === i18n.language)
-                        .map((languageOption) => (
-                          <div className='flex items-center justify-center space-x-2'>
-                            <img
-                              height={16}
-                              width={16}
-                              className='h-4 w-4'
-                              src={languageOption.icon}
-                              alt={`Flag of ${languageOption.label}`}
-                            />
-                            <p>{t(languageOption.label)}</p>
-                          </div>
-                        ))}
-                    />
-                  </SelectTrigger>
-                  <SelectContent className='border-secondary'>
-                    <SelectGroup className='bg-secondary text-secondary-foreground'>
-                      <SelectLabel>{t('Choose Language')}</SelectLabel>
-                      {languageOptions.map((languageOption, index) => (
-                        <SelectItem key={index} value={languageOption.value}>
-                          <div className='flex items-center justify-center space-x-2'>
-                            <img height={16} width={16} className='h-4 w-4' src={languageOption.icon} />
-                            <p>{t(languageOption.label)}</p>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-                <TopNavbarTooltipIcons />
-              </>
+              <Select onValueChange={(e) => i18n.changeLanguage(String(e))}>
+                <SelectTrigger className='whitespace-nowrap border-secondary md:w-[140px]'>
+                  <SelectValue
+                    placeholder={<TopNavbarLanguagePlaceholder t={t} i18n={i18n} languageOptions={languageOptions} />}
+                  />
+                </SelectTrigger>
+                <SelectContent className='border-secondary'>
+                  <SelectGroup className='bg-secondary text-secondary-foreground'>
+                    <SelectLabel>{t('Choose Language')}</SelectLabel>
+                    {languageOptions.map((languageOption, index) => (
+                      <SelectItem key={index} value={languageOption.value}>
+                        <div className='flex items-center justify-center space-x-2'>
+                          <img height={16} width={16} className='h-4 w-4' src={languageOption.icon} />
+                          <p>{t(languageOption.label)}</p>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <TopNavbarTooltipIcons />
             </ul>
             <TopNavbarPopoverUser currentUser={currentUser} />
           </div>
@@ -90,6 +76,6 @@ const TopNavbar = () => {
       ) : null}
     </>
   );
-};
+}
 
 export default TopNavbar;

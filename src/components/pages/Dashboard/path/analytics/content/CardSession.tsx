@@ -7,7 +7,7 @@ import CardContainer from '@/common/CardContainer';
 import ProgressBar from '@/common/ProgressBar';
 import { DataSession } from '@/data/charts/dataSession';
 
-const CardSession = () => {
+function CardSession() {
   const { data, options, progressData } = DataSession();
   ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -32,7 +32,7 @@ const CardSession = () => {
         {progressData.map((item, index) => (
           <div key={index} className='my-2 basis-1/2 space-y-1 px-2 md:basis-1/2'>
             <p>
-              {item.name}: {item.value}
+              {item.name}:{item.value}
               {item.unit}
             </p>
             <ProgressBar width={(item.value / item.goal) * 100} />
@@ -41,6 +41,6 @@ const CardSession = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default CardSession;

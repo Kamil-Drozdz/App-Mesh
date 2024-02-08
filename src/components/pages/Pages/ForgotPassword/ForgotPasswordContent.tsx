@@ -1,11 +1,11 @@
 import ForgotPasswordPage from './content/ForgotPasswordPage';
 
-const ForgotPasswordContent = () => {
+function ForgotPasswordContent() {
   return (
     <div>
       <ForgotPasswordPage />
     </div>
   );
-};
+}
 
 export default ForgotPasswordContent;

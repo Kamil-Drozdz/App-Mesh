@@ -1,7 +1,7 @@
 import InvoiceTemplateField from './InvoiceTemplateField';
 import { useInvoice } from '@/store/Invoice';
 
-const InvoiceTo = ({ isEditable }) => {
+function InvoiceTo({ isEditable }) {
   const { invoice } = useInvoice();
 
   return (
@@ -33,6 +33,6 @@ const InvoiceTo = ({ isEditable }) => {
       />
     </div>
   );
-};
+}
 
 export default InvoiceTo;

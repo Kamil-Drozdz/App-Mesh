@@ -1,11 +1,11 @@
-import * as React from 'react';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react';
 
 import clsx from '@/lib/clsx';
 
-const Separator = React.forwardRef<
-  React.ElementRef<typeof SeparatorPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+const Separator = forwardRef<
+  ElementRef<typeof SeparatorPrimitive.Root>,
+  ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
 >(({ className, orientation = 'horizontal', decorative = true, ...props }, ref) => (
   <SeparatorPrimitive.Root
     ref={ref}

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 interface FullScreenProps {
   isFullScreen: boolean;
-  toggleFullScreen: (boolean) => void;
+  toggleFullScreen: () => void;
 }
 const useFullScreen = create<FullScreenProps>()((set) => ({
   isFullScreen: false,

@@ -11,7 +11,7 @@ interface InvoiceItemProps {
   rate: number | null;
   hours: number | null;
 }
-const InvoiceListItemsAdd = ({ isEditable }: { isEditable: boolean }) => {
+function InvoiceListItemsAdd({ isEditable }: { isEditable: boolean }) {
   const [invoiceItem, setInvoiceItem] = useState<InvoiceItemProps>({ task: '', rate: null, hours: null });
   const { setInvoice } = useInvoice();
 
@@ -72,6 +72,6 @@ const InvoiceListItemsAdd = ({ isEditable }: { isEditable: boolean }) => {
       </>
     )
   );
-};
+}
 
 export default InvoiceListItemsAdd;

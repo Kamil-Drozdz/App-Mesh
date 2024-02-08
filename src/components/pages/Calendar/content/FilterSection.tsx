@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 
 import { Input } from '@/UI/Input';
+import { FilterTypesCalendar } from '@/lib/enums/filterTypesCalendar';
 
 interface FilterSectionProps {
   labels: { name: string; color: string }[];
@@ -9,27 +10,22 @@ interface FilterSectionProps {
   setIsAddEventOpen(isAddEventOpen: boolean): void;
 }
 
-const FilterSection: React.FC<FilterSectionProps> = ({
-  setIsAddEventOpen,
-  labels,
-  selectedFilters,
-  setSelectedFilters,
-}) => {
+const FilterSection = ({ setIsAddEventOpen, labels, selectedFilters, setSelectedFilters }: FilterSectionProps) => {
   const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
     const filterName = event.target.id;
 
-    if (filterName === 'View All') {
-      if (selectedFilters.includes('View All')) {
+    if (filterName === FilterTypesCalendar.all) {
+      if (selectedFilters.includes(FilterTypesCalendar.all)) {
         setSelectedFilters([]);
       } else {
         setSelectedFilters(labels.map((item) => item.name));
       }
+    } else if (selectedFilters.includes(filterName)) {
+      setSelectedFilters(
+        selectedFilters.filter((filter) => filter !== FilterTypesCalendar.all && filter !== filterName)
+      );
     } else {
-      if (selectedFilters.includes(filterName)) {
-        setSelectedFilters(selectedFilters.filter((filter) => filter !== 'View All' && filter !== filterName));
-      } else {
-        setSelectedFilters([...selectedFilters, filterName]);
-      }
+      setSelectedFilters([...selectedFilters, filterName]);
     }
     setIsAddEventOpen(false);
   };
@@ -41,7 +37,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
           <Input
             id={item.name}
             className={`h-4 w-4 ${item.color}`}
-            defaultChecked={true}
+            defaultChecked
             type='checkbox'
             checked={selectedFilters.includes(item.name)}
             onChange={handleFilterChange}

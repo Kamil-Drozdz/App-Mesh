@@ -7,7 +7,7 @@ import CardContainer from '@/common/CardContainer';
 import { IconSize } from '@/lib/enums/iconSize';
 import useCurrentUser from '@/store/CurrentUser';
 
-const CardCongratulations = () => {
+function CardCongratulations() {
   const { currentUser } = useCurrentUser();
   const { t } = useTranslation();
   return (
@@ -29,6 +29,6 @@ const CardCongratulations = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default CardCongratulations;

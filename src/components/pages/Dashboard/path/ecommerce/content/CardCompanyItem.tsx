@@ -6,7 +6,7 @@ import { CompanyData } from '@/data/pages/ecommerce/dataCompany';
 interface CardCompanyItemProps {
   item: CompanyData;
 }
-const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
+function CardCompanyItem({ item }: CardCompanyItemProps) {
   return (
     <>
       <dl className='my-1 flex w-full items-center justify-center space-x-2 py-1 text-[12px] transition-colors duration-200 ease-in-out hover:dark:bg-secondary md:px-4 md:text-base'>
@@ -26,9 +26,7 @@ const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
           </div>
         </div>
         <dd className='flex basis-1/5 items-center justify-center'>
-          <div
-            className={`hidden h-12 w-12 items-center justify-center rounded-full bg-[#28c76f] bg-opacity-25 text-[#28c76f] md:flex `}
-          >
+          <div className='hidden h-12 w-12 items-center justify-center rounded-full bg-[#28c76f] bg-opacity-25 text-[#28c76f] md:flex '>
             {' '}
             {item.icon}
           </div>
@@ -48,6 +46,6 @@ const CardCompanyItem = ({ item }: CardCompanyItemProps) => {
       <Separator />
     </>
   );
-};
+}
 
 export default CardCompanyItem;

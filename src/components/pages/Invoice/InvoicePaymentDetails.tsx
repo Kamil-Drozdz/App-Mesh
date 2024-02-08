@@ -2,7 +2,7 @@ import LabelRow from '@/common/LabelRow';
 import InvoiceTemplateField from './InvoiceTemplateField';
 import { useInvoice } from '@/store/Invoice';
 
-const InvoicePaymentDetails = ({ isEditable, total }) => {
+function InvoicePaymentDetails({ isEditable, total }) {
   const { invoice } = useInvoice();
   return (
     <div>
@@ -24,6 +24,6 @@ const InvoicePaymentDetails = ({ isEditable, total }) => {
       />
     </div>
   );
-};
+}
 
 export default InvoicePaymentDetails;

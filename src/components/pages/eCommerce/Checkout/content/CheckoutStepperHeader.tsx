@@ -1,10 +1,10 @@
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
+import { useEffect, useState } from 'react';
 import { stepperHeader } from '@/data/pages/ecommerce/dataCheckout';
 import useProductsStore from '@/store/ProductsStore';
-import { useEffect, useState } from 'react';
 
-const CheckoutStepperHeader = ({ setActiveStep, activeStep }) => {
+function CheckoutStepperHeader({ setActiveStep, activeStep }) {
   const { cart } = useProductsStore();
   const [maxReachedStep, setMaxReachedStep] = useState(1);
 
@@ -56,6 +56,6 @@ const CheckoutStepperHeader = ({ setActiveStep, activeStep }) => {
       })}
     </div>
   );
-};
+}
 
 export default CheckoutStepperHeader;

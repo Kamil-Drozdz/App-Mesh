@@ -7,7 +7,7 @@ import { auth, db } from '@/../firebaseConfig';
 import { BasicRoutes } from '@/lib/enums/routes';
 import useCurrentUser from '@/store/CurrentUser';
 
-export const ProtectedComponent = ({ component: Component }) => {
+export function ProtectedComponent({ Component }) {
   const [loading, setLoading] = useState(true);
   const { setCurrentUser, currentUser } = useCurrentUser();
 
@@ -38,7 +38,6 @@ export const ProtectedComponent = ({ component: Component }) => {
 
   if (currentUser?.email) {
     return <Component />;
-  } else {
-    return <Navigate to={BasicRoutes.UNAUTHORIZED} />;
   }
-};
+  return <Navigate to={BasicRoutes.UNAUTHORIZED} />;
+}

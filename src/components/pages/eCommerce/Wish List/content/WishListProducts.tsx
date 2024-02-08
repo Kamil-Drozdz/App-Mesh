@@ -2,7 +2,7 @@ import ShopProduct from '../../Shop/content/ShopProduct';
 import noData from '@/assets/no-data.svg';
 import useProductsStore from '@/store/ProductsStore';
 
-const WishListProducts = () => {
+function WishListProducts() {
   const { wishlist } = useProductsStore();
 
   return (
@@ -19,6 +19,6 @@ const WishListProducts = () => {
       )}
     </>
   );
-};
+}
 
 export default WishListProducts;

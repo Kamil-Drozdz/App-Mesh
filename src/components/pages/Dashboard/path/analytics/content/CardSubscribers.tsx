@@ -15,7 +15,7 @@ import { FiUsers } from 'react-icons/fi';
 import CardChart from '@/components/pages/Dashboard/CardChart';
 import { DataSubscribers } from '@/data/charts/dataSubscribers';
 
-const CardSubscribers = () => {
+function CardSubscribers() {
   const { data, options } = DataSubscribers();
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend);
   return (
@@ -29,6 +29,6 @@ const CardSubscribers = () => {
       <Line data-testid='subscribers-chart' options={options} data={data} />
     </CardChart>
   );
-};
+}
 
 export default CardSubscribers;

@@ -6,7 +6,7 @@ import DetailsProduct from './content/DetailsProduct';
 import PageContainer from '@/common/PageContainer';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 
-const DetailsContent = () => {
+function DetailsContent() {
   const { productID } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +23,6 @@ const DetailsContent = () => {
       <DetailsProduct productID={productID} />
     </PageContainer>
   );
-};
+}
 
 export default DetailsContent;

@@ -4,7 +4,7 @@ import CardContainer from '@/common/CardContainer';
 import { MeetupDataProps, generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
 import { generateData } from '@/lib/generateData';
 
-const CardProject = () => {
+function CardProject() {
   const data: MeetupDataProps[] = generateData(6, generateMeetupData);
 
   return (
@@ -58,9 +58,9 @@ const CardProject = () => {
           <span className='whitespace-nowrap font-semibold  text-gray-400'>$840.99 </span>
         </div>
       </div>
-      <Button className='!bg-buttonPrimary w-full !text-white hover:brightness-110'>Join Team</Button>
+      <Button className='w-full !bg-buttonPrimary !text-white hover:brightness-110'>Join Team</Button>
     </CardContainer>
   );
-};
+}
 
 export default CardProject;

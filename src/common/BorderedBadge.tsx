@@ -2,7 +2,7 @@ import clsx from '@/lib/clsx';
 
 type BorderedBadgeProps = {
   count?: number;
-  className?:string,
+  className?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function BorderedBadge({ count, className, ...props }: BorderedBadgeProps) {

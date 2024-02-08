@@ -11,10 +11,10 @@ import { IconSize } from '@/lib/enums/iconSize';
 import { handleEnterDown } from '@/lib/handleEnterDown';
 import { uploadImageAndGetURL } from '@/lib/firebaseHelpers/uploadImageAndGetURL';
 import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
-import { collectionNameChats } from './Chat';
 import { addDocumentFirebase } from '@/lib/firebaseHelpers/addDocumentFirebase';
+import { Collections } from '@/lib/enums/collections';
 
-const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
+function ChatInput({ currentUser, selectedUser, chats, setChats }) {
   const { i18n } = useTranslation();
   const [message, setMessage] = useState<string>('');
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -42,7 +42,7 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
       const allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
       if (allowedImageTypes.includes(file.type)) {
         const imageUrl = await uploadImageAndGetURL(file);
-        //adding file to storage and returning image url
+        // adding file to storage and returning image url
         if (imageUrl !== null) setMessage(imageUrl);
       } else {
         alert('Please upload a valid image file.');
@@ -55,8 +55,8 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
 
     const newMessage = {
       photoURL: currentUser?.photoURL,
-      sender: sender,
-      content: content,
+      sender,
+      content,
       timestamp: new Date().toISOString(),
     };
 
@@ -87,8 +87,8 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
           return chat;
         });
 
-        await updateDocumentFirebase(collectionNameChats, currentUser.uid, updatedChatsCurrentUser);
-        await updateDocumentFirebase(collectionNameChats, selectedUser?.id, updatedChatsSelectedUser);
+        await updateDocumentFirebase(Collections.chats, currentUser.uid, updatedChatsCurrentUser);
+        await updateDocumentFirebase(Collections.chats, selectedUser?.id, updatedChatsSelectedUser);
       }
     } else {
       const newChat = {
@@ -99,8 +99,8 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
         photoURL: currentUser.photoURL,
       };
 
-      await addDocumentFirebase(collectionNameChats, selectedUser?.id, newChat);
-      await updateDocumentFirebase(collectionNameChats, currentUser.uid, [
+      await addDocumentFirebase(Collections.chats, selectedUser?.id, newChat);
+      await updateDocumentFirebase(Collections.chats, currentUser.uid, [
         ...chats,
         {
           ...newChat,
@@ -154,6 +154,6 @@ const ChatInput = ({ currentUser, selectedUser, chats, setChats }) => {
       </Button>
     </div>
   );
-};
+}
 
 export default ChatInput;

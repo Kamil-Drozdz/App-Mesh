@@ -1,12 +1,13 @@
+import { toast } from 'react-toastify';
 import { format } from 'date-fns';
-import { useMemo, useState } from 'react';
+import { useRef, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { AiFillCloseSquare } from 'react-icons/ai';
-import { BiEdit, BiSearch } from 'react-icons/bi';
+import { BiSearch } from 'react-icons/bi';
 import { RiDraggable } from 'react-icons/ri';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { Player } from '@lordicon/react';
 
-import { collectionName, docId, initializeNewTask } from './Todo';
+import { docId, initializeNewTask } from './Todo';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import CompletedStamp from '@/assets/completed-stamp.webp';
@@ -14,7 +15,10 @@ import { tags } from '@/data/pages/todo/tags';
 import { IconSize } from '@/lib/enums/iconSize';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
-import { removeItemFirebase } from '@/lib/firebaseHelpers/removeItemFirebase';
+import { removeDocumentFirebase } from '@/lib/firebaseHelpers/removeDocumentFirebase';
+import { Collections } from '@/lib/enums/collections';
+import EditIcon from '@/assets/lottieJson/wired-lineal-35-edit.json';
+import DeleteIcon from '@/assets/lottieJson/system-solid-39-trash.json';
 
 const TodoDrag = ({
   tasks,
@@ -28,13 +32,11 @@ const TodoDrag = ({
   setIsAddEventOpen,
 }) => {
   const [search, setSearch] = useState('');
-  const filterTasks = useMemo(() => {
-    return tasks.filter(
-      (task) =>
-        task.title.toLowerCase().includes(search.toLocaleLowerCase()) ||
-        task.description.toLowerCase().includes(search.toLocaleLowerCase())
-    );
-  }, [tasks, search]);
+  const filterTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(search.toLocaleLowerCase()) ||
+      task.description.toLowerCase().includes(search.toLocaleLowerCase())
+  );
 
   const mapedtasks = search
     ? filterTasks
@@ -43,6 +45,8 @@ const TodoDrag = ({
     : isSorted
     ? tasks.sort((a, b) => a.date.getTime() - b.date.getTime())
     : tasks;
+
+  const playerRefs = useRef(new Map()).current;
 
   const handleSearchChange = (e) => {
     const searchText = e.target.value;
@@ -55,7 +59,7 @@ const TodoDrag = ({
   const handleCheckTodo = (id) => {
     const checkedTodo = tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task));
     setTasks(checkedTodo);
-    updateDocumentFirebase(collectionName, docId, checkedTodo);
+    updateDocumentFirebase(Collections.todos, docId, checkedTodo);
   };
 
   const handleEditTask = (id) => {
@@ -77,8 +81,17 @@ const TodoDrag = ({
     setTasks(deletedTodo);
     // just usecase for firebase
     const deleteItem = tasks.find((task) => task.id === id);
-    removeItemFirebase(collectionName, docId, deleteItem);
+    removeDocumentFirebase(Collections.todos, docId, deleteItem).then(() =>
+      toast.success('Task deleted successfully!')
+    );
   };
+  setTimeout(
+    () =>
+      playerRefs.forEach((player) => {
+        player.goToLastFrame();
+      }),
+    0
+  );
 
   return (
     <div className='w-full select-none'>
@@ -158,18 +171,29 @@ const TodoDrag = ({
                           <div className='text-gray-600'>{format(task.date, 'MMMM d ')}</div>
                           <div className='space-x-1'>
                             <Button
+                              onMouseOver={() => playerRefs.get(`${task.id}-edit`)?.playFromBeginning()}
                               data-testid='edit-todo'
                               className='h-fit w-fit rounded-none border-none !bg-transparent !p-0'
                               onClick={() => handleEditTask(task.id)}
                             >
-                              <BiEdit size={IconSize.basic} className='text-orange-500 ' />
+                              <Player
+                                ref={(el) => playerRefs.set(`${task.id}-edit`, el)}
+                                size={IconSize.basic}
+                                icon={EditIcon}
+                              />
                             </Button>
                             <Button
+                              onMouseOver={() => playerRefs.get(`${task.id}-delete`)?.playFromBeginning()}
                               data-testid='delete-todo'
                               className='h-fit w-fit rounded-none border-none !bg-transparent !p-0'
                               onClick={() => handleDeleteTodo(task.id)}
                             >
-                              <AiFillCloseSquare size={IconSize.basic} className='text-red-500 ' />
+                              <Player
+                                colorize='red'
+                                ref={(el) => playerRefs.set(`${task.id}-delete`, el)}
+                                size={IconSize.basic}
+                                icon={DeleteIcon}
+                              />
                             </Button>
                           </div>
                         </div>

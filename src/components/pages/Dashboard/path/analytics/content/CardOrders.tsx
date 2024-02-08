@@ -15,7 +15,7 @@ import { BsBox } from 'react-icons/bs';
 import CardChart from '@/components/pages/Dashboard/CardChart';
 import { DataOrder } from '@/data/charts/dataOrder';
 
-const CardOrders = () => {
+function CardOrders() {
   const { data, options } = DataOrder();
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend);
   return (
@@ -29,6 +29,6 @@ const CardOrders = () => {
       <Line data-testid='orders-chart' options={options} data={data} />
     </CardChart>
   );
-};
+}
 
 export default CardOrders;

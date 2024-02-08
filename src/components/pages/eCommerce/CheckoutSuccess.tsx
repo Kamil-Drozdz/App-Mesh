@@ -4,7 +4,7 @@ import { Button } from '@/UI/Button';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { totalValue } from '@/lib/totalValue';
 
-const CheckoutSuccess = () => {
+function CheckoutSuccess() {
   const navigate = useNavigate();
   const { getItem, removeItem } = useLocalStorage('cart');
   const purchasedItems = getItem();
@@ -14,7 +14,7 @@ const CheckoutSuccess = () => {
     removeItem();
   };
   return (
-    <div className=' flex min-h-screen w-full flex-col items-center justify-center space-y-2 bg-background text-foreground p-6 md:pt-0'>
+    <div className=' flex min-h-screen w-full flex-col items-center justify-center space-y-2 bg-background p-6 text-foreground md:pt-0'>
       <BsFillCheckCircleFill className='h-10 w-10 text-green-500' />
       <h2>Thanks for your order</h2>
       <p>You have just completed your payment. Below you can see what you have purchased:</p>
@@ -49,6 +49,6 @@ const CheckoutSuccess = () => {
       </Button>
     </div>
   );
-};
+}
 
 export default CheckoutSuccess;

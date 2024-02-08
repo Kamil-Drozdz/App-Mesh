@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CardContainer from '@/common/CardContainer';
 import { DataEarnings } from '@/data/charts/dataEarnings';
 
-const CardEarnings = () => {
+function CardEarnings() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const { t } = useTranslation();
   const { data, options } = DataEarnings();
@@ -25,6 +25,6 @@ const CardEarnings = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default CardEarnings;

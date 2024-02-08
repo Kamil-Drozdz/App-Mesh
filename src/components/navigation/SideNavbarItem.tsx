@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import SideNavbarGroupItem from './SideNavbarGroupItem';
 
-const SideNavbarItem = ({ menuCollapsed, group }) => {
-  const [activeDropdown, setActiveDropdown] = useState(null);
-  const handleActiveDropdown = (name) => {
-    if (activeDropdown === name) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(name);
-    }
-  };
+function SideNavbarItem({ menuCollapsed, group }) {
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const handleActiveDropdown = useCallback(
+    (name: string) => {
+      if (activeDropdown === name) {
+        setActiveDropdown(null);
+      } else {
+        setActiveDropdown(name);
+      }
+    },
+    [activeDropdown]
+  );
 
   return (
     <div className='p-2'>
@@ -31,6 +35,6 @@ const SideNavbarItem = ({ menuCollapsed, group }) => {
       </ul>
     </div>
   );
-};
+}
 
 export default SideNavbarItem;

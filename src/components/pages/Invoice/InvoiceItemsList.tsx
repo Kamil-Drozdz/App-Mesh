@@ -11,7 +11,7 @@ interface InvoiceItemsList {
   };
   index: number;
 }
-const InvoiceItemsList = ({ isEditable, item, index }: InvoiceItemsList) => {
+function InvoiceItemsList({ isEditable, item, index }: InvoiceItemsList) {
   const { setInvoice } = useInvoice();
 
   const removeInvoiceItem = (index) => {
@@ -26,7 +26,8 @@ const InvoiceItemsList = ({ isEditable, item, index }: InvoiceItemsList) => {
       <TableCell>{item.rate}$</TableCell>
       <TableCell>{item.hours}</TableCell>
       <TableCell className='text-right'>
-        {item?.rate !== null && item?.hours !== null ? item.rate * item.hours : 0}$$
+        {item?.rate !== null && item?.hours !== null ? item.rate * item.hours : 0}
+        $$
       </TableCell>
       {isEditable && (
         <TableCell>
@@ -37,6 +38,6 @@ const InvoiceItemsList = ({ isEditable, item, index }: InvoiceItemsList) => {
       )}
     </TableRow>
   );
-};
+}
 
 export default InvoiceItemsList;

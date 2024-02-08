@@ -17,11 +17,11 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { Separator } from '@/UI/Separator';
 import CardContainer from '@/common/CardContainer';
 import { DataRevenueReport } from '@/data/charts/dataRevenueReport';
-import { convert } from '@/lib/convert';
+import { convertNumberToThousands } from '@/lib/convertNumberToThousands';
 import { totalValue } from '@/lib/totalValue';
 import useFullScreen from '@/store/FullScreen';
 
-const CardRevenueReport = () => {
+function CardRevenueReport() {
   const { options, optionsLine, data } = DataRevenueReport();
   const { isFullScreen } = useFullScreen();
   const { t } = useTranslation();
@@ -59,7 +59,7 @@ const CardRevenueReport = () => {
         </Select>
         <div className='text-lg dark:text-white'>$25.852</div>
         <h4 className='dark:text-base dark:text-gray-300'>
-          {t('Budget')} {convert(totalValue(data.datasets[0].data))}
+          {t('Budget')} {convertNumberToThousands(totalValue(data.datasets[0].data))}
         </h4>
         <Line
           data-testid='budget-chart'
@@ -71,6 +71,6 @@ const CardRevenueReport = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default CardRevenueReport;

@@ -1,6 +1,11 @@
 import { Separator } from '@/UI/Separator';
+import { Contact } from './Chat';
 
-const ChatContactItem = ({ handleUserClick, contact }) => {
+interface ChatContactItemProps {
+  handleUserClick: (contact: Contact) => void;
+  contact: Contact;
+}
+function ChatContactItem({ handleUserClick, contact }: ChatContactItemProps) {
   return (
     <>
       <div
@@ -19,6 +24,6 @@ const ChatContactItem = ({ handleUserClick, contact }) => {
       <Separator />
     </>
   );
-};
+}
 
 export default ChatContactItem;

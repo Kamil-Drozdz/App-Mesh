@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -6,8 +7,16 @@ import CheckoutPayment from '../../payments/CheckoutPayment';
 import CheckoutStepperItem from './CheckoutStepperItem';
 import emptyCart from '@/assets/empty-cart.svg';
 import useProductsStore from '@/store/ProductsStore';
+import { FormData } from '../CheckoutContent';
 
-const CheckoutStepper = ({ activeStep, setFormData, formData, errors, setErrors }) => {
+interface CheckoutStepperProps {
+  activeStep: number;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  formData: FormData;
+  errors: Record<string, string>;
+  setErrors: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+}
+const CheckoutStepper = memo(({ activeStep, setFormData, formData, errors, setErrors }: CheckoutStepperProps) => {
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
   const { cart } = useProductsStore();
 
@@ -35,6 +44,6 @@ const CheckoutStepper = ({ activeStep, setFormData, formData, errors, setErrors 
       )}
     </>
   );
-};
+});
 
 export default CheckoutStepper;

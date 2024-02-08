@@ -11,8 +11,7 @@ import { BasicRoutes } from '@/lib/enums/routes';
 import { validateField } from '@/lib/validateField';
 import { forgotPasswordSchema } from '@/schema/forgotPasswordSchema';
 
-
-const ForgotPasswordPage = () => {
+function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({ email: '' });
 
@@ -73,6 +72,6 @@ const ForgotPasswordPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default ForgotPasswordPage;

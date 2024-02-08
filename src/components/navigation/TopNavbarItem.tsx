@@ -1,6 +1,11 @@
 import { Button } from '@/UI/Button';
 
-const TopNavbarItem = ({ index, icon, toggleMenu }) => {
+interface TopNavbarItemProps {
+  index: number;
+  icon: { icon: JSX.Element; href?: string };
+  toggleMenu: (boolean) => void;
+}
+function TopNavbarItem({ index, icon, toggleMenu }: TopNavbarItemProps) {
   return (
     <li className={`${index === 0 ? 'block lg:hidden' : 'hidden md:block'}`} key={index}>
       {index === 0 ? (
@@ -12,6 +17,6 @@ const TopNavbarItem = ({ index, icon, toggleMenu }) => {
       )}
     </li>
   );
-};
+}
 
 export default TopNavbarItem;

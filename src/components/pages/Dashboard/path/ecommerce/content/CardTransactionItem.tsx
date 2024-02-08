@@ -4,21 +4,17 @@ import { TransactionData } from '@/data/pages/ecommerce/dataTransaction';
 interface CardTransactionItemProps {
   item: TransactionData;
 }
-const CardTransactionItem = ({ item }: CardTransactionItemProps) => {
+function CardTransactionItem({ item }: CardTransactionItemProps) {
   return (
     <>
-      <dl className='my-1 flex w-full items-center justify-center px-4 py-1 transition-colors duration-200 ease-in-out hover:bg-lightWhite hover:dark:bg-secondary'>
+      <dl className='hover:bg-lightWhite my-1 flex w-full items-center justify-center px-4 py-1 transition-colors duration-200 ease-in-out hover:dark:bg-secondary'>
         <dd className='flex basis-1/4 items-center justify-center'>
           {parseFloat(item.revenue) >= 499 ? (
-            <div
-              className={`flex h-12 w-12 items-center justify-center rounded-full bg-[#28c76f] bg-opacity-25 text-[#28c76f] `}
-            >
+            <div className='flex h-12 w-12 items-center justify-center rounded-full bg-[#28c76f] bg-opacity-25 text-[#28c76f] '>
               {item.icon}
             </div>
           ) : (
-            <div
-              className={`flex h-12 w-12 items-center justify-center rounded-full bg-red-500 bg-opacity-25 text-red-500 `}
-            >
+            <div className='flex h-12 w-12 items-center justify-center rounded-full bg-red-500 bg-opacity-25 text-red-500 '>
               {item.icon}
             </div>
           )}
@@ -40,6 +36,6 @@ const CardTransactionItem = ({ item }: CardTransactionItemProps) => {
       <Separator />
     </>
   );
-};
+}
 
 export default CardTransactionItem;

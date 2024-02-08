@@ -6,7 +6,7 @@ import CardContainer from '@/common/CardContainer';
 import { DataSales } from '@/data/charts/dataSales';
 import { IconSize } from '@/lib/enums/iconSize';
 
-const CardSales = () => {
+function CardSales() {
   const { data, options } = DataSales();
   ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
   return (
@@ -21,6 +21,6 @@ const CardSales = () => {
       <Radar data-testid='sales-chart' className='max-h-[350px]' data={data} options={options} />
     </CardContainer>
   );
-};
+}
 
 export default CardSales;

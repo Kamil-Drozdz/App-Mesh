@@ -3,7 +3,7 @@ import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
 import CardContainer from '@/common/CardContainer';
 
-const CardGoalOverview = () => {
+function CardGoalOverview() {
   const { t } = useTranslation();
   return (
     <CardContainer className=' basis-1/3'>
@@ -41,6 +41,6 @@ const CardGoalOverview = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default CardGoalOverview;

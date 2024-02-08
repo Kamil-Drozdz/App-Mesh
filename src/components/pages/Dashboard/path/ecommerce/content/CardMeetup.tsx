@@ -7,7 +7,7 @@ import CardContainer from '@/common/CardContainer';
 import { generateData } from '@/lib/generateData';
 import { MeetupDataProps, generateMeetupData } from '@/data/pages/ecommerce/dataMeetup';
 
-const CardMeetup = () => {
+function CardMeetup() {
   const data: MeetupDataProps[] = generateData(8, generateMeetupData);
 
   return (
@@ -69,6 +69,6 @@ const CardMeetup = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default CardMeetup;

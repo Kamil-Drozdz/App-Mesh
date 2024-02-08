@@ -1,11 +1,11 @@
-import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
+import { ComponentProps } from 'react';
 
 import { buttonVariants } from '@/UI/Button';
 import clsx from '@/lib/clsx';
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+export type CalendarProps = ComponentProps<typeof DayPicker>;
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
   return (

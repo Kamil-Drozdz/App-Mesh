@@ -1,7 +1,7 @@
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 
-const CheckoutCartOption = ({ amount, discount, tax, totalAmount, setActiveStep }) => {
+function CheckoutCartOption({ amount, discount, tax, totalAmount, setActiveStep }) {
   return (
     <div className='relative col-span-1 h-fit space-y-3 rounded-lg bg-secondary p-4'>
       <p className='text-sm font-semibold text-gray-600'>OPTIONS</p>
@@ -33,6 +33,6 @@ const CheckoutCartOption = ({ amount, discount, tax, totalAmount, setActiveStep 
       </Button>
     </div>
   );
-};
+}
 
 export default CheckoutCartOption;

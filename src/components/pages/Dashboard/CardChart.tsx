@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
-import CardContainer from '../../../common/CardContainer';
-import { convert } from '@/lib/convert';
+import { convertNumberToThousands } from '@/lib/convertNumberToThousands';
 import { totalValue } from '@/lib/totalValue';
+import CardContainer from '@/common/CardContainer';
 
 interface CardDataProps {
   className?: string;
@@ -21,8 +21,7 @@ interface CardDataProps {
   icon?: ReactNode;
   iconColor?: string;
 }
-const CardChart = ({ className, title, data, icon, children, iconColor }: CardDataProps) => {
-
+function CardChart({ className, title, data, icon, children, iconColor }: CardDataProps) {
   return (
     <CardContainer className={className}>
       {icon && (
@@ -31,10 +30,12 @@ const CardChart = ({ className, title, data, icon, children, iconColor }: CardDa
         </div>
       )}
       <div className='text-gray-500 dark:text-white'>{title}</div>
-      <h4 className='text-2xl font-semibold dark:text-gray-200'>{convert(totalValue(data.datasets[0].data))}</h4>
+      <h4 className='text-2xl font-semibold dark:text-gray-200'>
+        {convertNumberToThousands(totalValue(data.datasets[0].data))}
+      </h4>
       {children}
     </CardContainer>
   );
-};
+}
 
 export default CardChart;

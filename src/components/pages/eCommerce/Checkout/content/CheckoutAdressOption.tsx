@@ -1,6 +1,6 @@
 import { Button } from '@/UI/Button';
 
-const CheckoutAdressOption = ({ formData, setActiveStep, errors }) => {
+function CheckoutAdressOption({ formData, setActiveStep, errors }) {
   return (
     <div className='relative h-fit space-y-3 rounded-lg bg-secondary p-4'>
       <div>
@@ -16,12 +16,12 @@ const CheckoutAdressOption = ({ formData, setActiveStep, errors }) => {
       <Button
         disabled={!!Object.keys(errors).length}
         onClick={() => setActiveStep(3)}
-        className='!bg-buttonPrimary w-full space-x-2 !text-white hover:brightness-110 disabled:opacity-20'
+        className='w-full space-x-2 !bg-buttonPrimary !text-white hover:brightness-110 disabled:opacity-20'
       >
         Deliver to this Adress
       </Button>
     </div>
   );
-};
+}
 
 export default CheckoutAdressOption;

@@ -10,7 +10,7 @@ import { BasicRoutes } from '@/lib/enums/routes';
 import useCurrentUser from '@/store/CurrentUser';
 import MultiConfigForm from '@/components/config/MultiConfigForm';
 
-const PageContainer = ({ children }: PropsWithChildren) => {
+function PageContainer({ children }: PropsWithChildren) {
   const { pathname } = useLocation();
   const { currentUser } = useCurrentUser();
   const { isFullScreen, toggleFullScreen } = useFullScreen();
@@ -23,7 +23,7 @@ const PageContainer = ({ children }: PropsWithChildren) => {
     >
       <SideNavbar />
       <TopNavbar />
-      <Transition in={true} timeout={100} appear={true}>
+      <Transition in timeout={100} appear>
         {(state) => (
           <div
             className={`space-y-6 transition-all duration-500 ease-in-out ${
@@ -45,5 +45,5 @@ const PageContainer = ({ children }: PropsWithChildren) => {
       {currentUser && <MultiConfigForm />}
     </main>
   );
-};
+}
 export default PageContainer;

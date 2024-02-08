@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 
-const ShopHeader = () => {
+function ShopHeader() {
   const location = useLocation();
   const pathSegments = location.pathname.split('/').filter((segment) => segment !== '');
 
@@ -16,20 +16,18 @@ const ShopHeader = () => {
           const lastSegmentIsNumber = /^\d+$/.test(segment);
           if (lastSegmentIsNumber) {
             return null;
-          } else {
-            return <span key={segment}>{segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}</span>;
           }
-        } else {
-          return (
-            <Link className='text-buttonPrimary' key={segment} to={`/${segment}`}>
-              {segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}
-              <span className='mx-2 text-white'>&gt;</span>
-            </Link>
-          );
+          return <span key={segment}>{segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}</span>;
         }
+        return (
+          <Link className='text-buttonPrimary' key={segment} to={`/${segment}`}>
+            {segment.at(0)?.toLocaleUpperCase() + segment.slice(1)}
+            <span className='mx-2 text-white'>&gt;</span>
+          </Link>
+        );
       })}
     </div>
   );
-};
+}
 
 export default ShopHeader;

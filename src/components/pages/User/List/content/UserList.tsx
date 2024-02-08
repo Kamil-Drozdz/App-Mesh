@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { memo, useRef, useState } from 'react';
+import { Player } from '@lordicon/react';
 
 import LeftAddSidebar from './LeftAddSidebar';
 import UserListTableBody from './UserListTableBody';
@@ -9,8 +10,13 @@ import CardContainer from '@/common/CardContainer';
 import { ErrorComponent } from '@/common/ErrrorComponent';
 import Pagination from '@/common/Pagination';
 import { SearchInput } from '@/common/SearchInput';
-import useFirebaseData from '@/hooks/useFirebaseData';
+import useFirebaseCachedData from '@/hooks/useFirebaseCachedData';
+import AvatarIcon from '@/assets/lottieJson/system-regular-8-account.json';
+import { IconSize } from '@/lib/enums/iconSize';
 
+interface UserListProps {
+  filters: { role: string; plan: string; status: string };
+}
 export interface UserProps {
   displayName: string;
   email: string;
@@ -21,12 +27,13 @@ export interface UserProps {
 
 const numbers = [10, 25, 50, 100];
 
-const UserList = ({ filters }) => {
+const UserList = memo(({ filters }: UserListProps) => {
+  const playerRef = useRef<Player>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const { data: users, loading, error } = useFirebaseData<UserProps[]>('users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
+  const { data: users, loading, error } = useFirebaseCachedData<UserProps[]>('users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
 
   const filteredUsers = search
     ? users?.filter((user) => user.displayName.includes(search) || user.email.includes(search))
@@ -41,6 +48,10 @@ const UserList = ({ filters }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredUsers?.slice(indexOfFirstItem, indexOfLastItem) || [];
+
+  setTimeout(() => {
+    playerRef.current?.goToLastFrame();
+  }, 0);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -80,10 +91,12 @@ const UserList = ({ filters }) => {
               <p>Search:</p>
               <SearchInput search={search} setSearch={setSearch} isIcon={false} className='min-w-[200px]' />
               <Button
+                onMouseOver={() => playerRef.current?.playFromBeginning()}
                 onClick={() => setIsOpen((prev) => !prev)}
-                className='h-full w-full !bg-buttonPrimary !text-white hover:brightness-110'
+                className='h-full w-full space-x-2 !bg-buttonPrimary !text-white hover:brightness-110'
               >
-                Add User
+                <Player ref={playerRef} colorize='white' size={IconSize.basic} icon={AvatarIcon} />
+                <p> Add User</p>
               </Button>
             </div>
           </div>
@@ -108,6 +121,6 @@ const UserList = ({ filters }) => {
       />
     </CardContainer>
   );
-};
+});
 
 export default UserList;

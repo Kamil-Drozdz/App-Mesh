@@ -24,7 +24,7 @@ interface FormDataProps {
   persist: boolean;
 }
 
-const LoginPage = () => {
+function LoginPage() {
   const [formData, setFormData] = useState<FormDataProps>({
     email: 'test@test.com',
     password: 'testtest',
@@ -91,7 +91,7 @@ const LoginPage = () => {
             <div className='flex items-center space-x-2'>
               <Input
                 id='persist'
-                className={`h-4 w-4 `}
+                className='h-4 w-4 '
                 defaultChecked={false}
                 type='checkbox'
                 checked={formData.persist}
@@ -117,6 +117,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default LoginPage;

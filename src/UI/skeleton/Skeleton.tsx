@@ -24,16 +24,16 @@ function Skeleton({ SkeletonLength, className }: { className?: string; SkeletonL
           </div>
           <div className='flex w-full flex-col'>
             <div className='w-full'>
-              <div className='mt-4 mb-4 h-2.5 w-1/3 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
-              <div className='mt-4 mb-4 h-2.5 w-1/6 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
-              <div className='mt-4 mb-4 h-2.5 w-full rounded-lg bg-gray-200 dark:bg-gray-700'></div>
-              <div className='mt-4 mb-4 h-2.5 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
-              <div className='mt-4 mb-4 h-2.5 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-2.5 w-1/3 rounded-lg bg-gray-200 dark:bg-gray-700' />
+              <div className='mt-4 mb-4 h-2.5 w-1/6 rounded-lg bg-gray-200 dark:bg-gray-700' />
+              <div className='mt-4 mb-4 h-2.5 w-full rounded-lg bg-gray-200 dark:bg-gray-700' />
+              <div className='mt-4 mb-4 h-2.5 w-24 rounded-lg bg-gray-200 dark:bg-gray-700' />
+              <div className='mt-4 mb-4 h-2.5 w-24 rounded-lg bg-gray-200 dark:bg-gray-700' />
             </div>
             <div className='flex w-full items-center space-x-2'>
-              <div className='mt-4 mb-4 h-8 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
-              <div className='mt-4 mb-4 h-8 w-24 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
-              <div className='mt-4 mb-4 h-8 w-8 rounded-lg bg-gray-200 dark:bg-gray-700'></div>
+              <div className='mt-4 mb-4 h-8 w-24 rounded-lg bg-gray-200 dark:bg-gray-700' />
+              <div className='mt-4 mb-4 h-8 w-24 rounded-lg bg-gray-200 dark:bg-gray-700' />
+              <div className='mt-4 mb-4 h-8 w-8 rounded-lg bg-gray-200 dark:bg-gray-700' />
             </div>
           </div>
         </div>

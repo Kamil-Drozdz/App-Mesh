@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { toast } from 'react-toastify';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/UI/Dialog';
 import { Button } from '@/UI/Button';
 import InputWithLabel from '@/common/InputWithLabel';
@@ -9,9 +9,10 @@ import { Input } from '@/UI/Input';
 
 import useConfig from '@/store/Config';
 import { sendDataToBackend } from '@/lib/sendDataToBackend';
-import useFirebaseData from '@/hooks/useFirebaseData';
 import useCurrentUser from '@/store/CurrentUser';
 import { updateDocumentFirebase } from '@/lib/firebaseHelpers/updateDocumentFirebase';
+import useFirebaseCachedData from '@/hooks/useFirebaseCachedData';
+import { Collections } from '@/lib/enums/collections';
 
 export interface FormDataBasic {
   nameApp: string;
@@ -27,7 +28,6 @@ interface FormDataProps extends FormDataBasic {
   host: string;
 }
 
-export const collectionName = 'config';
 export let docId;
 const initialFormData = {
   nameApp: '',
@@ -41,17 +41,17 @@ const initialFormData = {
   host: '',
 };
 
-const MultiConfigForm = () => {
+function MultiConfigForm() {
   const { currentUser } = useCurrentUser();
   const { config, setConfig } = useConfig();
-  const { data, loading } = useFirebaseData<FormDataBasic>('config');
+  const { data, loading } = useFirebaseCachedData<FormDataBasic>('config');
   docId = currentUser?.uid || '';
   const [formData, setFormData] = useState<FormDataProps>(initialFormData);
   const [errors, setErrors] = useState({});
   const [step, setStep] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [ownApi, setOwnApi] = useState(false);
-  console.log(formData);
+
   useEffect(() => {
     if (data) setConfig(data);
     if (!loading) setIsOpen(!config);
@@ -60,25 +60,103 @@ const MultiConfigForm = () => {
   const steps = ownApi
     ? [
         [
-          { label: 'NAME APP', id: 'nameApp', type: 'text', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'URL TO LOGO APP', id: 'logoApp', type: 'text', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'STRIPE KEY', id: 'stripeKey', type: 'text', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'API URL', id: 'apiUrl', type: 'text', className: 'my-2', bgColor: 'bg-background' },
+          {
+            label: 'NAME APP',
+            id: 'nameApp',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'URL TO LOGO APP',
+            id: 'logoApp',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'STRIPE KEY',
+            id: 'stripeKey',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'API URL',
+            id: 'apiUrl',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
         ],
       ]
     : [
         [
-          { label: 'NAME APP', id: 'nameApp', type: 'text', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'URL TO LOGO APP', id: 'logoApp', type: 'text', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'STRIPE KEY', id: 'stripeKey', type: 'text', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'API URL', id: 'apiUrl', type: 'text', className: 'my-2', bgColor: 'bg-background' },
+          {
+            label: 'NAME APP',
+            id: 'nameApp',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'URL TO LOGO APP',
+            id: 'logoApp',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'STRIPE KEY',
+            id: 'stripeKey',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'API URL',
+            id: 'apiUrl',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
         ],
         [
-          { label: 'Email', id: 'email', type: 'email', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'Password', id: 'password', type: 'password', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'Port', id: 'port', type: 'number', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'Service', id: 'service', type: 'text', className: 'my-2', bgColor: 'bg-background' },
-          { label: 'Host', id: 'host', type: 'text', className: 'my-2', bgColor: 'bg-background' },
+          {
+            label: 'Email',
+            id: 'email',
+            type: 'email',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'Password',
+            id: 'password',
+            type: 'password',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'Port',
+            id: 'port',
+            type: 'number',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'Service',
+            id: 'service',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
+          {
+            label: 'Host',
+            id: 'host',
+            type: 'text',
+            className: 'my-2',
+            bgColor: 'bg-background',
+          },
         ],
       ];
 
@@ -112,17 +190,16 @@ const MultiConfigForm = () => {
           };
 
           if (ownApi) {
-            await updateDocumentFirebase(collectionName, docId, configData);
+            await updateDocumentFirebase(Collections.config, docId, configData).then(() => 'Your setting is saved');
           } else {
-            await sendDataToBackend(sensitiveData, currentUser?.uid,'config')
+            await sendDataToBackend(sensitiveData, currentUser?.uid, 'config')
               .then(async () => {
                 setIsOpen(false);
                 setFormData(initialFormData);
-
-                await updateDocumentFirebase(collectionName, docId, configData);
+                await updateDocumentFirebase(Collections.config, docId, configData).then(() => 'Your setting is saved');
               })
               .catch((error) => {
-                console.error('Error in sending data or adding document to Firebase:', error);
+                toast.error('Error in sending data or adding document to Firebase:', error);
               });
           }
         }
@@ -175,6 +252,6 @@ const MultiConfigForm = () => {
       </DialogContent>
     </Dialog>
   );
-};
+}
 
 export default MultiConfigForm;

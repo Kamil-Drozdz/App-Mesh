@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { BsMoon, BsSun } from 'react-icons/bs';
 
-import CartPopover from '../pages/eCommerce/CartPopover';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/UI/Tooltip';
 import BorderedBadge from '@/common/BorderedBadge';
 import { topNavbarIcons } from '@/data/navigation/topNavbarItems';
 import { IconSize } from '@/lib/enums/iconSize';
 import useProductsStore from '@/store/ProductsStore';
+import CartPopover from '../pages/eCommerce/CartPopover';
 
-const TopNavbarTooltipIcons = () => {
+function TopNavbarTooltipIcons() {
   const htmlElement = document.documentElement;
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { cart, removeFromCart } = useProductsStore();
@@ -63,6 +63,6 @@ const TopNavbarTooltipIcons = () => {
       ))}
     </TooltipProvider>
   );
-};
+}
 
 export default TopNavbarTooltipIcons;

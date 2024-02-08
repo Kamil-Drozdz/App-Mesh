@@ -5,7 +5,7 @@ import { handleEnterDown } from '@/lib/handleEnterDown';
 import { validateField } from '@/lib/validateField';
 import { addressSchema } from '@/schema/addressSchema';
 
-const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
+function CheckoutAddress({ formData, setFormData, errors, setErrors }) {
   const handleCheckoutAdress = () => {
     const isCheckoutAdressValid = validateField(addressSchema, formData, setErrors);
     if (isCheckoutAdressValid) {
@@ -41,6 +41,6 @@ const CheckoutAddress = ({ formData, setFormData, errors, setErrors }) => {
       </Button>
     </div>
   );
-};
+}
 
 export default CheckoutAddress;

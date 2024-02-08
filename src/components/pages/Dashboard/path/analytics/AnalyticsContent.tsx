@@ -8,7 +8,7 @@ import CardSupportTracker from './content/CardSupportTracker';
 import CardUserTimeline from './content/CardUserTimeline';
 import PageContainer from '@/common/PageContainer';
 
-const AnalyticsContent = () => {
+function AnalyticsContent() {
   return (
     <PageContainer>
       <div className=' flex flex-col items-stretch space-y-6 space-x-0 md:flex-row md:justify-between md:space-y-0 md:space-x-6'>
@@ -29,6 +29,6 @@ const AnalyticsContent = () => {
       </div>
     </PageContainer>
   );
-};
+}
 
 export default AnalyticsContent;

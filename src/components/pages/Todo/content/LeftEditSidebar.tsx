@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction, memo } from 'react';
 import { format } from 'date-fns';
 import { BiCalendar } from 'react-icons/bi';
 import { GoDotFill } from 'react-icons/go';
@@ -9,8 +10,17 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/UI/Select';
 import { tags } from '@/data/pages/todo/tags';
 import clsx from '@/lib/clsx';
+import { Task } from './Todo';
 
-const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo }) => {
+interface LeftEditSidebarProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  newTask: Task;
+  setNewTask: Dispatch<SetStateAction<Task>>;
+  handleAddTodo: () => void;
+}
+
+const LeftEditSidebar = memo(({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo }: LeftEditSidebarProps) => {
   return (
     <>
       <div
@@ -56,13 +66,13 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
             <div>
               <p>Due Date</p>
               <Button
-                variant={'outline'}
+                variant='outline'
                 className={clsx(
                   'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
                   !newTask.date && 'text-muted-foreground'
                 )}
               >
-                {newTask.date ? format(newTask.date, 'PPP') : <span>Pick a date</span>}
+                {newTask.date ? format(newTask.date as Date, 'PPP') : <span>Pick a date</span>}
                 <BiCalendar className='ml-auto h-4 w-4 opacity-50' />
               </Button>
             </div>
@@ -71,7 +81,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
             <Calendar
               mode='single'
               initialFocus
-              selected={newTask.date}
+              selected={newTask.date as Date}
               onSelect={(date) => setNewTask({ ...newTask, date })}
               className='rounded-md border'
             />
@@ -84,7 +94,7 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
           onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
           className='block w-full rounded-lg border border-gray-300 bg-transparent p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
           placeholder='Write your thoughts here...'
-        ></textarea>
+        />
         <div className='flex space-x-4'>
           <Button onClick={handleAddTodo} className='mb-4 !bg-buttonPrimary !text-white hover:brightness-110'>
             Add
@@ -94,9 +104,9 @@ const LeftEditSidebar = ({ isOpen, setIsOpen, newTask, setNewTask, handleAddTodo
           </Button>
         </div>
       </div>
-      {isOpen && <div className='fixed inset-0 z-50 bg-black opacity-50' onClick={() => setIsOpen(false)}></div>}
+      {isOpen && <div className='fixed inset-0 z-50 bg-black opacity-50' onClick={() => setIsOpen(false)} />}
     </>
   );
-};
+});
 
 export default LeftEditSidebar;

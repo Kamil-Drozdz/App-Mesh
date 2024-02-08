@@ -10,7 +10,7 @@ import useMenu from '@/store/Menu';
 import SideNavbarItem from './SideNavbarItem';
 import useConfig from '@/store/Config';
 
-const SideNavbar = () => {
+function SideNavbar() {
   const { config } = useConfig();
   const { isFullScreen } = useFullScreen();
   const { isMenuOpen, toggleMenu } = useMenu();
@@ -37,8 +37,8 @@ const SideNavbar = () => {
         } fixed top-0 right-0 z-[11] h-screen transition-all duration-300 ease-in-out`}
       >
         <nav
-          onMouseEnter={() => onMouseEnter()}
-          onMouseLeave={() => onMouseLeave()}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
           className={`${
             menuCollapsed ? 'w-20' : 'w-72'
           } fixed h-full overflow-y-auto transition-all duration-300 ease-out`}
@@ -66,11 +66,9 @@ const SideNavbar = () => {
           ))}
         </nav>
       </div>
-      {isMenuOpen && (
-        <div className='fixed inset-0 z-10 block bg-black opacity-50 md:hidden' onClick={toggleMenu}></div>
-      )}
+      {isMenuOpen && <div className='fixed inset-0 z-10 block bg-black opacity-50 md:hidden' onClick={toggleMenu} />}
     </>
   );
-};
+}
 
 export default SideNavbar;

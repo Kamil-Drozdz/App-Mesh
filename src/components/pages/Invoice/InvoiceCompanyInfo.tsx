@@ -1,7 +1,7 @@
 import { useInvoice } from '@/store/Invoice';
 import InvoiceTemplateField from './InvoiceTemplateField';
 
-const InvoiceCompanyInfo = ({ isEditable }) => {
+function InvoiceCompanyInfo({ isEditable }) {
   const { invoice } = useInvoice();
 
   return (
@@ -11,7 +11,7 @@ const InvoiceCompanyInfo = ({ isEditable }) => {
         value={invoice.companyInfo.name}
         name='companyInfo.name'
         label='Company Name'
-        isHighlighted={true}
+        isHighlighted
       />
       <InvoiceTemplateField
         isEditable={isEditable}
@@ -34,6 +34,6 @@ const InvoiceCompanyInfo = ({ isEditable }) => {
       />
     </div>
   );
-};
+}
 
 export default InvoiceCompanyInfo;

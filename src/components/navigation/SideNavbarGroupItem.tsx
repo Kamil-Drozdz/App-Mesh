@@ -18,7 +18,7 @@ interface SideNavbarGroupItemProps {
   dropdown?: DropdownItem[];
   menuCollapsed: boolean;
 }
-const SideNavbarGroupItem = ({
+function SideNavbarGroupItem({
   icon,
   handleActiveDropdown,
   activeDropdown,
@@ -26,7 +26,7 @@ const SideNavbarGroupItem = ({
   href,
   dropdown,
   menuCollapsed,
-}: SideNavbarGroupItemProps) => {
+}: SideNavbarGroupItemProps) {
   const open = name === activeDropdown;
   const { toggleMenu } = useMenu();
   const { pathname } = useLocation();
@@ -86,6 +86,6 @@ const SideNavbarGroupItem = ({
       </div>
     </li>
   );
-};
+}
 
 export default SideNavbarGroupItem;

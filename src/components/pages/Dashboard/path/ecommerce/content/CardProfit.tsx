@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CardChart from '@/components/pages/Dashboard/CardChart';
 import { DataProfit } from '@/data/charts/dataProfit';
 
-const CardProfit = () => {
+function CardProfit() {
   const data = DataProfit();
   const { t } = useTranslation();
   ChartJS.register(CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend);
@@ -15,6 +15,6 @@ const CardProfit = () => {
       <Line data-testid='profit-chart' className='md:max-w-[300px] ' data={data} />
     </CardChart>
   );
-};
+}
 
 export default CardProfit;

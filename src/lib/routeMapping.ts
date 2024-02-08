@@ -102,12 +102,12 @@ const ROUTE_MAPPING: Record<BasicRoutes, RouteConfig[]> = {
   [BasicRoutes.MAPS]: [],
   [BasicRoutes.MENU]: [],
 };
-export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, routes]) => {
-  return routes.map(({ subPath, component }: RouteConfig) => ({
+export const FULL_PATHS = Object.entries(ROUTE_MAPPING).flatMap(([basicRoute, routes]) =>
+  routes.map(({ subPath, component }: RouteConfig) => ({
     path: `${basicRoute}${subPath}`,
     component,
-  }));
-});
+  }))
+);
 
 // [BasicRoutes.PAGES]: [{subPaths: [SubRoutes.AUTHENTICATION, SubRoutes.SETTINGS, SubRoutes.PROFILE, SubRoutes.FAQ, SubRoutes.KNOWLEDGE, SubRoutes.PRICING, SubRoutes.BLOG, SubRoutes.MAIL, SubRoutes.MISCELLANEOUS], component: PagesContent }],
 // [BasicRoutes.INVOICE]: [{subPaths: [SubRoutes.LIST, SubRoutes.PREVIEW, SubRoutes.EDIT, SubRoutes.ADD], component: InvoiceContent }],

@@ -13,7 +13,7 @@ import useWishlist from '@/hooks/useWishList';
 interface ShopProductProps {
   product: ProductProps;
 }
-const ShopProduct = ({ product }: ShopProductProps) => {
+function ShopProduct({ product }: ShopProductProps) {
   const stars = starRating(product.rating.rate);
   const { addToWishlist, cart, addToCart, removeFromCart, removeFromWishlist, wishlist } = useProductsStore();
   const { isProductInWishlist, toggleWishlist } = useWishlist(wishlist, {
@@ -82,6 +82,6 @@ const ShopProduct = ({ product }: ShopProductProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default ShopProduct;

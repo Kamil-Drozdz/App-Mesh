@@ -1,11 +1,11 @@
 import LoginPage from './content/LoginPage';
 
-const LoginContent = () => {
+function LoginContent() {
   return (
     <div>
       <LoginPage />
     </div>
   );
-};
+}
 
 export default LoginContent;

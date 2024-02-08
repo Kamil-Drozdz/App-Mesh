@@ -6,7 +6,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { Button } from '@/UI/Button';
 import clsx from '@/lib/clsx';
 import { Calendar } from '@/UI/Calendar';
-const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
+
+function InvoiceDetails({ isEditable, parsedDateIssued, parsedDateDue }) {
   const { invoice, setInvoice } = useInvoice();
 
   return (
@@ -16,16 +17,16 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
         value={invoice.invoiceDetails.number}
         name='invoiceDetails.number'
         readOnly
-        isHighlighted={true}
+        isHighlighted
         label='Invoice Number'
       />
       {!isEditable && (
         <>
           <div className='flex items-center'>
-            <p className='w-1/4'>Date:</p> <div> {parsedDateIssued ? parsedDateIssued : 'Date not picked'}</div>
+            <p className='w-1/4'>Date:</p> <div> {parsedDateIssued || 'Date not picked'}</div>
           </div>
           <div className='flex items-center'>
-            <p className='w-1/4'>Due Date:</p> <div> {parsedDateDue ? parsedDateDue : 'Date not picked'}</div>
+            <p className='w-1/4'>Due Date:</p> <div> {parsedDateDue || 'Date not picked'}</div>
           </div>
         </>
       )}
@@ -36,7 +37,7 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
               <div className='flex items-center space-x-2'>
                 <p className='w-1/4'>Date:</p>
                 <Button
-                  variant={'outline'}
+                  variant='outline'
                   className={clsx(
                     'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
                     !parsedDateIssued && 'text-muted-foreground'
@@ -70,7 +71,7 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
               <div className='flex items-center space-x-2'>
                 <p className='w-1/4'>Due Date:</p>
                 <Button
-                  variant={'outline'}
+                  variant='outline'
                   className={clsx(
                     'w-full !border-gray-300 !border-opacity-25 !bg-transparent pl-3 text-left font-normal',
                     !parsedDateDue && 'text-muted-foreground'
@@ -103,6 +104,6 @@ const InvoiceDetails = ({ isEditable, parsedDateIssued, parsedDateDue }) => {
       )}
     </div>
   );
-};
+}
 
 export default InvoiceDetails;

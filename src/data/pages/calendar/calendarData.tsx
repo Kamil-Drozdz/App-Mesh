@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
+import { FilterTypesCalendar } from '@/lib/enums/filterTypesCalendar';
 
 export const labels = [
-  { name: 'View All', color: 'bg-violet-400 border-violet-400 text-violet-400 accent-violet-400' },
-  { name: 'Business', color: 'bg-violet-400 border-violet-400 text-violet-400 accent-violet-400' },
-  { name: 'Holiday', color: 'bg-green-400 border-green-400 text-green-400 accent-green-400' },
-  { name: 'Personal', color: 'bg-orange-400 border-orange-400 text-orange-400 accent-orange-400' },
-  { name: 'Family', color: 'bg-red-400 border-red-400 text-red-400 accent-red-400' },
-  { name: 'ETC', color: 'bg-sky-400 border-sky-400 text-sky-400 accent-sky-400' },
+  { name: FilterTypesCalendar.all, color: 'bg-violet-400 border-violet-400 text-violet-400 accent-violet-400' },
+  { name: FilterTypesCalendar.business, color: 'bg-violet-400 border-violet-400 text-violet-400 accent-violet-400' },
+  { name: FilterTypesCalendar.holiday, color: 'bg-green-400 border-green-400 text-green-400 accent-green-400' },
+  { name: FilterTypesCalendar.personal, color: 'bg-orange-400 border-orange-400 text-orange-400 accent-orange-400' },
+  { name: FilterTypesCalendar.family, color: 'bg-red-400 border-red-400 text-red-400 accent-red-400' },
+  { name: FilterTypesCalendar.etc, color: 'bg-sky-400 border-sky-400 text-sky-400 accent-sky-400' },
 ];
 
 export const data = [
@@ -18,7 +19,7 @@ export const data = [
     eventUrl: 'https://companydomain.com/meetings/strategy',
     place: 'Main Conference Room',
     description: 'Strategic planning meeting with department heads to align on upcoming quarter goals.',
-    label: 'Business',
+    label: FilterTypesCalendar.business,
   },
   {
     id: uuidv4(),
@@ -28,7 +29,7 @@ export const data = [
     eventUrl: '',
     place: 'All company places',
     description: 'Office closure in observance of the national holiday.',
-    label: 'Holiday',
+    label: FilterTypesCalendar.holiday,
   },
   {
     id: uuidv4(),
@@ -38,7 +39,7 @@ export const data = [
     eventUrl: '',
     place: 'Downtown Clinic',
     description: 'Annual medical check-up appointment.',
-    label: 'Personal',
+    label: FilterTypesCalendar.personal,
   },
   {
     id: uuidv4(),
@@ -48,7 +49,7 @@ export const data = [
     eventUrl: '',
     place: "Grandma's House",
     description: "Gathering at grandma's house for a family dinner.",
-    label: 'Family',
+    label: FilterTypesCalendar.family,
   },
   {
     id: uuidv4(),
@@ -58,7 +59,7 @@ export const data = [
     eventUrl: 'https://workshopdomain.com/events/innovation-workshop',
     place: 'Innovation Hub, Room 403',
     description: 'Interactive workshop on embracing innovation in daily tasks.',
-    label: 'Business',
+    label: FilterTypesCalendar.business,
   },
   {
     id: uuidv4(),

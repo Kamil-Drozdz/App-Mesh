@@ -1,7 +1,7 @@
 import { useInvoice } from '@/store/Invoice';
 import InvoiceTemplateField from './InvoiceTemplateField';
 
-const InvoiceSalesperson = ({ isEditable }) => {
+function InvoiceSalesperson({ isEditable }) {
   const { invoice } = useInvoice();
   return (
     <div className='flex h-auto w-full items-end justify-start'>
@@ -14,6 +14,6 @@ const InvoiceSalesperson = ({ isEditable }) => {
       />
     </div>
   );
-};
+}
 
 export default InvoiceSalesperson;

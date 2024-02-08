@@ -15,10 +15,30 @@ export const DataSession = () => {
     ],
   };
   const progressData = [
-    { name: 'Goal', value: 100000, goal: 200000, unit: '$' },
-    { name: 'Users', value: 100000, goal: 300000, unit: 'k' },
-    { name: 'Retention', value: 90, goal: 100, unit: '%' },
-    { name: 'Duration', value: 1, goal: 2, unit: 'yr' },
+    {
+      name: 'Goal',
+      value: 100000,
+      goal: 200000,
+      unit: '$',
+    },
+    {
+      name: 'Users',
+      value: 100000,
+      goal: 300000,
+      unit: 'k',
+    },
+    {
+      name: 'Retention',
+      value: 90,
+      goal: 100,
+      unit: '%',
+    },
+    {
+      name: 'Duration',
+      value: 1,
+      goal: 2,
+      unit: 'yr',
+    },
   ];
 
   const options = {

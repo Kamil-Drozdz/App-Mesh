@@ -10,7 +10,7 @@ import { profileOptions } from '@/data/navigation/topNavbarItems';
 import { BasicRoutes } from '@/lib/enums/routes';
 import { UserStatuses } from '@/lib/enums/user';
 
-const TopNavbarPopoverUser = ({ currentUser }) => {
+function TopNavbarPopoverUser({ currentUser }) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -68,6 +68,6 @@ const TopNavbarPopoverUser = ({ currentUser }) => {
       </PopoverTrigger>
     </Popover>
   );
-};
+}
 
 export default TopNavbarPopoverUser;

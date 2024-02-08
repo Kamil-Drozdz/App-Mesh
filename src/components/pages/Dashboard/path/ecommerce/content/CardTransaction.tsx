@@ -7,7 +7,7 @@ import { TransactionData, generateTransactionData } from '@/data/pages/ecommerce
 import { IconSize } from '@/lib/enums/iconSize';
 import { generateData } from '@/lib/generateData';
 
-const CardTransaction = () => {
+function CardTransaction() {
   const data: TransactionData[] = generateData(20, generateTransactionData);
   const { t } = useTranslation();
   return (
@@ -25,6 +25,6 @@ const CardTransaction = () => {
       </ul>
     </CardContainer>
   );
-};
+}
 
 export default CardTransaction;

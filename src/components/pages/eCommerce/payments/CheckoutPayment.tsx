@@ -2,6 +2,8 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useStripe, CardElement, useElements } from '@stripe/react-stripe-js';
 
+import { useNavigate } from 'react-router-dom';
+import { ThreeDots } from 'react-loader-spinner';
 import { Button } from '@/UI/Button';
 import { Input } from '@/UI/Input';
 import { RadioGroup, RadioGroupItem } from '@/UI/RadioGroup';
@@ -9,9 +11,7 @@ import { Separator } from '@/UI/Separator';
 import { IconSize } from '@/lib/enums/iconSize';
 import { FormData } from '../Checkout/CheckoutContent';
 import useProductsStore from '@/store/ProductsStore';
-import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { ThreeDots } from 'react-loader-spinner';
 import { sendDataToBackend } from '@/lib/sendDataToBackend';
 import useCurrentUser from '@/store/CurrentUser';
 
@@ -19,7 +19,7 @@ interface CheckoutPaymentProps {
   formData: FormData;
 }
 
-const CheckoutPayment = ({ formData }: CheckoutPaymentProps) => {
+function CheckoutPayment({ formData }: CheckoutPaymentProps) {
   const { cart } = useProductsStore();
   const { currentUser } = useCurrentUser();
   const [optionPayment, setOptionPayment] = useState('');
@@ -43,7 +43,7 @@ const CheckoutPayment = ({ formData }: CheckoutPaymentProps) => {
     const cart = getItem();
 
     if (cart) {
-      useProductsStore.setState({ cart: cart });
+      useProductsStore.setState({ cart });
     }
     createPaymentIntent();
   }, []);
@@ -132,14 +132,7 @@ const CheckoutPayment = ({ formData }: CheckoutPaymentProps) => {
             )}
             {processing ? (
               <div className='mx-3 flex  w-fit items-center justify-center'>
-                <ThreeDots
-                  visible={true}
-                  height='40'
-                  width='40'
-                  color='#895af6'
-                  radius='9'
-                  ariaLabel='three-dots-loading'
-                />
+                <ThreeDots visible height='40' width='40' color='#895af6' radius='9' ariaLabel='three-dots-loading' />
               </div>
             ) : (
               <>
@@ -206,6 +199,6 @@ const CheckoutPayment = ({ formData }: CheckoutPaymentProps) => {
       )}
     </div>
   );
-};
+}
 
 export default CheckoutPayment;

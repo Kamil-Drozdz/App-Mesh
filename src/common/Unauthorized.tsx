@@ -5,7 +5,7 @@ import { Button } from '@/UI/Button';
 import unauthorizedPhoto from '@/assets/unauthorized-error.webp';
 import { BasicRoutes } from '@/lib/enums/routes';
 
-const Unauthorized = () => {
+function Unauthorized() {
   return (
     <PageContainer>
       <img
@@ -23,6 +23,6 @@ const Unauthorized = () => {
       </h2>
     </PageContainer>
   );
-};
+}
 
 export default Unauthorized;

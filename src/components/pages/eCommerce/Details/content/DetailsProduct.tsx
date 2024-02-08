@@ -14,15 +14,16 @@ import { IconSize } from '@/lib/enums/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/ProductsStore';
-import useFirebaseData from '@/hooks/useFirebaseData';
 import useWishlist from '@/hooks/useWishList';
+import useFirebaseCachedData from '@/hooks/useFirebaseCachedData';
+import { ErrorComponent } from '@/common/ErrrorComponent';
 
-const DetailsProduct = ({ productID }) => {
+function DetailsProduct({ productID }) {
   if (typeof productID === 'undefined') {
     productID = 2;
   }
 
-  const { data: products, loading, error } = useFirebaseData<ProductProps[]>('products');
+  const { data: products, loading, error } = useFirebaseCachedData<ProductProps[]>('products');
   const [product, setProduct] = useState<ProductProps | null>(null);
   const [isCopiedToClipboard, setIsCopiedToClipboard] = useState(false);
   const { addToWishlist, cart, addToCart, removeFromWishlist, wishlist } = useProductsStore();
@@ -47,7 +48,7 @@ const DetailsProduct = ({ productID }) => {
 
   const handleShare = () => {
     toast.info('Product URL copied to clipboard');
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(location.href);
     setIsCopiedToClipboard(true);
   };
   const handleAddToCart = (product) => {
@@ -61,7 +62,7 @@ const DetailsProduct = ({ productID }) => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <ErrorComponent error={error} />;
   }
 
   if (product === null) {
@@ -144,6 +145,6 @@ const DetailsProduct = ({ productID }) => {
       </div>
     </>
   );
-};
+}
 
 export default DetailsProduct;

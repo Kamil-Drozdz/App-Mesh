@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 
 import { auth, db } from '@/../firebaseConfig';
 
-
 export const createUser = async (formData) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
@@ -38,6 +37,6 @@ export const createUser = async (formData) => {
     return { success: true };
   } catch (error) {
     console.error('Error:', error);
-    return { success: false, error: error };
+    return { success: false, error };
   }
 };

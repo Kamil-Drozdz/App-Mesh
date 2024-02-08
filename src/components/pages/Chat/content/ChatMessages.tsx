@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { createPortal } from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 
@@ -16,7 +16,7 @@ export interface ChatsProps {
   setChats: React.Dispatch<React.SetStateAction<ChatData[]>>;
 }
 
-const ChatMessages = ({ selectedUser, currentUser, chats, setChats }: ChatsProps) => {
+const ChatMessages = memo(({ selectedUser, currentUser, chats, setChats }: ChatsProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const [zoomImage, setZoomImage] = useState<null | string>(null);
@@ -128,6 +128,6 @@ const ChatMessages = ({ selectedUser, currentUser, chats, setChats }: ChatsProps
       {zoomImage && createPortal(<ChatZoomImage setZoomImage={setZoomImage} zoomImage={zoomImage} />, document.body)}
     </>
   );
-};
+});
 
 export default ChatMessages;

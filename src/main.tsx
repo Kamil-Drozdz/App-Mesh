@@ -7,18 +7,22 @@ import './data/translations/i18n';
 import App from './app';
 
 const rootElement = document.getElementById('root');
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 10,
+    },
+  },
+});
 
 if (rootElement) {
-  const Root: FC = () => {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <App />
-        </Router>
-      </QueryClientProvider>
-    );
-  };
+  const Root: FC = () => (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <App />
+      </Router>
+    </QueryClientProvider>
+  );
 
   createRoot(rootElement).render(<Root />);
 } else {

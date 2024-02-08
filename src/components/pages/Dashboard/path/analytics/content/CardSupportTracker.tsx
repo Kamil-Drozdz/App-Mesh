@@ -4,7 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 import CardContainer from '@/common/CardContainer';
 import { data, options } from '@/data/charts/dataSupportTracker';
 
-const CardSupportTracker = () => {
+function CardSupportTracker() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   return (
     <CardContainer className='basis-1/2 '>
@@ -44,6 +44,6 @@ const CardSupportTracker = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default CardSupportTracker;

@@ -9,7 +9,7 @@ import { FULL_PATHS, publicPaths } from './lib/routeMapping';
 import PageContentSkeleton from './UI/skeleton/PageContentSkeleton';
 import useCurrentUser from './store/CurrentUser';
 
-const App = () => {
+const App = ()=> {
   const navigate = useNavigate();
   const { currentUser } = useCurrentUser();
   const { pathname } = useLocation();
@@ -29,23 +29,17 @@ const App = () => {
       <ToastContainer />
       <Suspense fallback={<PageContentSkeleton />}>
         <Routes>
-          {FULL_PATHS.map(({ path, component }, index) => (
+          {FULL_PATHS.map(({ path, component: Component }, index) => (
             <Route
               key={index}
               path={path}
-              element={
-                publicPaths.includes(path) ? (
-                  React.createElement(component)
-                ) : (
-                  <ProtectedComponent component={component} />
-                )
-              }
+              element={publicPaths.includes(path) ? <Component /> : <ProtectedComponent Component={Component} />}
             />
           ))}
         </Routes>
       </Suspense>
     </>
   );
-};
+}
 
 export default App;

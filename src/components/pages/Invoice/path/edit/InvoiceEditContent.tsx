@@ -9,7 +9,7 @@ import InvoiceTemplate from '../../InvoiceTemplate';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useInvoice } from '@/store/Invoice';
 
-const InvoiceEditContent = () => {
+function InvoiceEditContent() {
   const { invoice } = useInvoice();
   const { setItem } = useLocalStorage('savedInvoice');
 
@@ -24,7 +24,7 @@ const InvoiceEditContent = () => {
   return (
     <PageContainer>
       <div className='flex space-x-6'>
-        <InvoiceTemplate isEditable={true} />
+        <InvoiceTemplate isEditable />
         <NavigationCard>
           <Link className='w-full' to={`${BasicRoutes.INVOICE}${SubRoutes.PREVIEW}`}>
             <Button variant='ghost' className='w-full border'>
@@ -38,6 +38,6 @@ const InvoiceEditContent = () => {
       </div>
     </PageContainer>
   );
-};
+}
 
 export default InvoiceEditContent;

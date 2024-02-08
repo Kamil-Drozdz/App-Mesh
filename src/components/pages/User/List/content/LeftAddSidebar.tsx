@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { plans, roles } from './UserFilter';
@@ -15,6 +15,10 @@ interface FormDataProps {
   role: string;
   plan: string;
 }
+interface LeftAddSidebarProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
 
 const initialState = {
   password: generateRandomPassword(12),
@@ -23,8 +27,9 @@ const initialState = {
   role: '',
   plan: '',
 };
-const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
+const LeftAddSidebar = memo(({ isOpen, setIsOpen }: LeftAddSidebarProps) => {
   const [formData, setFormData] = useState<FormDataProps>(initialState);
+
   const handleAddEvent = async () => {
     const result = await createUser(formData);
     if (result.success) {
@@ -34,6 +39,7 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
       toast.error('Oops! Something went wrong...');
     }
   };
+
   return (
     <>
       <div
@@ -96,9 +102,9 @@ const LeftAddSidebar = ({ isOpen, setIsOpen }) => {
           <Button variant='destructive'>Cancel</Button>
         </div>
       </div>
-      {isOpen && <div className='fixed inset-0 z-50 !mt-0 bg-black opacity-50' onClick={() => setIsOpen(false)}></div>}
+      {isOpen && <div className='fixed inset-0 z-50 !mt-0 bg-black opacity-50' onClick={() => setIsOpen(false)} />}
     </>
   );
-};
+});
 
 export default LeftAddSidebar;

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CardContainer from '@/common/CardContainer';
 import { DataStatistic } from '@/data/pages/ecommerce/dataStatistic';
 
-const CardStatiscits = () => {
+function CardStatiscits() {
   const { t } = useTranslation();
   const statisticItem = DataStatistic();
 
@@ -31,6 +31,6 @@ const CardStatiscits = () => {
       </ul>
     </CardContainer>
   );
-};
+}
 
 export default CardStatiscits;

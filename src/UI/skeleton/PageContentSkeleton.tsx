@@ -3,7 +3,7 @@ import { InfinitySpin } from 'react-loader-spinner';
 import SideNavbar from '@/components/navigation/SideNavbar';
 import TopNavbar from '@/components/navigation/TopNavbar';
 
-const PageContentSkeleton = () => {
+function PageContentSkeleton() {
   return (
     <main className='ease min-h-screen max-w-[1756px] space-y-6 bg-background px-6 py-8 text-primary transition-colors duration-300  lg:ml-72 '>
       <SideNavbar /> <TopNavbar />
@@ -13,6 +13,6 @@ const PageContentSkeleton = () => {
       </div>
     </main>
   );
-};
+}
 
 export default PageContentSkeleton;

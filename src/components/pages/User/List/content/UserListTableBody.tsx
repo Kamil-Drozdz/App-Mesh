@@ -1,14 +1,14 @@
+import { BiDotsVertical, BiUser } from 'react-icons/bi';
+import { CgFileDocument } from 'react-icons/cg';
+import { FiTrash } from 'react-icons/fi';
+import { LuPenSquare } from 'react-icons/lu';
+import { SiHashicorp } from 'react-icons/si';
 import { UserProps } from './UserList';
 import { Button } from '@/UI/Button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/UI/Popover';
 import { TableCell, TableBody, TableRow } from '@/UI/Table';
 import { IconSize } from '@/lib/enums/iconSize';
 import useCurrentUser from '@/store/CurrentUser';
-import { BiDotsVertical, BiUser } from 'react-icons/bi';
-import { CgFileDocument } from 'react-icons/cg';
-import { FiTrash } from 'react-icons/fi';
-import { LuPenSquare } from 'react-icons/lu';
-import { SiHashicorp } from 'react-icons/si';
 
 const actions = [
   { label: 'Details', icon: <CgFileDocument /> },
@@ -19,7 +19,7 @@ const actions = [
 interface UserListTableBodyProps {
   currentItems: UserProps[];
 }
-const UserListTableBody = ({ currentItems }: UserListTableBodyProps) => {
+function UserListTableBody({ currentItems }: UserListTableBodyProps) {
   const { currentUser } = useCurrentUser();
   return (
     <TableBody>
@@ -89,6 +89,6 @@ const UserListTableBody = ({ currentItems }: UserListTableBodyProps) => {
       )}
     </TableBody>
   );
-};
+}
 
 export default UserListTableBody;

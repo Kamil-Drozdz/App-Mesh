@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
@@ -17,6 +17,8 @@ import { UserStatuses } from '@/lib/enums/user';
 import useCurrentUser from '@/store/CurrentUser';
 import ChatContactItem from './ChatContactItem';
 import ChatItem from './ChatItem';
+import { toast } from 'react-toastify';
+import { Collections } from '@/lib/enums/collections';
 
 export type BaseUser = {
   id: string;
@@ -44,17 +46,11 @@ export type Message = {
 };
 
 export let docId;
-export const collectionNameChats = 'chats';
-export const collectionNameContacts = 'contacts';
 
-const Chat = () => {
+function Chat() {
   const { currentUser } = useCurrentUser();
   docId = currentUser?.uid || '';
-  const {
-    data: dataChats,
-    loading: loadingChats,
-    error: errorChats,
-  } = useFirebaseData<ChatData[]>(collectionNameChats);
+  const { data: dataChats, loading: loadingChats, error: errorChats } = useFirebaseData<ChatData[]>(Collections.chats);
   const {
     data: dataContacts,
     loading: loadingContats,
@@ -80,23 +76,24 @@ const Chat = () => {
     }
   }, [dataContacts]);
 
-  function handleUserClick(selected) {
-    try {
-      if (selected.members && Array.isArray(selected.members)) {
-        const memberId = selected.members.find((memberId) => memberId !== currentUser?.uid);
-        const member = contacts.find((user) => user.id === memberId);
-        if (member) setSelectedUser(member);
-      } else {
-        if (selectedUser?.id !== selected.id) {
-          setSelectedUser(selected);
+  const handleUserClick = useCallback(
+    (selectedContact: Contact) => {
+      try {
+        if (selectedContact.members && Array.isArray(selectedContact.members)) {
+          const memberId = selectedContact.members.find((memberId) => memberId !== currentUser?.uid);
+          const member = contacts.find((user) => user.id === memberId);
+          if (member) setSelectedUser(member);
+        } else if (selectedUser?.id !== selectedContact.id) {
+          setSelectedUser(selectedContact);
         }
+      } catch (error) {
+        toast.error('Something went wrong');
       }
-    } catch (error) {
-      console.log('error', error);
-    }
 
-    setIsOpen(false);
-  }
+      setIsOpen(false);
+    },
+    [currentUser, contacts, selectedUser]
+  );
 
   const filteredChats = chats.filter((chat) => chat?.displayName.toLowerCase().includes(search.toLowerCase()));
 
@@ -177,7 +174,7 @@ const Chat = () => {
               <GiHamburgerMenu size={IconSize.basic} />
             </Button>
             <div
-              className={`   ${
+              className={`${
                 !selectedUser && 'hidden'
               } relative flex h-10 w-10 min-w-[40px] items-center justify-center rounded-full dark:text-white`}
             >
@@ -191,6 +188,6 @@ const Chat = () => {
       </div>
     </CardContainer>
   );
-};
+}
 
 export default Chat;

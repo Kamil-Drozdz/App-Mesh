@@ -1,7 +1,7 @@
 import { useInvoice } from '@/store/Invoice';
 import InvoiceTemplateField from './InvoiceTemplateField';
 
-const InvoiceTax = ({ isEditable }) => {
+function InvoiceTax({ isEditable }) {
   const { invoice } = useInvoice();
   return (
     <div className='flex items-center text-muted-foreground'>
@@ -15,6 +15,6 @@ const InvoiceTax = ({ isEditable }) => {
       %
     </div>
   );
-};
+}
 
 export default InvoiceTax;

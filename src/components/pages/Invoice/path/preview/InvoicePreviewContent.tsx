@@ -9,7 +9,7 @@ import InvoiceTemplate from '../../InvoiceTemplate';
 import InvoicePDF from '../../InvoicePDF';
 import { useInvoice } from '@/store/Invoice';
 
-const InvoicePreviewContent = () => {
+function InvoicePreviewContent() {
   const { invoice } = useInvoice();
   return (
     <PageContainer>
@@ -26,7 +26,7 @@ const InvoicePreviewContent = () => {
             </PDFDownloadLink>
           </Button>
 
-          <Button onClick={() => print()} variant='ghost' className='border'>
+          <Button onClick={print} variant='ghost' className='border'>
             Print
           </Button>
           <Link className='w-full' to={`${BasicRoutes.INVOICE}${SubRoutes.EDIT}`}>
@@ -38,6 +38,6 @@ const InvoicePreviewContent = () => {
       </div>
     </PageContainer>
   );
-};
+}
 
 export default InvoicePreviewContent;

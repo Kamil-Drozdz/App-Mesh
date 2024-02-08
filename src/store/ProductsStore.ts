@@ -44,9 +44,8 @@ const useProductsStore = create<ProdusctsStoreProps>()((set) => ({
             item.id === product.id ? { ...item, userQuantity: item.userQuantity + 1 } : item
           ),
         };
-      } else {
-        return { cart: [...state.cart, { ...product, userQuantity: 1 }] };
       }
+      return { cart: [...state.cart, { ...product, userQuantity: 1 }] };
     }),
   removeFromCart: (productId) =>
     set((state) => ({

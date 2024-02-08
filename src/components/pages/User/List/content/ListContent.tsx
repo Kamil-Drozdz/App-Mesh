@@ -3,7 +3,7 @@ import { useState } from 'react';
 import UserFilter from './UserFilter';
 import UserList from './UserList';
 
-const ListContent = () => {
+function ListContent() {
   const [filters, setFilters] = useState({ role: 'All', plan: 'All', status: 'All' });
 
   return (
@@ -12,6 +12,6 @@ const ListContent = () => {
       <UserList filters={filters} />
     </div>
   );
-};
+}
 
 export default ListContent;

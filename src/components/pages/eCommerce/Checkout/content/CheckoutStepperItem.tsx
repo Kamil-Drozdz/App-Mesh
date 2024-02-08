@@ -9,7 +9,7 @@ import useProductsStore from '@/store/ProductsStore';
 import { Input } from '@/UI/Input';
 import useWishlist from '@/hooks/useWishList';
 
-const CheckoutStepperItem = ({ product }) => {
+function CheckoutStepperItem({ product }) {
   const { cart, wishlist, setUserQuantity, addToWishlist, removeFromWishlist, removeFromCart } = useProductsStore();
   const cartItem = cart.find((item) => item.id === product.id);
   const userQuantity = cartItem ? cartItem.userQuantity : 1;
@@ -106,6 +106,6 @@ const CheckoutStepperItem = ({ product }) => {
       </div>
     </div>
   );
-};
+}
 
 export default CheckoutStepperItem;

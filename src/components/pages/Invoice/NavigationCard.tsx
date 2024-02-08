@@ -7,7 +7,7 @@ import { addDocumentFirebase } from '@/lib/firebaseHelpers/addDocumentFirebase';
 import useCurrentUser from '@/store/CurrentUser';
 import { emptyTemplateInvoice, useInvoice } from '@/store/Invoice';
 
-const NavigationCard = ({ children }) => {
+function NavigationCard({ children }) {
   const { invoice, setInvoice } = useInvoice();
   const { removeItem } = useLocalStorage('savedInvoice');
   const { currentUser } = useCurrentUser();
@@ -24,7 +24,7 @@ const NavigationCard = ({ children }) => {
 
       setInvoice(emptyTemplateInvoice);
     } catch {
-      console.log('error');
+      toast.error('Sorry we have problem with send Invoice please try again');
     }
   };
   return (
@@ -36,6 +36,6 @@ const NavigationCard = ({ children }) => {
       <Button className='w-full !bg-green-500 !text-white hover:!bg-green-400'>Add Payment</Button>
     </CardContainer>
   );
-};
+}
 
 export default NavigationCard;

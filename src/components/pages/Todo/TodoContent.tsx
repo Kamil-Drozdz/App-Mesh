@@ -1,7 +1,7 @@
 import Todo from './content/Todo';
 
-const TodoContent = () => {
+function TodoContent() {
   return <Todo />;
-};
+}
 
 export default TodoContent;

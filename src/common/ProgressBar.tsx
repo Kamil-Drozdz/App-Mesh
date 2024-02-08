@@ -1,14 +1,15 @@
 import { Transition } from 'react-transition-group';
 
-import clsx from '../lib/clsx';
+
 import { getRandomHexColor } from '@/lib/generateRandomColor';
+import clsx from '@/lib/clsx';
 
 interface ProgressBarProps {
   className?: string;
   width: number;
 }
 
-const ProgressBar = ({ width, className }: ProgressBarProps) => {
+function ProgressBar({ width, className }: ProgressBarProps) {
   const color = getRandomHexColor();
   const transitionStyles = {
     entering: { width: '0%', backgroundColor: color },
@@ -17,18 +18,18 @@ const ProgressBar = ({ width, className }: ProgressBarProps) => {
 
   return (
     <div className='h-1.5 w-full rounded-lg dark:bg-gray-400'>
-      <Transition in={true} timeout={300} appear={true}>
+      <Transition in timeout={300} appear>
         {(state) => (
           <div
             style={{
               ...transitionStyles[state],
             }}
-            className={clsx(`h-1.5 rounded-lg transition-all duration-1000 ease-in`, className)}
-          ></div>
+            className={clsx('h-1.5 rounded-lg transition-all duration-1000 ease-in', className)}
+          />
         )}
       </Transition>
     </div>
   );
-};
+}
 
 export default ProgressBar;

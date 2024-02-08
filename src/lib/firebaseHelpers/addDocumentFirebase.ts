@@ -5,15 +5,15 @@ import { db } from '@/../firebaseConfig';
 export async function addDocumentFirebase<T extends DocumentData>(
   key: string,
   docId: string,
-  newItem: T,
+  newDocument: T,
   collectionPath: string = 'users'
 ): Promise<void> {
   const docRef = doc(db, collectionPath, docId);
   try {
     await updateDoc(docRef, {
-      [key]: arrayUnion(newItem),
+      [key]: arrayUnion(newDocument),
     });
   } catch (error) {
-    console.error('Error adding item:', error);
+    console.error('Error adding document:', error);
   }
 }

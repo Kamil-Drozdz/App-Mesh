@@ -1,7 +1,7 @@
 import { Separator } from '@/UI/Separator';
 import StatusBadge from '@/common/StatusBadge';
 
-const ChatItem = ({ chat, handleUserClick, selectedUser }) => {
+function ChatItem({ chat, handleUserClick, selectedUser }) {
   return (
     <>
       <div
@@ -20,6 +20,6 @@ const ChatItem = ({ chat, handleUserClick, selectedUser }) => {
       <Separator />
     </>
   );
-};
+}
 
 export default ChatItem;

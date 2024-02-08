@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import ShopHeader from '../ShopHeader';
 import CheckoutOptions from './content/CheckoutOptions';
 import CheckoutStepper from './content/CheckoutStepper';
 import CheckoutStepperHeader from './content/CheckoutStepperHeader';
 import PageContainer from '@/common/PageContainer';
+import ShopHeader from '../ShopHeader';
 
 export interface FormData {
   fullName: string;
@@ -15,7 +15,7 @@ export interface FormData {
   phone: string;
 }
 
-const CheckoutContent = () => {
+function CheckoutContent() {
   const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
@@ -43,6 +43,6 @@ const CheckoutContent = () => {
       </div>
     </PageContainer>
   );
-};
+}
 
 export default CheckoutContent;

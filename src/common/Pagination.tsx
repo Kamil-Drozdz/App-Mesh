@@ -8,7 +8,7 @@ interface PaginationProps {
   currentItems: UserProps[];
 }
 
-const Pagination = ({ currentPage, setCurrentPage, totalPages, currentItems }: PaginationProps) => {
+function Pagination({ currentPage, setCurrentPage, totalPages, currentItems }: PaginationProps) {
   const handlePrevPage = () => setCurrentPage((page) => Math.max(page - 1, 1));
   const handleNextPage = () => setCurrentPage((page) => Math.min(page + 1, totalPages));
   const isPrevDisabled = currentPage === 1;
@@ -20,7 +20,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages, currentItems }: P
         <Button variant='empty' onClick={handlePrevPage} disabled={isPrevDisabled}>
           &lt;
         </Button>
-        <span className='bg-buttonPrimary flex h-12 w-12 items-center justify-center rounded-full text-white'>
+        <span className='flex h-12 w-12 items-center justify-center rounded-full bg-buttonPrimary text-white'>
           {currentPage}
         </span>
         <Button variant='empty' onClick={handleNextPage} disabled={isNextDisabled}>
@@ -29,6 +29,6 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages, currentItems }: P
       </div>
     </div>
   );
-};
+}
 
 export default Pagination;

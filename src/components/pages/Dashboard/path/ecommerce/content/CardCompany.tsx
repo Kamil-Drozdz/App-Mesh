@@ -3,7 +3,7 @@ import CardContainer from '@/common/CardContainer';
 import { CompanyData, DataCompany, generateCompanyData } from '@/data/pages/ecommerce/dataCompany';
 import { generateData } from '@/lib/generateData';
 
-const CardCompany = () => {
+function CardCompany() {
   const data: CompanyData[] = generateData(20, generateCompanyData);
   const labels = DataCompany();
 
@@ -25,6 +25,6 @@ const CardCompany = () => {
       </ul>
     </CardContainer>
   );
-};
+}
 
 export default CardCompany;

@@ -10,7 +10,7 @@ import CardStatiscits from './content/CardStatiscits';
 import CardTransaction from './content/CardTransaction';
 import PageContainer from '@/common/PageContainer';
 
-const EcommerceContent = () => {
+function EcommerceContent() {
   return (
     <PageContainer>
       <div className=' flex flex-col items-stretch space-y-6 space-x-0 md:flex-row md:justify-between md:space-y-0 md:space-x-6'>
@@ -35,6 +35,6 @@ const EcommerceContent = () => {
       </div>
     </PageContainer>
   );
-};
+}
 
 export default EcommerceContent;

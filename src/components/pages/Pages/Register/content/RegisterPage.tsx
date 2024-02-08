@@ -20,7 +20,7 @@ interface FormDataProps {
   terms: boolean;
 }
 
-const RegisterPage = () => {
+function RegisterPage() {
   const [formData, setFormData] = useState<FormDataProps>({
     displayName: '',
     email: '',
@@ -39,7 +39,13 @@ const RegisterPage = () => {
     if (result.success) {
       toast.success('Great! Your new account is ready and waiting for you. Log in now and start your adventure');
       navigate(`${BasicRoutes.LOGIN}`);
-      setFormData({ email: '', password: '', role: 'User', terms: false, displayName: '' });
+      setFormData({
+        email: '',
+        password: '',
+        role: 'User',
+        terms: false,
+        displayName: '',
+      });
     } else {
       toast.error('Oops! Something went wrong during registration. Please try again later.');
     }
@@ -89,7 +95,7 @@ const RegisterPage = () => {
               <div className='flex items-center space-x-2'>
                 <Input
                   id='terms'
-                  className={`h-4 w-4 `}
+                  className='h-4 w-4 '
                   defaultChecked={false}
                   type='checkbox'
                   checked={formData.terms}
@@ -97,7 +103,7 @@ const RegisterPage = () => {
                 />
                 <label htmlFor='terms'>
                   I agree to
-                  <Link to={'/terms'} className='ml-1 text-buttonPrimary'>
+                  <Link to='/terms' className='ml-1 text-buttonPrimary'>
                     privacy policy & terms
                   </Link>
                 </label>
@@ -119,6 +125,6 @@ const RegisterPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default RegisterPage;

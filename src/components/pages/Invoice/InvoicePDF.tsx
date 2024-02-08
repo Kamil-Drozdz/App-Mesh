@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoicePDF = ({ invoice }) => {
+function InvoicePDF({ invoice }) {
   const subTotal = totalValue(invoice.invoiceItems.map((item) => item.rate * item.hours));
   const taxAmount = subTotal * (invoice.tax / 100);
   const total = subTotal + taxAmount;
@@ -99,8 +99,14 @@ const InvoicePDF = ({ invoice }) => {
           </View>
           <View>
             <Text style={styles.title}>Invoice #{invoice.invoiceDetails.number}</Text>
-            <Text style={styles.text}>Date Issued: {parsedDateIssued}</Text>
-            <Text style={styles.text}>Due Date: {parsedDateDue}</Text>
+            <Text style={styles.text}>
+              Date Issued:
+              {parsedDateIssued}
+            </Text>
+            <Text style={styles.text}>
+              Due Date:
+              {parsedDateDue}
+            </Text>
           </View>
         </View>
         <View style={styles.header}>
@@ -114,8 +120,14 @@ const InvoicePDF = ({ invoice }) => {
           <View>
             <Text style={styles.title}>Payment Details:</Text>
             <Text style={styles.text}>Total Due: ${total.toFixed(2)}</Text>
-            <Text style={styles.text}>Method: {invoice.paymentDetails.method}</Text>
-            <Text style={styles.text}>Transaction ID: {invoice.paymentDetails.transactionId}</Text>
+            <Text style={styles.text}>
+              Method:
+              {invoice.paymentDetails.method}
+            </Text>
+            <Text style={styles.text}>
+              Transaction ID:
+              {invoice.paymentDetails.transactionId}
+            </Text>
           </View>
         </View>
 
@@ -139,7 +151,10 @@ const InvoicePDF = ({ invoice }) => {
             <Text style={[styles.itemCell, { width: '25%' }]}>${subTotal.toFixed(2)}</Text>
           </View>
           <View style={[styles.itemRow, styles.bold]}>
-            <Text style={[styles.itemCell, { width: '75%' }]}>Tax {invoice.tax}%</Text>
+            <Text style={[styles.itemCell, { width: '75%' }]}>
+              Tax
+              {invoice.tax}%
+            </Text>
             <Text style={[styles.itemCell, { width: '25%' }]}>${taxAmount.toFixed(2)}</Text>
           </View>
           <View style={[styles.itemRow, styles.bold]}>
@@ -154,6 +169,6 @@ const InvoicePDF = ({ invoice }) => {
       </Page>
     </Document>
   );
-};
+}
 
 export default InvoicePDF;

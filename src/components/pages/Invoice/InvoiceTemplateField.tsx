@@ -4,7 +4,7 @@ import clsx from '@/lib/clsx';
 import { useInvoice } from '@/store/Invoice';
 import InputWithLabel from '@/common/InputWithLabel';
 
-const InvoiceTemplateField = ({
+function InvoiceTemplateField({
   isEditable,
   value,
   label,
@@ -13,7 +13,7 @@ const InvoiceTemplateField = ({
   name,
   readOnly = false,
   type = 'text',
-}) => {
+}) {
   const { setInvoice } = useInvoice();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +41,6 @@ const InvoiceTemplateField = ({
   ) : (
     <div className='break-all'>{value}</div>
   );
-};
+}
 
 export default InvoiceTemplateField;
