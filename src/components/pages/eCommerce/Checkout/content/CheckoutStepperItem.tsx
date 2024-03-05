@@ -4,34 +4,20 @@ import { BiHeart, BiSolidMinusSquare, BiSolidPlusSquare } from 'react-icons/bi';
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import { IconSize } from '@/lib/enums/iconSize';
-import { starRating } from '@/lib/starRating';
-import useProductsStore from '@/store/ProductsStore';
 import { Input } from '@/UI/Input';
-import useWishlist from '@/hooks/useWishList';
+import useCheckoutStepperItem from '@/hooks/useCheckoutSteppetItem';
+import { ProductProps } from '@/store/ProductsStore';
 
-function CheckoutStepperItem({ product }) {
-  const { cart, wishlist, setUserQuantity, addToWishlist, removeFromWishlist, removeFromCart } = useProductsStore();
-  const cartItem = cart.find((item) => item.id === product.id);
-  const userQuantity = cartItem ? cartItem.userQuantity : 1;
-  const stars = starRating(product.rating.rate);
-  const { isProductInWishlist, toggleWishlist } = useWishlist(wishlist, {
-    add: addToWishlist,
-    remove: removeFromWishlist,
-  });
-  const isProductInCart = cart.some((item) => item.id === product.id);
-
-  const handleQuantityChange = (e) => {
-    const value = parseFloat(e.target.value);
-    if (!isNaN(value) && value <= product?.quantity && value >= 1) {
-      setUserQuantity(product.id, value);
-    }
-  };
-
-  const handleRemoveProductFromCart = () => {
-    if (isProductInCart) {
-      removeFromCart(product.id);
-    }
-  };
+function CheckoutStepperItem({ product }: { product: ProductProps }) {
+  const {
+    userQuantity,
+    setUserQuantity,
+    stars,
+    isProductInWishlist,
+    handleQuantityChange,
+    handleRemoveProductFromCart,
+    toggleWishlist,
+  } = useCheckoutStepperItem({ product });
 
   return (
     <div key={product.id}>
@@ -88,7 +74,7 @@ function CheckoutStepperItem({ product }) {
           <p className=' font-semibold text-buttonPrimary'>${product?.price * userQuantity}</p>
           <p className='w-fit rounded-lg bg-green-600 bg-opacity-30 px-2 text-green-400'>Free Shipping</p>
           <Button
-            onClick={toggleWishlist}
+            onClick={() => toggleWishlist(product)}
             className='w-full space-x-2 !bg-buttonPrimary !text-white hover:brightness-110'
           >
             {isProductInWishlist(product) ? (

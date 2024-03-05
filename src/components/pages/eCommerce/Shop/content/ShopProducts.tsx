@@ -6,7 +6,7 @@ import noData from '@/assets/no-data.svg';
 import { SearchInput } from '@/common/SearchInput';
 import { ProductProps } from '@/store/ProductsStore';
 import { ErrorComponent } from '@/common/ErrrorComponent';
-import useFirebaseCachedData from '@/hooks/useFirebaseCachedData';
+import useFirebaseCachedData from '@/hooks/reusable/useFirebaseCachedData';
 import { Collections } from '@/lib/enums/collections';
 
 function ShopProducts() {

@@ -6,7 +6,7 @@ import PageContainer from '@/common/PageContainer';
 import { Button } from '@/UI/Button';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import InvoiceTemplate from '../../InvoiceTemplate';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useLocalStorage } from '@/hooks/reusable/useLocalStorage';
 import { useInvoice } from '@/store/Invoice';
 
 function InvoiceEditContent() {

@@ -1,5 +1,5 @@
 import { Separator } from '@/UI/Separator';
-import { Contact } from './Chat';
+import { Contact } from '../ChatContent';
 
 interface ChatContactItemProps {
   handleUserClick: (contact: Contact) => void;

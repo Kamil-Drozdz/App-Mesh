@@ -7,7 +7,7 @@ import beginChat from '@/assets/begin-chat.svg';
 import defaultUser from '@/assets/default-user.webp';
 import { CustomUser } from '@/store/CurrentUser';
 import ChatZoomImage from './ChatZoomImage';
-import { ChatData, Message } from './Chat';
+import { ChatData, Message } from '../ChatContent';
 
 export interface ChatsProps {
   selectedUser: ChatData | null;

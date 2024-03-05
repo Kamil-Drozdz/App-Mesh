@@ -1,34 +1,20 @@
-import { useState } from 'react';
 import { FaRegCircle, FaRegDotCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import logo from '@/assets/logo.webp';
-import { NavItems } from '@/data/navigation/navItems';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
+import SideNavbarItem from './SideNavbarItem';
 import useFullScreen from '@/store/FullScreen';
 import useMenu from '@/store/Menu';
-import SideNavbarItem from './SideNavbarItem';
 import useConfig from '@/store/Config';
-
+import { NavItems } from '@/data/navigation/navItems';
+import useSideNavbar from '@/hooks/useSideNavbar';
 function SideNavbar() {
   const { config } = useConfig();
   const { isFullScreen } = useFullScreen();
   const { isMenuOpen, toggleMenu } = useMenu();
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [menuCollapsed, setMenuCollapsed] = useState(false);
   const navItems = NavItems();
-
-  const onMouseEnter = () => {
-    if (isCollapsed) {
-      setMenuCollapsed(false);
-    }
-  };
-  const onMouseLeave = () => {
-    if (!menuCollapsed && isCollapsed) {
-      setMenuCollapsed(true);
-    }
-  };
-
+  const { isCollapsed, setIsCollapsed, menuCollapsed, onMouseEnter, onMouseLeave } = useSideNavbar();
   return (
     <>
       <div

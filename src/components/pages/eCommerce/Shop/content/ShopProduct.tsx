@@ -8,13 +8,13 @@ import { IconSize } from '@/lib/enums/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
 import { starRating } from '@/lib/starRating';
 import useProductsStore, { ProductProps } from '@/store/ProductsStore';
-import useWishlist from '@/hooks/useWishList';
+import useWishlist from '@/hooks/reusable/useWishList';
 
 interface ShopProductProps {
   product: ProductProps;
 }
 function ShopProduct({ product }: ShopProductProps) {
-  const stars = starRating(product.rating.rate);
+  const stars = starRating(product?.rating?.rate);
   const { addToWishlist, cart, addToCart, removeFromCart, removeFromWishlist, wishlist } = useProductsStore();
   const { isProductInWishlist, toggleWishlist } = useWishlist(wishlist, {
     add: addToWishlist,

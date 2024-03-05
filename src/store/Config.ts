@@ -1,5 +1,5 @@
+import { FormDataBasic } from '@/hooks/useMultiConfigForm';
 import { create } from 'zustand';
-import { FormDataBasic } from '@/components/config/MultiConfigForm';
 
 interface ConfigProps {
   config: FormDataBasic | null;

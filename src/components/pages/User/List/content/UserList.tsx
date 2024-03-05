@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react';
+import { memo } from 'react';
 import { Player } from '@lordicon/react';
 
 import LeftAddSidebar from './LeftAddSidebar';
@@ -10,11 +10,11 @@ import CardContainer from '@/common/CardContainer';
 import { ErrorComponent } from '@/common/ErrrorComponent';
 import Pagination from '@/common/Pagination';
 import { SearchInput } from '@/common/SearchInput';
-import useFirebaseCachedData from '@/hooks/useFirebaseCachedData';
 import AvatarIcon from '@/assets/lottieJson/system-regular-8-account.json';
 import { IconSize } from '@/lib/enums/iconSize';
+import useUserList from '@/hooks/useUserList';
 
-interface UserListProps {
+export interface UserListProps {
   filters: { role: string; plan: string; status: string };
 }
 export interface UserProps {
@@ -28,30 +28,20 @@ export interface UserProps {
 const numbers = [10, 25, 50, 100];
 
 const UserList = memo(({ filters }: UserListProps) => {
-  const playerRef = useRef<Player>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState('');
-  const { data: users, loading, error } = useFirebaseCachedData<UserProps[]>('users', 'btRsHRNa7gSCKkWxLXltVbGsCI93');
-
-  const filteredUsers = search
-    ? users?.filter((user) => user.displayName.includes(search) || user.email.includes(search))
-    : users?.filter(
-        (user) =>
-          (filters.role === 'All' || user?.role === filters.role) &&
-          (filters.plan === 'All' || user?.plan.toLocaleLowerCase() === filters.plan.toLocaleLowerCase())
-        //   &&  (filters.status === 'All' || user?.emailVerified.toLocaleLowerCase() === filters.status.toLocaleLowerCase())
-      );
-
-  const totalPages = Math.ceil((filteredUsers?.length || 0) / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredUsers?.slice(indexOfFirstItem, indexOfLastItem) || [];
-
-  setTimeout(() => {
-    playerRef.current?.goToLastFrame();
-  }, 0);
+  const {
+    playerRef,
+    currentPage,
+    setCurrentPage,
+    setItemsPerPage,
+    isOpen,
+    setIsOpen,
+    search,
+    setSearch,
+    loading,
+    error,
+    totalPages,
+    currentItems,
+  } = useUserList({ filters });
 
   if (loading) {
     return <div>Loading...</div>;

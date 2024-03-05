@@ -4,58 +4,27 @@ import { BsShield } from 'react-icons/bs';
 import { FiCheck, FiShare2, FiShoppingCart } from 'react-icons/fi';
 import { PiMedalBold } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
 
 import { Button } from '@/UI/Button';
 import { Separator } from '@/UI/Separator';
 import Skeleton from '@/UI/skeleton/Skeleton';
 import { IconSize } from '@/lib/enums/iconSize';
 import { BasicRoutes, SubRoutes } from '@/lib/enums/routes';
-import { starRating } from '@/lib/starRating';
-import useProductsStore, { ProductProps } from '@/store/ProductsStore';
-import useWishlist from '@/hooks/useWishList';
-import useFirebaseCachedData from '@/hooks/useFirebaseCachedData';
 import { ErrorComponent } from '@/common/ErrrorComponent';
+import useDetailsProduct from '@/hooks/useDetailsProduct';
 
 function DetailsProduct({ productID }) {
-  if (typeof productID === 'undefined') {
-    productID = 2;
-  }
-
-  const { data: products, loading, error } = useFirebaseCachedData<ProductProps[]>('products');
-  const [product, setProduct] = useState<ProductProps | null>(null);
-  const [isCopiedToClipboard, setIsCopiedToClipboard] = useState(false);
-  const { addToWishlist, cart, addToCart, removeFromWishlist, wishlist } = useProductsStore();
-  const { isProductInWishlist, toggleWishlist } = useWishlist(wishlist, {
-    add: addToWishlist,
-    remove: removeFromWishlist,
-  });
-
-  const isProductInCart = cart.some((item) => item.id === product?.id);
-  const stars = product ? starRating(product?.rating?.rate) : null;
-
-  useEffect(() => {
-    if (products) {
-      const foundProduct = products.find((p) => p.id === Number(productID));
-      setProduct(foundProduct || null);
-    }
-  }, [products, productID]);
-
-  useEffect(() => {
-    setTimeout(() => setIsCopiedToClipboard(false), 6000);
-  }, [isCopiedToClipboard]);
-
-  const handleShare = () => {
-    toast.info('Product URL copied to clipboard');
-    navigator.clipboard.writeText(location.href);
-    setIsCopiedToClipboard(true);
-  };
-  const handleAddToCart = (product) => {
-    if (!isProductInCart) {
-      addToCart(product);
-    }
-  };
+  const {
+    product,
+    loading,
+    error,
+    stars,
+    isCopiedToClipboard,
+    handleShare,
+    handleAddToCart,
+    isProductInWishlist,
+    toggleWishlist,
+  } = useDetailsProduct({ productID });
 
   if (loading) {
     return <Skeleton className='flex' SkeletonLength={1} />;

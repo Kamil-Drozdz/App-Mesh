@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { Button } from '@/UI/Button';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useLocalStorage } from '@/hooks/reusable/useLocalStorage';
 import { totalValue } from '@/lib/totalValue';
 
 function CheckoutSuccess() {
